@@ -50,7 +50,7 @@ void CSVStream::input(Array2D<int>& input, const char* name)
 	{
 		for (int x = 0; x < width; x++)
 		{
-			input(y, x) = values[x*height + y];
+			input(y, x) = values[y*width + x];
 		}
 	}
 }
