@@ -12,7 +12,6 @@ Renderer renderer;
 Sound sound;
 void gameInit(void)
 {	
-	renderer.LoadTextrue("load.bmp");
 	sceneManager.Add(Scene::MODE_LOAD, new Load(renderer,sound));
 	sceneManager.Add(Scene::MODE_TITLE, new Title());
 	sceneManager.Add(Scene::MODE_GAMEPLAY,new GamePlay(sound));	
