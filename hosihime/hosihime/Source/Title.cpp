@@ -1,12 +1,8 @@
 #include "Title.h"
 //タイトルクラスコンストラクタ
-//testtest
 Title::Title()
 {
 }
-//
-//TEST
-//
 Title::~Title()
 {
 }
