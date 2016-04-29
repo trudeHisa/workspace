@@ -10,19 +10,19 @@ CSVStream.cpp
 CSVStream::CSVStream()
 {
 }
-void CSVStream::output(Array2D<int>& out, const char* name)
+void CSVStream::output(Array2D<int>* out, const char* name)
 {
 	std::ofstream ofs(name);
-	for (int y = 0; y <out.getSize0(); y++)
+	for (int y = 0; y <out->getSize0(); y++)
 	{
-		for (int x = 0; x <out.getSize1(); x++)
+		for (int x = 0; x <out->getSize1(); x++)
 		{
-			ofs << out(y, x) << ',';
+			ofs << (*out)(y, x) << ',';
 		}
 		ofs << std::endl;
 	}
 }
-void CSVStream::input(Array2D<int>& input, const char* name)
+void CSVStream::input(Array2D<int>* input, const char* name)
 {
 	std::ifstream ifs(name);
 	if (!ifs)
@@ -45,12 +45,12 @@ void CSVStream::input(Array2D<int>& input, const char* name)
 		}
 		height++;
 	}
-	input.setSize(height, width);
+	input->setSize(height, width);
 	for (int y = 0; y < height; y++)
 	{
 		for (int x = 0; x < width; x++)
 		{
-			input(y, x) = values[y*width + x];
+			(*input)(y, x) = values[y*width + x];
 		}
 	}
 }

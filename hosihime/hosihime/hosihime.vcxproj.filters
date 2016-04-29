@@ -25,6 +25,12 @@
     <Filter Include="ソース ファイル\util">
       <UniqueIdentifier>{dd14074f-35db-40bd-b965-161fa20694ae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\main">
+      <UniqueIdentifier>{48565ddb-8cfe-46d8-983a-d8c1b02586a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\main">
+      <UniqueIdentifier>{fc7c6a38-4278-4209-a087-a6f791a4337f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\game.cpp">
@@ -62,6 +68,9 @@
     </ClCompile>
     <ClCompile Include="Source\CSVStream.cpp">
       <Filter>ソース ファイル\util</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Stage.cpp">
+      <Filter>ソース ファイル\main</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +118,12 @@
     </ClInclude>
     <ClInclude Include="Source\CSVStream.h">
       <Filter>ヘッダー ファイル\util</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GAMEOBJ_TYPE.h">
+      <Filter>ヘッダー ファイル\main</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Stage.h">
+      <Filter>ヘッダー ファイル\main</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

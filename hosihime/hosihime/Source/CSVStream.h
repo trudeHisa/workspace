@@ -6,6 +6,8 @@ class CSVStream
 {
 public:
 	CSVStream();
-	void output(Array2D<int>& out, const char* name);
-	void input(Array2D<int>& out, const char* name);
+	/*o—Í*/
+	void output(Array2D<int>* out, const char* name);
+	/*“ü—Í*/
+	void input(Array2D<int>* out, const char* name);
 };

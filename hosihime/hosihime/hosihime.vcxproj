@@ -21,6 +21,7 @@
     <ClCompile Include="Source\Renderer.cpp" />
     <ClCompile Include="Source\SceneManager.cpp" />
     <ClCompile Include="Source\Sound.cpp" />
+    <ClCompile Include="Source\Stage.cpp" />
     <ClCompile Include="Source\Timer.cpp" />
     <ClCompile Include="Source\Title.cpp" />
   </ItemGroup>
@@ -31,6 +32,7 @@
     <ClInclude Include="Source\Definition.h" />
     <ClInclude Include="Source\Ending.h" />
     <ClInclude Include="Source\game.h" />
+    <ClInclude Include="Source\GAMEOBJ_TYPE.h" />
     <ClInclude Include="Source\GamePlay.h" />
     <ClInclude Include="Source\IScene.h" />
     <ClInclude Include="Source\Load.h" />
@@ -38,6 +40,7 @@
     <ClInclude Include="Source\Renderer.h" />
     <ClInclude Include="Source\SceneManager.h" />
     <ClInclude Include="Source\Sound.h" />
+    <ClInclude Include="Source\Stage.h" />
     <ClInclude Include="Source\Timer.h" />
     <ClInclude Include="Source\Title.h" />
   </ItemGroup>
