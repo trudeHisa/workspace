@@ -1,4 +1,5 @@
 #include "Title.h"
+//タイトルクラスコンストラクタ
 Title::Title()
 {
 }
