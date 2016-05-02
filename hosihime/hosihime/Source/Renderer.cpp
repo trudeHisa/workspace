@@ -107,11 +107,11 @@ void Renderer::DrawSprite2D(
 }
 void Renderer::DrawTextrue(const std::string& name, const GSvector2* _position)
 {
-	DrawSprite2D(container[name], NULL, NULL, NULL, NULL, _position,NULL);
+	DrawSprite2D(container[name], NULL, NULL, NULL, NULL, _position, &GScolor(1, 1, 1, 1));
 }
 void Renderer::DrawTextrue(const std::string& name, const GSvector2* _position, const GSrect* _rect)
 {
-	DrawSprite2D(container[name], _rect, NULL, NULL, NULL, _position, NULL);
+	DrawSprite2D(container[name], _rect, NULL, NULL, NULL, _position, &GScolor(1, 1, 1, 1));
 }
 void Renderer::DrawTextrue(const std::string& name, const GSvector2* _position, const GScolor* _color)
 {

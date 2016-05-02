@@ -1,7 +1,7 @@
 #include"GamePlay.h"
 
-GamePlay::GamePlay(Sound& sound)
-	:ang(0), pos(0, 100),sound(sound)
+GamePlay::GamePlay(Sound* sound)
+	:ang(0), pos(0, 100),sound(*sound)
 {
 }
 GamePlay::~GamePlay()

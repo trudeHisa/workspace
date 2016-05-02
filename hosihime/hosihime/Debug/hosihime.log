@@ -1,11 +1,7 @@
-﻿2016/04/29 23:07:42 にビルドを開始しました。
-     1>ノード 2 上のプロジェクト "C:\Users\hiroya\Source\Repos\workspace\hosihime\hosihime\hosihime.vcxproj" (Build ターゲット)。
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Source\GamePlay.cpp
-         GamePlay.cpp
-     1>c:\users\hiroya\source\repos\workspace\hosihime\hosihime\source\gameplay.cpp(26): warning C4800: 'BOOL' : ブール値を 'true' または 'false' に強制的に設定します (警告の処理)
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\hiroya\Source\Repos\workspace\hosihime\Debug\hosihime.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\hiroya\Source\Repos\workspace\hosihime\Debug\hosihime.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\hiroya\Source\Repos\workspace\hosihime\Debug\hosihime.lib" /MACHINE:X86 Debug\CSVStream.obj
+﻿2016/05/03 1:44:31 にビルドを開始しました。
+     1>ノード 2 上のプロジェクト "C:\Users\hiroya\Source\Repos\workspace2\hosihime\hosihime\hosihime.vcxproj" (Build ターゲット)。
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\hiroya\Source\Repos\workspace2\hosihime\Debug\hosihime.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\hiroya\Source\Repos\workspace2\hosihime\Debug\hosihime.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\hiroya\Source\Repos\workspace2\hosihime\Debug\hosihime.lib" /MACHINE:X86 Debug\CSVStream.obj
          Debug\Ending.obj
          Debug\game.obj
          Debug\GamePlay.obj
@@ -17,9 +13,10 @@
          Debug\Sound.obj
          Debug\Timer.obj
          Debug\Title.obj
-         hosihime.vcxproj -> C:\Users\hiroya\Source\Repos\workspace\hosihime\Debug\hosihime.exe
-     1>プロジェクト "C:\Users\hiroya\Source\Repos\workspace\hosihime\hosihime\hosihime.vcxproj" (Build ターゲット) のビルドが完了しました。
+         LINK : 前回のインクリメンタル リンクで C:\Users\hiroya\Source\Repos\workspace2\hosihime\Debug\hosihime.exe が見つからなかったか、ビルドされませんでした。フル リンクを行います。
+         hosihime.vcxproj -> C:\Users\hiroya\Source\Repos\workspace2\hosihime\Debug\hosihime.exe
+     1>プロジェクト "C:\Users\hiroya\Source\Repos\workspace2\hosihime\hosihime\hosihime.vcxproj" (Build ターゲット) のビルドが完了しました。
 
 ビルドに成功しました。
 
-経過時間 00:00:00.92
+経過時間 00:00:00.44

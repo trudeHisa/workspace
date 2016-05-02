@@ -1,6 +1,6 @@
 #include "Load.h"
-Load::Load(Renderer& renderer, Sound& sound)
-	:renderer(renderer),sound(sound)
+Load::Load(Renderer& renderer, Sound* sound)
+	:renderer(renderer),sound(*sound)
 {
 	renderer.LoadTextrue("load.bmp");
 }
