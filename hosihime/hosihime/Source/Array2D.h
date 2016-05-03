@@ -13,6 +13,7 @@ public:
 		delete[] mArray;
 		mArray = 0;
 	}
+	/*0=height,1=width*/
 	void setSize(int size0, int size1)
 	{
 		mSize0 = size0;
@@ -24,6 +25,14 @@ public:
 	}
 	const T& operator()(int index0, int index1) const {
 		return mArray[index1 * mSize0 + index0];
+	}
+	const int& getSize0()
+	{
+		return mSize0;
+	}
+	const int& getSize1()
+	{
+		return mSize1;
 	}
 private:
 	T* mArray;

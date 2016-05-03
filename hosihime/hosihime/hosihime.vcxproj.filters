@@ -60,6 +60,9 @@
     <ClCompile Include="Source\Sound.cpp">
       <Filter>ソース ファイル\util</Filter>
     </ClCompile>
+    <ClCompile Include="Source\CSVStream.cpp">
+      <Filter>ソース ファイル\util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Definition.h">
@@ -102,6 +105,9 @@
       <Filter>ヘッダー ファイル\util</Filter>
     </ClInclude>
     <ClInclude Include="Source\Sound.h">
+      <Filter>ヘッダー ファイル\util</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CSVStream.h">
       <Filter>ヘッダー ファイル\util</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,7 +1,7 @@
 #include"GamePlay.h"
 
-GamePlay::GamePlay(Sound& sound)
-	:ang(0), pos(0, 100),sound(sound)
+GamePlay::GamePlay(Sound* sound)
+	:ang(0), pos(0, 100),sound(*sound)
 {
 }
 GamePlay::~GamePlay()
@@ -26,12 +26,13 @@ void GamePlay::Update()
 	isEnd = gsGetKeyTrigger(GKEY_SPACE);
 }
 void GamePlay::Draw(Renderer& renderer)
-{
+{	
 	renderer.DrawTextrue("gameplay.bmp", &GSvector2(0, 0));
 	//renderer.DrawTextrue("space.bmp", &GSvector2(0, 0));
 	renderer.AdditionBlend();
 	renderer.DrawTextrue("star.bmp", &pos,NULL,&GSvector2(32,32),NULL,ang,NULL);
 	renderer.InitBlendFunc();	
+	renderer.DrawString("aBÇÉCÇ¶", &GSvector2(50, 50),30);
 }
 void GamePlay::Finish()
 {
