@@ -1,11 +1,14 @@
 #include"GamePlay.h"
+#include"Player.h"
 
 GamePlay::GamePlay(Sound& sound)
 	:ang(0), pos(0, 100),sound(sound)
 {
+	
 }
 GamePlay::~GamePlay()
 {
+	
 }
 void GamePlay::Init()
 {
@@ -31,7 +34,6 @@ void GamePlay::Draw(Renderer& renderer)
 	//renderer.DrawTextrue("space.bmp", &GSvector2(0, 0));
 	renderer.AdditionBlend();
 	renderer.DrawTextrue("star.bmp", &pos,NULL,&GSvector2(32,32),NULL,ang,NULL);
-	renderer.DrawTextrue("player.bmp", &GSvector2(200, 500));
 	renderer.InitBlendFunc();	
 }
 void GamePlay::Finish()
