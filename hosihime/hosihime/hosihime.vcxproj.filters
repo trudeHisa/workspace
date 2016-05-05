@@ -16,14 +16,20 @@
     <Filter Include="ソース ファイル\scene">
       <UniqueIdentifier>{95bfe0fc-21c8-4508-b63c-5083218d9309}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\scene">
-      <UniqueIdentifier>{95d4af53-4dcc-4e6a-868c-956c7f2af5c4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\util">
       <UniqueIdentifier>{df4eb2c4-e0db-46b9-a6bf-5906d8b7bafa}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソース ファイル\util">
       <UniqueIdentifier>{dd14074f-35db-40bd-b965-161fa20694ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\stage">
+      <UniqueIdentifier>{c3ea4e63-356a-4ca0-b5ea-61d1fb678e13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\stage">
+      <UniqueIdentifier>{7cbc3ec2-d0bf-4dac-a082-217e6f48bf56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\scene">
+      <UniqueIdentifier>{95d4af53-4dcc-4e6a-868c-956c7f2af5c4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +68,21 @@
     </ClCompile>
     <ClCompile Include="Source\CSVStream.cpp">
       <Filter>ソース ファイル\util</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameObjControl.cpp">
+      <Filter>ソース ファイル\stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameObject.cpp">
+      <Filter>ソース ファイル\stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rock.cpp">
+      <Filter>ソース ファイル\stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Star.cpp">
+      <Filter>ソース ファイル\stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Stage.cpp">
+      <Filter>ソース ファイル\stage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +130,24 @@
     </ClInclude>
     <ClInclude Include="Source\CSVStream.h">
       <Filter>ヘッダー ファイル\util</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GAMEOBJ_TYPE.h">
+      <Filter>ヘッダー ファイル\stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameObjControl.h">
+      <Filter>ヘッダー ファイル\stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rock.h">
+      <Filter>ヘッダー ファイル\stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Stage.h">
+      <Filter>ヘッダー ファイル\stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Star.h">
+      <Filter>ヘッダー ファイル\stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GamaObject.h">
+      <Filter>ヘッダー ファイル\stage</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

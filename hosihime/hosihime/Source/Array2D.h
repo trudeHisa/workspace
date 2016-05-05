@@ -26,11 +26,11 @@ public:
 	const T& operator()(int index0, int index1) const {
 		return mArray[index1 * mSize0 + index0];
 	}
-	const int& getSize0()
+	const int& getSize0()const
 	{
 		return mSize0;
 	}
-	const int& getSize1()
+	const int& getSize1()const
 	{
 		return mSize1;
 	}

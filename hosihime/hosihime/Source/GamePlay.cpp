@@ -1,41 +1,32 @@
 #include"GamePlay.h"
-
+#include "Stage.h"
+#include "Star.h"
 GamePlay::GamePlay(Sound* sound)
-	:ang(0), pos(0, 100),sound(*sound)
+	:sound(*sound), stage(0)
 {
 }
 GamePlay::~GamePlay()
 {
+	delete stage;
 }
 void GamePlay::Init()
 {
-	//sound.PlaySE("testSE.wav");
 	isEnd = false;
+	stage = new Stage("mapdata\\testmap.csv");
+	stage->initialize();
 }
 void GamePlay::Update()
 {
-	ang+= 2;
-	pos.x+=3;
-	pos.y += 1;
-	if (pos.x >= 1280)
-	{
-		sound.PlaySE("testSE2.wav");
-		pos.x = 0;
-		pos.y = 100;
-	}
+	stage->updata();
 	isEnd = gsGetKeyTrigger(GKEY_SPACE);
 }
 void GamePlay::Draw(Renderer& renderer)
-{	
-	renderer.DrawTextrue("gameplay.bmp", &GSvector2(0, 0));
-	//renderer.DrawTextrue("space.bmp", &GSvector2(0, 0));
-	renderer.AdditionBlend();
-	renderer.DrawTextrue("star.bmp", &pos,NULL,&GSvector2(32,32),NULL,ang,NULL);
-	renderer.InitBlendFunc();	
-	renderer.DrawString("aB‚ƒC‚¦", &GSvector2(50, 50),30);
+{
+	stage->draw(renderer);
 }
 void GamePlay::Finish()
 {
+	stage->finish();
 }
 Scene GamePlay::Next()
 {

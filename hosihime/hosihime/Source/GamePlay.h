@@ -2,6 +2,8 @@
 #define _GAMEPLAY_H_
 #include "IScene.h"
 #include "Sound.h"
+#include "Stage.h"
+
 class GamePlay :public IScene
 {
 public:
@@ -15,8 +17,7 @@ public:
 	bool IsEnd();
 private:
 	bool isEnd;
-	float ang;
-	GSvector2 pos;
 	Sound sound;
+	Stage* stage;
 };
 #endif

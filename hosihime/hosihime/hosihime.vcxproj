@@ -14,13 +14,18 @@
     <ClCompile Include="Source\CSVStream.cpp" />
     <ClCompile Include="Source\Ending.cpp" />
     <ClCompile Include="Source\game.cpp" />
+    <ClCompile Include="Source\GameObjControl.cpp" />
+    <ClCompile Include="Source\GameObject.cpp" />
     <ClCompile Include="Source\GamePlay.cpp" />
     <ClCompile Include="Source\Load.cpp" />
     <ClCompile Include="Source\main..cpp" />
     <ClCompile Include="Source\Point.cpp" />
     <ClCompile Include="Source\Renderer.cpp" />
+    <ClCompile Include="Source\Rock.cpp" />
     <ClCompile Include="Source\SceneManager.cpp" />
     <ClCompile Include="Source\Sound.cpp" />
+    <ClCompile Include="Source\Stage.cpp" />
+    <ClCompile Include="Source\Star.cpp" />
     <ClCompile Include="Source\Timer.cpp" />
     <ClCompile Include="Source\Title.cpp" />
   </ItemGroup>
@@ -30,14 +35,20 @@
     <ClInclude Include="Source\CSVStream.h" />
     <ClInclude Include="Source\Definition.h" />
     <ClInclude Include="Source\Ending.h" />
+    <ClInclude Include="Source\GamaObject.h" />
     <ClInclude Include="Source\game.h" />
+    <ClInclude Include="Source\GameObjControl.h" />
+    <ClInclude Include="Source\GAMEOBJ_TYPE.h" />
     <ClInclude Include="Source\GamePlay.h" />
     <ClInclude Include="Source\IScene.h" />
     <ClInclude Include="Source\Load.h" />
     <ClInclude Include="Source\Point.h" />
     <ClInclude Include="Source\Renderer.h" />
+    <ClInclude Include="Source\Rock.h" />
     <ClInclude Include="Source\SceneManager.h" />
     <ClInclude Include="Source\Sound.h" />
+    <ClInclude Include="Source\Stage.h" />
+    <ClInclude Include="Source\Star.h" />
     <ClInclude Include="Source\Timer.h" />
     <ClInclude Include="Source\Title.h" />
   </ItemGroup>

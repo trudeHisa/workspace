@@ -1,6 +1,6 @@
 #include "Load.h"
 Load::Load(Renderer& renderer, Sound* sound)
-	:renderer(renderer),sound(*sound)
+	:renderer(renderer), sound(*sound)
 {
 	renderer.LoadTextrue("load.bmp");
 }
@@ -16,8 +16,9 @@ void Load::Update()
 	renderer.LoadTextrue("star.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("title.bmp");
 	renderer.LoadTextrue("gameplay.bmp");
-	renderer.LoadTextrue("ending.bmp");	
-	renderer.LoadTextrue("space.bmp");	
+	renderer.LoadTextrue("ending.bmp");
+	renderer.LoadTextrue("space.bmp");
+	renderer.LoadTextrue("rock.bmp");
 	sound.LoadSE("testSE.wav", 5, GWAVE_LOOP);
 	sound.LoadSE("testSE2.wav", 5);
 	isEnd = true;
