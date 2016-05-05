@@ -28,6 +28,11 @@ void Star::updata(MapData* mapdata)
 	castLocation(&position,&location);
 	mapUpdata(mapdata, &oldLocation, SPACE);
 }
+void Star::draw(Renderer& renderer)
+{
+	GSvector2 pos = position - GSvector2(BLOCKSIZE*2, BLOCKSIZE);
+	renderer.DrawTextrue(textrue, &pos);
+}
 void Star::nextPosition(GSvector2* pos)
 {
 	pos->x++;

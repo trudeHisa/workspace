@@ -8,6 +8,7 @@ public:
 	~Star();
 	 void updata(MapData* mapdata);	
 	 void initialize();
+	 void draw(Renderer& renderer);
 	 void playerPickUp(GSvector2* pos);
 private:
 	bool nextAction(int nextPosType);

@@ -11,6 +11,7 @@ public:
 	~Player();
 	void updata(MapData* mapdata);
 	void initialize();
+	void draw(Renderer& renderer);
 	//star‚Éæ‚ê‚½‚©H
 	bool setStar(GameObject* _star);
 private:

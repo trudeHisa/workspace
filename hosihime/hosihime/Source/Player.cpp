@@ -36,7 +36,11 @@ void Player::initialize()
 	isDead = false;
 	castLocation(&position, &location);
 }
-
+void Player::draw(Renderer& renderer)
+{
+	GSvector2 pos = position - GSvector2(BLOCKSIZE*2, BLOCKSIZE);
+	renderer.DrawTextrue(textrue, &pos);
+}
 void Player::nextPosition(GSvector2* pos)
 {
 	if (star != 0)
