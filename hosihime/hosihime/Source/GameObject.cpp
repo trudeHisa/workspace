@@ -13,7 +13,8 @@ GameObject::~GameObject()
 }
 void GameObject::draw(Renderer& renderer)
 {
-	renderer.DrawTextrue(textrue, &position);
+	GSvector2 pos = position - GSvector2(BLOCKSIZE, BLOCKSIZE);
+	renderer.DrawTextrue(textrue, &pos);
 }
 void GameObject::initialize()
 {

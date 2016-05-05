@@ -13,6 +13,15 @@ Player::~Player()
 }
 void Player::updata(MapData* mapdata)
 {
+	if (star != 0)
+	{
+		if (star->getIsDead())
+		{
+			position.x = location.x*BLOCKSIZE;
+			position.y = location.y*BLOCKSIZE;
+			star = 0;
+		}
+	}
 	if (!isNextMove(mapdata))
 	{
 		return;
@@ -30,23 +39,23 @@ void Player::initialize()
 
 void Player::nextPosition(GSvector2* pos)
 {
-	if (star)
-	{
-		star->playerPickUp(pos);
+	if (star != 0)
+	{		
+		star->playerPickUp(&position);
 		return;
 	}
 	pos->x++;
 }
 bool Player::nextAction(int nextPosType)
 {
-	return true;
+	return nextPosType!=ROCK;
 }
 bool Player::setStar(GameObject* _star)
 {
 	if (!_star->isSameLocation(location))
 	{
 		return false;
-	}
-	star =(Star*)_star;
+	}	
+	star = (Star*)_star;
 	return true;
 }
