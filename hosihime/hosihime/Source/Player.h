@@ -3,6 +3,7 @@
 
 #include "GamaObject.h"
 
+class Star;
 class Player :public GameObject
 {
 public:
@@ -11,10 +12,10 @@ public:
 	void updata(MapData* mapdata);
 	void initialize();
 	//starÇ…èÊÇÍÇΩÇ©ÅH
-	bool SetStar(GameObject* _star);
+	bool setStar(GameObject* _star);
 private:
 	bool nextAction(int nextPosType);
 	void nextPosition(GSvector2* pos);
-	GameObject* star;
+	Star* star;
 };
 #endif

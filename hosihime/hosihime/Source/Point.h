@@ -30,5 +30,12 @@ const Point operator -(const Point& p1, const Point& p2);
 const Point operator *(const Point& p, int i);
 const Point operator /(const Point& p, int i);
 const Point operator /(int i, const Point& p);
+ 
+const bool operator ==(const Point& p1, const Point& p2);
+const bool operator !=(const Point& p1, const Point& p2);
+const bool operator >=(const Point& p1, const Point& p2);
+const bool operator <=(const Point& p1, const Point& p2);
+const bool operator >(const Point& p1, const Point& p2);
+const bool operator <(const Point& p1, const Point& p2);
 
 #endif

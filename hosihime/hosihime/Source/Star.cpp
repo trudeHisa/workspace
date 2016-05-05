@@ -37,3 +37,8 @@ bool Star::nextAction(int nextPosType)
 {
 	return nextPosType == SPACE || nextPosType == PLAYER;
 }
+void Star::playerPickUp(GSvector2* pos)
+{
+	pos->x=position.x;
+	pos->y = position.y;
+}

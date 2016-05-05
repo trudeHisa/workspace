@@ -23,10 +23,6 @@ void GameObject::finish()
 {
 
 }
-const GAMEOBJ_TYPE GameObject::getType()const
-{
-	return type;
-}
 const bool GameObject::getIsDead()const
 {
 	return isDead;
@@ -35,13 +31,13 @@ const Point GameObject::getSize()const
 {
 	return size;
 }
-const Point GameObject::getLocation()const
+const bool GameObject::isSameLocation(const Point& _location)const
 {
-	return location;
+	return _location == location;
 }
-const GSvector2 GameObject::getPosition()const
+const bool GameObject::isSameType(GAMEOBJ_TYPE _type)const
 {
-	return position;
+	return type == _type;
 }
 void GameObject::castLocation(const GSvector2* pos, Point* loc)
 {

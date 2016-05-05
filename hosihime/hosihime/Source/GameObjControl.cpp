@@ -16,9 +16,9 @@ void GameObjControl::updata(MapData* mapdata)
 	}
 	for each (GameObj_Ptr obj in objs)
 	{
-		if (obj->getType() == STAR)
+		if (obj->isSameType(STAR))
 		{
-			findPlayer()->SetStar(obj.get());
+			findPlayer()->setStar(obj.get());
 		}
 	}
 	remove();
@@ -27,11 +27,12 @@ Player* GameObjControl::findPlayer()const
 {
 	for each(GameObj_Ptr obj in objs)
 	{
-		if (obj->getType() == PLAYER)
+		if (obj->isSameType(PLAYER))
 		{
 			return (Player*)obj.get();
 		}
 	}
+	return 0;
 }
 void GameObjControl::remove()
 {

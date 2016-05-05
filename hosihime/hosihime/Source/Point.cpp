@@ -97,3 +97,27 @@ const Point operator /(int i, const Point& p)
 {
 	return Point(i / p.x, i/ p.y);
 }
+const bool operator ==(const Point& p1, const Point& p2)
+{
+	return p1.x == p2.x&& p1.y == p2.y;
+}
+const bool operator !=(const Point& p1, const Point& p2)
+{
+	return !(p1 == p2);
+}
+const bool operator >=(const Point& p1, const Point& p2)
+{
+	return (p1.x >= p2.x&&p1.y >= p2.y);
+}
+const bool operator <=(const Point& p1, const Point& p2)
+{
+	return !(p1 > p2);
+}
+const bool operator >(const Point& p1, const Point& p2)
+{
+	return (p1.x > p2.x&&p1.y > p2.y);
+}
+const bool operator <(const Point& p1, const Point& p2)
+{
+	return !(p1 >= p2);
+}

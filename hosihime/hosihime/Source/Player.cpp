@@ -1,5 +1,5 @@
 #include "Player.h"
-
+#include "Star.h"
 Player::Player(const std::string& textrue, const GSvector2* position)
 	:GameObject(textrue, &Point(1, 1), PLAYER, position),
 	star(0)
@@ -32,8 +32,7 @@ void Player::nextPosition(GSvector2* pos)
 {
 	if (star)
 	{
-		pos->x= star->getPosition().x;
-		pos->y = star->getPosition().y;
+		star->playerPickUp(pos);
 		return;
 	}
 	pos->x++;
@@ -42,12 +41,12 @@ bool Player::nextAction(int nextPosType)
 {
 	return true;
 }
-bool Player::SetStar(GameObject* _star)
+bool Player::setStar(GameObject* _star)
 {
-	if (location != _star->getLocation())
+	if (!_star->isSameLocation(location))
 	{
 		return false;
 	}
-	star = _star;
+	star =(Star*)_star;
 	return true;
 }

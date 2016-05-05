@@ -19,11 +19,13 @@ public:
 	virtual void draw(Renderer& renderer);
 	virtual void initialize();
 	virtual void finish();
+public:
 	const Point getSize()const;
-	const GAMEOBJ_TYPE getType()const;
 	const bool getIsDead()const;
-	const Point getLocation()const;
-	const GSvector2 getPosition()const;
+	//同じならtrue
+	const bool isSameLocation(const Point& _location)const;
+	const bool isSameType(GAMEOBJ_TYPE _type)const;
+
 protected:
 	/*
 	移動後の位置オブジェクトがある場合
@@ -36,7 +38,8 @@ protected:
 	void mapdataAssignment(MapData* mapdata, const Point* point, GAMEOBJ_TYPE _type);
 	void mapUpdata(MapData* mapdata, const Point* point, GAMEOBJ_TYPE oldPostype);	
 	void castLocation(const GSvector2* pos,Point* loc);
-	const bool isInSideMap(const MapData* mapdata, const Point* point)const;//マップ内ならtrue
+	//マップ内ならtrue
+	const bool isInSideMap(const MapData* mapdata, const Point* point)const;
 
 protected:
 	std::string textrue;
