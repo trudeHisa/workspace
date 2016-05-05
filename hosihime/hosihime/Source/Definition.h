@@ -2,6 +2,6 @@
 #define _DEFINITION_H_
 
 #include "Array2D.h"
-#define BLOCKSIZE 32
+#define BLOCKSIZE 64
 typedef Array2D<int> MapData;
 #endif

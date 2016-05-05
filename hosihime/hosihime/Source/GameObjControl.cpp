@@ -22,6 +22,7 @@ void GameObjControl::remove()
 	{
 		if (itr->get()->getIsDead())
 		{
+			itr->get()->finish();
 			itr = objs.erase(itr);
 		}
 		else
@@ -34,10 +35,11 @@ void GameObjControl::inisialize()
 {
 	objs.clear();
 }
-void GameObjControl::add(GameObject* object)
+const Point& GameObjControl::add(GameObject* object)
 {
 	object->initialize();
 	objs.push_back(GameObj_Ptr(object));
+	return object->getSize();
 }
 void GameObjControl::draw(Renderer& renderer)
 {

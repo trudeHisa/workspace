@@ -15,6 +15,7 @@ public:
 	void finish();
 private:
 	void mapCreate();
+	void objCreate(int x, int y, Array2D<bool>* check);
 	MapData mapdata;
 	GameObjControl control;
 };

@@ -24,7 +24,8 @@ public:
 protected:
 	virtual void nextPosition(GSvector2* pos) = 0;//移動後の位置を返す
 	virtual const bool isNextMove(const MapData* mapdata);//移動できるか
-
+	//サイズ分マップデータに代入する関数
+	void mapdataAssignment(MapData* mapdata, const Point* point, GAMEOBJ_TYPE _type);
 	void mapUpdata(MapData* mapdata, const Point* point, GAMEOBJ_TYPE oldPostype);	
 	void castLocation(const GSvector2* pos,Point* loc);
 	std::string textrue;

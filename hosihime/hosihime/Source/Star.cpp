@@ -19,7 +19,7 @@ void Star::updata(MapData* mapdata)
 {
 	if (!isNextMove(mapdata))
 	{
-		(*mapdata)(location.y, location.x) = SPACE;
+		mapdataAssignment(mapdata,&location,SPACE);
 		isDead = true;
 		return;
 	}

@@ -36,18 +36,37 @@ void GameObject::castLocation(const GSvector2* pos, Point* loc)
 	loc->x = pos->x / BLOCKSIZE;
 	loc->y = pos->y / BLOCKSIZE;
 }
+void GameObject::mapdataAssignment(MapData* mapdata, const Point* point, GAMEOBJ_TYPE _type)
+{
+	for (int sy = 0; sy < size.y; sy++)
+	{
+		for (int sx = 0; sx < size.x; sx++)
+		{
+			(*mapdata)(point->y + sy, point->x + sx) = _type;
+		}
+	}
+}
 void GameObject::mapUpdata(MapData* mapdata, const Point* oldLocation, GAMEOBJ_TYPE oldPostype)
 {
-	(*mapdata)(location.y, location.x) = type;
-	if (location == (*oldLocation))
+	mapdataAssignment(mapdata,&location,type);
+	for (int sy = 0; sy < size.y; sy++)
 	{
-		return;
+		for (int sx = 0; sx < size.x; sx++)
+		{
+			Point sp(sx,sy);
+			Point spl = location + sp;
+			Point spol = (*oldLocation) + sp;
+			if (spl== spol)
+			{
+				return;
+			}
+			if ((*mapdata)(oldLocation->y, oldLocation->x) != type)
+			{
+				return;
+			}
+		}
 	}
-	if ((*mapdata)(oldLocation->y, oldLocation->x) != type)
-	{	
-		return;
-	}
-	(*mapdata)(oldLocation->y, oldLocation->x) = oldPostype;
+	mapdataAssignment(mapdata,oldLocation, oldPostype);
 }
 const bool GameObject::isNextMove(const MapData* mapdata)
 {
@@ -59,17 +78,23 @@ const bool GameObject::isNextMove(const MapData* mapdata)
 	{
 		return true;
 	}
-	if ((*mapdata)(nextLoc.y, nextLoc.x) != SPACE)
+	for (int sy = 0; sy < size.y; sy++)
 	{
-		return false;
-	}
-	if (mapdata->getSize1() <= nextLoc.x)
-	{
-		return false;
-	}
-	if (mapdata->getSize0() <= nextLoc.y)
-	{
-		return false;
+		for (int sx = 0; sx < size.x; sx++)
+		{
+			if ((*mapdata)(nextLoc.y + sy, nextLoc.x + sx) != SPACE)
+			{
+				return false;
+			}
+			if (mapdata->getSize1() <= nextLoc.x + sx)
+			{
+				return false;
+			}
+			if (mapdata->getSize0() <= nextLoc.y + sy)
+			{
+				return false;
+			}
+		}
 	}
 	return true;
 }

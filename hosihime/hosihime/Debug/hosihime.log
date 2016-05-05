@@ -1,31 +1,8 @@
-﻿2016/05/05 15:08:47 にビルドを開始しました。
-     1>ノード 2 上のプロジェクト "C:\Users\hiroya\Source\Repos\workspace\hosihime\hosihime\hosihime.vcxproj" (Rebuild ターゲット)。
+﻿2016/05/05 23:53:53 にビルドを開始しました。
+     1>ノード 2 上のプロジェクト "C:\Users\hiroya\Source\Repos\workspace\hosihime\hosihime\hosihime.vcxproj" (Build ターゲット)。
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Source\CSVStream.cpp Source\Ending.cpp Source\game.cpp Source\GameObjControl.cpp Source\GameObject.cpp Source\GamePlay.cpp Source\Load.cpp Source\main..cpp Source\Point.cpp Source\Renderer.cpp Source\Rock.cpp Source\SceneManager.cpp Source\Sound.cpp Source\Stage.cpp Source\Star.cpp Source\Timer.cpp Source\Title.cpp
-         Title.cpp
-     1>c:\users\hiroya\source\repos\workspace\hosihime\hosihime\source\title.cpp(15): warning C4800: 'BOOL' : ブール値を 'true' または 'false' に強制的に設定します (警告の処理)
-         Timer.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Source\Star.cpp
          Star.cpp
-         Stage.cpp
-         Sound.cpp
-     1>c:\users\hiroya\source\repos\workspace\hosihime\hosihime\source\sound.cpp(30): warning C4800: 'BOOL' : ブール値を 'true' または 'false' に強制的に設定します (警告の処理)
-     1>c:\users\hiroya\source\repos\workspace\hosihime\hosihime\source\sound.cpp(50): warning C4800: 'BOOL' : ブール値を 'true' または 'false' に強制的に設定します (警告の処理)
-         SceneManager.cpp
-         Rock.cpp
-         Renderer.cpp
-         Point.cpp
-     1>c:\users\hiroya\source\repos\workspace\hosihime\hosihime\source\point.cpp(20): warning C4172: ローカル変数またはテンポラリのアドレスを返します。
-         main..cpp
-         Load.cpp
-         GamePlay.cpp
-     1>c:\users\hiroya\source\repos\workspace\hosihime\hosihime\source\gameplay.cpp(21): warning C4800: 'BOOL' : ブール値を 'true' または 'false' に強制的に設定します (警告の処理)
-         GameObject.cpp
-         GameObjControl.cpp
-         game.cpp
-         Ending.cpp
-     1>c:\users\hiroya\source\repos\workspace\hosihime\hosihime\source\ending.cpp(14): warning C4800: 'BOOL' : ブール値を 'true' または 'false' に強制的に設定します (警告の処理)
-         CSVStream.cpp
-         コードを生成中...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\hiroya\Source\Repos\workspace\hosihime\Debug\hosihime.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\hiroya\Source\Repos\workspace\hosihime\Debug\hosihime.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\hiroya\Source\Repos\workspace\hosihime\Debug\hosihime.lib" /MACHINE:X86 Debug\CSVStream.obj
          Debug\Ending.obj
@@ -45,8 +22,8 @@
          Debug\Timer.obj
          Debug\Title.obj
          hosihime.vcxproj -> C:\Users\hiroya\Source\Repos\workspace\hosihime\Debug\hosihime.exe
-     1>プロジェクト "C:\Users\hiroya\Source\Repos\workspace\hosihime\hosihime\hosihime.vcxproj" (Rebuild ターゲット) のビルドが完了しました。
+     1>プロジェクト "C:\Users\hiroya\Source\Repos\workspace\hosihime\hosihime\hosihime.vcxproj" (Build ターゲット) のビルドが完了しました。
 
 ビルドに成功しました。
 
-経過時間 00:00:08.96
+経過時間 00:00:01.13

@@ -15,7 +15,10 @@ public:
 	~GameObjControl();
 	void updata(MapData* mapdata);
 	void inisialize();
-	void add(GameObject* object);
+	/*
+	オブジェクトのサイズを返す
+	*/
+	const Point& add(GameObject* object);
 	void draw(Renderer& renderer);
 	void finish();
 private:

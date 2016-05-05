@@ -45,13 +45,37 @@ void Stage::draw(Renderer& renderer)
 				tex = "other";
 				break;
 			}
-			renderer.DrawString(tex, &GSvector2(x *  BLOCKSIZE, y *  BLOCKSIZE), 10);
+			renderer.DrawString(tex, &GSvector2(x *  BLOCKSIZE + BLOCKSIZE / 2, y *  BLOCKSIZE + BLOCKSIZE / 2), 10);
 		}
 	}
 }
 void Stage::finish()
 {
 	control.finish();
+}
+void Stage::objCreate(int x, int y, Array2D<bool>* check)
+{
+	if ((*check)(y, x))
+	{
+		return;
+	}
+	Point size;
+	switch (mapdata(y, x))
+	{
+	case STAR:
+		size = control.add(new Star("star.bmp", &GSvector2(x * BLOCKSIZE, y * BLOCKSIZE)));
+		break;
+	case ROCK:		
+		size = control.add(new Rock("rock.bmp", &GSvector2(x * BLOCKSIZE, y * BLOCKSIZE)));
+		break;
+	}
+	for (int sy = 0; sy < size.y; sy++)
+	{
+		for (int sx = 0; sx < size.x; sx++)
+		{
+			(*check)(y + sy, x + sx) = true;
+		}
+	}
 }
 void Stage::mapCreate()
 {
@@ -64,20 +88,11 @@ void Stage::mapCreate()
 			check(y, x) = false;
 		}
 	}
-
 	for (int y = 0; y < mapdata.getSize0(); y++)
 	{
 		for (int x = 0; x < mapdata.getSize1(); x++)
 		{
-			switch (mapdata(y, x))
-			{
-			case STAR:
-				control.add(new Star("star.bmp", &GSvector2(x * BLOCKSIZE, y * BLOCKSIZE)));
-				break;
-			case ROCK:
-				control.add(new Rock("rock.bmp", &GSvector2(x * BLOCKSIZE, y * BLOCKSIZE)));
-				break;
-			}
+			objCreate(x,y,&check);
 		}
 	}
 }
