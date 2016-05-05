@@ -20,3 +20,7 @@ void Rock::initialize()
 void Rock::nextPosition(GSvector2* pos)
 {
 }
+bool Rock::nextAction(int nextPosType)
+{
+	return false;
+}

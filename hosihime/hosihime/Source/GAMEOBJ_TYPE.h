@@ -6,7 +6,7 @@ GAMEOBJ_TYPE.h
 #include "Array2D.h"
 enum GAMEOBJ_TYPE
 {
-	SPACE=0,PLAYER=10,STAR=2,ROCK=3
+	SPACE=0,PLAYER=1,STAR=2,ROCK=3
 };
 
 #endif

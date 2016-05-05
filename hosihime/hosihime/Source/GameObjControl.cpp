@@ -1,4 +1,5 @@
 #include "GameObjControl.h"
+#include "Player.h"
 GameObjControl::GameObjControl()
 {
 
@@ -13,7 +14,24 @@ void GameObjControl::updata(MapData* mapdata)
 	{
 		obj->updata(mapdata);
 	}
+	for each (GameObj_Ptr obj in objs)
+	{
+		if (obj->getType() == STAR)
+		{
+			findPlayer()->SetStar(obj.get());
+		}
+	}
 	remove();
+}
+Player* GameObjControl::findPlayer()const
+{
+	for each(GameObj_Ptr obj in objs)
+	{
+		if (obj->getType() == PLAYER)
+		{
+			return (Player*)obj.get();
+		}
+	}
 }
 void GameObjControl::remove()
 {

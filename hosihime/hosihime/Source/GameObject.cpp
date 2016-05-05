@@ -23,6 +23,10 @@ void GameObject::finish()
 {
 
 }
+const GAMEOBJ_TYPE GameObject::getType()const
+{
+	return type;
+}
 const bool GameObject::getIsDead()const
 {
 	return isDead;
@@ -30,6 +34,14 @@ const bool GameObject::getIsDead()const
 const Point GameObject::getSize()const
 {
 	return size;
+}
+const Point GameObject::getLocation()const
+{
+	return location;
+}
+const GSvector2 GameObject::getPosition()const
+{
+	return position;
 }
 void GameObject::castLocation(const GSvector2* pos, Point* loc)
 {
@@ -68,6 +80,18 @@ void GameObject::mapUpdata(MapData* mapdata, const Point* oldLocation, GAMEOBJ_T
 	}
 	mapdataAssignment(mapdata,oldLocation, oldPostype);
 }
+const bool GameObject::isInSideMap(const MapData* mapdata, const Point* point)const
+{
+	if (mapdata->getSize1() <= point->x)
+	{
+		return false;
+	}
+	if (mapdata->getSize0() <= point->y)
+	{
+		return false;
+	}
+	return true;
+}
 const bool GameObject::isNextMove(const MapData* mapdata)
 {
 	GSvector2 nextPos = position;
@@ -82,15 +106,12 @@ const bool GameObject::isNextMove(const MapData* mapdata)
 	{
 		for (int sx = 0; sx < size.x; sx++)
 		{
-			if ((*mapdata)(nextLoc.y + sy, nextLoc.x + sx) != SPACE)
+			if (!nextAction((*mapdata)(nextLoc.y + sy, nextLoc.x + sx)))
 			{
 				return false;
 			}
-			if (mapdata->getSize1() <= nextLoc.x + sx)
-			{
-				return false;
-			}
-			if (mapdata->getSize0() <= nextLoc.y + sy)
+			Point point = nextLoc + Point(sx,sy);
+			if (!isInSideMap(mapdata, &point))
 			{
 				return false;
 			}

@@ -19,7 +19,8 @@ void Load::Update()
 	renderer.LoadTextrue("gameplay.bmp");
 	renderer.LoadTextrue("ending.bmp");
 	renderer.LoadTextrue("space.bmp");
-	renderer.LoadTextrue("rock.bmp",GS_TEXCOLOR_KEY_AUTO);
+	renderer.LoadTextrue("rock.bmp", GS_TEXCOLOR_KEY_AUTO);
+	renderer.LoadTextrue("player.bmp");
 	sound.LoadSE("testSE.wav", 5, GWAVE_LOOP);
 	sound.LoadSE("testSE2.wav", 5);
 	isEnd = true;

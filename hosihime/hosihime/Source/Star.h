@@ -9,6 +9,7 @@ public:
 	 void updata(MapData* mapdata);	
 	 void initialize();
 private:
+	bool nextAction(int nextPosType);
 	void nextPosition(GSvector2* pos);
 };
 #endif

@@ -7,7 +7,7 @@
 #include "Definition.h"
 typedef std::shared_ptr<GameObject> GameObj_Ptr;
 typedef std::vector<GameObj_Ptr> GameObjs;
-
+class Player;
 class GameObjControl
 {
 public:
@@ -22,6 +22,7 @@ public:
 	void draw(Renderer& renderer);
 	void finish();
 private:
+	Player* findPlayer() const;
 	void remove();
 	GameObjs objs;
 };

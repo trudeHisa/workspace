@@ -31,4 +31,9 @@ void Star::updata(MapData* mapdata)
 void Star::nextPosition(GSvector2* pos)
 {
 	pos->x++;
+	pos->y++;
+}
+bool Star::nextAction(int nextPosType)
+{
+	return nextPosType == SPACE;
 }

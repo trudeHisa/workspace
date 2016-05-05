@@ -1,6 +1,7 @@
 #include "Stage.h"
 #include "CSVStream.h"
 #include "Star.h"
+#include "Player.h"
 #include "Rock.h"
 Stage::Stage(const char* name)
 {
@@ -67,6 +68,9 @@ void Stage::objCreate(int x, int y, Array2D<bool>* check)
 		break;
 	case ROCK:		
 		size = control.add(new Rock("rock.bmp", &GSvector2(x * BLOCKSIZE, y * BLOCKSIZE)));
+		break;
+	case PLAYER:
+		size = control.add(new Player("player.bmp", &GSvector2(x * BLOCKSIZE, y * BLOCKSIZE)));
 		break;
 	}
 	for (int sy = 0; sy < size.y; sy++)

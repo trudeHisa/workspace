@@ -1,4 +1,4 @@
-﻿2016/05/05 23:53:53 にビルドを開始しました。
+﻿2016/05/06 1:05:05 にビルドを開始しました。
      1>ノード 2 上のプロジェクト "C:\Users\hiroya\Source\Repos\workspace\hosihime\hosihime\hosihime.vcxproj" (Build ターゲット)。
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Source\Star.cpp
@@ -12,6 +12,7 @@
          Debug\GamePlay.obj
          Debug\Load.obj
          Debug\main..obj
+         Debug\Player.obj
          Debug\Point.obj
          Debug\Renderer.obj
          Debug\Rock.obj
@@ -26,4 +27,4 @@
 
 ビルドに成功しました。
 
-経過時間 00:00:01.13
+経過時間 00:00:01.02
