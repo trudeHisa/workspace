@@ -35,5 +35,5 @@ void Star::nextPosition(GSvector2* pos)
 }
 bool Star::nextAction(int nextPosType)
 {
-	return nextPosType == SPACE;
+	return nextPosType == SPACE || nextPosType == PLAYER;
 }
