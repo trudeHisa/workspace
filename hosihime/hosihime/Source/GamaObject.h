@@ -32,7 +32,7 @@ protected:
 	返す値は移動できるかできないかを返す
 	*/
 	virtual bool nextAction(int nextPosType)=0;
-	virtual void nextPosition(GSvector2* pos) = 0;//移動後の位置を返す
+	virtual void nextVelocity(GSvector2* _velocity) = 0;//移動後の位置を返す
 	virtual const bool isNextMove(const MapData* mapdata);//移動できるか
 	//サイズ分マップデータに代入する関数
 	void mapdataAssignment(MapData* mapdata, const Point* point, GAMEOBJ_TYPE _type);
@@ -40,7 +40,7 @@ protected:
 	void castLocation(const GSvector2* pos,Point* loc);
 	//マップ内ならtrue
 	const bool isInSideMap(const MapData* mapdata, const Point* point)const;
-
+	float s;
 protected:
 	std::string textrue;
 	bool isDead;
@@ -48,5 +48,6 @@ protected:
 	GSvector2 position;
 	GAMEOBJ_TYPE type;
 	Point size;
+	GSvector2 velocity;
 };
 #endif

@@ -1,25 +1,23 @@
 #include "Player.h"
 #include "Star.h"
 Player::Player(const std::string& textrue, const GSvector2* position)
-	:GameObject(textrue, &Point(1, 1), PLAYER, position),
-	star(0)
+	:GameObject(textrue, &Point(1, 1), PLAYER, position),star(NULL)
 {
 
 }
 Player::~Player()
 {
 	delete star;
-	star = 0;
+	star = NULL;
 }
 void Player::updata(MapData* mapdata)
 {
-	if (star != 0)
+	if (star != NULL)
 	{
 		if (star->getIsDead())
 		{
-			position.x = location.x*BLOCKSIZE;
-			position.y = location.y*BLOCKSIZE;
-			star = 0;
+			velocity = GSvector2(0,0);
+			star = NULL;
 		}
 	}
 	if (!isNextMove(mapdata))
@@ -27,7 +25,8 @@ void Player::updata(MapData* mapdata)
 		return;
 	}
 	Point oldLocation = location;//位置フレーム前のlocation
-	nextPosition(&position);
+	nextVelocity(&velocity);
+	position += velocity;
 	castLocation(&position, &location);
 	mapUpdata(mapdata, &oldLocation, SPACE);
 }
@@ -36,19 +35,14 @@ void Player::initialize()
 	isDead = false;
 	castLocation(&position, &location);
 }
-void Player::draw(Renderer& renderer)
+void Player::nextVelocity(GSvector2* _velocity)
 {
-	GSvector2 pos = position - GSvector2(BLOCKSIZE*2, BLOCKSIZE);
-	renderer.DrawTextrue(textrue, &pos);
-}
-void Player::nextPosition(GSvector2* pos)
-{
-	if (star != 0)
+	if (star != NULL)
 	{		
-		star->playerPickUp(&position);
+		star->playerPickUp(&velocity);
 		return;
 	}
-	pos->x++;
+	_velocity->x=1;
 }
 bool Player::nextAction(int nextPosType)
 {

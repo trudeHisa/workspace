@@ -11,12 +11,11 @@ public:
 	~Player();
 	void updata(MapData* mapdata);
 	void initialize();
-	void draw(Renderer& renderer);
 	//starÇ…èÊÇÍÇΩÇ©ÅH
 	bool setStar(GameObject* _star);
 private:
 	bool nextAction(int nextPosType);
-	void nextPosition(GSvector2* pos);
+	void nextVelocity(GSvector2* _velocity);
 	Star* star;
 };
 #endif

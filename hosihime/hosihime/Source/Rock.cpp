@@ -17,7 +17,7 @@ void Rock::initialize()
 	isDead = false;
 	castLocation(&position, &location);
 }
-void Rock::nextPosition(GSvector2* pos)
+void Rock::nextVelocity(GSvector2* _velocity)
 {
 }
 bool Rock::nextAction(int nextPosType)

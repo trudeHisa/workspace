@@ -13,8 +13,8 @@ GameObject::~GameObject()
 }
 void GameObject::draw(Renderer& renderer)
 {
-	GSvector2 pos = position - GSvector2(BLOCKSIZE, BLOCKSIZE);
-	renderer.DrawTextrue(textrue, &pos);
+	//GSvector2 pos = position - GSvector2(BLOCKSIZE, BLOCKSIZE);
+	renderer.DrawTextrue(textrue, &position);
 }
 void GameObject::initialize()
 {
@@ -91,10 +91,26 @@ const bool GameObject::isInSideMap(const MapData* mapdata, const Point* point)co
 }
 const bool GameObject::isNextMove(const MapData* mapdata)
 {
-	GSvector2 nextPos = position;
-	nextPosition(&nextPos);
-	Point nextLoc;
-	castLocation(&nextPos, &nextLoc);
+	GSvector2 nextVel =velocity;
+	nextVelocity(&nextVel);
+	Point nPVel(0,0);
+	if (nextVel.x > 0)
+	{
+		nPVel.x = 1;
+	}
+	if (nextVel.x < 0)
+	{
+		nPVel.x = -1;
+	}
+	if (nextVel.y > 0)
+	{
+		nPVel.y = 1;
+	}
+	if (nextVel.y < 0)
+	{
+		nPVel.y = -1;
+	}
+	Point nextLoc = location + nPVel;
 	if (nextLoc == location)
 	{
 		return true;

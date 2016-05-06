@@ -12,6 +12,6 @@ public:
 	void initialize();
 private:
 	bool nextAction(int nextPosType);
-	void nextPosition(GSvector2* pos);
+	void nextVelocity(GSvector2* _velocity);
 };
 #endif

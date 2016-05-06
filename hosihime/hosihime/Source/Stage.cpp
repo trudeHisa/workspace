@@ -11,6 +11,7 @@ Stage::Stage(const char* name)
 
 Stage::~Stage()
 {
+
 }
 void Stage::initialize()
 {
@@ -24,7 +25,7 @@ void Stage::updata()
 void Stage::draw(Renderer& renderer)
 {
 	control.draw(renderer);
-	/*for (int y = 0; y < mapdata.getSize0(); y++)
+	for (int y = 0; y < mapdata.getSize0(); y++)
 	{
 		for (int x = 0; x < mapdata.getSize1(); x++)
 		{
@@ -48,7 +49,7 @@ void Stage::draw(Renderer& renderer)
 			}
 			renderer.DrawString(tex, &GSvector2(x *  BLOCKSIZE , y *  BLOCKSIZE ), 10);
 		}
-	}*/
+	}
 }
 void Stage::finish()
 {
