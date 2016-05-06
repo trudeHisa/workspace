@@ -60,11 +60,11 @@ const Point& GameObjControl::add(GameObject* object)
 	objs.push_back(GameObj_Ptr(object));
 	return object->getSize();
 }
-void GameObjControl::draw(Renderer& renderer)
+void GameObjControl::draw(Renderer& renderer, const Scroll* scroll)
 {
 	for each (GameObj_Ptr obj in objs)
 	{
-		obj->draw(renderer);
+		obj->draw(renderer,scroll);
 	}
 }
 void GameObjControl::finish()

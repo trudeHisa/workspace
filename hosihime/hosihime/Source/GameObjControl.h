@@ -19,7 +19,7 @@ public:
 	オブジェクトのサイズを返す
 	*/
 	const Point& add(GameObject* object);
-	void draw(Renderer& renderer);
+	void draw(Renderer& renderer, const Scroll* scroll);
 	void finish();
 private:
 	Player* findPlayer() const;

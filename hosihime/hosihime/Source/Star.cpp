@@ -10,11 +10,6 @@ Star::~Star()
 {
 }
 
-void Star::initialize()
-{
-	isDead = false;
-	castLocation(&position, &location);
-}
 void Star::updata(MapData* mapdata)
 {
 	if (!isNextMove(mapdata))

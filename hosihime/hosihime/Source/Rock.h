@@ -9,7 +9,6 @@ public:
 	Rock(const std::string& textrue, const GSvector2* position);
 	~Rock();
 	void updata(MapData* mapdata);
-	void initialize();
 private:
 	bool nextAction(int nextPosType);
 	void nextVelocity(GSvector2* _velocity);

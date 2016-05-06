@@ -11,13 +11,20 @@ GameObject::GameObject(const std::string& textrue, const Point* size,
 GameObject::~GameObject()
 {
 }
-void GameObject::draw(Renderer& renderer)
+void GameObject::draw(Renderer& renderer, const Scroll* scroll)
 {
-	//GSvector2 pos = position - GSvector2(BLOCKSIZE, BLOCKSIZE);
-	renderer.DrawTextrue(textrue, &position);
+	if (!scroll->isInsideWindow(position.x,size.x*BLOCKSIZE))
+	{
+		return;
+	}
+	GSvector2 pos = position;
+	pos.x -= scroll->getMovingAmount();
+	renderer.DrawTextrue(textrue, &pos);
 }
 void GameObject::initialize()
 {
+	velocity = GSvector2(0, 0);
+	castLocation(&position,&location);
 	isDead = false;
 }
 void GameObject::finish()

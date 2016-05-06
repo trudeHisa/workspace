@@ -87,6 +87,9 @@
     <ClCompile Include="Source\Player.cpp">
       <Filter>ソース ファイル\stage</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Scroll.cpp">
+      <Filter>ソース ファイル\stage</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Definition.h">
@@ -153,6 +156,9 @@
       <Filter>ヘッダー ファイル\stage</Filter>
     </ClInclude>
     <ClInclude Include="Source\Player.h">
+      <Filter>ヘッダー ファイル\stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scroll.h">
       <Filter>ヘッダー ファイル\stage</Filter>
     </ClInclude>
   </ItemGroup>

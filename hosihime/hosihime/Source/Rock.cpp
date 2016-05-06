@@ -12,11 +12,6 @@ void Rock::updata(MapData* mapdata)
 	castLocation(&position, &location);
 	mapUpdata(mapdata, &location, SPACE);
 }
-void Rock::initialize()
-{
-	isDead = false;
-	castLocation(&position, &location);
-}
 void Rock::nextVelocity(GSvector2* _velocity)
 {
 }

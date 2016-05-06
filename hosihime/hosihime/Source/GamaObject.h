@@ -8,7 +8,7 @@ GameObject.h
 #include "Point.h"
 #include <string>
 #include "Definition.h"
-
+#include "Scroll.h"
 class GameObject
 {
 public:
@@ -16,7 +16,7 @@ public:
 		const GAMEOBJ_TYPE type,const GSvector2* position);
 	~GameObject();
 	virtual void updata(MapData* mapdata) = 0;
-	virtual void draw(Renderer& renderer);
+	virtual void draw(Renderer& renderer,const Scroll* scroll);
 	virtual void initialize();
 	virtual void finish();
 public:

@@ -7,15 +7,15 @@ class Star;
 class Player :public GameObject
 {
 public:
-	Player(const std::string& textrue, const GSvector2* position);
+	Player(const std::string& textrue, const GSvector2* position,Scroll* scroll);
 	~Player();
 	void updata(MapData* mapdata);
-	void initialize();
 	//starÇ…èÊÇÍÇΩÇ©ÅH
 	bool setStar(GameObject* _star);
 private:
 	bool nextAction(int nextPosType);
 	void nextVelocity(GSvector2* _velocity);
 	Star* star;
+	Scroll* scroll;
 };
 #endif

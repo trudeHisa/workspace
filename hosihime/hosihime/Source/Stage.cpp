@@ -3,7 +3,9 @@
 #include "Star.h"
 #include "Player.h"
 #include "Rock.h"
+#include "game.h"
 Stage::Stage(const char* name)
+	:scroll(&Point(WINDOW_WIDTH,WINDOW_HEIGHT))
 {
 	CSVStream stream;
 	stream.input(&mapdata, name);
@@ -16,6 +18,7 @@ Stage::~Stage()
 void Stage::initialize()
 {
 	control.inisialize();
+	scroll.initialize();
 	mapCreate();
 }
 void Stage::updata()
@@ -24,8 +27,10 @@ void Stage::updata()
 }
 void Stage::draw(Renderer& renderer)
 {
-	control.draw(renderer);
-	for (int y = 0; y < mapdata.getSize0(); y++)
+	renderer.DrawTextrue("space.bmp",&GSvector2(0,0));
+	scroll.draw(renderer);
+	control.draw(renderer,&scroll);
+	/*for (int y = 0; y < mapdata.getSize0(); y++)
 	{
 		for (int x = 0; x < mapdata.getSize1(); x++)
 		{
@@ -49,7 +54,7 @@ void Stage::draw(Renderer& renderer)
 			}
 			renderer.DrawString(tex, &GSvector2(x *  BLOCKSIZE , y *  BLOCKSIZE ), 10);
 		}
-	}
+	}*/
 }
 void Stage::finish()
 {
@@ -71,7 +76,7 @@ void Stage::objCreate(int x, int y, Array2D<bool>* check)
 		size = control.add(new Rock("rock.bmp", &GSvector2(x * BLOCKSIZE, y * BLOCKSIZE)));
 		break;
 	case PLAYER:
-		size = control.add(new Player("player.bmp", &GSvector2(x * BLOCKSIZE, y * BLOCKSIZE)));
+		size = control.add(new Player("player.bmp", &GSvector2(x * BLOCKSIZE, y * BLOCKSIZE),&scroll));
 		break;
 	}
 	for (int sy = 0; sy < size.y; sy++)

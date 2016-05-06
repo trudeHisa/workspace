@@ -24,6 +24,7 @@
     <ClCompile Include="Source\Renderer.cpp" />
     <ClCompile Include="Source\Rock.cpp" />
     <ClCompile Include="Source\SceneManager.cpp" />
+    <ClCompile Include="Source\Scroll.cpp" />
     <ClCompile Include="Source\Sound.cpp" />
     <ClCompile Include="Source\Stage.cpp" />
     <ClCompile Include="Source\Star.cpp" />
@@ -48,6 +49,7 @@
     <ClInclude Include="Source\Renderer.h" />
     <ClInclude Include="Source\Rock.h" />
     <ClInclude Include="Source\SceneManager.h" />
+    <ClInclude Include="Source\Scroll.h" />
     <ClInclude Include="Source\Sound.h" />
     <ClInclude Include="Source\Stage.h" />
     <ClInclude Include="Source\Star.h" />

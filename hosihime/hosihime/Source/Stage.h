@@ -4,6 +4,7 @@
 #include "Renderer.h"
 #include "GameObjControl.h"
 #include "Definition.h"
+#include "Scroll.h"
 class Stage
 {
 public:
@@ -18,5 +19,6 @@ private:
 	void objCreate(int x, int y, Array2D<bool>* check);
 	MapData mapdata;
 	GameObjControl control;
+	Scroll scroll;
 };
 #endif
