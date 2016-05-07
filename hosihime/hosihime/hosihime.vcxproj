@@ -27,6 +27,7 @@
     <ClCompile Include="Source\Scroll.cpp" />
     <ClCompile Include="Source\Sound.cpp" />
     <ClCompile Include="Source\Stage.cpp" />
+    <ClCompile Include="Source\StageSelect.cpp" />
     <ClCompile Include="Source\Star.cpp" />
     <ClCompile Include="Source\Timer.cpp" />
     <ClCompile Include="Source\Title.cpp" />
@@ -52,6 +53,7 @@
     <ClInclude Include="Source\Scroll.h" />
     <ClInclude Include="Source\Sound.h" />
     <ClInclude Include="Source\Stage.h" />
+    <ClInclude Include="Source\StageSelect.h" />
     <ClInclude Include="Source\Star.h" />
     <ClInclude Include="Source\Timer.h" />
     <ClInclude Include="Source\Title.h" />

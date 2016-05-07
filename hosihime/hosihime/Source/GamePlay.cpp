@@ -12,22 +12,42 @@ GamePlay::~GamePlay()
 }
 void GamePlay::Init()
 {
+	mode = SELECT;
 	isEnd = false;
-	stage = new Stage("mapdata\\testmap.csv");
-	stage->initialize();
+	stageSelect.initialize();	
 }
 void GamePlay::Update()
 {
-	stage->updata();
-	isEnd = gsGetKeyTrigger(GKEY_SPACE);
+	switch (mode)
+	{
+	case SELECT:
+		if (stageSelect.updata(&stage))
+		{			
+			stage->initialize();
+			stageSelect.finish();
+			mode = PLAY;
+		}
+		break;
+	case PLAY:
+		stage->updata();
+		break;
+	}
 }
 void GamePlay::Draw(Renderer& renderer)
 {
-	stage->draw(renderer);
+	switch (mode)
+	{
+	case SELECT:
+		stageSelect.draw(renderer);
+		break;
+	case PLAY:
+		stage->draw(renderer);
+		break;
+	}	
 }
 void GamePlay::Finish()
 {
-	stage->finish();
+	stage->finish();	
 }
 Scene GamePlay::Next()
 {

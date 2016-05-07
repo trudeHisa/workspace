@@ -3,7 +3,11 @@
 #include "IScene.h"
 #include "Sound.h"
 #include "Stage.h"
-
+#include "StageSelect.h"
+enum PLAY_MODE
+{
+	SELECT,PLAY
+};
 class GamePlay :public IScene
 {
 public:
@@ -19,5 +23,7 @@ private:
 	bool isEnd;
 	Sound sound;
 	Stage* stage;
+	PLAY_MODE mode;
+	StageSelect stageSelect;
 };
 #endif
