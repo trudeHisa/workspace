@@ -39,8 +39,7 @@ bool StageSelect::stageCreate(Stage** stage)
 		"testmap.csv",
 		"testmap.csv"
 	};
-	std::string name = "mapdata\\\\" + datanames[active];
-	*stage = new Stage(name);
+	*stage = new Stage("mapdata\\\\" + datanames[active]);
 	return true;
 }
 void StageSelect::draw(Renderer& renderer) 

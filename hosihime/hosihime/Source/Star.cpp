@@ -32,8 +32,8 @@ void Star::updata(MapData* mapdata)
 void Star::nextVelocity(GSvector2* _velocity,float* angle)
 {
 	*angle+=0.03f;
-	_velocity->y = sin(*angle) * 5;
-	_velocity->x = 3;
+	_velocity->y = sin(*angle) *4;
+	_velocity->x =2;
 }
 bool Star::nextAction(int nextPosType)
 {
