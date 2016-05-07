@@ -4,16 +4,15 @@
 #include "Player.h"
 #include "Rock.h"
 #include "game.h"
-Stage::Stage(const char* name)
+Stage::Stage(const std::string& csvname)
 	:scroll(&Point(WINDOW_WIDTH,WINDOW_HEIGHT))
 {
 	CSVStream stream;
-	stream.input(&mapdata, name);
+	stream.input(&mapdata,csvname.c_str());
 }
 
 Stage::~Stage()
 {
-
 }
 void Stage::initialize()
 {

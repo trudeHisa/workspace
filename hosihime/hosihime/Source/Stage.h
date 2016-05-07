@@ -8,7 +8,7 @@
 class Stage
 {
 public:
-	Stage(const char* name);
+	Stage(const std::string& csvname);
 	~Stage();
 	void updata();
 	void initialize();
