@@ -11,6 +11,5 @@ public:
 	void updata(MapData* mapdata);
 private:
 	bool nextAction(int nextPosType);
-	void nextVelocity(GSvector2* _velocity);
 };
 #endif

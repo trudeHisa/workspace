@@ -15,11 +15,17 @@ Player::~Player()
 void Player::updata(MapData* mapdata)
 {
 	starDestroy();
-	if (!isNextMove(mapdata))
+
+	GSvector2 nextVel = velocity;
+	nextVelocity(&nextVel);
+	Point nextLoc;
+	nextLocation(&nextLoc, &nextVel);
+	if (!isNextMove(mapdata,&nextLoc))
 	{
 		return;
 	}
 	scroll->moving(velocity.x);
+	nextVelocity(&velocity);
 	move(mapdata, SPACE);
 }
 void Player::nextVelocity(GSvector2* _velocity)

@@ -32,12 +32,12 @@ protected:
 	返す値は移動できるかできないかを返す
 	*/
 	virtual bool nextAction(int nextPosType)=0;
-	virtual void nextVelocity(GSvector2* _velocity) = 0;//次の位置を返す
-	virtual const bool isNextMove(const MapData* mapdata);//移動できるか
+	virtual const bool isNextMove(const MapData* mapdata,const Point* nextLocation);//移動できるか
 	//サイズ分マップデータに代入する関数
 	void mapdataAssignment(MapData* mapdata, const Point* point, GAMEOBJ_TYPE _type);
 	void mapUpdata(MapData* mapdata, const Point* point, GAMEOBJ_TYPE oldPostype);	
 	void castLocation(const GSvector2* pos,Point* loc);
+	void nextLocation(Point* nextLoc,const GSvector2* nextVelcity);
 	//移動処理
 	void move(MapData* mapdata,GAMEOBJ_TYPE oldPostype);
 	//マップ内ならtrue

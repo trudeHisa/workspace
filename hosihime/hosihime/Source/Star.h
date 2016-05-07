@@ -10,6 +10,7 @@ public:
 	 void playerPickUp(GSvector2* pos);
 private:
 	bool nextAction(int nextPosType);
-	void nextVelocity(GSvector2* _velocity);
+	void nextVelocity(GSvector2* _velocity,float* angle);
+	float angle;
 };
 #endif

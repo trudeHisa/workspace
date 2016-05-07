@@ -52,6 +52,27 @@ void GameObject::castLocation(const GSvector2* pos, Point* loc)
 	loc->x = pos->x / BLOCKSIZE;
 	loc->y = pos->y / BLOCKSIZE;
 }
+void GameObject::nextLocation(Point* nextLoc, const GSvector2* nextVelcity)
+{
+	Point nPVel(0, 0);
+	if (nextVelcity->x > 0)
+	{
+		nPVel.x = 1;
+	}
+	if (nextVelcity->x < 0)
+	{
+		nPVel.x = -1;
+	}
+	if (nextVelcity->y > 0)
+	{
+		nPVel.y = 1;
+	}
+	if (nextVelcity->y < 0)
+	{
+		nPVel.y = -1;
+	}
+	*nextLoc = location + nPVel;
+}
 void GameObject::mapdataAssignment(MapData* mapdata, const Point* point, GAMEOBJ_TYPE _type)
 {
 	for (int sy = 0; sy < size.y; sy++)
@@ -99,34 +120,13 @@ const bool GameObject::isInSideMap(const MapData* mapdata, const Point* point)co
 void GameObject::move(MapData* mapdata,GAMEOBJ_TYPE oldPostype)
 {
 	Point oldLocation = location;//位置フレーム前のlocation
-	nextVelocity(&velocity);
 	position += velocity;	
 	castLocation(&position, &location);
 	mapUpdata(mapdata, &oldLocation, oldPostype);
 }
-const bool GameObject::isNextMove(const MapData* mapdata)
+const bool GameObject::isNextMove(const MapData* mapdata, const Point* nextLocation)
 {
-	GSvector2 nextVel =velocity;
-	nextVelocity(&nextVel);
-	Point nPVel(0,0);
-	if (nextVel.x > 0)
-	{
-		nPVel.x = 1;
-	}
-	if (nextVel.x < 0)
-	{
-		nPVel.x = -1;
-	}
-	if (nextVel.y > 0)
-	{
-		nPVel.y = 1;
-	}
-	if (nextVel.y < 0)
-	{
-		nPVel.y = -1;
-	}
-	Point nextLoc = location + nPVel;
-	if (nextLoc == location)
+	if (*nextLocation == location)
 	{
 		return true;
 	}
@@ -134,11 +134,11 @@ const bool GameObject::isNextMove(const MapData* mapdata)
 	{
 		for (int sx = 0; sx < size.x; sx++)
 		{
-			if (!nextAction((*mapdata)(nextLoc.y + sy, nextLoc.x + sx)))
+			if (!nextAction((*mapdata)(nextLocation->y + sy, nextLocation->x + sx)))
 			{
 				return false;
 			}
-			Point point = nextLoc + Point(sx,sy);
+			Point point = (*nextLocation) + Point(sx,sy);
 			if (!isInSideMap(mapdata, &point))
 			{
 				return false;
