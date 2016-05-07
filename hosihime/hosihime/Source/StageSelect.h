@@ -6,14 +6,14 @@ class StageSelect
 {
 public:
 	StageSelect();
-	~StageSelect();
 	void initialize();
 	//trueÇ»ÇÁStageê∂ê¨Ç≥ÇÍÇΩ
 	bool updata(Stage** stage);
 	void draw(Renderer& renderer);
 	void finish();
 private:
-	GSvector2* stagePos;
+	void select();
+	bool stageCreate(Stage** stage);
 	int active;
 };
 #endif

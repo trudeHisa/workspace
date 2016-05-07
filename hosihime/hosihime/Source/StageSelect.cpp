@@ -2,23 +2,19 @@
 #include "Stage.h"
 #include "Calculate.h"
 StageSelect::StageSelect()
-	:stagePos(new GSvector2[3])
 {
 
-}
-
-StageSelect::~StageSelect()
-{
-	delete[] stagePos;
 }
 void StageSelect::initialize()
 {
-	stagePos[0] = GSvector2(100,600);
-	stagePos[1] = GSvector2(1100,300);
-	stagePos[2] = GSvector2(200,100);
 	active = 0;
 }
 bool StageSelect::updata(Stage** stage)
+{
+	select();
+	return stageCreate(stage);
+}
+void StageSelect::select()
 {
 	if (gsGetKeyTrigger(GKEY_UP))
 	{
@@ -29,31 +25,34 @@ bool StageSelect::updata(Stage** stage)
 		active--;
 	}
 	Calculate<int> calc;
-	active=calc.wrap(active,0,3);
+	active = calc.wrap(active, 0, 3);
+}
+bool StageSelect::stageCreate(Stage** stage)
+{
 	if (!gsGetKeyTrigger(GKEY_SPACE))
 	{
 		return false;
 	}
-	std::string datanames[3] = 
+	std::string datanames[3] =
 	{
 		"testmap.csv",
 		"testmap.csv",
 		"testmap.csv"
 	};
-	std::string name = "mapdata\\\\testmap.csv";
+	std::string name = "mapdata\\\\" + datanames[active];
 	*stage = new Stage(name);
 	return true;
 }
 void StageSelect::draw(Renderer& renderer) 
 {
-	renderer.DrawTextrue("space.bmp", &GSvector2(0,0));
-	for (int i = 0; i <3; i++)
+	GSvector2 poss[3] =
 	{
-		renderer.DrawTextrue("select.bmp",&stagePos[i]);
-	}
-	GSvector2 selectPos = stagePos[active] - GSvector2(8,8);
-	renderer.DrawTextrue("activeselect.bmp", &selectPos,&GScolor(1,1,1,0.5f));
-	
+		GSvector2(190, 570),
+		GSvector2(1035, 375),
+		GSvector2(300,135)
+	};
+	renderer.DrawTextrue("stageselect.bmp", &GSvector2(0, 0));
+	renderer.DrawTextrue("activeselect.bmp", &poss[active], &GScolor(1, 1, 1, 0.5f));
 }
 void StageSelect::finish()
 {
