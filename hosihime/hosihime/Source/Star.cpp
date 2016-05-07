@@ -3,7 +3,6 @@
 Star::Star(const std::string& textrue, const GSvector2* position)
 	:GameObject(textrue, &Point(1, 1), STAR, position)
 {
-
 }
 
 Star::~Star()
@@ -21,16 +20,11 @@ void Star::updata(MapData* mapdata)
 		isDead = true;
 		return;
 	}
-	Point oldLocation = location;//位置フレーム前のlocation
-	nextVelocity(&velocity);
-	position += velocity;
-	castLocation(&position, &location);
-	mapUpdata(mapdata, &oldLocation, SPACE);
+	move(mapdata, SPACE);
 }
 void Star::nextVelocity(GSvector2* _velocity)
 {
-	_velocity->x = 1;
-	_velocity->y = 1;
+	_velocity->x = 3;
 }
 bool Star::nextAction(int nextPosType)
 {

@@ -13,11 +13,11 @@ GameObject::~GameObject()
 }
 void GameObject::draw(Renderer& renderer, const Scroll* scroll)
 {
-	if (!scroll->isInsideWindow(position.x,size.x*BLOCKSIZE))
+	GSvector2 pos = position - GSvector2(BLOCKSIZE, BLOCKSIZE);
+	if (!scroll->isInsideWindow(pos.x,size.x*BLOCKSIZE))
 	{
 		return;
-	}
-	GSvector2 pos = position;
+	}	
 	pos.x -= scroll->getMovingAmount();
 	renderer.DrawTextrue(textrue, &pos);
 }
@@ -65,11 +65,11 @@ void GameObject::mapdataAssignment(MapData* mapdata, const Point* point, GAMEOBJ
 void GameObject::mapUpdata(MapData* mapdata, const Point* oldLocation, GAMEOBJ_TYPE oldPostype)
 {
 	mapdataAssignment(mapdata,&location,type);
-	for (int sy = 0; sy < size.y; sy++)
+	Point sp(0, 0);
+	for (sp.y = 0; sp.y < size.y; sp.y++)
 	{
-		for (int sx = 0; sx < size.x; sx++)
+		for (sp.x = 0; sp.x < size.x; sp.x++)
 		{
-			Point sp(sx,sy);
 			Point spl = location + sp;
 			Point spol = (*oldLocation) + sp;
 			if (spl== spol)
@@ -95,6 +95,14 @@ const bool GameObject::isInSideMap(const MapData* mapdata, const Point* point)co
 		return false;
 	}
 	return true;
+}
+void GameObject::move(MapData* mapdata,GAMEOBJ_TYPE oldPostype)
+{
+	Point oldLocation = location;//位置フレーム前のlocation
+	nextVelocity(&velocity);
+	position += velocity;	
+	castLocation(&position, &location);
+	mapUpdata(mapdata, &oldLocation, oldPostype);
 }
 const bool GameObject::isNextMove(const MapData* mapdata)
 {

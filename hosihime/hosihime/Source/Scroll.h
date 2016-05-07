@@ -8,13 +8,16 @@ class Scroll
 public:
 	Scroll(const Point* windowSize);
 	void initialize();
-	//ウィンドウの中にあるか
-	const bool isInsideWindow(float posx,float width)const;
+	void updata();
+	void draw(Renderer& renderer);
 	//Scroll処理
 	void moving(float velocity);
-	const float getMovingAmount()const;
-	void draw(Renderer& renderer);
+	//ウィンドウの中にあるか
+	const bool isInsideWindow(float posx,float width)const;
+	const float getMovingAmount()const;	
 private:
+	GSvector2 position1;
+	GSvector2 position2;
 	Point windowSize;
 	float movingAmount;//どれだけScrollしたか
 };

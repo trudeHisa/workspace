@@ -27,32 +27,34 @@ void Stage::updata()
 }
 void Stage::draw(Renderer& renderer)
 {
-	renderer.DrawTextrue("space.bmp",&GSvector2(0,0));
 	scroll.draw(renderer);
 	control.draw(renderer,&scroll);
 	/*for (int y = 0; y < mapdata.getSize0(); y++)
 	{
 		for (int x = 0; x < mapdata.getSize1(); x++)
 		{
-			std::string tex = "space";
-			switch (mapdata(y, x))
+			if (scroll.isInsideWindow(x *  BLOCKSIZE, BLOCKSIZE))
 			{
-			case GAMEOBJ_TYPE::SPACE:
-				break;
-			case GAMEOBJ_TYPE::STAR:
-				tex = "star";
-				break;
-			case GAMEOBJ_TYPE::PLAYER:
-				tex = "player";
-				break;
-			case GAMEOBJ_TYPE::ROCK:
-				tex = "rock";
-				break;
-			default:
-				tex = "other";
-				break;
-			}
-			renderer.DrawString(tex, &GSvector2(x *  BLOCKSIZE , y *  BLOCKSIZE ), 10);
+				std::string tex = "space";
+				switch (mapdata(y, x))
+				{
+				case GAMEOBJ_TYPE::SPACE:
+					break;
+				case GAMEOBJ_TYPE::STAR:
+					tex = "star";
+					break;
+				case GAMEOBJ_TYPE::PLAYER:
+					tex = "player";
+					break;
+				case GAMEOBJ_TYPE::ROCK:
+					tex = "rock";
+					break;
+				default:
+					tex = "other";
+					break;
+				}
+				renderer.DrawString(tex, &GSvector2(x *  BLOCKSIZE-scroll.getMovingAmount(), y *  BLOCKSIZE), 10);
+			}			
 		}
 	}*/
 }
@@ -70,13 +72,13 @@ void Stage::objCreate(int x, int y, Array2D<bool>* check)
 	switch (mapdata(y, x))
 	{
 	case STAR:
-		size = control.add(new Star("star.bmp", &GSvector2(x * BLOCKSIZE, y * BLOCKSIZE)));
+		size = control.add(new Star("star.bmp", &GSvector2(x * BLOCKSIZE,y* BLOCKSIZE)));
 		break;
 	case ROCK:		
-		size = control.add(new Rock("rock.bmp", &GSvector2(x * BLOCKSIZE, y * BLOCKSIZE)));
+		size = control.add(new Rock("rock.bmp", &GSvector2(x * BLOCKSIZE,y* BLOCKSIZE)));
 		break;
 	case PLAYER:
-		size = control.add(new Player("player.bmp", &GSvector2(x * BLOCKSIZE, y * BLOCKSIZE),&scroll));
+		size = control.add(new Player("player.bmp", &GSvector2(x * BLOCKSIZE,y* BLOCKSIZE), &scroll));
 		break;
 	}
 	for (int sy = 0; sy < size.y; sy++)

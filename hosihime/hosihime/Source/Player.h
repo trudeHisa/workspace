@@ -13,6 +13,7 @@ public:
 	//starÇ…èÊÇÍÇΩÇ©ÅH
 	bool setStar(GameObject* _star);
 private:
+	void starDestroy();
 	bool nextAction(int nextPosType);
 	void nextVelocity(GSvector2* _velocity);
 	Star* star;

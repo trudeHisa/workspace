@@ -8,6 +8,7 @@ GamePlay::GamePlay(Sound* sound)
 GamePlay::~GamePlay()
 {
 	delete stage;
+	stage = 0;
 }
 void GamePlay::Init()
 {
