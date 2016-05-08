@@ -27,9 +27,9 @@ void GameObject::initialize()
 	castLocation(&position,&location);
 	isDead = false;
 }
-void GameObject::finish()
+void GameObject::finish(MapData* mapdata)
 {
-
+	mapdataAssignment(mapdata, &location, SPACE);
 }
 const bool GameObject::getIsDead()const
 {
@@ -110,15 +110,16 @@ const bool GameObject::isCollision(const MapData* mapdata, const Point* nextLoca
 	{
 		return true;
 	}
-	for (int sy = 0; sy < size.y; sy++)
+	Point _size(0, 0);
+	for (_size.y = 0; _size.y < size.y; _size.y++)
 	{
-		for (int sx = 0; sx < size.x; sx++)
+		for (_size.x = 0; _size.x < size.x; _size.x++)
 		{
-			if (!collision((*mapdata)(nextLocation->y + sy, nextLocation->x + sx)))
+			Point point = (*nextLocation) + _size;
+			if (!collision((*mapdata)(point.y, point.x)))
 			{
 				return false;
-			}
-			Point point = (*nextLocation) + Point(sx, sy);
+			}			
 			if (!isInSideMap(mapdata, &point))
 			{
 				isDead = true;
