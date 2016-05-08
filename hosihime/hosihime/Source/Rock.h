@@ -10,6 +10,6 @@ public:
 	~Rock();
 	void updata(MapData* mapdata);
 private:
-	bool nextAction(int nextPosType);
+	bool collision(int nextPosType);
 };
 #endif

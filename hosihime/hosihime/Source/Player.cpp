@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "Star.h"
+
 Player::Player(const std::string& textrue, const GSvector2* position, Scroll* scroll)
 	:GameObject(textrue, &Point(1, 1), PLAYER, position), star(NULL), scroll(scroll)
 {
@@ -16,25 +17,27 @@ void Player::updata(MapData* mapdata)
 {
 	starDestroy();
 
-	GSvector2 nextVel = velocity;
-	nextVelocity(&nextVel);
-	Point nextLoc;
-	nextLocation(&nextLoc, &nextVel);
-	if (!isNextMove(mapdata,&nextLoc))
+	GSvector2 nextVel= velocity;
+	if (star != NULL)
+	{
+		star->playerPickUp(&nextVel);
+	}
+
+	if (!isNextMove(mapdata, &nextVel))
 	{
 		return;
 	}
+	
+	if (star != NULL)
+	{
+		star->playerPickUp(&velocity);
+	}
 	scroll->moving(velocity.x);
-	nextVelocity(&velocity);
-	move(mapdata, SPACE);
+	move(mapdata,SPACE);
 }
 void Player::nextVelocity(GSvector2* _velocity)
 {
-	if (star == NULL)
-	{
-		return;
-	}
-	star->playerPickUp(&velocity);
+
 }
 void Player::starDestroy()
 {
@@ -49,7 +52,7 @@ void Player::starDestroy()
 	velocity = GSvector2(0, 0);
 	star = NULL;
 }
-bool Player::nextAction(int nextPosType)
+bool Player::collision(int nextPosType)
 {
 	return nextPosType != ROCK;
 }

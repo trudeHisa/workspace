@@ -12,32 +12,39 @@ Star::~Star()
 
 void Star::updata(MapData* mapdata)
 {
-	float nang = angle;
 	GSvector2 nextVel = velocity;
-	nextVelocity(&nextVel,&nang);
-	Point nextLoc;
-	nextLocation(&nextLoc,&nextVel);
-	if (!isNextMove(mapdata,&nextLoc))
+	float nang = angle;
+
+	nang += 0.03f;
+	nextVel.y = sin(nang) * 4;
+	nextVel.x = 2;
+
+	if (!isNextMove(mapdata, &nextVel))
 	{
-		if ((*mapdata)(location.y,location.x) == type)
-		{
-			mapdataAssignment(mapdata, &location, SPACE);
-		}
-		isDead = true;
+		mapdataAssignment(mapdata, &location, SPACE);
 		return;
 	}
-	nextVelocity(&velocity,&angle);
+
+	angle += 0.03f;
+	velocity.y = sin(angle) * 4;
+	velocity.x = 2;
+
 	move(mapdata, SPACE);
 }
-void Star::nextVelocity(GSvector2* _velocity,float* angle)
+void Star::nextVelocity(GSvector2* _velocity, float* angle)
 {
-	*angle+=0.03f;
-	_velocity->y = sin(*angle) *4;
-	_velocity->x =2;
+	*angle += 0.03f;
+	_velocity->y = sin(*angle) * 4;
+	_velocity->x = 2;
 }
-bool Star::nextAction(int nextPosType)
+bool Star::collision(int nextPosType)
 {
-	return nextPosType == SPACE || nextPosType == PLAYER;
+	if (nextPosType == SPACE || nextPosType == PLAYER)
+	{
+		return true;
+	}
+	isDead = true;
+	return false;
 }
 void Star::playerPickUp(GSvector2* _velocity)
 {

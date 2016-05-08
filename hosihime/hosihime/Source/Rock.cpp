@@ -9,10 +9,10 @@ Rock::~Rock()
 }
 void Rock::updata(MapData* mapdata)
 {
-	castLocation(&position, &location);
-	mapUpdata(mapdata, &location, SPACE);
+	//castLocation(&position, &location);
+	//mapUpdata(mapdata, &location, SPACE);
 }
-bool Rock::nextAction(int nextPosType)
+bool Rock::collision(int nextPosType)
 {
 	return false;
 }

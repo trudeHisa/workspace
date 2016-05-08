@@ -14,7 +14,7 @@ public:
 	bool setStar(GameObject* _star);
 private:
 	void starDestroy();
-	bool nextAction(int nextPosType);
+	bool collision(int nextPosType);
 	void nextVelocity(GSvector2* _velocity);
 	Star* star;
 	Scroll* scroll;
