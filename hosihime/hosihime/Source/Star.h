@@ -15,6 +15,7 @@ public:
 	//•ú•¨ü
 	void LinePattern3();//‰E‰º
 	void LinePattern4();//¶‰º
+
 	//‰~‰^“®
 	void LinePattern5();
 	//ƒuƒ‰ƒ“ƒR‚İ‚½‚¢‚È“®‚«
