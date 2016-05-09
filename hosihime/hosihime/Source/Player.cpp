@@ -16,18 +16,38 @@ Player::~Player()
 void Player::updata(MapData* mapdata)
 {
 	starDestroy();
-	moving();
 	GSvector2 nextVel(0, 0);
 	if (star != NULL)
 	{
 		star->playerPickUp(&nextVel);
 	}
+	if (GetAsyncKeyState(VK_UP) && jflag == false)
+	{
+		jflag = true;
+		y_prev = position.y;
+		nextVel.y = -20;
+	}
+	if (jflag == true){
+		y_temp = position.y;
+		nextVel.y = (position.y - y_prev) + 5;
+		y_prev = y_temp;
 
+	}
 	if (!isNextMove(mapdata, &nextVel))
 	{
 		return;
 	}
-	
+	if (jflag == true){
+		y_temp = position.y;
+		velocity.y = (position.y - y_prev) + 5;
+		y_prev = y_temp;
+
+	}
+	if (GetAsyncKeyState(VK_UP)&&jflag == true)
+	{
+		velocity.y = -20;
+	}
+
 	if (star != NULL)
 	{
 		star->playerPickUp(&velocity);
@@ -68,17 +88,5 @@ bool Player::setStar(GameObject* _star)
 
 void Player::moving()
 {
-	if (jflag == true){
-		y_temp = velocity.y;
-		velocity.y = (velocity.y - y_prev) + 1;
-		y_prev = y_temp;
-		if (position.y == 600)
-			jflag = false;
-	}
-	if (GetAsyncKeyState(VK_UP) && jflag == false)
-	{
-		jflag = true;
-		y_prev = velocity.y;
-		velocity.y = velocity.y - 20;
-	}
+	
 }
