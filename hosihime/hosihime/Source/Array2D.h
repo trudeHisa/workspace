@@ -3,6 +3,7 @@ Array2D.h
 */
 #ifndef _ARRAY2D_H_
 #define _ARRAY2D_H_
+
 //配列（ポインタ）を2次元配列風に扱う
 //色々な方で利用できるようtemplateを使っている
 template< class T > class Array2D{
@@ -20,6 +21,7 @@ public:
 		mSize1 = size1;
 		mArray = new T[size0 * size1];
 	}
+
 	T& operator()(int index0, int index1){
 		return mArray[index1 * mSize0 + index0];
 	}

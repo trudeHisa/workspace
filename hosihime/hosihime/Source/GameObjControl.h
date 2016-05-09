@@ -22,8 +22,9 @@ public:
 	void draw(Renderer& renderer, const Scroll* scroll);
 	void finish();
 private:
+	void setStar();
 	Player* findPlayer() const;
-	void remove();
+	void remove(MapData* mapdata);
 	GameObjs objs;
 };
 #endif

@@ -21,10 +21,8 @@ void Star::updata(MapData* mapdata)
 
 	if (!isNextMove(mapdata, &nextVel))
 	{
-		mapdataAssignment(mapdata, &location, SPACE);
 		return;
 	}
-
 	angle += 0.03f;
 	velocity.y = sin(angle) * 4;
 	velocity.x = 2;
