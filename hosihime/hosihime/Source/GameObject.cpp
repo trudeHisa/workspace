@@ -85,7 +85,7 @@ void GameObject::mapUpdata(MapData* mapdata, const Point* oldLocation, GAMEOBJ_T
 	}
 	mapdataAssignment(mapdata,oldLocation, oldPostype);
 }
-const bool GameObject::isInSideMap(const MapData* mapdata, const Point* point)const
+const bool GameObject::isInDataMap(const MapData* mapdata, const Point* point)const
 {
 	if (mapdata->getSize1() <= point->x)
 	{
@@ -120,7 +120,7 @@ const bool GameObject::isCollision(const MapData* mapdata, const Point* nextLoca
 			{
 				return false;
 			}			
-			if (!isInSideMap(mapdata, &point))
+			if (!isInDataMap(mapdata, &point))
 			{
 				isDead = true;
 				return false;

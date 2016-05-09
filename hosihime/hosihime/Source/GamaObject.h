@@ -29,7 +29,7 @@ private:
 	//mapdataの更新
 	void mapUpdata(MapData* mapdata, const Point* point, GAMEOBJ_TYPE oldPostype);
 	//マップ内ならtrue
-	const bool isInSideMap(const MapData* mapdata, const Point* point)const;
+	const bool isInDataMap(const MapData* mapdata, const Point* point)const;
 protected:	
 	//移動後の位置オブジェクトがある場合返す値は移動できるかできないかを返す	
 	virtual bool collision(int nextPosType)=0;
