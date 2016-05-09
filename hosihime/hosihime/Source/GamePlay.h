@@ -3,7 +3,6 @@
 #include "IScene.h"
 #include "Sound.h"
 #include"Player.h"
-#include "Star.h"
 class GamePlay :public IScene
 {
 public:
@@ -19,8 +18,7 @@ private:
 	bool isEnd;
 	float ang;
 	GSvector2 pos;
-	Sound sound;
-	Star star;
+	Sound& sound;
 	Player p;
 };
 #endif
