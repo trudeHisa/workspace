@@ -1,5 +1,5 @@
 #include "Star.h"
-#define PAI 3.14f
+#define PAI 3.141f
 
 Star::Star()
 	:ang(0), pos(640, 300)
