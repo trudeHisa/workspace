@@ -2,6 +2,7 @@
 #define _GAMEPLAY_H_
 #include "IScene.h"
 #include "Sound.h"
+#include"Player.h"
 #include "Star.h"
 class GamePlay :public IScene
 {
@@ -20,5 +21,6 @@ private:
 	GSvector2 pos;
 	Sound sound;
 	Star star;
+	Player p;
 };
 #endif

@@ -1,17 +1,23 @@
 #include"GamePlay.h"
+#include"Player.h"
+
 GamePlay::GamePlay(Sound* sound)
-	:sound(*sound)
+	:ang(0), pos(0, 100),sound(*sound)
 {
+	
 }
 GamePlay::~GamePlay()
 {
+	
 }
 void GamePlay::Init()
 {
+	//sound.PlaySE("testSE.wav");
 	isEnd = false;
 }
 void GamePlay::Update()
 {
+	p.Update();
 	star.LinePattern6();
 	isEnd = gsGetKeyTrigger(GKEY_SPACE);
 }
@@ -19,6 +25,10 @@ void GamePlay::Draw(Renderer& renderer)
 {	
 	renderer.DrawTextrue("gameplay.bmp", &GSvector2(0, 0));
 	//renderer.DrawTextrue("space.bmp", &GSvector2(0, 0));
+	renderer.AdditionBlend();
+	renderer.DrawTextrue("star.bmp", &pos,NULL,&GSvector2(32,32),NULL,ang,NULL);
+	renderer.InitBlendFunc();	
+	p.Draw(renderer);
 	star.Draw(renderer);
 	renderer.DrawString("aBÇÉCÇ¶", &GSvector2(50, 50),30);
 }

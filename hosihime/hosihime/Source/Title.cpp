@@ -17,6 +17,7 @@ void Title::Update()
 void Title::Draw(Renderer& renderer)
 {
 	renderer.DrawTextrue("title.bmp", &GSvector2(0, 0));
+	
 }
 void Title::Finish()
 {
