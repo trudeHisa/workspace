@@ -18,23 +18,15 @@ void GamePlay::Init()
 void GamePlay::Update()
 {
 	p.Update();
-	ang+= 2;
-	pos.x+=3;
-	pos.y += 1;
-	if (pos.x >= 1280)
-	{
-		sound.PlaySE("testSE2.wav");
-		pos.x = 0;
-		pos.y = 100;
-	}
+	star.LinePattern2();
 	isEnd = gsGetKeyTrigger(GKEY_SPACE);
 }
 void GamePlay::Draw(Renderer& renderer)
 {
 	renderer.DrawTextrue("gameplay.bmp", &GSvector2(0, 0));
-	//renderer.DrawTextrue("space.bmp", &GSvector2(0, 0));
+	
 	renderer.AdditionBlend();
-	renderer.DrawTextrue("star.bmp", &pos,NULL,&GSvector2(32,32),NULL,ang,NULL);
+	star.Draw(renderer);
 	renderer.InitBlendFunc();	
 	p.Draw(renderer);
 }
