@@ -6,7 +6,7 @@
 class GamePlay :public IScene
 {
 public:
-	GamePlay(Sound& sound);
+	GamePlay(Sound* sound);
 	~GamePlay();
 	void Init();
 	void Update();

@@ -1,10 +1,8 @@
-﻿2016/05/07 4:28:12 にビルドを開始しました。
+﻿2016/05/09 9:46:44 にビルドを開始しました。
      1>ノード 2 上のプロジェクト "C:\Users\十六夜\Source\Repos\workspace2\hosihime\hosihime\hosihime.vcxproj" (Build ターゲット)。
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Source\Player.cpp
-         Player.cpp
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\十六夜\Source\Repos\workspace2\hosihime\Debug\hosihime.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\十六夜\Source\Repos\workspace2\hosihime\Debug\hosihime.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\十六夜\Source\Repos\workspace2\hosihime\Debug\hosihime.lib" /MACHINE:X86 Debug\Ending.obj
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\十六夜\Source\Repos\workspace2\hosihime\Debug\hosihime.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\十六夜\Source\Repos\workspace2\hosihime\Debug\hosihime.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\十六夜\Source\Repos\workspace2\hosihime\Debug\hosihime.lib" /MACHINE:X86 Debug\CSVStream.obj
+         Debug\Ending.obj
          Debug\game.obj
          Debug\GamePlay.obj
          Debug\Load.obj
@@ -14,11 +12,13 @@
          Debug\Renderer.obj
          Debug\SceneManager.obj
          Debug\Sound.obj
+         Debug\Star.obj
          Debug\Timer.obj
          Debug\Title.obj
-         hosihime.vcxproj -> C:\Users\十六夜\Source\Repos\workspace2\hosihime\Debug\hosihime.exe
-     1>プロジェクト "C:\Users\十六夜\Source\Repos\workspace2\hosihime\hosihime\hosihime.vcxproj" (Build ターゲット) のビルドが完了しました。
+     1>game.obj : error LNK2019: 未解決の外部シンボル "public: __thiscall Load::Load(class Renderer &,class Sound *)" (??0Load@@QAE@AAVRenderer@@PAVSound@@@Z) が関数 "void __cdecl gameInit(void)" (?gameInit@@YAXXZ) で参照されました。
+     1>C:\Users\十六夜\Source\Repos\workspace2\hosihime\Debug\hosihime.exe : fatal error LNK1120: 1 件の未解決の外部参照
+     1>プロジェクト "C:\Users\十六夜\Source\Repos\workspace2\hosihime\hosihime\hosihime.vcxproj" (Build ターゲット) のビルドが終了しました -- 失敗。
 
-ビルドに成功しました。
+ビルドに失敗しました。
 
-経過時間 00:00:01.39
+経過時間 00:00:00.68
