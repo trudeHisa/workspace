@@ -21,7 +21,6 @@
     <ClCompile Include="Source\Renderer.cpp" />
     <ClCompile Include="Source\SceneManager.cpp" />
     <ClCompile Include="Source\Sound.cpp" />
-    <ClCompile Include="Source\Star.cpp" />
     <ClCompile Include="Source\Timer.cpp" />
     <ClCompile Include="Source\Title.cpp" />
   </ItemGroup>
@@ -39,7 +38,6 @@
     <ClInclude Include="Source\Renderer.h" />
     <ClInclude Include="Source\SceneManager.h" />
     <ClInclude Include="Source\Sound.h" />
-    <ClInclude Include="Source\Star.h" />
     <ClInclude Include="Source\Timer.h" />
     <ClInclude Include="Source\Title.h" />
   </ItemGroup>
