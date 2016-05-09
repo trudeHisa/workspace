@@ -14,6 +14,8 @@ Stage::Stage(const std::string& csvname)
 Stage::~Stage()
 {
 }
+
+
 void Stage::initialize()
 {
 	control.inisialize();

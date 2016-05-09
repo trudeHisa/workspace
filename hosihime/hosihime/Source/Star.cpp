@@ -1,43 +1,46 @@
 #include "Star.h"
-
-Star::Star(const std::string& textrue, const GSvector2* position)
-	:GameObject(textrue, &Point(1, 1), STAR, position)
+#define PAI 3.14f
+Star::Star(const std::string& textrue, const GSvector2* velocityition)
+	:GameObject(textrue, &Point(1, 1), STAR, velocityition)
 {
-	angle = 0;
 }
 
 Star::~Star()
 {
 }
 
+void Star::inisialize()
+{
+	velocity = GSvector2(0, 0);
+	castLocation(&position, &location);
+	isDead = false;
+	rot = 0;
+	ang = 0;
+}
+
 void Star::updata(MapData* mapdata)
 {
-	GSvector2 nextVel = velocity;
-	float nang = angle;
+	GSvector2 nextVel(0, 0);
+	float nrot = rot;
 
-	nang += 0.03f;
-	nextVel.y = sin(nang) * 4;
-	nextVel.x = 2;
+	LinePattern1(&nextVel);
+	//LinePattern3(&nextVel, &nrot);
 
 	if (!isNextMove(mapdata, &nextVel))
 	{
 		return;
 	}
-	angle += 0.03f;
-	velocity.y = sin(angle) * 4;
-	velocity.x = 2;
+	
+	LinePattern1(&velocity);
+	//LinePattern3(&velocity, &rot);
+	ang += 2;
 
 	move(mapdata, SPACE);
 }
-void Star::nextVelocity(GSvector2* _velocity, float* angle)
+
+bool Star::collision(int nextvelocityType)
 {
-	*angle += 0.03f;
-	_velocity->y = sin(*angle) * 4;
-	_velocity->x = 2;
-}
-bool Star::collision(int nextPosType)
-{
-	if (nextPosType == SPACE || nextPosType == PLAYER)
+	if (nextvelocityType == SPACE || nextvelocityType == PLAYER)
 	{
 		return true;
 	}
@@ -51,149 +54,72 @@ void Star::playerPickUp(GSvector2* _velocity)
 }
 
 //右斜め下に落ちていく
-void Star::LinePattern1()
+void Star::LinePattern1(GSvector2* _velocity)
 {
-	ang += 2;
-	pos.x += 3;
-	pos.y += 1;
-	if (pos.x >= 1280)
-	{
-		sound.PlaySE("testSE2.wav");
-		pos.x = 0;
-		pos.y = 100;
-	}
+	_velocity->x = 3;
+	_velocity->y = 1;
 }
 //左斜め下に落ちていく
-void Star::LinePattern2()
+void Star::LinePattern2(GSvector2* _velocity)
 {
-	ang -= 2;
-	pos.x -= 3;
-	pos.y += 1;
-	if (pos.x <= 0)
-	{
-		sound.PlaySE("testSE2.wav");
-		pos.x = 1280;
-		pos.y = 100;
-	}
+	_velocity->x = -3;
+	_velocity->y = 1;
 }
 
 //右下に落ちていく放物線
-void Star::LinePattern3()
+void Star::LinePattern3(GSvector2* _velocity,float* rot)
 {
-	rot -= 0.2;	//角度
+	*rot -= 0.2;	//角度
 	spd = 6;	    //スピード
-	ang += 2;
 
-	//移動量
-	movx = cos(rot * PAI / 180) * spd;
-	movy = sin(rot * PAI / 180) * spd;
-
-	pos.x += movx;
-	pos.y -= movy;
+	_velocity->x = cos(*rot * PAI / 180) * spd;
+	_velocity->y = -sin(*rot * PAI / 180) * spd;
 
 	//徐々に90度にする
-	if ((rot -= 0.001) < -90) rot = -90;
-	if (pos.x >= 1280 || pos.y >= 720)
-	{
-		sound.PlaySE("testSE2.wav");
-		pos.x = 0;
-		pos.y = 100;
-		rot = 0;
-	}
+	if ((*rot -= 0.001) < -90) *rot = -90;
 }
 //左下に落ちていく放物線
-void Star::LinePattern4()
+void Star::LinePattern4(GSvector2* _velocity, float* rot)
 {
-	rot -= 0.2;	//角度
+	*rot -= 0.2;	//角度
 	spd = 6;	    //スピード
-	ang -= 2;
 
-	//移動量
-	movx = cos(rot * PAI / 180) * spd;
-	movy = sin(rot * PAI / 180) * spd;
-
-	pos.x -= movx;
-	pos.y -= movy;
+	_velocity->x = -cos(*rot * PAI / 180) * spd;
+	_velocity->y = -sin(*rot * PAI / 180) * spd;
 
 	//徐々に90度にする
-	if ((rot -= 0.001) < -90) rot = -90;
-	if (pos.x <= 0 || pos.y >= 720)
-	{
-		sound.PlaySE("testSE2.wav");
-		pos.x = 1280;
-		pos.y = 100;
-		rot = 0;
-	}
+	if ((*rot -= 0.001) < -90) *rot = -90;
 }
 
 //円運動
-void Star::LinePattern5()
+void Star::LinePattern5(GSvector2* _velocity, float* rot)
 {
-	rot -= 2;	//角度
+	*rot -= 2;	//角度
 	spd = 8;	    //スピード
-	ang += 2;
 
-	//移動量
-	movx = cos(rot * PAI / 180) * spd;
-	movy = sin(rot * PAI / 180) * spd;
+	_velocity->x = cos(*rot * PAI / 180) * spd;
+	_velocity->y = -sin(*rot * PAI / 180) * spd;
 
-	pos.x += movx;
-	pos.y -= movy;
-
-	//徐々に90度にする
-	//if ((rot -= 0.001) < -90) rot = -90;
-	if (pos.x >= 1280 || pos.y >= 720)
-	{
-		sound.PlaySE("testSE2.wav");
-		pos.x = 640;
-		pos.y = 360;
-		rot = 0;
-	}
 }
 //ブランコみたいな動き
-void Star::LinePattern6()
+void Star::LinePattern6(GSvector2* _velocity, float* rot)
 {
-	rot += 2;	//角度
+	*rot += 2;	//角度
 	spd = 10;	    //スピード
 	sindw = 150;		//振れ幅
-	ang += 2;
 
-	//移動量
-	movx = cos(rot * PAI / 360) * spd;
-	movy = cos(rot* PAI / 180) * sindw;
-	//↑ここの数字を60ぐらいにすると波線になる
+	_velocity->x = cos(*rot * PAI / 360) * spd;
+	_velocity->y = cos(*rot* PAI / 180) * sindw; +300;
 
-	pos.x += movx;
-	pos.y = movy + 300;
-
-	if (pos.x >= 1280 || pos.y >= 720)
-	{
-		sound.PlaySE("testSE2.wav");
-		pos.x = 640;
-		pos.y = 300;
-		rot = 0;
-	}
 }
 //波線/後で角度をつける
-void Star::LinePattern7()
+void Star::LinePattern7(GSvector2* _velocity, float* rot)
 {
-	rot += 2;	//角度
+	*rot += 2;	//角度
 	spd = 10;	    //スピード
 	sindw = 120;		//振れ幅
-	ang += 2;
 
-	//移動量
-	movx = cos(rot * PAI / 360) * spd;
-	movy = cos(rot* PAI / 120) * sindw;
+	_velocity->x = cos(*rot * PAI / 360) * spd;
+	_velocity->y = cos(*rot* PAI / 120) * sindw +300;
 
-	pos.x += movx;
-	pos.y = movy + 300;
-
-	if (pos.x >= 1280 || pos.y >= 720)
-	{
-		sound.PlaySE("testSE2.wav");
-		pos.x = 640;
-		pos.y = 300;
-		rot = 0;
-	}
 }

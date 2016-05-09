@@ -13,10 +13,15 @@ public:
 	//starÇ…èÊÇÍÇΩÇ©ÅH
 	bool setStar(GameObject* _star);
 private:
+	void moving();
 	void starDestroy();
 	bool collision(int nextPosType);
 	void nextVelocity(GSvector2* _velocity);
 	Star* star;
 	Scroll* scroll;
+
+	bool jflag = false;
+	int y_temp = 0;
+	int y_prev = 0;
 };
 #endif

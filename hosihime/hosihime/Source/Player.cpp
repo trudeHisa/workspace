@@ -1,12 +1,8 @@
 #include "Player.h"
 #include "Star.h"
 
-bool jflag = false;
-int y_temp = 0;
-int y_prev = 0;
-
-Player::Player(const std::string& textrue, const GSvector2* position, Scroll* scroll)
-	:GameObject(textrue, &Point(1, 1), PLAYER, position), star(NULL), scroll(scroll)
+Player::Player(const std::string& textrue, const GSvector2* velocityition, Scroll* scroll)
+	:GameObject(textrue, &Point(1, 1), PLAYER, velocityition), star(NULL), scroll(scroll)
 {
 
 }
@@ -20,8 +16,8 @@ Player::~Player()
 void Player::updata(MapData* mapdata)
 {
 	starDestroy();
-	move();
-	GSvector2 nextVel= velocity;
+	moving();
+	GSvector2 nextVel(0, 0);
 	if (star != NULL)
 	{
 		star->playerPickUp(&nextVel);
@@ -56,9 +52,9 @@ void Player::starDestroy()
 	velocity = GSvector2(0, 0);
 	star = NULL;
 }
-bool Player::collision(int nextPosType)
+bool Player::collision(int nextvelocityType)
 {
-	return nextPosType != ROCK;
+	return nextvelocityType != ROCK;
 }
 bool Player::setStar(GameObject* _star)
 {
@@ -70,19 +66,19 @@ bool Player::setStar(GameObject* _star)
 	return true;
 }
 
-void Player::move()
+void Player::moving()
 {
 	if (jflag == true){
-		y_temp = pos.y;
-		pos.y += (pos.y - y_prev) + 1;
+		y_temp = velocity.y;
+		velocity.y = (velocity.y - y_prev) + 1;
 		y_prev = y_temp;
-		if (pos.y == 600)
+		if (position.y == 600)
 			jflag = false;
 	}
 	if (GetAsyncKeyState(VK_UP) && jflag == false)
 	{
 		jflag = true;
-		y_prev = pos.y;
-		pos.y = pos.y - 20;
+		y_prev = velocity.y;
+		velocity.y = velocity.y - 20;
 	}
 }
