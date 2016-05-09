@@ -6,7 +6,7 @@
 class Load :public IScene
 {
 public:
-	Load(Renderer& renderer,Sound& sound);
+	Load(Renderer& renderer,Sound* sound);
 	~Load();
 	void Init();
 	void Update();
@@ -17,6 +17,6 @@ public:
 private:
 	bool isEnd;
 	Renderer& renderer;
-	Sound& sound;
+	Sound sound;
 };
 #endif

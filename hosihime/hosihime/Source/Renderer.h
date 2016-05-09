@@ -22,9 +22,20 @@ public:
 		const GSrect*    _rect,
 		const GSvector2* _center,
 		const GSvector2* _scaling,
-		GSfloat          _rotation,		
+		GSfloat          _rotation,
 		const GScolor*    _color
 		);
+	/*
+	GS_FONT_NORMAL 何もしない
+	GS_FONT_BOLD   太字
+	GS_FONT_ITALIC イタリック
+	GS_FONT_UNDERLINE 下線
+	GS_FONT_STRIKEOUT 打消し線
+	|(ビットOR演算子)で複数重ねられる　
+	*/
+	void DrawString(const std::string& text, const GSvector2* _position, const GSuint size,
+		const GScolor* _color = &GScolor(1, 1, 1, 1), const GSbitfield& fontcode = GS_FONT_NORMAL,
+		const char* fonstname="MS ゴシック");
 	void InitBlendFunc()
 	{
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

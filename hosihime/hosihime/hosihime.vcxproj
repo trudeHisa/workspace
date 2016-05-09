@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\CSVStream.cpp" />
     <ClCompile Include="Source\Ending.cpp" />
     <ClCompile Include="Source\game.cpp" />
     <ClCompile Include="Source\GamePlay.cpp" />
@@ -21,12 +22,14 @@
     <ClCompile Include="Source\Renderer.cpp" />
     <ClCompile Include="Source\SceneManager.cpp" />
     <ClCompile Include="Source\Sound.cpp" />
+    <ClCompile Include="Source\Star.cpp" />
     <ClCompile Include="Source\Timer.cpp" />
     <ClCompile Include="Source\Title.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Array2D.h" />
     <ClInclude Include="Source\Calculate.h" />
+    <ClInclude Include="Source\CSVStream.h" />
     <ClInclude Include="Source\Definition.h" />
     <ClInclude Include="Source\Ending.h" />
     <ClInclude Include="Source\game.h" />
@@ -38,6 +41,7 @@
     <ClInclude Include="Source\Renderer.h" />
     <ClInclude Include="Source\SceneManager.h" />
     <ClInclude Include="Source\Sound.h" />
+    <ClInclude Include="Source\Star.h" />
     <ClInclude Include="Source\Timer.h" />
     <ClInclude Include="Source\Title.h" />
   </ItemGroup>
