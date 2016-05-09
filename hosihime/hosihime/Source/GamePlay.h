@@ -19,6 +19,6 @@ private:
 	float ang;
 	GSvector2 pos;
 	Sound sound;
-	Star slush;
+	Star star;
 };
 #endif

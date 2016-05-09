@@ -12,14 +12,14 @@ void GamePlay::Init()
 }
 void GamePlay::Update()
 {
-	slush.StarSlush();
+	star.LinePattern6();
 	isEnd = gsGetKeyTrigger(GKEY_SPACE);
 }
 void GamePlay::Draw(Renderer& renderer)
 {	
 	renderer.DrawTextrue("gameplay.bmp", &GSvector2(0, 0));
 	//renderer.DrawTextrue("space.bmp", &GSvector2(0, 0));
-	slush.Draw(renderer);
+	star.Draw(renderer);
 	renderer.DrawString("aBÇÉCÇ¶", &GSvector2(50, 50),30);
 }
 void GamePlay::Finish()
