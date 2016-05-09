@@ -1,9 +1,24 @@
-﻿2016/04/29 14:16:45 にビルドを開始しました。
-     1>ノード 2 上のプロジェクト "C:\Users\Hiroya\Source\Repos\workspace\hosihime\hosihime\hosihime.vcxproj" (Build ターゲット)。
-     1>Link:
-         hosihime.vcxproj -> C:\Users\Hiroya\Source\Repos\workspace\hosihime\Debug\hosihime.exe
-     1>プロジェクト "C:\Users\Hiroya\Source\Repos\workspace\hosihime\hosihime\hosihime.vcxproj" (Build ターゲット) のビルドが完了しました。
+﻿2016/05/07 4:28:12 にビルドを開始しました。
+     1>ノード 2 上のプロジェクト "C:\Users\十六夜\Source\Repos\workspace2\hosihime\hosihime\hosihime.vcxproj" (Build ターゲット)。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Source\Player.cpp
+         Player.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\十六夜\Source\Repos\workspace2\hosihime\Debug\hosihime.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\十六夜\Source\Repos\workspace2\hosihime\Debug\hosihime.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\十六夜\Source\Repos\workspace2\hosihime\Debug\hosihime.lib" /MACHINE:X86 Debug\Ending.obj
+         Debug\game.obj
+         Debug\GamePlay.obj
+         Debug\Load.obj
+         Debug\main..obj
+         Debug\Player.obj
+         Debug\Point.obj
+         Debug\Renderer.obj
+         Debug\SceneManager.obj
+         Debug\Sound.obj
+         Debug\Timer.obj
+         Debug\Title.obj
+         hosihime.vcxproj -> C:\Users\十六夜\Source\Repos\workspace2\hosihime\Debug\hosihime.exe
+     1>プロジェクト "C:\Users\十六夜\Source\Repos\workspace2\hosihime\hosihime\hosihime.vcxproj" (Build ターゲット) のビルドが完了しました。
 
 ビルドに成功しました。
 
-経過時間 00:00:00.09
+経過時間 00:00:01.39

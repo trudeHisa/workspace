@@ -17,6 +17,7 @@ void GamePlay::Init()
 }
 void GamePlay::Update()
 {
+	p.Update();
 	ang+= 2;
 	pos.x+=3;
 	pos.y += 1;
@@ -35,6 +36,7 @@ void GamePlay::Draw(Renderer& renderer)
 	renderer.AdditionBlend();
 	renderer.DrawTextrue("star.bmp", &pos,NULL,&GSvector2(32,32),NULL,ang,NULL);
 	renderer.InitBlendFunc();	
+	p.Draw(renderer);
 }
 void GamePlay::Finish()
 {

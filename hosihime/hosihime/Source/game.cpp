@@ -7,7 +7,7 @@
 #include "Ending.h"
 #include "Renderer.h"
 #include "Sound.h"
-#include "Player.h"
+#include "Player.h"	
 SceneManager sceneManager;
 Renderer renderer;
 Sound sound;
