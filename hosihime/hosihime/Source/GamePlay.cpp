@@ -4,6 +4,7 @@
 GamePlay::GamePlay(Sound* sound)
 	:sound(*sound), stage(0)
 {
+	
 }
 GamePlay::~GamePlay()
 {
@@ -34,7 +35,7 @@ void GamePlay::Update()
 	}
 }
 void GamePlay::Draw(Renderer& renderer)
-{
+{	
 	switch (mode)
 	{
 	case SELECT:

@@ -1,6 +1,10 @@
 #include "Player.h"
 #include "Star.h"
 
+bool jflag = false;
+int y_temp = 0;
+int y_prev = 0;
+
 Player::Player(const std::string& textrue, const GSvector2* position, Scroll* scroll)
 	:GameObject(textrue, &Point(1, 1), PLAYER, position), star(NULL), scroll(scroll)
 {
@@ -16,7 +20,7 @@ Player::~Player()
 void Player::updata(MapData* mapdata)
 {
 	starDestroy();
-
+	move();
 	GSvector2 nextVel= velocity;
 	if (star != NULL)
 	{
@@ -64,4 +68,21 @@ bool Player::setStar(GameObject* _star)
 	}
 	star = (Star*)_star;
 	return true;
+}
+
+void Player::move()
+{
+	if (jflag == true){
+		y_temp = pos.y;
+		pos.y += (pos.y - y_prev) + 1;
+		y_prev = y_temp;
+		if (pos.y == 600)
+			jflag = false;
+	}
+	if (GetAsyncKeyState(VK_UP) && jflag == false)
+	{
+		jflag = true;
+		y_prev = pos.y;
+		pos.y = pos.y - 20;
+	}
 }
