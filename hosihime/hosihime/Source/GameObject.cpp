@@ -87,11 +87,11 @@ const bool GameObject::isInDataMap(const MapData* mapdata, const Point* point)co
 	{
 		return false;
 	}
-	if (mapdata->getSize1() <= point->x)
+	if (mapdata->getSize1() < point->x)
 	{
 		return false;
 	}
-	if (mapdata->getSize0() <= point->y)
+	if (mapdata->getSize0() < point->y)
 	{
 		return false;
 	}
