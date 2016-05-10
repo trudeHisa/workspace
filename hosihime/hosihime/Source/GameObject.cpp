@@ -14,17 +14,17 @@ GameObject::~GameObject()
 void GameObject::draw(Renderer& renderer, const Scroll* scroll)
 {
 	GSvector2 pos = position - GSvector2(BLOCKSIZE, BLOCKSIZE);
-	if (!scroll->isInsideWindow(pos.x,size.x*BLOCKSIZE))
+	if (!scroll->isInsideWindow(pos.x, size.x*BLOCKSIZE))
 	{
 		return;
-	}	
+	}
 	pos.x -= scroll->getMovingAmount();
 	renderer.DrawTextrue(textrue, &pos);
 }
 void GameObject::initialize()
 {
 	velocity = GSvector2(0, 0);
-	castLocation(&position,&location);
+	castLocation(&position, &location);
 	isDead = false;
 }
 void GameObject::finish(MapData* mapdata)
@@ -65,28 +65,19 @@ void GameObject::mapdataAssignment(MapData* mapdata, const Point* point, GAMEOBJ
 }
 void GameObject::mapUpdata(MapData* mapdata, const Point* oldLocation, GAMEOBJ_TYPE oldPostype)
 {
-	mapdataAssignment(mapdata,&location,type);
-	Point sp(0, 0);
-	for (sp.y = 0; sp.y < size.y; sp.y++)
-	{
-		for (sp.x = 0; sp.x < size.x; sp.x++)
-		{
-			Point spl = location + sp;
-			Point spol = (*oldLocation) + sp;
-			if (spl== spol)
-			{
-				return;
-			}
-			if ((*mapdata)(oldLocation->y, oldLocation->x) != type)
-			{
-				return;
-			}
-		}
-	}
-	mapdataAssignment(mapdata,oldLocation, oldPostype);
+	mapdataAssignment(mapdata, oldLocation, oldPostype);
+	mapdataAssignment(mapdata, &location, type);	
 }
 const bool GameObject::isInDataMap(const MapData* mapdata, const Point* point)const
 {
+	if (point->x < 0)
+	{
+		return false;
+	}
+	if (point->y < 0)
+	{
+		return false;
+	}
 	if (mapdata->getSize1() <= point->x)
 	{
 		return false;
@@ -97,10 +88,10 @@ const bool GameObject::isInDataMap(const MapData* mapdata, const Point* point)co
 	}
 	return true;
 }
-void GameObject::move(MapData* mapdata,GAMEOBJ_TYPE oldPostype)
+void GameObject::move(MapData* mapdata, GAMEOBJ_TYPE oldPostype)
 {
 	Point oldLocation = location;//位置フレーム前のlocation
-	position += velocity;	
+	position += velocity;
 	castLocation(&position, &location);
 	mapUpdata(mapdata, &oldLocation, oldPostype);
 }
@@ -110,38 +101,36 @@ const bool GameObject::isCollision(const MapData* mapdata, const Point* nextLoca
 	{
 		return true;
 	}
-	Point _size(0, 0);
-	for (_size.y = 0; _size.y < size.y; _size.y++)
+	if (!isInDataMap(mapdata, nextLocation))
 	{
-		for (_size.x = 0; _size.x < size.x; _size.x++)
+		isDead = true;
+		return false;
+	}
+	if (!collision((*mapdata)(nextLocation->y, nextLocation->x)))
+	{
+		return false;
+	}	
+	return true;
+}
+const bool GameObject::isNextMove(const MapData* mapdata, const GSvector2* nextVelcity)
+{
+	//x,x+width,y,y+height
+	int dirx[2] ={0, size.x};
+	int diry[2] ={0, size.y};
+	//(0,0)(w,0)(0,h)(w,h)
+	for (int y = 0; y < 2; y++)
+	{
+		for (int x = 0; x < 2; x++)
 		{
-			Point point = (*nextLocation) + _size;
-			if (!collision((*mapdata)(point.y, point.x)))
+			GSvector2 npos = position + *nextVelcity;
+			npos += GSvector2(dirx[x] * BLOCKSIZE, diry[y]* BLOCKSIZE);
+			Point nextLoc;
+			castLocation(&npos, &nextLoc);
+			if (!isCollision(mapdata, &nextLoc))
 			{
-				return false;
-			}			
-			if (!isInDataMap(mapdata, &point))
-			{
-				isDead = true;
 				return false;
 			}
 		}
-	}
-	return true;
-}
-const bool GameObject::isNextMove(const MapData* mapdata,const GSvector2* nextVelcity)
-{
-	GSvector2 npos = position + *nextVelcity;
-	GSvector2 nposs = position + *nextVelcity + GSvector2(size.x*BLOCKSIZE, size.y*BLOCKSIZE);
-
-	Point nextLoc;
-	Point nextLocs;
-	castLocation(&npos, &nextLoc);
-	castLocation(&nposs, &nextLocs);
-
-	if (!isCollision(mapdata, &nextLoc) || !isCollision(mapdata, &nextLocs))
-	{
-		return false;
 	}
 	return true;
 }
