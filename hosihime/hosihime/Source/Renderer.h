@@ -1,6 +1,7 @@
 #ifndef _RENDERER_H_
 #define _RENDERER_H_
 #include <gslib.h>
+#include <string>
 #include <map>
 class Renderer
 {

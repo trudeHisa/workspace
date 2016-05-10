@@ -11,14 +11,23 @@ GameObject::GameObject(const std::string& textrue, const Point* size,
 GameObject::~GameObject()
 {
 }
+bool GameObject::forDrawPosition(GSvector2* _position, const Scroll* scroll)
+{
+	*_position=position-GSvector2(BLOCKSIZE, BLOCKSIZE);
+	if (!scroll->isInsideWindow(_position->x, size.x*BLOCKSIZE))
+	{
+		return false;
+	}
+	_position->x -= scroll->getMovingAmount();
+	return true;
+}
 void GameObject::draw(Renderer& renderer, const Scroll* scroll)
 {
-	GSvector2 pos = position - GSvector2(BLOCKSIZE, BLOCKSIZE);
-	if (!scroll->isInsideWindow(pos.x, size.x*BLOCKSIZE))
+	GSvector2 pos;
+	if (!forDrawPosition(&pos,scroll))
 	{
 		return;
 	}
-	pos.x -= scroll->getMovingAmount();
 	renderer.DrawTextrue(textrue, &pos);
 }
 void GameObject::initialize()

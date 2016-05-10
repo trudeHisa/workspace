@@ -10,12 +10,9 @@ Stage::Stage(const std::string& csvname)
 	CSVStream stream;
 	stream.input(&mapdata,csvname.c_str());
 }
-
 Stage::~Stage()
 {
 }
-
-
 void Stage::initialize()
 {
 	control.inisialize();
@@ -82,7 +79,7 @@ void Stage::objCreate(int x, int y, Array2D<bool>* check)
 		size = control.add(new Rock("rock.bmp", &GSvector2(x * BLOCKSIZE,y* BLOCKSIZE)));
 		break;
 	case PLAYER:
-		size = control.add(new Player("player.bmp", &GSvector2(x * BLOCKSIZE,y* BLOCKSIZE), &scroll));
+		size = control.add(new Player("player.bmp", &GSvector2(x * BLOCKSIZE, y* BLOCKSIZE), &scroll));
 		break;
 	}
 	for (int sy = 0; sy < size.y; sy++)

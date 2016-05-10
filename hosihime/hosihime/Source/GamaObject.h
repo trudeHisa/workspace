@@ -43,6 +43,11 @@ protected:
 	const bool isCollision(const MapData* mapdata,const Point* nextLocation);	
 	//ˆÚ“®‚Å‚«‚é‚©
 	const bool isNextMove(const MapData* mapdata, const GSvector2* nextVelcity);
+	/*
+	•`‰æ—p‚ÉˆÊ’u‚ð•Ï‚¦‚é
+	true‚È‚ç•`‰æ,false‚È‚ç•`‰æ‚µ‚È‚¢
+	*/
+	bool forDrawPosition(GSvector2* _position, const Scroll* scroll);
 protected:
 	std::string textrue;
 	bool isDead;

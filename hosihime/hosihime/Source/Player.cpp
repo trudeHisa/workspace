@@ -55,10 +55,6 @@ void Player::updata(MapData* mapdata)
 	scroll->moving(velocity.x);
 	move(mapdata,SPACE);
 }
-void Player::nextVelocity(GSvector2* _velocity)
-{
-
-}
 void Player::starDestroy()
 {
 	if (star == NULL)
@@ -84,9 +80,4 @@ bool Player::setStar(GameObject* _star)
 	}
 	star = (Star*)_star;
 	return true;
-}
-
-void Player::moving()
-{
-	
 }
