@@ -10,35 +10,50 @@ GameObjControl::~GameObjControl()
 
 }
 void GameObjControl::updata(MapData* mapdata)
-{	
+{
 	for each (GameObj_Ptr obj in objs)
 	{
 		obj->updata(mapdata);
 	}
-	setStar();	
+	sendStarsPlayer();
 	remove(mapdata);
 }
-void GameObjControl::setStar()
+void GameObjControl::sendStarsPlayer()
 {
 	for each (GameObj_Ptr obj in objs)
 	{
-		if (obj->isSameType(STAR))
-		{
-			findPlayer()->setStar(obj.get());
-		}
+		setStar(obj);
 	}
 }
-Player* GameObjControl::findPlayer()const
+void GameObjControl::setStar(GameObj_Ptr obj)
 {
-	auto p = std::find_if(objs.begin(), objs.end(), [](GameObj_Ptr obj)
+	if (!obj->isSameType(STAR))
+	{
+		return;
+	}
+	GameObjs_Itr::_Vector_const_iterator player;
+	if (!findPlayer(&player))
+	{
+		return;
+	}
+	((Player*)player->get())->setStar(obj.get());
+}
+const bool GameObjControl::findPlayer(GameObjs_Itr::_Vector_const_iterator* player)const
+{
+	auto itr = std::find_if(objs.begin(), objs.end(), [](GameObj_Ptr obj)
 	{
 		return obj->isSameType(PLAYER);
 	});
-	return(Player*)p->get();
+	if (itr == objs.end())
+	{
+		return false;
+	}
+	*player = itr;
+	return true;
 }
 void GameObjControl::remove(MapData* mapdata)
 {
-	auto itrNewEnd=std::remove_if(objs.begin(), objs.end(),[&](GameObj_Ptr obj)->bool
+	auto itrNewEnd = std::remove_if(objs.begin(), objs.end(), [&](GameObj_Ptr obj)->bool
 	{
 		if (!obj->getIsDead())
 		{
@@ -47,7 +62,7 @@ void GameObjControl::remove(MapData* mapdata)
 		obj->finish(mapdata);
 		return true;
 	});
-	objs.erase(itrNewEnd,objs.end());
+	objs.erase(itrNewEnd, objs.end());
 }
 void GameObjControl::inisialize()
 {
@@ -63,7 +78,7 @@ void GameObjControl::draw(Renderer& renderer, const Scroll* scroll)
 {
 	for each (GameObj_Ptr obj in objs)
 	{
-		obj->draw(renderer,scroll);
+		obj->draw(renderer, scroll);
 	}
 }
 void GameObjControl::finish()
