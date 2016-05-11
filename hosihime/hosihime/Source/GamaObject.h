@@ -28,8 +28,8 @@ public:
 private:
 	//mapdataの更新
 	void mapUpdata(MapData* mapdata, const Point* point, GAMEOBJ_TYPE oldPostype);
-	//マップ内ならtrue
-	const bool isInDataMap(const MapData* mapdata, const Point* point)const;
+	//オブジェクトと当たっているか？
+	const bool isCollision(const MapData* mapdata, const Point* nextLocation);
 protected:	
 	//移動後の位置オブジェクトがある場合返す値は移動できるかできないかを返す	
 	virtual bool collision(int nextPosType)=0;
@@ -39,8 +39,6 @@ protected:
 	void castLocation(const GSvector2* pos,Point* loc);
 	//移動処理
 	void move(MapData* mapdata,GAMEOBJ_TYPE oldPostype);	
-	//オブジェクトと当たっているか？
-	const bool isCollision(const MapData* mapdata,const Point* nextLocation);	
 	//移動できるか
 	const bool isNextMove(const MapData* mapdata, const GSvector2* nextVelcity);
 	/*
@@ -48,13 +46,14 @@ protected:
 	trueなら描画,falseなら描画しない
 	*/
 	bool forDrawPosition(GSvector2* _position, const Scroll* scroll);
-protected:
+private:
 	std::string textrue;
+	GAMEOBJ_TYPE type;
+	Point size;
+protected:	
 	bool isDead;
 	Point location;
 	GSvector2 position;
-	GAMEOBJ_TYPE type;
-	Point size;
 	GSvector2 velocity;
 };
 #endif

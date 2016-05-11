@@ -28,6 +28,26 @@ public:
 	const T& operator()(int index0, int index1) const {
 		return mArray[index1 * mSize0 + index0];
 	}
+	const bool isInArray(int index0, int index1)const
+	{
+		if (index1 < 0)
+		{
+			return false;
+		}
+		if (index0 < 0)
+		{
+			return false;
+		}
+		if (mSize1 <index1)
+		{
+			return false;
+		}
+		if (mSize0 <index0)
+		{
+			return false;
+		}
+		return true;
+	}
 	const int& getSize0()const
 	{
 		return mSize0;

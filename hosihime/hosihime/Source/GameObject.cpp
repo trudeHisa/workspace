@@ -77,26 +77,6 @@ void GameObject::mapUpdata(MapData* mapdata, const Point* oldLocation, GAMEOBJ_T
 	mapdataAssignment(mapdata, oldLocation, oldPostype);
 	mapdataAssignment(mapdata, &location, type);	
 }
-const bool GameObject::isInDataMap(const MapData* mapdata, const Point* point)const
-{
-	if (point->x < 0)
-	{
-		return false;
-	}
-	if (point->y < 0)
-	{
-		return false;
-	}
-	if (mapdata->getSize1() < point->x)
-	{
-		return false;
-	}
-	if (mapdata->getSize0() < point->y)
-	{
-		return false;
-	}
-	return true;
-}
 void GameObject::move(MapData* mapdata, GAMEOBJ_TYPE oldPostype)
 {
 	Point oldLocation = location;//位置フレーム前のlocation
@@ -110,7 +90,7 @@ const bool GameObject::isCollision(const MapData* mapdata, const Point* nextLoca
 	{
 		return true;
 	}
-	if (!isInDataMap(mapdata, nextLocation))
+	if (!mapdata->isInArray(nextLocation->y,nextLocation->x))
 	{
 		isDead = true;
 		return false;
