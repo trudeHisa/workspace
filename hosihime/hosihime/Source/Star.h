@@ -1,15 +1,17 @@
 #ifndef _STAR_H_
 #define _STAR_H_
 #include "GamaObject.h"
-class Star:public GameObject
+class Star :public GameObject
 {
 public:
-	Star(const std::string& textrue, const GSvector2* position);
+	Star(const std::string& textrue, const GSvector2& position);
 	~Star();
 	void inisialize();
-	 void updata(MapData* mapdata);	
-	 void pickUp(GSvector2* pos);
+	void updata();
+	void collision(const GameObject* obj);
+	void pickUp(GSvector2* vel);
 private:
+
 	//íºê¸
 	void LinePattern1(GSvector2* _velocity);//âEâ∫Ç…óéÇøÇÈ
 	void LinePattern2(GSvector2* _velocity);//ç∂â∫Ç…óéÇøÇÈ
@@ -23,7 +25,6 @@ private:
 	void LinePattern6(GSvector2* _velocity, float* rot);
 	//îgê¸
 	void LinePattern7(GSvector2* _velocity, float* rot);
-	float ang,  spd, sindw, rot = 0;
-	bool collision(int nextPosType);
+	float ang, spd, sindw, rot = 0;
 };
 #endif

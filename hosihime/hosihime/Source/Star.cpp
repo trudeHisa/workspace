@@ -1,7 +1,7 @@
 #include "Star.h"
 #define PAI 3.14f
-Star::Star(const std::string& textrue, const GSvector2* velocityition)
-	:GameObject(textrue, &Point(1, 1), STAR, velocityition)
+Star::Star(const std::string& textrue, const GSvector2& position)
+	:GameObject(textrue, MyRectangle(position, position+GSvector2(64, 64)), STAR)
 {
 }
 
@@ -12,47 +12,29 @@ Star::~Star()
 void Star::inisialize()
 {
 	velocity = GSvector2(0, 0);
-	castLocation(&position, &location);
 	isDead = false;
 	rot = 0;
 	ang = 0;
 }
 
-void Star::updata(MapData* mapdata)
+void Star::updata()
 {
-	GSvector2 nextVel(0, 0);
-	float nrot = rot;
-
-	LinePattern1(&nextVel);
-	//LinePattern3(&nextVel, &nrot);
-
-	if (!isNextMove(mapdata, &nextVel))
-	{
-		return;
-	}
-	
+	//velocity = GSvector2(3, 0);
 	LinePattern1(&velocity);
-	//LinePattern3(&velocity, &rot);
-	ang += 2;
-
-	move(mapdata);
+	rect=rect.translate(velocity);
 }
-
-bool Star::collision(int nextvelocityType)
+void Star::collision(const GameObject* obj)
 {
-	if (nextvelocityType == SPACE || nextvelocityType == PLAYER)
+	if(obj->isSameType(ROCK))
 	{
-		return true;
+		isDead = true;
 	}
-	isDead = true;
-	return false;
 }
-void Star::pickUp(GSvector2* _velocity)
+void Star::pickUp(GSvector2* vel)
 {
-	_velocity->x = velocity.x;
-	_velocity->y = velocity.y;
+	vel->x=velocity.x;
+	vel->y = velocity.y;
 }
-
 //‰EŽÎ‚ß‰º‚É—Ž‚¿‚Ä‚¢‚­
 void Star::LinePattern1(GSvector2* _velocity)
 {

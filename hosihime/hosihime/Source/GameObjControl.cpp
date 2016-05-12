@@ -10,14 +10,34 @@ GameObjControl::~GameObjControl()
 {
 
 }
-void GameObjControl::updata(MapData* mapdata)
+void GameObjControl::updata()
 {
 	for each (GameObj_Ptr obj in objs)
 	{
-		obj->updata(mapdata);
+		obj->updata();
 	}
-	sendStarsPlayer();
-	remove(mapdata);
+	allCollision();
+	remove();
+}
+void GameObjControl::allCollision()
+{
+	for each (GameObj_Ptr obj1 in objs)
+	{
+		for each (GameObj_Ptr obj2 in objs)
+		{
+			collision(obj1, obj2);
+		}
+	}
+}
+void GameObjControl::collision(GameObj_Ptr obj1, GameObj_Ptr obj2)
+{
+
+	if (!obj1->isCollision(obj2.get()))
+	{
+		return;
+	}
+	obj1->collision(obj2.get());
+	obj2->collision(obj1.get());
 }
 void GameObjControl::sendStarsPlayer()
 {
@@ -52,15 +72,15 @@ const bool GameObjControl::findPlayer(GameObjs_Itr::_Vector_const_iterator* play
 	*player = itr;
 	return true;
 }
-void GameObjControl::remove(MapData* mapdata)
+void GameObjControl::remove()
 {
-	auto itrNewEnd = std::remove_if(objs.begin(), objs.end(), [&](GameObj_Ptr obj)->bool
+	auto itrNewEnd = std::remove_if(objs.begin(), objs.end(), [](GameObj_Ptr obj)->bool
 	{
 		if (!obj->getIsDead())
 		{
 			return false;
 		}
-		obj->finish(mapdata);
+		obj->finish();
 		return true;
 	});
 	objs.erase(itrNewEnd, objs.end());
@@ -69,11 +89,10 @@ void GameObjControl::inisialize()
 {
 	objs.clear();
 }
-const Point& GameObjControl::add(GameObject* object)
+void GameObjControl::add(GameObject* object)
 {
 	object->initialize();
 	objs.push_back(GameObj_Ptr(object));
-	return object->getSize();
 }
 void GameObjControl::draw(Renderer& renderer, const Scroll* scroll)
 {

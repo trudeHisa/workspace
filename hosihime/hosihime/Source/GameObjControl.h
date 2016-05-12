@@ -14,19 +14,21 @@ class GameObjControl
 public:
 	GameObjControl();
 	~GameObjControl();
-	void updata(MapData* mapdata);
+	void updata();
 	void inisialize();
 	/*
 	オブジェクトのサイズを返す
 	*/
-	const Point& add(GameObject* object);
+	void add(GameObject* object);
 	void draw(Renderer& renderer, const Scroll* scroll);
 	void finish();
 private:
+	void allCollision();
+	void collision(GameObj_Ptr obj1, GameObj_Ptr obj2);
 	void sendStarsPlayer();
 	void setStar(GameObj_Ptr obj);
 	const bool GameObjControl::findPlayer(GameObjs_Itr::_Vector_const_iterator* player)const;
-	void remove(MapData* mapdata);
+	void remove();
 	GameObjs objs;
 };
 #endif

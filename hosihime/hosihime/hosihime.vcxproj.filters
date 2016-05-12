@@ -93,6 +93,9 @@
     <ClCompile Include="Source\StageSelect.cpp">
       <Filter>ソース ファイル\stage</Filter>
     </ClCompile>
+    <ClCompile Include="Source\MyRectangle.cpp">
+      <Filter>ソース ファイル\util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Definition.h">
@@ -166,6 +169,9 @@
     </ClInclude>
     <ClInclude Include="Source\StageSelect.h">
       <Filter>ヘッダー ファイル\stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MyRectangle.h">
+      <Filter>ヘッダー ファイル\util</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

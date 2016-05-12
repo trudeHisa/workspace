@@ -6,10 +6,11 @@
 class Rock:public GameObject
 {
 public:
-	Rock(const std::string& textrue, const GSvector2* position);
+	Rock(const std::string& textrue, const GSvector2& position);
 	~Rock();
-	void updata(MapData* mapdata);
+	void updata();
+	void collision(const GameObject* obj);
+	void respawn(const GSvector2& pos,GSvector2* vel);
 private:
-	bool collision(int nextPosType);
 };
 #endif

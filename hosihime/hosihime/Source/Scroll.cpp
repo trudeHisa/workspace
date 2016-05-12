@@ -22,12 +22,11 @@ void Scroll::draw(Renderer& renderer)
 //ウィンドウの中にあるか
 const bool Scroll::isInsideWindow(float posx,float width)const
 {
-	float rPos = posx - movingAmount;
-	if (rPos > windowSize.x)
+	if (posx > windowSize.x)
 	{
 		return false;
 	}
-	if (rPos+width <0)
+	if (posx + width <0)
 	{
 		return false;
 	}
