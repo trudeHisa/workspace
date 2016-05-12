@@ -72,17 +72,17 @@ void GameObject::mapdataAssignment(MapData* mapdata, const Point* point, GAMEOBJ
 		}
 	}
 }
-void GameObject::mapUpdata(MapData* mapdata, const Point* oldLocation, GAMEOBJ_TYPE oldPostype)
+void GameObject::mapUpdata(MapData* mapdata, const Point* oldLocation)
 {
-	mapdataAssignment(mapdata, oldLocation, oldPostype);
+	mapdataAssignment(mapdata, oldLocation, SPACE);
 	mapdataAssignment(mapdata, &location, type);	
 }
-void GameObject::move(MapData* mapdata, GAMEOBJ_TYPE oldPostype)
+void GameObject::move(MapData* mapdata)
 {
 	Point oldLocation = location;//位置フレーム前のlocation
 	position += velocity;
 	castLocation(&position, &location);
-	mapUpdata(mapdata, &oldLocation, oldPostype);
+	mapUpdata(mapdata, &oldLocation);
 }
 const bool GameObject::isCollision(const MapData* mapdata, const Point* nextLocation)
 {

@@ -27,7 +27,7 @@ public:
 	const bool isSameType(GAMEOBJ_TYPE _type)const;
 private:
 	//mapdataの更新
-	void mapUpdata(MapData* mapdata, const Point* point, GAMEOBJ_TYPE oldPostype);
+	void mapUpdata(MapData* mapdata, const Point* point);
 	//オブジェクトと当たっているか？
 	const bool isCollision(const MapData* mapdata, const Point* nextLocation);
 protected:	
@@ -38,7 +38,7 @@ protected:
 	//posをBLOCKSIZEで割りlocに代入
 	void castLocation(const GSvector2* pos,Point* loc);
 	//移動処理
-	void move(MapData* mapdata,GAMEOBJ_TYPE oldPostype);	
+	void move(MapData* mapdata);	
 	//移動できるか
 	const bool isNextMove(const MapData* mapdata, const GSvector2* nextVelcity);
 	/*

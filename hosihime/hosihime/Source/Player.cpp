@@ -53,7 +53,7 @@ void Player::updata(MapData* mapdata)
 		star->playerPickUp(&velocity);
 	}
 	scroll->moving(velocity.x);
-	move(mapdata,SPACE);
+	move(mapdata);
 }
 void Player::starDestroy()
 {

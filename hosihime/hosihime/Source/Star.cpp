@@ -35,7 +35,7 @@ void Star::updata(MapData* mapdata)
 	//LinePattern3(&velocity, &rot);
 	ang += 2;
 
-	move(mapdata, SPACE);
+	move(mapdata);
 }
 
 bool Star::collision(int nextvelocityType)
