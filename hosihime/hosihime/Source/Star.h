@@ -8,7 +8,7 @@ public:
 	~Star();
 	void inisialize();
 	 void updata(MapData* mapdata);	
-	 void playerPickUp(GSvector2* pos);
+	 void pickUp(GSvector2* pos);
 private:
 	//’¼ü
 	void LinePattern1(GSvector2* _velocity);//‰E‰º‚É—‚¿‚é

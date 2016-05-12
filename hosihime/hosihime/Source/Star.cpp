@@ -47,7 +47,7 @@ bool Star::collision(int nextvelocityType)
 	isDead = true;
 	return false;
 }
-void Star::playerPickUp(GSvector2* _velocity)
+void Star::pickUp(GSvector2* _velocity)
 {
 	_velocity->x = velocity.x;
 	_velocity->y = velocity.y;
