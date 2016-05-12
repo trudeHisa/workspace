@@ -19,7 +19,7 @@ void Player::updata(MapData* mapdata)
 	GSvector2 nextVel(0, 0);
 	if (star != NULL)
 	{
-		star->playerPickUp(&nextVel);
+		star->pickUp(&nextVel);
 	}
 	if (GetAsyncKeyState(VK_UP) && jflag == false)
 	{
@@ -50,7 +50,7 @@ void Player::updata(MapData* mapdata)
 
 	if (star != NULL)
 	{
-		star->playerPickUp(&velocity);
+		star->pickUp(&velocity);
 	}
 	scroll->moving(velocity.x);
 	move(mapdata);
