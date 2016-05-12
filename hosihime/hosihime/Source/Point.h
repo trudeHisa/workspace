@@ -7,7 +7,6 @@ public:
 	int x;
 	int y;
 	Point();
-
 	Point(const Point& _p);
 	Point(int _x, int _y);
 
@@ -30,13 +29,6 @@ const Point operator -(const Point& p1, const Point& p2);
 const Point operator *(const Point& p, int i);
 const Point operator /(const Point& p, int i);
 const Point operator /(int i, const Point& p);
- 
-const bool operator ==(const Point& p1, const Point& p2);
-const bool operator !=(const Point& p1, const Point& p2);
-const bool operator >=(const Point& p1, const Point& p2);
-const bool operator <=(const Point& p1, const Point& p2);
-const bool operator >(const Point& p1, const Point& p2);
-const bool operator <(const Point& p1, const Point& p2);
 
 const bool operator ==(const Point& p1, const Point& p2);
 const bool operator !=(const Point& p1, const Point& p2);

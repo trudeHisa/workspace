@@ -16,8 +16,14 @@ Point::Point(const Point& _p)
 	y = _p.y;
 }
 
-Point&  Point::operator +(){ return *this; }
-Point&  Point::operator -(){ return Point(-x, -y); }
+Point&  Point::operator +()
+{
+	return *this; 
+}
+Point&  Point::operator -()
+{
+	return Point(-x, -y);
+}
 Point& Point::operator +=(const Point& p)
 {
 	x += p.x;
