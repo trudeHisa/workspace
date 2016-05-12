@@ -11,7 +11,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Animation.cpp" />
     <ClCompile Include="Source\CSVStream.cpp" />
     <ClCompile Include="Source\Ending.cpp" />
     <ClCompile Include="Source\game.cpp" />
@@ -34,7 +33,6 @@
     <ClCompile Include="Source\Title.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Animation.h" />
     <ClInclude Include="Source\Array2D.h" />
     <ClInclude Include="Source\Calculate.h" />
     <ClInclude Include="Source\CSVStream.h" />
