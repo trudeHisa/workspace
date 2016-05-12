@@ -90,7 +90,7 @@ const bool GameObject::isCollision(const MapData* mapdata, const Point* nextLoca
 	{
 		return true;
 	}
-	if (!mapdata->isInArray(nextLocation->y,nextLocation->x))
+	if (!mapdata->isInSideArray(nextLocation->y,nextLocation->x))
 	{
 		isDead = true;
 		return false;

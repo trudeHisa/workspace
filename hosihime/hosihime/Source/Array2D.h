@@ -5,7 +5,7 @@ Array2D.h
 #define _ARRAY2D_H_
 
 //配列（ポインタ）を2次元配列風に扱う
-//色々な方で利用できるようtemplateを使っている
+//色々な型で利用できるようtemplateを使っている
 template< class T > class Array2D{
 public:
 	Array2D() : mArray(0){}
@@ -28,7 +28,7 @@ public:
 	const T& operator()(int index0, int index1) const {
 		return mArray[index1 * mSize0 + index0];
 	}
-	const bool isInArray(int index0, int index1)const
+	const bool isInSideArray(int index0, int index1)const
 	{
 		if (index1 < 0)
 		{
