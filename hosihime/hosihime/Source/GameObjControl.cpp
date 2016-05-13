@@ -43,12 +43,12 @@ void GameObjControl::sendStarsPlayer()
 {
 	for each (GameObj_Ptr obj in objs)
 	{
-		setStar(obj);
+		//setStar(obj);
 	}
 }
 void GameObjControl::setStar(GameObj_Ptr obj)
 {
-	if (!obj->isSameType(STAR))
+	/*if (!obj->isSameType(STAR))
 	{
 		return;
 	}
@@ -57,11 +57,11 @@ void GameObjControl::setStar(GameObj_Ptr obj)
 	{
 		return;
 	}
-	((Player*)player->get())->setStar(obj.get());
+	((Player*)player->get())->setStar(obj.get());*/
 }
 const bool GameObjControl::findPlayer(GameObjs_Itr::_Vector_const_iterator* player)const
 {
-	auto itr = std::find_if(objs.begin(), objs.end(), [](GameObj_Ptr obj)
+	/*auto itr = std::find_if(objs.begin(), objs.end(), [](GameObj_Ptr obj)
 	{
 		return obj->isSameType(PLAYER);
 	});
@@ -69,8 +69,8 @@ const bool GameObjControl::findPlayer(GameObjs_Itr::_Vector_const_iterator* play
 	{
 		return false;
 	}
-	*player = itr;
-	return true;
+	*player = itr;*/
+	return false;
 }
 void GameObjControl::remove()
 {

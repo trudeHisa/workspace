@@ -11,6 +11,7 @@ public:
 	void updata();
 	void collision(const GameObject* obj);
 	void pickUp(GSvector2* vel);
+	void ride(MyRectangle* rect);
 private:
 	IStarMove* move;
 	//îgê¸

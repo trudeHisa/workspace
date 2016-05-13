@@ -21,8 +21,6 @@ void Star::inisialize()
 
 void Star::updata()
 {
-	//velocity = GSvector2(3, 0);
-	//LinePattern2(&velocity);
 	velocity = move->moving();
 	rect=rect.translate(velocity);
 	if (WINDOW_HEIGHT+rect.getHeight() < rect.getMin().y)
@@ -41,5 +39,12 @@ void Star::pickUp(GSvector2* vel)
 {
 	vel->x=velocity.x;
 	vel->y = velocity.y;
+}
+void Star::ride(MyRectangle* rect)
+{
+	GSvector2 vel(0,0);
+	vel.x = this->rect.getMin().x- rect->getMin().x;
+	vel.y = (this->rect.getMin().y - rect->getHeight())- rect->getMin().y;
+	*rect=rect->translate(vel);
 }
 
