@@ -1,6 +1,18 @@
+/*
+Playerクラス
+5/13　久秋：自由落下メソッド追加、Updete変更
+
+*/
+
+
+
+
 #include "Player.h"
 #include "Star.h"
 #include "Rock.h"
+#define  GRAVITY 3.0f
+
+
 Player::Player(const std::string& textrue, const GSvector2& position, Scroll* scroll)
 	:GameObject(textrue, MyRectangle(position, position + GSvector2(64, 64)), PLAYER),
 	star(NULL), scroll(scroll), rock(NULL)
@@ -18,14 +30,7 @@ Player::~Player()
 }
 void Player::updata()
 {
-	if (isGround)
-	{
-		velocity = GSvector2(0, 0);
-	}	
-	else
-	{
-		velocity = GSvector2(0, 3);
-	}
+	FreeFall();
 	if (star != NULL)
 	{
 		if (star->getIsDead())
@@ -45,6 +50,18 @@ void Player::updata()
 	}
 	scroll->moving(velocity.x);
 	rect = rect.translate(velocity);
+}
+//自由落下処理
+void Player::FreeFall()
+{
+	if (isGround)
+	{
+		velocity.y = 0;
+	}
+	else
+	{
+		velocity.y = GRAVITY;
+	}
 }
 void Player::starDestroy()
 {

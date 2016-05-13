@@ -1,9 +1,10 @@
 #ifndef _PLAYER_H_
 #define _PLAYER_H_
-
+#include <gslib.h>
 #include "GamaObject.h"
 class Rock;
 class Star;
+#define GSfloat gravity 3;
 class Player :public GameObject
 {
 public:
@@ -15,6 +16,7 @@ public:
 	void collision(const GameObject* obj);
 private:
 	void starDestroy();
+	void FreeFall();
 	Star* star;
 	Scroll* scroll;
 	Rock* rock;
