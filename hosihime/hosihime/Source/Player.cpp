@@ -10,7 +10,6 @@ PlayerƒNƒ‰ƒX
 #include "Player.h"
 #include "Star.h"
 #include "Rock.h"
-#define  GRAVITY 3.0f
 
 
 Player::Player(const std::string& textrue, const GSvector2& position, Scroll* scroll)
@@ -56,11 +55,11 @@ void Player::FreeFall()
 {
 	if (isGround)
 	{
-		velocity.y = 0;
+		velocity = GSvector2(0,0);
 	}
 	else
 	{
-		velocity.y = GRAVITY;
+		velocity =GSvector2(0,3);
 	}
 }
 void Player::starDestroy()
