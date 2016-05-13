@@ -1,7 +1,7 @@
 #ifndef STAR_WAVE_H_
 #define STAR_WAVE_H_
 #include "IStarMove.h"
-
+//”g
 class Star_wave : public IStarMove
 {
 public:

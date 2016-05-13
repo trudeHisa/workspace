@@ -50,7 +50,7 @@ void Stage::objCreate(int x, int y, Array2D<bool>* check)
 	{
 	case STAR:
 		size = Point(1, 1);																							//’l‚Í5‚ğŠî€H wave‚ÌGSvector2‚Ìy‚Í0‚Å
-		 control.add(new Star("star.bmp",GSvector2(x * BLOCKSIZE,y* BLOCKSIZE),new Star_eight(5,5)));
+		 control.add(new Star("star.bmp",GSvector2(x * BLOCKSIZE,y* BLOCKSIZE),new Star_slashdown(GSvector2(3,1))));
 		break;
 	case ROCK:
 		size = Point(2, 1);

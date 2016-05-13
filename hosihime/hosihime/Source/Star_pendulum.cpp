@@ -1,5 +1,6 @@
 #include "Star_pendulum.h"
 #define PAI 3.14f
+//U‚èq
 Star_pendulum::Star_pendulum(float speed, float shwidth)
 	:spd(speed), sindw(shwidth)
 {

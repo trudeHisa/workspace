@@ -1,5 +1,6 @@
 #include "Star_cricle.h"
 #define PAI 3.14f
+//‰~
 Star_circle::Star_circle(float speed)
 	:spd(speed)
 {

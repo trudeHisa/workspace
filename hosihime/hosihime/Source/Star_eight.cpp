@@ -1,5 +1,6 @@
 #include "Star_eight.h"
 #define PAI 3.14f
+//8‚ÌŽš
 Star_eight::Star_eight(float speed,float sdwidth)
 	:spd(speed), sindw(sdwidth)
 {

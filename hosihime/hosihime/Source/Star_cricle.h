@@ -1,7 +1,7 @@
 #ifndef STAR_CRICLE_H_
 #define STAR_CRICLE_H_
 #include "IStarMove.h"
-
+//‰~
 class Star_circle : public IStarMove
 {
 public:

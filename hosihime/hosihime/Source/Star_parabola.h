@@ -1,7 +1,7 @@
 #ifndef STAR_PARADOLA_H_
 #define STAR_PARADOLA_H_
 #include "IStarMove.h"
-
+//•ú•¨ü
 class Star_paradola : public IStarMove
 {
 public:

@@ -1,5 +1,5 @@
 #include "Star_slashdown.h"
-
+//Îü
 Star_slashdown::Star_slashdown(const GSvector2 &velocity)
 	:velocity(velocity)
 {

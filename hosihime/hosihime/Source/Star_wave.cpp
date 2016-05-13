@@ -1,5 +1,6 @@
 #include "Star_wave.h"
 #define PAI 3.14f
+//”g
 Star_wave::Star_wave(GSvector2 vel, float shwidth)
 	:velocity(vel), sindw(shwidth)
 {

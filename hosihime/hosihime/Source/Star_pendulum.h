@@ -1,7 +1,7 @@
 #ifndef STAR_PENDULUM_H_
 #define STAR_PENDULUM_H_
 #include "IStarMove.h"
-
+//êUÇËéq
 class Star_pendulum : public IStarMove
 {
 public:
