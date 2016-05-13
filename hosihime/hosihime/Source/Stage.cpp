@@ -4,6 +4,13 @@
 #include "Player.h"
 #include "Rock.h"
 #include "game.h"
+
+#include "Star_slashdown.h"
+#include "Star_parabola.h"
+#include "Star_cricle.h"
+#include "Star_pendulum.h"
+#include "Star_wave.h"
+#include "Star_eight.h"
 Stage::Stage(const std::string& csvname)
 	:scroll(&Point(WINDOW_WIDTH,WINDOW_HEIGHT))
 {
@@ -42,8 +49,8 @@ void Stage::objCreate(int x, int y, Array2D<bool>* check)
 	switch (mapdata(y, x))
 	{
 	case STAR:
-		size = Point(1, 1);
-		 control.add(new Star("star.bmp",GSvector2(x * BLOCKSIZE,y* BLOCKSIZE)));
+		size = Point(1, 1);																							//ílÇÕ5ÇäÓèÄÅH waveÇÃGSvector2ÇÃyÇÕ0Ç≈
+		 control.add(new Star("star.bmp",GSvector2(x * BLOCKSIZE,y* BLOCKSIZE),new Star_eight(5,5)));
 		break;
 	case ROCK:
 		size = Point(2, 1);
