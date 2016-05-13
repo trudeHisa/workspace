@@ -2,6 +2,7 @@
 #define _GAMEOBJCONTROL_H_
 
 #include "GamaObject.h"
+#include "StarManager.h"
 #include <vector>
 #include <memory>
 #include "Definition.h"
@@ -22,6 +23,7 @@ public:
 	void add(GameObject* object);
 	void draw(Renderer& renderer, const Scroll* scroll);
 	void finish();
+	void add_Star(starsContainer& stars);
 private:
 	void allCollision();
 	void collision(GameObj_Ptr obj1, GameObj_Ptr obj2);

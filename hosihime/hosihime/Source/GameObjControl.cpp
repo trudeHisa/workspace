@@ -87,13 +87,25 @@ void GameObjControl::remove()
 }
 void GameObjControl::inisialize()
 {
-	objs.clear();
+	objs.clear(); 
 }
 void GameObjControl::add(GameObject* object)
 {
 	object->initialize();
 	objs.push_back(GameObj_Ptr(object));
 }
+void GameObjControl::add_Star(starsContainer& stars)
+{
+	for each(Star* star in stars)
+	{
+		add(star);
+	}
+
+
+	//add(stars[0]);
+	//add(stars[1]);
+}
+
 void GameObjControl::draw(Renderer& renderer, const Scroll* scroll)
 {
 	for each (GameObj_Ptr obj in objs)

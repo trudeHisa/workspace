@@ -16,6 +16,7 @@ Stage::~Stage()
 void Stage::initialize()
 {
 	control.inisialize();
+	starManager.initialize();
 	scroll.initialize();
 	mapCreate();
 }
@@ -41,10 +42,10 @@ void Stage::objCreate(int x, int y, Array2D<bool>* check)
 	Point size;
 	switch (mapdata(y, x))
 	{
-	case STAR:
-		size = Point(1, 1);
-		 control.add(new Star("star.bmp",GSvector2(x * BLOCKSIZE,y* BLOCKSIZE)));
-		break;
+	/*case STAR:
+		//size = Point(1, 1);
+		 //control.add(new Star("star.bmp",GSvector2(x * BLOCKSIZE,y* BLOCKSIZE)));
+		break;*/
 	case ROCK:
 		size = Point(2, 1);
 			control.add(new Rock("rock.bmp",GSvector2(x * BLOCKSIZE,y* BLOCKSIZE)));
@@ -54,6 +55,8 @@ void Stage::objCreate(int x, int y, Array2D<bool>* check)
 		control.add(new Player("player.bmp",GSvector2(x * BLOCKSIZE, y* BLOCKSIZE), &scroll));
 		break;
 	}
+	
+	
 	for (int sy = 0; sy < size.y; sy++)
 	{
 		for (int sx = 0; sx < size.x; sx++)
@@ -80,4 +83,8 @@ void Stage::mapCreate()
 			objCreate(x,y,&check);
 		}
 	}
+	//ƒXƒ^[‚ð¶¬
+	starManager.createStar();
+	//objcontrol‚É’Ç‰Á
+	control.add_Star(starManager.getContainer());
 }

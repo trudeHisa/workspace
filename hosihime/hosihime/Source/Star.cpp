@@ -19,7 +19,6 @@ void Star::inisialize()
 
 void Star::updata()
 {
-	//velocity = GSvector2(3, 0);
 	LinePattern1(&velocity);
 	rect=rect.translate(velocity);
 	if (WINDOW_HEIGHT+rect.getHeight() < rect.getMin().y)

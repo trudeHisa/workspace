@@ -3,6 +3,7 @@
 #include "GAMEOBJ_TYPE.h"
 #include "Renderer.h"
 #include "GameObjControl.h"
+#include "StarManager.h"
 #include "Definition.h"
 #include "Scroll.h"
 class Stage
@@ -19,6 +20,7 @@ private:
 	void objCreate(int x, int y, Array2D<bool>* check);
 	MapData mapdata;
 	GameObjControl control;
+	StarManger starManager;
 	Scroll scroll;
 };
 #endif
