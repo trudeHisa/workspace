@@ -39,6 +39,13 @@ void Star::pickUp(GSvector2* vel)
 	vel->x=velocity.x;
 	vel->y = velocity.y;
 }
+void Star::ride(MyRectangle* rect)
+{
+	GSvector2 vel(0,0);
+	vel.x = this->rect.getMin().x- rect->getMin().x;
+	vel.y = (this->rect.getMin().y - rect->getHeight())- rect->getMin().y;
+	*rect=rect->translate(vel);
+}
 //‰EŽÎ‚ß‰º‚É—Ž‚¿‚Ä‚¢‚­
 void Star::LinePattern1(GSvector2* _velocity)
 {
