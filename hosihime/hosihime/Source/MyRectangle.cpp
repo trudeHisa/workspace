@@ -1,5 +1,5 @@
 #include "MyRectangle.h"
-
+//
 MyRectangle::MyRectangle(float left, float top, float right, float bottom)
 	:min_(left,top), max_(right,bottom)
 {

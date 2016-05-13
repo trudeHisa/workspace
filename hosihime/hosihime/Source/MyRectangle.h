@@ -1,6 +1,7 @@
 #ifndef _MYRECTANGLE_H_
 #define _MYRECTANGLE_H_
 #include "game.h"
+//
 class MyRectangle
 {
 public:
