@@ -31,6 +31,12 @@
     <Filter Include="ヘッダー ファイル\scene">
       <UniqueIdentifier>{95d4af53-4dcc-4e6a-868c-956c7f2af5c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\star">
+      <UniqueIdentifier>{eb806f6e-faf2-44e8-acc5-c5eaf01de153}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\star">
+      <UniqueIdentifier>{084d0ed7-5466-42f4-9586-6faf3ddce960}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\game.cpp">
@@ -95,6 +101,18 @@
     </ClCompile>
     <ClCompile Include="Source\MyRectangle.cpp">
       <Filter>ソース ファイル\util</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Star_cricle.cpp">
+      <Filter>ソース ファイル\star</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Star_eight.cpp">
+      <Filter>ソース ファイル\star</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Star_pendulum.cpp">
+      <Filter>ソース ファイル\star</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Star_wave.cpp">
+      <Filter>ソース ファイル\star</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +190,21 @@
     </ClInclude>
     <ClInclude Include="Source\MyRectangle.h">
       <Filter>ヘッダー ファイル\util</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Star_cricle.h">
+      <Filter>ヘッダー ファイル\star</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Star_eight.h">
+      <Filter>ヘッダー ファイル\star</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Star_pendulum.h">
+      <Filter>ヘッダー ファイル\star</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Star_wave.h">
+      <Filter>ヘッダー ファイル\star</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\IStarMove.h">
+      <Filter>ヘッダー ファイル\star</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
