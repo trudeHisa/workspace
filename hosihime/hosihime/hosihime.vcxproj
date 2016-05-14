@@ -11,6 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Animation.cpp" />
+    <ClCompile Include="Source\AnimationTimer.cpp" />
     <ClCompile Include="Source\CSVStream.cpp" />
     <ClCompile Include="Source\Ending.cpp" />
     <ClCompile Include="Source\game.cpp" />
@@ -32,12 +34,16 @@
     <ClCompile Include="Source\Star.cpp" />
     <ClCompile Include="Source\Star_cricle.cpp" />
     <ClCompile Include="Source\Star_eight.cpp" />
+    <ClCompile Include="Source\Star_paradola.cpp" />
     <ClCompile Include="Source\Star_pendulum.cpp" />
+    <ClCompile Include="Source\Star_slashdown.cpp" />
     <ClCompile Include="Source\Star_wave.cpp" />
     <ClCompile Include="Source\Timer.cpp" />
     <ClCompile Include="Source\Title.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Animation.h" />
+    <ClInclude Include="Source\AnimationTimer.h" />
     <ClInclude Include="Source\Array2D.h" />
     <ClInclude Include="Source\Calculate.h" />
     <ClInclude Include="Source\CSVStream.h" />
@@ -64,7 +70,9 @@
     <ClInclude Include="Source\Star.h" />
     <ClInclude Include="Source\Star_cricle.h" />
     <ClInclude Include="Source\Star_eight.h" />
+    <ClInclude Include="Source\Star_parabola.h" />
     <ClInclude Include="Source\Star_pendulum.h" />
+    <ClInclude Include="Source\Star_slashdown.h" />
     <ClInclude Include="Source\Star_wave.h" />
     <ClInclude Include="Source\Timer.h" />
     <ClInclude Include="Source\Title.h" />
