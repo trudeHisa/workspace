@@ -11,7 +11,7 @@ void Ending::Init()
 }
 void Ending::Update()
 {
-	isEnd = gsGetKeyTrigger(GKEY_SPACE);
+	isEnd = !!gsGetKeyTrigger(GKEY_SPACE);
 }
 void Ending::Draw(Renderer& renderer)
 {	

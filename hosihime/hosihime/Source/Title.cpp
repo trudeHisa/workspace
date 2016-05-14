@@ -11,7 +11,7 @@ void Title::Init()
 }
 void Title::Update()
 {
-	isEnd = gsGetKeyTrigger(GKEY_SPACE);
+	isEnd = !!gsGetKeyTrigger(GKEY_SPACE);
 }
 void Title::Draw(Renderer& renderer)
 {

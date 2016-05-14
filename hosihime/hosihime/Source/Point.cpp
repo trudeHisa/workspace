@@ -22,7 +22,9 @@ Point&  Point::operator +()
 }
 Point&  Point::operator -()
 {
-	return Point(-x, -y);
+	this->y= -this->y;
+	this->x = -this->x;
+	return *this;
 }
 Point& Point::operator +=(const Point& p)
 {
