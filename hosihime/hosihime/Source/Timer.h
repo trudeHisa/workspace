@@ -8,6 +8,7 @@ public:
 	void initialize();
 	void update();
 	bool isEnd();
+	int getTime();
 private:
 	int timer;
 	int setting;
