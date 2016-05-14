@@ -16,6 +16,6 @@ void Rock::collision(const GameObject* obj)
 }
 void Rock::respawn(const GSvector2& pos,GSvector2* vel)
 {
-	vel->x = rect.getMin().x-pos.x;
+	vel->x =rect.getMin().x-pos.x;
 	vel->y = 50- pos.y;
 }

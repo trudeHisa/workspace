@@ -15,7 +15,7 @@ void Load::Init()
 void Load::Update()
 {
 	renderer.LoadTextrue("star.bmp", GS_TEXCOLOR_KEY_AUTO);
-	renderer.LoadTextrue("player.bmp", GS_TEXCOLOR_KEY_AUTO);
+	renderer.LoadTextrue("player.bmp");
 	renderer.LoadTextrue("title.bmp");
 	renderer.LoadTextrue("gameplay.bmp");
 	renderer.LoadTextrue("ending.bmp");

@@ -15,23 +15,23 @@ public:
 	//bool setStar(GameObject* _star);
 	void collision(const GameObject* obj);
 private:
+	void respawn();
 	void starDestroy();
-	void FreeFall();
-	Star* star;
-	Scroll* scroll;
-	Rock* rock;
-
+	void freeFall();
 	void moving();
 	bool jump();
 	void jumpstart();
 	void moveLR();
 
-	bool isscroll = false;
+private:
+	Star* star;
+	Scroll* scroll;
+	Rock* rock;
+
 	bool isGround=false;
 	bool jflag = false;
 	int y_temp = 0;
 	int y_prev = 0;
 	int count = 0;
-
 };
 #endif

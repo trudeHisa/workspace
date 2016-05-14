@@ -21,6 +21,7 @@ void Star::inisialize()
 void Star::updata()
 {
 	velocity = move->moving();
+	velocity = GSvector2(3,0);
 	//*gsFrameTimerGetTime()
 	rect = rect.translate(velocity);
 	if (WINDOW_HEIGHT+rect.getHeight() < rect.getMin().y)

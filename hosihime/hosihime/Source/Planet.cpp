@@ -9,9 +9,7 @@ Planet::~Planet()
 }
 void Planet::updata()
 {
-
 }
 void Planet::collision(const GameObject* obj)
 {
-
 }
