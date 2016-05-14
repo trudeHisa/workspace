@@ -47,12 +47,12 @@ void Stage::objCreate(int x, int y, Array2D<bool>* check)
 	switch (mapdata(y, x))
 	{
 	case STAR:
-		size = Point(1, 1);																							//値は5を基準？ waveのGSvector2のyは0で
-		 control.add(new Star("star.bmp",GSvector2(x * BLOCKSIZE,y* BLOCKSIZE),new Star_circle(4)));
+		size = Point(1, 1);//値は5を基準？ waveのGSvector2のyは0で
+		control.add(new Star("star.bmp",GSvector2(x * BLOCKSIZE,y* BLOCKSIZE),new Star_circle(4)));
 		break;
 	case ROCK:
 		size = Point(2, 1);
-			control.add(new Rock("rock.bmp",GSvector2(x * BLOCKSIZE,y* BLOCKSIZE)));
+		control.add(new Rock("rock.bmp",GSvector2(x * BLOCKSIZE,y* BLOCKSIZE)));
 		break;
 	case PLAYER:
 		size = Point(1, 1); 

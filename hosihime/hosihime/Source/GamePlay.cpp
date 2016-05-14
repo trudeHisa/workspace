@@ -1,7 +1,5 @@
 #include"GamePlay.h"
 #include "Stage.h"
-#include "Star.h"
-
 GamePlay::GamePlay(Sound* sound)
 :sound(*sound), stage(0), animTimer(5), anim(&animTimer)
 {

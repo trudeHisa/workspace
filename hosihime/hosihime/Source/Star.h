@@ -14,8 +14,6 @@ public:
 	void ride(MyRectangle* rect);
 private:
 	IStarMove* move;
-	//îgê¸
-	void LinePattern7(GSvector2* _velocity, float* rot);
-	float ang, spd, sindw, rot = 0;
+	float ang;
 };
 #endif

@@ -7,7 +7,7 @@ GameObject.h
 #include "Renderer.h"
 #include "Point.h"
 #include <string>
-#include "Definition.h"
+
 #include "Scroll.h"
 #include "MyRectangle.h"
 class GameObject

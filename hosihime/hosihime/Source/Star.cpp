@@ -15,7 +15,6 @@ void Star::inisialize()
 {
 	velocity = GSvector2(0, 0);
 	isDead = false;
-	rot = 0;
 	ang = 0;
 }
 

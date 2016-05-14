@@ -1,6 +1,4 @@
 #include "Title.h"
-//タイトルクラスコンストラクタ
-#include "Point.h"
 Title::Title()
 {
 }

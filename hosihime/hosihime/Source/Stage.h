@@ -3,8 +3,8 @@
 #include "GAMEOBJ_TYPE.h"
 #include "Renderer.h"
 #include "GameObjControl.h"
-#include "Definition.h"
 #include "Scroll.h"
+#include "Array2D.h"
 class Stage
 {
 public:
@@ -17,8 +17,9 @@ public:
 private:
 	void mapCreate();
 	void objCreate(int x, int y, Array2D<bool>* check);
-	MapData mapdata;
+	Array2D<int> mapdata;
 	GameObjControl control;
 	Scroll scroll;
+	int BLOCKSIZE = 64;
 };
 #endif

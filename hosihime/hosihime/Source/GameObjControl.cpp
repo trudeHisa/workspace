@@ -31,46 +31,12 @@ void GameObjControl::allCollision()
 }
 void GameObjControl::collision(GameObj_Ptr obj1, GameObj_Ptr obj2)
 {
-
 	if (!obj1->isCollision(obj2.get()))
 	{
 		return;
 	}
 	obj1->collision(obj2.get());
 	obj2->collision(obj1.get());
-}
-void GameObjControl::sendStarsPlayer()
-{
-	for each (GameObj_Ptr obj in objs)
-	{
-		//setStar(obj);
-	}
-}
-void GameObjControl::setStar(GameObj_Ptr obj)
-{
-	/*if (!obj->isSameType(STAR))
-	{
-		return;
-	}
-	GameObjs_Itr::_Vector_const_iterator player;
-	if (!findPlayer(&player))
-	{
-		return;
-	}
-	((Player*)player->get())->setStar(obj.get());*/
-}
-const bool GameObjControl::findPlayer(GameObjs_Itr::_Vector_const_iterator* player)const
-{
-	/*auto itr = std::find_if(objs.begin(), objs.end(), [](GameObj_Ptr obj)
-	{
-		return obj->isSameType(PLAYER);
-	});
-	if (itr == objs.end())
-	{
-		return false;
-	}
-	*player = itr;*/
-	return false;
 }
 void GameObjControl::remove()
 {
