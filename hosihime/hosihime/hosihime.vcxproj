@@ -30,6 +30,10 @@
     <ClCompile Include="Source\Stage.cpp" />
     <ClCompile Include="Source\StageSelect.cpp" />
     <ClCompile Include="Source\Star.cpp" />
+    <ClCompile Include="Source\Star_cricle.cpp" />
+    <ClCompile Include="Source\Star_eight.cpp" />
+    <ClCompile Include="Source\Star_pendulum.cpp" />
+    <ClCompile Include="Source\Star_wave.cpp" />
     <ClCompile Include="Source\Timer.cpp" />
     <ClCompile Include="Source\Title.cpp" />
   </ItemGroup>
@@ -45,6 +49,7 @@
     <ClInclude Include="Source\GAMEOBJ_TYPE.h" />
     <ClInclude Include="Source\GamePlay.h" />
     <ClInclude Include="Source\IScene.h" />
+    <ClInclude Include="Source\IStarMove.h" />
     <ClInclude Include="Source\Load.h" />
     <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Source\Point.h" />
@@ -57,6 +62,10 @@
     <ClInclude Include="Source\Stage.h" />
     <ClInclude Include="Source\StageSelect.h" />
     <ClInclude Include="Source\Star.h" />
+    <ClInclude Include="Source\Star_cricle.h" />
+    <ClInclude Include="Source\Star_eight.h" />
+    <ClInclude Include="Source\Star_pendulum.h" />
+    <ClInclude Include="Source\Star_wave.h" />
     <ClInclude Include="Source\Timer.h" />
     <ClInclude Include="Source\Title.h" />
   </ItemGroup>
