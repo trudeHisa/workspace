@@ -21,7 +21,8 @@ void Star::inisialize()
 void Star::updata()
 {
 	velocity = move->moving();
-	rect = rect.translate(velocity*gsFrameTimerGetTime());
+	//*gsFrameTimerGetTime()
+	rect = rect.translate(velocity);
 	if (WINDOW_HEIGHT+rect.getHeight() < rect.getMin().y)
 	{
 		isDead = true;

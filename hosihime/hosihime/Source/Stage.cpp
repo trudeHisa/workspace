@@ -1,9 +1,11 @@
 #include "Stage.h"
 #include "CSVStream.h"
+#include "game.h"
+
 #include "Star.h"
 #include "Player.h"
 #include "Rock.h"
-#include "game.h"
+#include "Planet.h"
 
 #include "Star_cricle.h"
 #include "Star_pendulum.h"
@@ -57,6 +59,10 @@ void Stage::objCreate(int x, int y, Array2D<bool>* check)
 	case PLAYER:
 		size = Point(1, 1); 
 		control.add(new Player("player.bmp",GSvector2(x * BLOCKSIZE, y* BLOCKSIZE), &scroll));
+		break;
+	case PLANET:
+		size = Point(1, 1);
+		control.add(new Planet("planet.bmp", GSvector2(x * BLOCKSIZE, y* BLOCKSIZE)));
 		break;
 	}
 	for (int sy = 0; sy < size.y; sy++)

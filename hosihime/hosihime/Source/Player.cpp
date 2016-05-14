@@ -108,7 +108,8 @@ void Player::updata()
 	{
 		scroll->moving(velocity.x);
 	}
-	rect = rect.translate(velocity*gsFrameTimerGetTime());
+	//*gsFrameTimerGetTime()
+	rect = rect.translate(velocity);
 }
 void Player::starDestroy()
 {
@@ -150,7 +151,10 @@ void Player::collision(const GameObject* obj)
 	else
 	{
 		isGround = false;
-
+	}
+	if (obj->isSameType(PLANET))
+	{
+		isDead = true;
 	}
 }
 //bool Player::setStar(GameObject* _star)

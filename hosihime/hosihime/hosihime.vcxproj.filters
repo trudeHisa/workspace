@@ -144,6 +144,9 @@
     <ClCompile Include="Source\CSVStream.cpp">
       <Filter>ソース ファイル\util\device</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Planet.cpp">
+      <Filter>ソース ファイル\gameobject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Definition.h">
@@ -247,6 +250,9 @@
     </ClInclude>
     <ClInclude Include="Source\CSVStream.h">
       <Filter>ヘッダー ファイル\util\device</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Planet.h">
+      <Filter>ヘッダー ファイル\gameobject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

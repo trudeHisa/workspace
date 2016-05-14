@@ -21,6 +21,7 @@
     <ClCompile Include="Source\GamePlay.cpp" />
     <ClCompile Include="Source\Load.cpp" />
     <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\Planet.cpp" />
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\Point.cpp" />
     <ClCompile Include="Source\MyRectangle.cpp" />
@@ -57,6 +58,7 @@
     <ClInclude Include="Source\IScene.h" />
     <ClInclude Include="Source\IStarMove.h" />
     <ClInclude Include="Source\Load.h" />
+    <ClInclude Include="Source\Planet.h" />
     <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Source\Point.h" />
     <ClInclude Include="Source\MyRectangle.h" />
