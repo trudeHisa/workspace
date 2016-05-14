@@ -29,7 +29,6 @@ void Player::jumpstart()
 }
 bool Player::jump()
 {
-
 	if (jflag==false)
 	{	
 		return false;
@@ -105,9 +104,11 @@ void Player::updata()
 			isscroll = true;
 		}
 	}*/
-	if (isscroll==true)
-	scroll->moving(velocity.x);
-	rect = rect.translate(velocity);
+	if (isscroll == true)
+	{
+		scroll->moving(velocity.x);
+	}
+	rect = rect.translate(velocity*gsFrameTimerGetTime());
 }
 void Player::starDestroy()
 {

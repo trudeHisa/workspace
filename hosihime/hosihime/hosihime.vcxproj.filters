@@ -43,6 +43,18 @@
     <Filter Include="ソース ファイル\gameobject\star">
       <UniqueIdentifier>{eb806f6e-faf2-44e8-acc5-c5eaf01de153}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\util\animation">
+      <UniqueIdentifier>{b7500e1c-0b4d-4d14-8a76-95d861e27caf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\util\animation">
+      <UniqueIdentifier>{dd21366c-cf77-4f91-a6e4-90a0a99d6a81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\util\device">
+      <UniqueIdentifier>{0652fd27-f749-4ca0-8cee-10443b98e7fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\util\device">
+      <UniqueIdentifier>{1c32dad8-9b10-4644-872d-525b1cbe9651}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\game.cpp">
@@ -66,16 +78,7 @@
     <ClCompile Include="Source\Point.cpp">
       <Filter>ソース ファイル\util</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Renderer.cpp">
-      <Filter>ソース ファイル\util</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Timer.cpp">
-      <Filter>ソース ファイル\util</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Sound.cpp">
-      <Filter>ソース ファイル\util</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\CSVStream.cpp">
       <Filter>ソース ファイル\util</Filter>
     </ClCompile>
     <ClCompile Include="Source\Stage.cpp">
@@ -108,12 +111,6 @@
     <ClCompile Include="Source\Star_slashdown.cpp">
       <Filter>ソース ファイル\gameobject\star</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Animation.cpp">
-      <Filter>ソース ファイル\util</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\AnimationTimer.cpp">
-      <Filter>ソース ファイル\util</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Rock.cpp">
       <Filter>ソース ファイル\gameobject</Filter>
     </ClCompile>
@@ -131,6 +128,21 @@
     </ClCompile>
     <ClCompile Include="Source\main.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Animation.cpp">
+      <Filter>ソース ファイル\util\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AnimationTimer.cpp">
+      <Filter>ソース ファイル\util\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Renderer.cpp">
+      <Filter>ソース ファイル\util\device</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Sound.cpp">
+      <Filter>ソース ファイル\util\device</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CSVStream.cpp">
+      <Filter>ソース ファイル\util\device</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -167,16 +179,7 @@
     <ClInclude Include="Source\Point.h">
       <Filter>ヘッダー ファイル\util</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Renderer.h">
-      <Filter>ヘッダー ファイル\util</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Timer.h">
-      <Filter>ヘッダー ファイル\util</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Sound.h">
-      <Filter>ヘッダー ファイル\util</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\CSVStream.h">
       <Filter>ヘッダー ファイル\util</Filter>
     </ClInclude>
     <ClInclude Include="Source\Stage.h">
@@ -212,12 +215,6 @@
     <ClInclude Include="Source\Star_slashdown.h">
       <Filter>ヘッダー ファイル\gameobject\star</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Animation.h">
-      <Filter>ヘッダー ファイル\util</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\AnimationTimer.h">
-      <Filter>ヘッダー ファイル\util</Filter>
-    </ClInclude>
     <ClInclude Include="Source\GamaObject.h">
       <Filter>ヘッダー ファイル\gameobject</Filter>
     </ClInclude>
@@ -235,6 +232,21 @@
     </ClInclude>
     <ClInclude Include="Source\GameObjControl.h">
       <Filter>ヘッダー ファイル\gameobject</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Animation.h">
+      <Filter>ヘッダー ファイル\util\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AnimationTimer.h">
+      <Filter>ヘッダー ファイル\util\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Renderer.h">
+      <Filter>ヘッダー ファイル\util\device</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Sound.h">
+      <Filter>ヘッダー ファイル\util\device</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CSVStream.h">
+      <Filter>ヘッダー ファイル\util\device</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
