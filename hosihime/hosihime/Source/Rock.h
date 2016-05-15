@@ -1,7 +1,7 @@
 #ifndef _ROCK_H_
 #define _ROCK_H_
 
-#include "GamaObject.h"
+#include "GameObject.h"
 
 class Rock:public GameObject
 {

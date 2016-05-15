@@ -1,7 +1,7 @@
 #ifndef _GAMEOBJCONTROL_H_
 #define _GAMEOBJCONTROL_H_
 
-#include "GamaObject.h"
+#include "GameObject.h"
 #include <vector>
 #include <memory>
 

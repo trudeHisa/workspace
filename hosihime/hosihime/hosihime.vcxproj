@@ -21,6 +21,7 @@
     <ClCompile Include="Source\GameObject.cpp" />
     <ClCompile Include="Source\GamePlay.cpp" />
     <ClCompile Include="Source\Load.cpp" />
+    <ClCompile Include="Source\Magpie.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Planet.cpp" />
     <ClCompile Include="Source\Player.cpp" />
@@ -52,7 +53,7 @@
     <ClInclude Include="Source\CSVStream.h" />
     <ClInclude Include="Source\Definition.h" />
     <ClInclude Include="Source\Ending.h" />
-    <ClInclude Include="Source\GamaObject.h" />
+    <ClInclude Include="Source\GameObject.h" />
     <ClInclude Include="Source\game.h" />
     <ClInclude Include="Source\GameObjControl.h" />
     <ClInclude Include="Source\GAMEOBJ_TYPE.h" />
@@ -60,6 +61,7 @@
     <ClInclude Include="Source\IScene.h" />
     <ClInclude Include="Source\IStarMove.h" />
     <ClInclude Include="Source\Load.h" />
+    <ClInclude Include="Source\Magpie.h" />
     <ClInclude Include="Source\Planet.h" />
     <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Source\Point.h" />

@@ -156,6 +156,9 @@
     <ClCompile Include="Source\Circle.cpp">
       <Filter>ソース ファイル\util\diagram</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Magpie.cpp">
+      <Filter>ソース ファイル\gameobject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Definition.h">
@@ -224,9 +227,6 @@
     <ClInclude Include="Source\Star_slashdown.h">
       <Filter>ヘッダー ファイル\gameobject\star</Filter>
     </ClInclude>
-    <ClInclude Include="Source\GamaObject.h">
-      <Filter>ヘッダー ファイル\gameobject</Filter>
-    </ClInclude>
     <ClInclude Include="Source\GAMEOBJ_TYPE.h">
       <Filter>ヘッダー ファイル\gameobject</Filter>
     </ClInclude>
@@ -265,6 +265,12 @@
     </ClInclude>
     <ClInclude Include="Source\Circle.h">
       <Filter>ヘッダー ファイル\util\diagram</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Magpie.h">
+      <Filter>ヘッダー ファイル\gameobject</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameObject.h">
+      <Filter>ヘッダー ファイル\gameobject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

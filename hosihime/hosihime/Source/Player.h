@@ -1,7 +1,7 @@
 #ifndef _PLAYER_H_
 #define _PLAYER_H_
 #include <gslib.h>
-#include "GamaObject.h"
+#include "GameObject.h"
 class Rock;
 class Star;
 #define GSfloat gravity 3;

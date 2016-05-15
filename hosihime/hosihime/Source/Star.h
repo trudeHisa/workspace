@@ -1,6 +1,6 @@
 #ifndef _STAR_H_
 #define _STAR_H_
-#include "GamaObject.h"
+#include "GameObject.h"
 #include "IStarMove.h"
 class Star :public GameObject
 {
