@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="Source\Animation.cpp" />
     <ClCompile Include="Source\AnimationTimer.cpp" />
+    <ClCompile Include="Source\Circle.cpp" />
     <ClCompile Include="Source\CSVStream.cpp" />
     <ClCompile Include="Source\Ending.cpp" />
     <ClCompile Include="Source\game.cpp" />
@@ -47,6 +48,7 @@
     <ClInclude Include="Source\AnimationTimer.h" />
     <ClInclude Include="Source\Array2D.h" />
     <ClInclude Include="Source\Calculate.h" />
+    <ClInclude Include="Source\Circle.h" />
     <ClInclude Include="Source\CSVStream.h" />
     <ClInclude Include="Source\Definition.h" />
     <ClInclude Include="Source\Ending.h" />

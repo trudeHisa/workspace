@@ -55,6 +55,12 @@
     <Filter Include="ソース ファイル\util\device">
       <UniqueIdentifier>{1c32dad8-9b10-4644-872d-525b1cbe9651}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\util\diagram">
+      <UniqueIdentifier>{c04a4015-f9d4-4601-b5d8-3f45d05c5c72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\util\diagram">
+      <UniqueIdentifier>{44f8a0b8-c927-43a2-bcc8-b1c8c85a6353}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\game.cpp">
@@ -89,9 +95,6 @@
     </ClCompile>
     <ClCompile Include="Source\StageSelect.cpp">
       <Filter>ソース ファイル\stage</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\MyRectangle.cpp">
-      <Filter>ソース ファイル\util</Filter>
     </ClCompile>
     <ClCompile Include="Source\Star_cricle.cpp">
       <Filter>ソース ファイル\gameobject\star</Filter>
@@ -147,6 +150,12 @@
     <ClCompile Include="Source\Planet.cpp">
       <Filter>ソース ファイル\gameobject</Filter>
     </ClCompile>
+    <ClCompile Include="Source\MyRectangle.cpp">
+      <Filter>ソース ファイル\util\diagram</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Circle.cpp">
+      <Filter>ソース ファイル\util\diagram</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Definition.h">
@@ -193,9 +202,6 @@
     </ClInclude>
     <ClInclude Include="Source\StageSelect.h">
       <Filter>ヘッダー ファイル\stage</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\MyRectangle.h">
-      <Filter>ヘッダー ファイル\util</Filter>
     </ClInclude>
     <ClInclude Include="Source\Star_cricle.h">
       <Filter>ヘッダー ファイル\gameobject\star</Filter>
@@ -253,6 +259,12 @@
     </ClInclude>
     <ClInclude Include="Source\Planet.h">
       <Filter>ヘッダー ファイル\gameobject</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MyRectangle.h">
+      <Filter>ヘッダー ファイル\util\diagram</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Circle.h">
+      <Filter>ヘッダー ファイル\util\diagram</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

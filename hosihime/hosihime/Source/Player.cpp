@@ -48,7 +48,7 @@ void Player::updata()
 		scroll->moving(velocity.x);
 	}
 	//*gsFrameTimerGetTime()
-	rect = rect.translate(velocity);
+	rect.translate(velocity);
 }
 void Player::respawn()
 {

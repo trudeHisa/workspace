@@ -23,7 +23,7 @@ void Star::updata()
 	velocity = move->moving();
 	velocity = GSvector2(3,0);
 	//*gsFrameTimerGetTime()
-	rect = rect.translate(velocity);
+	rect.translate(velocity);
 	if (WINDOW_HEIGHT+rect.getHeight() < rect.getMin().y)
 	{
 		isDead = true;
@@ -46,6 +46,6 @@ void Star::ride(MyRectangle* rect)
 	GSvector2 vel(0,0);
 	vel.x = this->rect.getMin().x- rect->getMin().x;
 	vel.y = (this->rect.getMin().y - rect->getHeight())- rect->getMin().y;
-	*rect=rect->translate(vel);
+	rect->translate(vel);
 }
 
