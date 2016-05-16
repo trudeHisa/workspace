@@ -15,6 +15,7 @@ public:
 	void initialize();
 	void draw(Renderer& renderer);
 	void finish();
+	bool getIsEnd();
 private:
 	void mapCreate();
 	void objCreate(int x, int y, Array2D<bool>* check);
@@ -23,5 +24,6 @@ private:
 	Scroll scroll;
 	int BLOCKSIZE = 64;
 	Timer timer;
+	bool isEnd;
 };
 #endif

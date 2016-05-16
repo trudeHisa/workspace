@@ -31,10 +31,11 @@ void Star::updata()
 }
 void Star::collision(const GameObject* obj)
 {
-	if(obj->isSameType(ROCK))
+	if (obj->isSameType(ROCK) || obj->isSameType(PLANET))
 	{
 		isDead = true;
 	}
+
 }
 void Star::pickUp(GSvector2* vel)
 {

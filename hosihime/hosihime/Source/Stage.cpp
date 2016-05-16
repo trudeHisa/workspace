@@ -28,11 +28,16 @@ void Stage::initialize()
 	control.inisialize();
 	scroll.initialize();
 	mapCreate();
+	isEnd = false;
 }
 void Stage::updata()
 {
 	control.updata();
 	timer.update();
+	if (timer.isEnd()||control.isDeadPlayer())
+	{
+		isEnd = true;
+	}
 }
 void Stage::draw(Renderer& renderer)
 {
@@ -44,6 +49,10 @@ void Stage::draw(Renderer& renderer)
 void Stage::finish()
 {
 	control.finish();
+}
+bool Stage::getIsEnd()
+{
+	return isEnd;
 }
 void Stage::objCreate(int x, int y, Array2D<bool>* check)
 {

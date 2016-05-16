@@ -62,7 +62,7 @@ void Player::respawn()
 		rock->respawn(rect.getMin(), &velocity);
 		return;
 	}
-	velocity.x = 574 - rect.getMin().x;
+	velocity.x = 64 - rect.getMin().x;
 	velocity.y = 50 - rect.getMin().y;
 }
 void Player::starDestroy()
@@ -136,6 +136,22 @@ void Player::collision(const GameObject* obj)
 	{
 		rock = NULL;
 		rock = (Rock*)obj;
+		
+	}
+	
+
+	if (obj->isSameType(ROCK))
+	{
+		isGround = true;
+		jflag = false;
+	}
+	else if (obj->isSameType(START))
+	{
+		isGround = true;
+		jflag = false;
+	}
+	else if (obj->isSameType(GOAL))
+	{
 		isGround = true;
 		jflag = false;
 	}
@@ -143,9 +159,10 @@ void Player::collision(const GameObject* obj)
 	{
 		isGround = false;
 	}
-	if (obj->isSameType(PLANET))
+
+	if (obj->isSameType(GOAL))
 	{
-		//isDead = true;
+		isDead = true;
 	}
 }
 //bool Player::setStar(GameObject* _star)

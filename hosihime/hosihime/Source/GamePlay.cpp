@@ -41,6 +41,7 @@ void GamePlay::Update()
 		break;
 	case PLAY:
 		stage->updata();
+		isEnd=stage->getIsEnd();
 		break;
 	}
 }

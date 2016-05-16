@@ -18,6 +18,7 @@ public:
 	void add(GameObject* object);
 	void draw(Renderer& renderer, const Scroll* scroll);
 	void finish();
+	bool isDeadPlayer();
 private:
 	void allCollision();
 	void collision(GameObj_Ptr obj1, GameObj_Ptr obj2);

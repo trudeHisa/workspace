@@ -67,6 +67,18 @@ void GameObjControl::draw(Renderer& renderer, const Scroll* scroll)
 		obj->draw(renderer, scroll);
 	}
 }
+bool GameObjControl::isDeadPlayer()
+{
+	auto itr = std::find_if(objs.begin(), objs.end(), [](GameObj_Ptr obj)->bool
+	{
+		return obj->isSameType(PLAYER);
+	});
+	if (itr == objs.end())
+	{
+		return true;
+	}
+	return false;
+}
 void GameObjControl::finish()
 {
 
