@@ -8,9 +8,8 @@ class Start : public GameObject
 public:
 	Start(const std::string& textrue, const GSvector2& position);
 	~Start();
-	void update();
+	void updata();
 	void collision(const GameObject* obj);
-	void respawn(const GSvector2& pos, GSvector2* vel);
 
 private:
 

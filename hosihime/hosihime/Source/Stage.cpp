@@ -6,6 +6,8 @@
 #include "Player.h"
 #include "Rock.h"
 #include "Planet.h"
+#include "Start.h"
+#include "Goal.h"
 
 #include "Star_cricle.h"
 #include "Star_pendulum.h"
@@ -49,11 +51,11 @@ void Stage::objCreate(int x, int y, Array2D<bool>* check)
 	switch (mapdata(y, x))
 	{
 	case STAR:
-		size = Point(1, 1);//値は5を基準？ waveのGSvector2のyは0で
+		size = Point(1, 1);																			//値は5を基準？ waveのGSvector2のyは0で
 		control.add(new Star("star.bmp",GSvector2(x * BLOCKSIZE,y* BLOCKSIZE),new Star_circle(4)));
 		break;
 	case ROCK:
-		size = Point(2, 1);
+	   size = Point(4, 2);
 		control.add(new Rock("rock.bmp",GSvector2(x * BLOCKSIZE,y* BLOCKSIZE)));
 		break;
 	case PLAYER:
@@ -63,6 +65,14 @@ void Stage::objCreate(int x, int y, Array2D<bool>* check)
 	case PLANET:
 		size = Point(1, 1);
 		control.add(new Planet("planet.bmp", GSvector2(x * BLOCKSIZE, y* BLOCKSIZE)));
+		break;
+	case START:
+		size = Point(5, 3);
+		control.add(new Start("start.bmp", GSvector2(x * BLOCKSIZE, y* BLOCKSIZE)));
+		break;
+	case GOAL:
+		size = Point(5, 3);
+		control.add(new Goal("goal.bmp", GSvector2(x * BLOCKSIZE, y* BLOCKSIZE)));
 		break;
 			
 	}
