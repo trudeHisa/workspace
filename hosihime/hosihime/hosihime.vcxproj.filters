@@ -156,6 +156,12 @@
     <ClCompile Include="Source\Planet.cpp">
       <Filter>ソース ファイル\gameobject</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Start.cpp">
+      <Filter>ソース ファイル\gameobject</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Goal.cpp">
+      <Filter>ソース ファイル\gameobject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Definition.h">
@@ -264,6 +270,9 @@
       <Filter>ヘッダー ファイル\util\device</Filter>
     </ClInclude>
     <ClInclude Include="Source\Planet.h">
+      <Filter>ヘッダー ファイル\gameobject</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Goal.h">
       <Filter>ヘッダー ファイル\gameobject</Filter>
     </ClInclude>
   </ItemGroup>
