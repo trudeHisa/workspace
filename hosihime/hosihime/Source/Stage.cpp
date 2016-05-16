@@ -6,7 +6,6 @@
 #include "Player.h"
 #include "Rock.h"
 #include "Planet.h"
-#include "Magpie.h"
 
 #include "Star_cricle.h"
 #include "Star_pendulum.h"
@@ -65,11 +64,7 @@ void Stage::objCreate(int x, int y, Array2D<bool>* check)
 		size = Point(1, 1);
 		control.add(new Planet("planet.bmp", GSvector2(x * BLOCKSIZE, y* BLOCKSIZE)));
 		break;
-	case MAGPIE:
-		size = Point(2, 2);
-		control.add(new Magpie("magpie.bmp", GSvector2(x * BLOCKSIZE, y* BLOCKSIZE)));
-		break;
-		
+			
 	}
 	for (int sy = 0; sy < size.y; sy++)
 	{
