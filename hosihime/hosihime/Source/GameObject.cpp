@@ -17,7 +17,7 @@ void GameObject::draw(Renderer& renderer, const Scroll* scroll)
 	pos.x -= scroll->getMovingAmount();
 	if (!scroll->isInsideWindow(pos.x, rect.getWidth()))
 	{
-		return ;
+		return;
 	}
 	renderer.DrawTextrue(textrue, &pos);
 }

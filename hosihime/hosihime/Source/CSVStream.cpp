@@ -2,7 +2,7 @@
 CSVStream.cpp
 */
 #include "CSVStream.h"
-#include <iostream>
+#include<iostream>
 #include<fstream>
 #include<string>
 #include<sstream>
@@ -21,6 +21,7 @@ void CSVStream::output(Array2D<int>* out, const char* name)
 		}
 		ofs << std::endl;
 	}
+	ofs.close();
 }
 void CSVStream::input(Array2D<int>* input, const char* name)
 {
@@ -45,6 +46,7 @@ void CSVStream::input(Array2D<int>* input, const char* name)
 		}
 		height++;
 	}
+	ifs.close();
 	input->setSize(height, width);
 	for (int y = 0; y < height; y++)
 	{

@@ -16,6 +16,10 @@ void Timer::update()
 	}
 	timer--;
 }
+int Timer::getTime()
+{
+	return timer;
+}
 bool Timer::isEnd()
 {
 	return timer <= 0;

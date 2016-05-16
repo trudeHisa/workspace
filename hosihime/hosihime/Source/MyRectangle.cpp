@@ -31,14 +31,16 @@ const bool MyRectangle::intersects(const MyRectangle& other)const
 	return true;
 }
 //平行移動
-MyRectangle MyRectangle::translate(const GSvector2& position)const
+void MyRectangle::translate(const GSvector2& position)
 {
-	return MyRectangle(min_ + position, max_ + position);
+	min_ += position;
+	max_ += position;
 }
 //サイズ拡張
-MyRectangle MyRectangle::expand(const GSvector2& size)const
+void MyRectangle::expand(const GSvector2& size)
 {
-	return MyRectangle(min_ - size, max_ + size);
+	min_ -= size;
+	max_ += size;
 }
 const float MyRectangle::getWidth()const
 {

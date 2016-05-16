@@ -13,9 +13,9 @@ public:
 	//矩形同士が重なっているか
 	const bool intersects(const MyRectangle& other)const;
 	//平行移動
-	MyRectangle translate(const GSvector2& position)const;
+	void translate(const GSvector2& position);
 	//サイズ拡張
-	MyRectangle expand(const GSvector2& size)const;
+	void expand(const GSvector2& size);
 	const float getWidth()const;
 	const float getHeight()const;
 	const GSvector2& getMin()const;

@@ -27,7 +27,7 @@ void Sound::PlayBGM(const std::string& name)
 }
 bool Sound::IsPlayBGM()
 {
-	return gsIsPlayBGM();
+	return !!gsIsPlayBGM();
 }
 void Sound::PauseBGM()
 {
@@ -47,7 +47,7 @@ void Sound::PlaySE(const std::string& name)
 }
 bool Sound::IsPlaySE(const std::string& name)
 {
-	return gsIsPlaySE(ses[name]);
+	return !!gsIsPlaySE(ses[name]);
 }
 void Sound::Release()
 {

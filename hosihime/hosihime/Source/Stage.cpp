@@ -1,9 +1,16 @@
 #include "Stage.h"
 #include "CSVStream.h"
+#include "game.h"
+
 #include "Star.h"
 #include "Player.h"
 #include "Rock.h"
-#include "game.h"
+#include "Planet.h"
+
+#include "Star_cricle.h"
+#include "Star_pendulum.h"
+#include "Star_wave.h"
+#include "Star_eight.h"
 Stage::Stage(const std::string& csvname)
 	:scroll(&Point(WINDOW_WIDTH,WINDOW_HEIGHT))
 {
@@ -42,16 +49,20 @@ void Stage::objCreate(int x, int y, Array2D<bool>* check)
 	switch (mapdata(y, x))
 	{
 	case STAR:
-		size = Point(1, 1);
-		 control.add(new Star("star.bmp",GSvector2(x * BLOCKSIZE,y* BLOCKSIZE)));
+		size = Point(1, 1);//ílÇÕ5ÇäÓèÄÅH waveÇÃGSvector2ÇÃyÇÕ0Ç≈
+		control.add(new Star("star.bmp",GSvector2(x * BLOCKSIZE,y* BLOCKSIZE),new Star_circle(4)));
 		break;
 	case ROCK:
 		size = Point(2, 1);
-			control.add(new Rock("rock.bmp",GSvector2(x * BLOCKSIZE,y* BLOCKSIZE)));
+		control.add(new Rock("rock.bmp",GSvector2(x * BLOCKSIZE,y* BLOCKSIZE)));
 		break;
 	case PLAYER:
 		size = Point(1, 1); 
 		control.add(new Player("player.bmp",GSvector2(x * BLOCKSIZE, y* BLOCKSIZE), &scroll));
+		break;
+	case PLANET:
+		size = Point(1, 1);
+		control.add(new Planet("planet.bmp", GSvector2(x * BLOCKSIZE, y* BLOCKSIZE)));
 		break;
 	}
 	for (int sy = 0; sy < size.y; sy++)
