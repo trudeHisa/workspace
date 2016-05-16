@@ -1,5 +1,7 @@
 #include"GamePlay.h"
 #include "Stage.h"
+
+
 GamePlay::GamePlay(Sound* sound)
 :sound(*sound), stage(0), animTimer(5), anim(&animTimer)
 {
@@ -53,7 +55,7 @@ void GamePlay::Draw(Renderer& renderer)
 		stage->draw(renderer);
 		break;
 	}
-	anim.draw(renderer, "anim.bmp", &GSvector2(50, 50));
+	//anim.draw(renderer, "anim.bmp", &GSvector2(50, 50));
 }
 void GamePlay::Finish()
 {
