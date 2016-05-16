@@ -1,6 +1,6 @@
 #include "Timer.h"
 
-Timer::Timer(int _timer, int _setting)
+Timer::Timer(float _timer, float _setting)
 :timer(_timer), setting(_setting)
 {
 }
@@ -14,9 +14,9 @@ void Timer::update()
 	{
 		return;
 	}
-	timer--;
+	timer -= (1.f / 60);
 }
-int Timer::getTime()
+float Timer::getTime()
 {
 	return timer;
 }

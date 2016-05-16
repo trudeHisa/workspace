@@ -12,7 +12,7 @@
 #include "Star_wave.h"
 #include "Star_eight.h"
 Stage::Stage(const std::string& csvname)
-	:scroll(&Point(WINDOW_WIDTH,WINDOW_HEIGHT))
+:scroll(&Point(WINDOW_WIDTH, WINDOW_HEIGHT)), timer(30,30)
 {
 	CSVStream stream;
 	stream.input(&mapdata,csvname.c_str());
@@ -22,6 +22,7 @@ Stage::~Stage()
 }
 void Stage::initialize()
 {
+	timer.initialize();
 	control.inisialize();
 	scroll.initialize();
 	mapCreate();
@@ -29,11 +30,14 @@ void Stage::initialize()
 void Stage::updata()
 {
 	control.updata();
+	timer.update();
 }
 void Stage::draw(Renderer& renderer)
 {
 	scroll.draw(renderer);
 	control.draw(renderer,&scroll);
+	int t = timer.getTime();
+	renderer.DrawString(std::to_string(t), &GSvector2(50, 50), 50);
 }
 void Stage::finish()
 {

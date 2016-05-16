@@ -5,6 +5,7 @@
 #include "GameObjControl.h"
 #include "Scroll.h"
 #include "Array2D.h"
+#include "Timer.h"
 class Stage
 {
 public:
@@ -21,5 +22,6 @@ private:
 	GameObjControl control;
 	Scroll scroll;
 	int BLOCKSIZE = 64;
+	Timer timer;
 };
 #endif
