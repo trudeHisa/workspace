@@ -16,13 +16,16 @@ Stage::~Stage()
 void Stage::initialize()
 {
 	control.inisialize();
-	starManager.initialize();
+	starManager.initialize(&control);
 	scroll.initialize();
 	mapCreate();
+	Stars_IsInScreen();
 }
 void Stage::updata()
 {
+	starManager.StarResporn();
 	control.updata();
+	//Stars_IsInScreen();
 }
 void Stage::draw(Renderer& renderer)
 {
@@ -83,8 +86,14 @@ void Stage::mapCreate()
 			objCreate(x,y,&check);
 		}
 	}
-	//スターを生成
-	starManager.createStar();
+	//スターの原型を全部生成
+	starManager.createStarProt();
+}
+
+void Stage::Stars_IsInScreen()
+{
+	//画面内に入ってる星を見る
+	starManager.addInScreenStars();
 	//objcontrolに追加
-	control.add_Star(starManager.getContainer());
+	control.add_Star(starManager.getInScreenStars());
 }

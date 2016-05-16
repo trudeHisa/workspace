@@ -1,17 +1,21 @@
 #ifndef _STAR_H_
 #define _STAR_H_
 #include "GamaObject.h"
+#include "StarMediator.h"
 class Star :public GameObject
 {
 public:
-	Star(const std::string& textrue, const GSvector2& position);
+	Star(const std::string& textrue, const GSvector2 position,StarMediator* mediator);
 	~Star();
-	void inisialize();
+	void initialize();
 	void updata();
 	void collision(const GameObject* obj);
 	void pickUp(GSvector2* vel);
+	Star* clone();
+	void finish();
 private:
-
+	StarMediator* mediator;
+	GSvector2 startPosi;
 	//íºê¸
 	void LinePattern1(GSvector2* _velocity);//âEâ∫Ç…óéÇøÇÈ
 	void LinePattern2(GSvector2* _velocity);//ç∂â∫Ç…óéÇøÇÈ

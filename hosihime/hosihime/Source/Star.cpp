@@ -1,16 +1,24 @@
 #include "Star.h"
 #define PAI 3.14f
-Star::Star(const std::string& textrue, const GSvector2& position)
+Star::Star(const std::string& textrue, const GSvector2 position,StarMediator* _mediator)
 	:GameObject(textrue, MyRectangle(position, position+GSvector2(64, 64)), STAR)
 {
+	mediator = _mediator;
+	startPosi =  GSvector2(200,200);
 }
 
 Star::~Star()
 {
 }
-
-void Star::inisialize()
+void Star::finish()
 {
+	//mediator->reqestClone(this->clone());
+}
+
+void Star::initialize()
+{
+
+	//startPosi = GSvector2(100, 200);
 	velocity = GSvector2(0, 0);
 	isDead = false;
 	rot = 0;
@@ -107,4 +115,9 @@ void Star::LinePattern7(GSvector2* _velocity, float* rot)
 	_velocity->x = cos(*rot * PAI / 360) * spd;
 	_velocity->y = cos(*rot* PAI / 120) * sindw +300;
 
+}
+
+Star* Star::clone()
+{
+	return new Star("star.bmp", startPosi, mediator);
 }

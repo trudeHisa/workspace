@@ -94,16 +94,15 @@ void GameObjControl::add(GameObject* object)
 	object->initialize();
 	objs.push_back(GameObj_Ptr(object));
 }
+
+
+//‰æ–Ê“à‚É“ü‚Á‚Ä‚¢‚é¯‚ğobjControl‚É“n‚·
 void GameObjControl::add_Star(starsContainer& stars)
 {
 	for each(Star* star in stars)
 	{
 		add(star);
 	}
-
-
-	//add(stars[0]);
-	//add(stars[1]);
 }
 
 void GameObjControl::draw(Renderer& renderer, const Scroll* scroll)
@@ -116,4 +115,11 @@ void GameObjControl::draw(Renderer& renderer, const Scroll* scroll)
 void GameObjControl::finish()
 {
 
+}
+
+void GameObjControl::reqestClone(Star* starclone)
+{
+	//‰ŠúˆÊ’u‚ª‰æ–Ê“à‚È‚ç
+	//if ()
+	add(starclone);
 }

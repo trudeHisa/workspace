@@ -18,6 +18,7 @@ public:
 private:
 	void mapCreate();
 	void objCreate(int x, int y, Array2D<bool>* check);
+	void Stars_IsInScreen();
 	MapData mapdata;
 	GameObjControl control;
 	StarManger starManager;

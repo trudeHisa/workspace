@@ -3,6 +3,7 @@
 
 #include "GamaObject.h"
 #include "StarManager.h"
+#include "StarMediator.h"
 #include <vector>
 #include <memory>
 #include "Definition.h"
@@ -10,7 +11,7 @@ typedef std::shared_ptr<GameObject> GameObj_Ptr;
 typedef std::vector<GameObj_Ptr> GameObjs;
 typedef GameObjs::iterator GameObjs_Itr;
 class Player;
-class GameObjControl
+class GameObjControl :public StarMediator
 {
 public:
 	GameObjControl();
@@ -24,6 +25,7 @@ public:
 	void draw(Renderer& renderer, const Scroll* scroll);
 	void finish();
 	void add_Star(starsContainer& stars);
+	void reqestClone(Star* starclone);
 private:
 	void allCollision();
 	void collision(GameObj_Ptr obj1, GameObj_Ptr obj2);
