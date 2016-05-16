@@ -134,10 +134,8 @@ void Player::collision(const GameObject* obj)
 	}
 	if (obj->isSameType(ROCK))
 	{
-		if (rock == NULL)
-		{
-			rock = (Rock*)obj;
-		}
+		rock = NULL;
+		rock = (Rock*)obj;
 		isGround = true;
 		jflag = false;
 	}

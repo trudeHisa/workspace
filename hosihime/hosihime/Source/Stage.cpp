@@ -57,13 +57,18 @@ void Stage::objCreate(int x, int y, Array2D<bool>* check)
 		control.add(new Rock("rock.bmp",GSvector2(x * BLOCKSIZE,y* BLOCKSIZE)));
 		break;
 	case PLAYER:
-		size = Point(1, 1); 
+		size = Point(1, 1);
 		control.add(new Player("player.bmp",GSvector2(x * BLOCKSIZE, y* BLOCKSIZE), &scroll));
 		break;
 	case PLANET:
 		size = Point(1, 1);
 		control.add(new Planet("planet.bmp", GSvector2(x * BLOCKSIZE, y* BLOCKSIZE)));
 		break;
+	/*case MAGPIE:
+		size = Point(2, 2);
+		control.add(new Magpie("magpie.bmp", GSvector2(x * BLOCKSIZE, y* BLOCKSIZE)));
+		break;*/
+		
 	}
 	for (int sy = 0; sy < size.y; sy++)
 	{
