@@ -1,7 +1,8 @@
 #include "Star.h"
 #define PAI 3.14f
 Star::Star(const std::string& textrue, const GSvector2& position,IStarMove* move)
-	:GameObject(textrue, MyRectangle(position, position + GSvector2(64, 64)), STAR), move(move)
+	:GameObject(textrue, MyRectangle(position, position + GSvector2(64, 64)), STAR), 
+	move(move)
 {
 }
 
@@ -21,7 +22,7 @@ void Star::inisialize()
 void Star::updata()
 {
 	velocity = move->moving();
-	velocity = GSvector2(3,0);
+	//velocity = GSvector2(3,0);
 	//*gsFrameTimerGetTime()
 	rect.translate(velocity);
 	if (WINDOW_HEIGHT+rect.getHeight() < rect.getMin().y)

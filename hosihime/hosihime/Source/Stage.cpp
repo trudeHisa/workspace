@@ -15,6 +15,7 @@
 #include "Star_eight.h"
 Stage::Stage(const std::string& csvname)
 :scroll(&Point(WINDOW_WIDTH, WINDOW_HEIGHT)), timer(30,30)
+, resTime(1,10)
 {
 	CSVStream stream;
 	stream.input(&mapdata,csvname.c_str());
@@ -24,6 +25,7 @@ Stage::~Stage()
 }
 void Stage::initialize()
 {
+	//resTime.initialize();
 	timer.initialize();
 	control.inisialize();
 	scroll.initialize();
@@ -34,6 +36,18 @@ void Stage::updata()
 {
 	control.updata();
 	timer.update();
+	resTime.update();
+	if (resTime.isEnd())
+	{
+	/*	IStarMove* s[]=
+		{
+			new Star_circle(4),
+		};*/
+		control.add(new Star("star.bmp", GSvector2(scroll.getMovingAmount(), 50), new Star_wave(GSvector2(1, 3), 3)));
+		control.add(new Star("star.bmp", GSvector2(scroll.getMovingAmount(),100), new Star_wave(GSvector2(3, 3), 3)));
+		control.add(new Star("star.bmp", GSvector2(scroll.getMovingAmount(), 350), new Star_wave(GSvector2(2, 3), 3)));
+		resTime.initialize();
+	}
 	if (timer.isEnd()||control.isDeadPlayer())
 	{
 		isEnd = true;
@@ -64,8 +78,8 @@ void Stage::objCreate(int x, int y, Array2D<bool>* check)
 	switch (mapdata(y, x))
 	{
 	case STAR:
-		size = Point(1, 1);																			//値は5を基準？ waveのGSvector2のyは0で
-		control.add(new Star("star.bmp",GSvector2(x * BLOCKSIZE,y* BLOCKSIZE),new Star_circle(4)));
+		size = Point(1, 1);//値は5を基準？ waveのGSvector2のyは0で
+		control.add(new Star("star.bmp",GSvector2(x * BLOCKSIZE,y* BLOCKSIZE),new Star_wave(GSvector2(3,3),5)));
 		break;
 	case ROCK:
 	   size = Point(4, 2);

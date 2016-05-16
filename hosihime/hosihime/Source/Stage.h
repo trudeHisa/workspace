@@ -24,6 +24,7 @@ private:
 	Scroll scroll;
 	int BLOCKSIZE = 64;
 	Timer timer;
+	Timer resTime;
 	bool isEnd;
 };
 #endif

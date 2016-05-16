@@ -41,6 +41,7 @@ void Player::moving()
 }
 void Player::updata()
 {
+	//starDestroy();
 	moving();
 	respawn();
 	if (!isGround)
@@ -135,10 +136,8 @@ void Player::collision(const GameObject* obj)
 	if (obj->isSameType(ROCK))
 	{
 		rock = NULL;
-		rock = (Rock*)obj;
-		
+		rock = (Rock*)obj;		
 	}
-	
 
 	if (obj->isSameType(ROCK))
 	{
