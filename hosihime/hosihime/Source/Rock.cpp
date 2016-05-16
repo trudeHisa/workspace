@@ -1,6 +1,6 @@
 #include "Rock.h"
 Rock::Rock(const std::string& textrue, const GSvector2& position)
-	:GameObject(textrue, MyRectangle(position, position+GSvector2(128, 64)), ROCK)
+	:GameObject(textrue, MyRectangle(position, position+GSvector2(64*4, 64*2)), ROCK)
 {
 }
 

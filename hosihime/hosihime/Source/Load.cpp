@@ -31,6 +31,8 @@ void Load::Update()
 	renderer.LoadTextrue("ending.bmp");
 	renderer.LoadTextrue("space.bmp");
 	renderer.LoadTextrue("anim.bmp");
+	renderer.LoadTextrue("start.bmp");
+	renderer.LoadTextrue("goal.bmp");
 	renderer.LoadTextrue("rock.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("activeselect.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("stageselect.bmp");
