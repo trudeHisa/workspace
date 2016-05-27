@@ -22,3 +22,8 @@ GSvector2 Star_pendulum::moving()
 
 	return velocity;
 }
+
+IStarMove* Star_pendulum::clone()
+{
+	return new Star_pendulum(*this);
+}

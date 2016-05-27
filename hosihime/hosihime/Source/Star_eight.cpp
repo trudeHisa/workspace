@@ -22,3 +22,7 @@ GSvector2 Star_eight::moving()
 
 	return velocity;
 }
+IStarMove* Star_eight::clone()
+{
+	return new Star_eight(*this);
+}

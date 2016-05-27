@@ -40,17 +40,17 @@ void Stage::updata()
 	control.updata();
 	timer.update();
 	resTime.update();
-	if (resTime.isEnd())
+	/*if (resTime.isEnd())
 	{
-	/*	IStarMove* s[]=
-		{
-			new Star_circle(4),
-		};*/
+		//IStarMove* s[]=
+		//{
+			//new Star_circle(4),
+		//};
 		control.add(new Star("star.bmp", GSvector2(scroll.getMovingAmount(), 50), new Star_wave(GSvector2(1, 3), 3)));
 		control.add(new Star("star.bmp", GSvector2(scroll.getMovingAmount(),100), new Star_wave(GSvector2(3, 3), 3)));
 		control.add(new Star("star.bmp", GSvector2(scroll.getMovingAmount(), 350), new Star_wave(GSvector2(2, 3), 3)));
 		resTime.initialize();
-}
+}*/
 	if (timer.isEnd()||control.isDeadPlayer())
 	{
 		isEnd = true;
@@ -136,7 +136,7 @@ void Stage::mapCreate()
 	}
 	//スターの原型を全部生成
 	starManager.createStarProt();
-	}
+}
 
 void Stage::Stars_IsInScreen()
 {

@@ -8,6 +8,7 @@ public:
 	Star_paradola(float speed);
 	~Star_paradola();
 	GSvector2 moving();
+	IStarMove* clone();
 private:
 	float rot;
 	float spd;

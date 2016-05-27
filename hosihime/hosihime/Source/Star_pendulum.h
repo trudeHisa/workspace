@@ -8,6 +8,7 @@ public:
 	Star_pendulum(float speed,float shwidth);
 	~Star_pendulum();
 	GSvector2 moving();
+	IStarMove* clone();
 private:
 	float rot;
 	float spd;

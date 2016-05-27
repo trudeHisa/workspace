@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <memory>
-#include"GamaObject.h"
+#include"GameObject.h"
 #include "StarMediator.h"
 #include"Star.h"
 typedef std::vector<Star*> starsContainer;

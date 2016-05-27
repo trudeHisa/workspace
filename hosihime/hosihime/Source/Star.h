@@ -1,10 +1,12 @@
 #ifndef _STAR_H_
 #define _STAR_H_
-#include "GamaObject.h"
+#include <string>
+#include "GameObject.h"
 #include "StarMediator.h"
 #include "IStarMove.h"
 class Star :public GameObject
 {
+public:
 	Star(const std::string& textrue, const GSvector2& position,IStarMove* move);
 	~Star();
 	void initialize();
@@ -17,5 +19,6 @@ class Star :public GameObject
 private:
 	IStarMove* move;
 	float ang;
+	GSvector2 startPosi;
 };
 #endif

@@ -25,3 +25,7 @@ GSvector2 Star_paradola::moving()
 
 	return velocity;
 }
+IStarMove* Star_paradola::clone()
+{
+	return new Star_paradola(*this);
+}

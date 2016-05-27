@@ -16,3 +16,8 @@ GSvector2 Star_slashdown::moving()
 	//GSvector2 velocity;
 	return velocity;
 }
+
+IStarMove* Star_slashdown::clone()
+{
+	return new Star_slashdown(*this);
+}

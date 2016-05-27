@@ -1,4 +1,5 @@
 #include "Star.h"
+#include "Star_wave.h"
 #define PAI 3.14f
 Star::Star(const std::string& textrue, const GSvector2& position,IStarMove* move)
 	:GameObject(textrue, MyRectangle(position, position + GSvector2(64, 64)), STAR), 
@@ -57,5 +58,5 @@ void Star::ride(MyRectangle* rect)
 
 Star* Star::clone()
 {
-	return new Star(textrue, startPosi);
+	return new Star(textrue, startPosi,move->clone());
 }
