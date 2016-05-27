@@ -28,12 +28,15 @@ void Stage::initialize()
 	//resTime.initialize();
 	timer.initialize();
 	control.inisialize();
+	starManager.initialize(&control);
 	scroll.initialize();
 	mapCreate();
+	Stars_IsInScreen();
 	isEnd = false;
 }
 void Stage::updata()
 {
+	starManager.StarResporn();
 	control.updata();
 	timer.update();
 	resTime.update();
@@ -47,7 +50,7 @@ void Stage::updata()
 		control.add(new Star("star.bmp", GSvector2(scroll.getMovingAmount(),100), new Star_wave(GSvector2(3, 3), 3)));
 		control.add(new Star("star.bmp", GSvector2(scroll.getMovingAmount(), 350), new Star_wave(GSvector2(2, 3), 3)));
 		resTime.initialize();
-	}
+}
 	if (timer.isEnd()||control.isDeadPlayer())
 	{
 		isEnd = true;
@@ -77,16 +80,16 @@ void Stage::objCreate(int x, int y, Array2D<bool>* check)
 	Point size;
 	switch (mapdata(y, x))
 	{
-	case STAR:
+	/*case STAR:
 		size = Point(1, 1);//値は5を基準？ waveのGSvector2のyは0で
 		control.add(new Star("star.bmp",GSvector2(x * BLOCKSIZE,y* BLOCKSIZE),new Star_wave(GSvector2(3,3),5)));
-		break;
+		break;*/
 	case ROCK:
 	   size = Point(4, 2);
-		control.add(new Rock("rock.bmp",GSvector2(x * BLOCKSIZE,y* BLOCKSIZE)));
+			control.add(new Rock("rock.bmp",GSvector2(x * BLOCKSIZE,y* BLOCKSIZE)));
 		break;
 	case PLAYER:
-		size = Point(1, 1);
+		size = Point(1, 1); 
 		control.add(new Player("player.bmp",GSvector2(x * BLOCKSIZE, y* BLOCKSIZE), &scroll));
 		break;
 	case PLANET:
@@ -103,6 +106,8 @@ void Stage::objCreate(int x, int y, Array2D<bool>* check)
 		break;
 			
 	}
+	
+	
 	for (int sy = 0; sy < size.y; sy++)
 	{
 		for (int sx = 0; sx < size.x; sx++)
@@ -129,4 +134,14 @@ void Stage::mapCreate()
 			objCreate(x,y,&check);
 		}
 	}
+	//スターの原型を全部生成
+	starManager.createStarProt();
+	}
+
+void Stage::Stars_IsInScreen()
+{
+	//画面内に入ってる星を見る
+	starManager.addInScreenStars();
+	//objcontrolに追加
+	control.add_Star(starManager.getInScreenStars());
 }

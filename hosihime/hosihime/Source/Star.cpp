@@ -2,17 +2,21 @@
 #define PAI 3.14f
 Star::Star(const std::string& textrue, const GSvector2& position,IStarMove* move)
 	:GameObject(textrue, MyRectangle(position, position + GSvector2(64, 64)), STAR), 
-	move(move)
+	move(move), startPosi(position)
 {
 }
+
 
 Star::~Star()
 {
 	delete move;
 	move = NULL;
 }
+void Star::finish()
+{
+}
 
-void Star::inisialize()
+void Star::initialize()
 {
 	velocity = GSvector2(0, 0);
 	isDead = false;
@@ -40,7 +44,7 @@ void Star::collision(const GameObject* obj)
 }
 void Star::pickUp(GSvector2* vel)
 {
-	vel->x=velocity.x;
+	vel->x = velocity.x;
 	vel->y = velocity.y;
 }
 void Star::ride(MyRectangle* rect)
@@ -51,3 +55,7 @@ void Star::ride(MyRectangle* rect)
 	rect->translate(vel);
 }
 
+Star* Star::clone()
+{
+	return new Star(textrue, startPosi);
+}
