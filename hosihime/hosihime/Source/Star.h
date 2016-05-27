@@ -8,7 +8,7 @@ class IStarMove;
 class Star :public GameObject
 {
 public:
-	Star(const std::string& textrue, const GSvector2& position,IStarMove* move);
+	Star(const std::string& textrue, const MyRectangle& rect, IStarMove* move);
 	~Star();
 	void initialize();
 	void updata();

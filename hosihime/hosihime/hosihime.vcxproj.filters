@@ -141,15 +141,6 @@
     <ClCompile Include="Source\Sound.cpp">
       <Filter>ソース ファイル\util\device</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Planet.cpp">
-      <Filter>ソース ファイル\gameobject</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Start.cpp">
-      <Filter>ソース ファイル\gameobject</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Goal.cpp">
-      <Filter>ソース ファイル\gameobject</Filter>
-    </ClCompile>
     <ClCompile Include="Source\StarManager.cpp">
       <Filter>ソース ファイル\gameobject\star</Filter>
     </ClCompile>
@@ -170,6 +161,9 @@
     </ClCompile>
     <ClCompile Include="Source\Star_wave.cpp">
       <Filter>ソース ファイル\gameobject\star\move</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ImMovable.cpp">
+      <Filter>ソース ファイル\gameobject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -254,12 +248,6 @@
     <ClInclude Include="Source\Sound.h">
       <Filter>ヘッダー ファイル\util\device</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Planet.h">
-      <Filter>ヘッダー ファイル\gameobject</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Goal.h">
-      <Filter>ヘッダー ファイル\gameobject</Filter>
-    </ClInclude>
     <ClInclude Include="Source\GameObject.h">
       <Filter>ヘッダー ファイル\gameobject</Filter>
     </ClInclude>
@@ -289,6 +277,9 @@
     </ClInclude>
     <ClInclude Include="Source\Star_wave.h">
       <Filter>ヘッダー ファイル\gameobject\star\move</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ImMovable.h">
+      <Filter>ヘッダー ファイル\gameobject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

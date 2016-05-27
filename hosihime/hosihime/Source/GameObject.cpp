@@ -2,18 +2,17 @@
 GameObject.cpp
 */
 #include "GameObject.h"
-GameObject::GameObject(const std::string& textrue, const MyRectangle& rect,
-	const GAMEOBJ_TYPE type)
+GameObject::GameObject(const std::string& textrue,
+	const MyRectangle& rect,const GAMEOBJ_TYPE type)
 	:textrue(textrue),rect(rect), type(type)
 {
-
 }
 GameObject::~GameObject()
 {
 }
 void GameObject::draw(Renderer& renderer, const Scroll* scroll)
 {
-	GSvector2 pos = rect.getMin();
+	GSvector2 pos = rect.getPosition();
 	pos.x -= scroll->getMovingAmount();
 	if (!scroll->isInsideWindow(pos.x, rect.getWidth()))
 	{

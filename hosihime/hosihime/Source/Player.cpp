@@ -1,11 +1,10 @@
 #include "Player.h"
 #include "Star.h"
 #include "Rock.h"
-Player::Player(const std::string& textrue, const GSvector2& position, Scroll* scroll)
-	:GameObject(textrue, MyRectangle(position, position + GSvector2(64, 64)), PLAYER),
-	star(NULL), scroll(scroll), rock(NULL)
+Player::Player(const std::string& textrue, const MyRectangle& rect, Scroll* scroll)
+	:GameObject(textrue, rect, PLAYER),
+	star(NULL), scroll(scroll), rock(NULL), jflag(false)
 {
-	jflag = false;
 }
 
 Player::~Player()
@@ -16,6 +15,13 @@ Player::~Player()
 	star = NULL;
 	delete scroll;
 	scroll = NULL;
+}
+void Player::initialize()
+{	
+	GameObject::initialize();
+	jflag = false;
+	star = NULL;
+	rock = NULL;
 }
 
 void Player::moving()
@@ -53,18 +59,18 @@ void Player::updata()
 }
 void Player::respawn()
 {
-	if (WINDOW_HEIGHT + rect.getHeight() >= rect.getMin().y)
+	if (WINDOW_HEIGHT + rect.getHeight() >= rect.getPosition().y)
 	{
 		return;
 	}
 	jflag = false;
 	if (rock != NULL)
 	{
-		rock->respawn(rect.getMin(), &velocity);
+		rock->respawn(rect.getPosition(), &velocity);
 		return;
 	}
-	velocity.x = 64 - rect.getMin().x;
-	velocity.y = 50 - rect.getMin().y;
+	velocity.x = 64 - rect.getPosition().x;
+	velocity.y = 50 - rect.getPosition().y;
 }
 void Player::starDestroy()
 {
@@ -85,7 +91,7 @@ void Player::starDestroy()
 		return;
 	}
 	jflag = true;
-	y_prev = rect.getMin().y;
+	y_prev = rect.getPosition().y;
 	velocity = GSvector2(0, -25);
 	star = NULL;
 }
@@ -103,8 +109,8 @@ bool Player::jump()
 	{
 		velocity.x = -3;
 	}
-	y_temp = rect.getMin().y;
-	velocity.y = (rect.getMin().y - y_prev) + 1;
+	y_temp = rect.getPosition().y;
+	velocity.y = (rect.getPosition().y - y_prev) + 1;
 	y_prev = y_temp;
 	return true;
 }

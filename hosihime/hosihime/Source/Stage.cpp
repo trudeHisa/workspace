@@ -5,20 +5,19 @@
 #include "Star.h"
 #include "Player.h"
 #include "Rock.h"
-#include "Planet.h"
-#include "Start.h"
-#include "Goal.h"
+
+#include "ImMovable.h"
 
 #include "Star_cricle.h"
 #include "Star_pendulum.h"
 #include "Star_wave.h"
 #include "Star_eight.h"
 Stage::Stage(const std::string& csvname)
-:scroll(&Point(WINDOW_WIDTH, WINDOW_HEIGHT)), timer(30,30)
-, resTime(1,10)
+	:scroll(&Point(WINDOW_WIDTH, WINDOW_HEIGHT)), timer(30, 30)
+	, resTime(1, 10)
 {
 	CSVStream stream;
-	stream.input(&mapdata,csvname.c_str());
+	stream.input(&mapdata, csvname.c_str());
 }
 Stage::~Stage()
 {
@@ -42,16 +41,16 @@ void Stage::updata()
 	resTime.update();
 	/*if (resTime.isEnd())
 	{
-		//IStarMove* s[]=
-		//{
-			//new Star_circle(4),
-		//};
-		control.add(new Star("star.bmp", GSvector2(scroll.getMovingAmount(), 50), new Star_wave(GSvector2(1, 3), 3)));
-		control.add(new Star("star.bmp", GSvector2(scroll.getMovingAmount(),100), new Star_wave(GSvector2(3, 3), 3)));
-		control.add(new Star("star.bmp", GSvector2(scroll.getMovingAmount(), 350), new Star_wave(GSvector2(2, 3), 3)));
-		resTime.initialize();
-}*/
-	if (timer.isEnd()||control.isDeadPlayer())
+	//IStarMove* s[]=
+	//{
+	//new Star_circle(4),
+	//};
+	control.add(new Star("star.bmp", GSvector2(scroll.getMovingAmount(), 50), new Star_wave(GSvector2(1, 3), 3)));
+	control.add(new Star("star.bmp", GSvector2(scroll.getMovingAmount(),100), new Star_wave(GSvector2(3, 3), 3)));
+	control.add(new Star("star.bmp", GSvector2(scroll.getMovingAmount(), 350), new Star_wave(GSvector2(2, 3), 3)));
+	resTime.initialize();
+	}*/
+	if (timer.isEnd() || control.isDeadPlayer())
 	{
 		isEnd = true;
 	}
@@ -59,7 +58,7 @@ void Stage::updata()
 void Stage::draw(Renderer& renderer)
 {
 	scroll.draw(renderer);
-	control.draw(renderer,&scroll);
+	control.draw(renderer, &scroll);
 	int t = timer.getTime();
 	renderer.DrawString(std::to_string(t), &GSvector2(50, 50), 50);
 }
@@ -78,36 +77,40 @@ void Stage::objCreate(int x, int y, Array2D<bool>* check)
 		return;
 	}
 	Point size;
+	GSvector2 pos = GSvector2(x * BLOCKSIZE, y* BLOCKSIZE);
+	GSvector2 fsize;
 	switch (mapdata(y, x))
 	{
-	/*case STAR:
-		size = Point(1, 1);//値は5を基準？ waveのGSvector2のyは0で
-		control.add(new Star("star.bmp",GSvector2(x * BLOCKSIZE,y* BLOCKSIZE),new Star_wave(GSvector2(3,3),5)));
-		break;*/
+		/*case STAR:
+			size = Point(1, 1);//値は5を基準？ waveのGSvector2のyは0で
+			control.add(new Star("star.bmp",GSvector2(x * BLOCKSIZE,y* BLOCKSIZE),new Star_wave(GSvector2(3,3),5)));
+			break;*/
 	case ROCK:
-	   size = Point(4, 2);
-			control.add(new Rock("rock.bmp",GSvector2(x * BLOCKSIZE,y* BLOCKSIZE)));
+		size = Point(4, 2);
+		fsize = GSvector2(size.x*BLOCKSIZE, size.y*BLOCKSIZE);
+		control.add(new Rock("rock.bmp", MyRectangle(pos,fsize)));
 		break;
 	case PLAYER:
-		size = Point(1, 1); 
-		control.add(new Player("player.bmp",GSvector2(x * BLOCKSIZE, y* BLOCKSIZE), &scroll));
+		size = Point(1, 1);
+		fsize = GSvector2(size.x*BLOCKSIZE, size.y*BLOCKSIZE);
+		control.add(new Player("player.bmp", MyRectangle(pos, fsize), &scroll));
 		break;
 	case PLANET:
 		size = Point(1, 1);
-		control.add(new Planet("planet.bmp", GSvector2(x * BLOCKSIZE, y* BLOCKSIZE)));
+		fsize = GSvector2(size.x*BLOCKSIZE, size.y*BLOCKSIZE);
+		control.add(new ImMovable("planet.bmp", MyRectangle(pos, fsize), PLANET));
 		break;
 	case START:
 		size = Point(5, 3);
-		control.add(new Start("start.bmp", GSvector2(x * BLOCKSIZE, y* BLOCKSIZE)));
+		fsize = GSvector2(size.x*BLOCKSIZE, size.y*BLOCKSIZE);
+		control.add(new ImMovable("start.bmp", MyRectangle(pos, fsize), START));
 		break;
 	case GOAL:
 		size = Point(5, 3);
-		control.add(new Goal("goal.bmp", GSvector2(x * BLOCKSIZE, y* BLOCKSIZE)));
+		fsize = GSvector2(size.x*BLOCKSIZE, size.y*BLOCKSIZE);
+		control.add(new ImMovable("goal.bmp", MyRectangle(pos, fsize), GOAL));
 		break;
-			
 	}
-	
-	
 	for (int sy = 0; sy < size.y; sy++)
 	{
 		for (int sx = 0; sx < size.x; sx++)
@@ -131,7 +134,7 @@ void Stage::mapCreate()
 	{
 		for (int x = 0; x < mapdata.getSize1(); x++)
 		{
-			objCreate(x,y,&check);
+			objCreate(x, y, &check);
 		}
 	}
 	//スターの原型を全部生成

@@ -6,7 +6,7 @@
 class Rock:public GameObject
 {
 public:
-	Rock(const std::string& textrue, const GSvector2& position);
+	Rock(const std::string& textrue,const MyRectangle& rect);
 	~Rock();
 	void updata();
 	void collision(const GameObject* obj);

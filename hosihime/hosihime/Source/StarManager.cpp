@@ -22,10 +22,10 @@ void StarManger::initialize(StarMediator* _mediator)
 //ファイルを読み込んで型を生成
 void StarManger::createStarProt()
 {
-	stars.push_back(new Star("star.bmp", GSvector2(200, 100), new Star_wave(GSvector2(1, 3), 3)));
-	stars.push_back(new Star("star.bmp", GSvector2(100, 100), new Star_wave(GSvector2(1, 3), 3)));
-	stars.push_back(new Star("star.bmp", GSvector2(300, 100), new Star_wave(GSvector2(1, 3), 3)));
-	stars.push_back(new Star("star.bmp", GSvector2(400, 100), new Star_wave(GSvector2(1, 3), 3)));
+	stars.push_back(new Star("star.bmp",MyRectangle(GSvector2(200, 100),GSvector2(64,64)), new Star_wave(GSvector2(1, 3), 3)));
+	stars.push_back(new Star("star.bmp", MyRectangle(GSvector2(100, 100),GSvector2(64,64)), new Star_wave(GSvector2(1, 3), 3)));
+	stars.push_back(new Star("star.bmp", MyRectangle(GSvector2(300, 100), GSvector2(64,64)), new Star_wave(GSvector2(1, 3), 3)));
+	stars.push_back(new Star("star.bmp", MyRectangle(GSvector2(400, 100), GSvector2(64,64)), new Star_wave(GSvector2(1, 3), 3)));
 }
 
 //原型コンテナの中で画面内に入っている星をピックアップして格納
