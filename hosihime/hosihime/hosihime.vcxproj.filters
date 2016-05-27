@@ -162,6 +162,9 @@
     <ClCompile Include="Source\Goal.cpp">
       <Filter>ソース ファイル\gameobject</Filter>
     </ClCompile>
+    <ClCompile Include="Source\StarManager.cpp">
+      <Filter>ソース ファイル\gameobject\star</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Definition.h">
@@ -214,9 +217,6 @@
     </ClInclude>
     <ClInclude Include="Source\AnimationTimer.h">
       <Filter>ヘッダー ファイル\util\animation</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GamaObject.h">
-      <Filter>ヘッダー ファイル\gameobject</Filter>
     </ClInclude>
     <ClInclude Include="Source\GAMEOBJ_TYPE.h">
       <Filter>ヘッダー ファイル\gameobject</Filter>
@@ -274,6 +274,12 @@
     </ClInclude>
     <ClInclude Include="Source\Goal.h">
       <Filter>ヘッダー ファイル\gameobject</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameObject.h">
+      <Filter>ヘッダー ファイル\gameobject</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StarManager.h">
+      <Filter>ヘッダー ファイル\gameobject\star</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

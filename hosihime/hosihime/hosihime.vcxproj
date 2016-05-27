@@ -35,6 +35,7 @@
     <ClCompile Include="Source\Stage.cpp" />
     <ClCompile Include="Source\StageSelect.cpp" />
     <ClCompile Include="Source\Star.cpp" />
+    <ClCompile Include="Source\StarManager.cpp" />
     <ClCompile Include="Source\Start.cpp" />
     <ClCompile Include="Source\Star_cricle.cpp" />
     <ClCompile Include="Source\Star_eight.cpp" />
@@ -54,9 +55,9 @@
     <ClInclude Include="Source\CSVStream.h" />
     <ClInclude Include="Source\Definition.h" />
     <ClInclude Include="Source\Ending.h" />
-    <ClInclude Include="Source\GamaObject.h" />
     <ClInclude Include="Source\game.h" />
     <ClInclude Include="Source\GameObjControl.h" />
+    <ClInclude Include="Source\GameObject.h" />
     <ClInclude Include="Source\GAMEOBJ_TYPE.h" />
     <ClInclude Include="Source\GamePlay.h" />
     <ClInclude Include="Source\Goal.h" />
@@ -75,6 +76,7 @@
     <ClInclude Include="Source\Stage.h" />
     <ClInclude Include="Source\StageSelect.h" />
     <ClInclude Include="Source\Star.h" />
+    <ClInclude Include="Source\StarManager.h" />
     <ClInclude Include="Source\Star_cricle.h" />
     <ClInclude Include="Source\Star_eight.h" />
     <ClInclude Include="Source\Star_parabola.h" />
