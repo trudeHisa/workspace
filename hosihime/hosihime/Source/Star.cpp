@@ -11,7 +11,6 @@ Star::~Star()
 }
 void Star::finish()
 {
-	//mediator->reqestClone(this->clone());
 }
 
 void Star::initialize()
