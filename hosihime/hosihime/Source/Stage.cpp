@@ -25,6 +25,7 @@ void Stage::updata()
 {
 	starManager.StarResporn();
 	control.updata();
+
 	//Stars_IsInScreen();
 }
 void Stage::draw(Renderer& renderer)

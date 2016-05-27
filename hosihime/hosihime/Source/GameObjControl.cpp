@@ -12,12 +12,13 @@ GameObjControl::~GameObjControl()
 }
 void GameObjControl::updata()
 {
+	remove();
 	for each (GameObj_Ptr obj in objs)
 	{
 		obj->updata();
 	}
 	allCollision();
-	remove();
+//	remove();
 }
 void GameObjControl::allCollision()
 {

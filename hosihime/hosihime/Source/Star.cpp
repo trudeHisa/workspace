@@ -1,11 +1,10 @@
 #include "Star.h"
 #define PAI 3.14f
-Star::Star(const std::string& textrue, const GSvector2 position,StarMediator* _mediator)
-	:GameObject(textrue, MyRectangle(position, position+GSvector2(64, 64)), STAR)
-{
-	mediator = _mediator;
-	startPosi =  GSvector2(200,200);
-}
+Star::Star(const std::string& textrue, const GSvector2 position)
+:GameObject(textrue, MyRectangle(position, position + GSvector2(64, 64)), STAR)
+, startPosi(position)
+{}
+
 
 Star::~Star()
 {
@@ -17,8 +16,6 @@ void Star::finish()
 
 void Star::initialize()
 {
-
-	//startPosi = GSvector2(100, 200);
 	velocity = GSvector2(0, 0);
 	isDead = false;
 	rot = 0;
@@ -28,22 +25,22 @@ void Star::initialize()
 void Star::updata()
 {
 	LinePattern1(&velocity);
-	rect=rect.translate(velocity);
-	if (WINDOW_HEIGHT+rect.getHeight() < rect.getMin().y)
+	rect = rect.translate(velocity);
+	if (WINDOW_HEIGHT + rect.getHeight() < rect.getMin().y)
 	{
 		isDead = true;
 	}
 }
 void Star::collision(const GameObject* obj)
 {
-	if(obj->isSameType(ROCK))
+	if (obj->isSameType(ROCK))
 	{
 		isDead = true;
 	}
 }
 void Star::pickUp(GSvector2* vel)
 {
-	vel->x=velocity.x;
+	vel->x = velocity.x;
 	vel->y = velocity.y;
 }
 //右斜め下に落ちていく
@@ -60,7 +57,7 @@ void Star::LinePattern2(GSvector2* _velocity)
 }
 
 //右下に落ちていく放物線
-void Star::LinePattern3(GSvector2* _velocity,float* rot)
+void Star::LinePattern3(GSvector2* _velocity, float* rot)
 {
 	*rot -= 0.2;	//角度
 	spd = 6;	    //スピード
@@ -113,11 +110,9 @@ void Star::LinePattern7(GSvector2* _velocity, float* rot)
 	sindw = 120;		//振れ幅
 
 	_velocity->x = cos(*rot * PAI / 360) * spd;
-	_velocity->y = cos(*rot* PAI / 120) * sindw +300;
-
+	_velocity->y = cos(*rot* PAI / 120) * sindw + 300;
 }
-
 Star* Star::clone()
 {
-	return new Star("star.bmp", startPosi, mediator);
+	return new Star(textrue, startPosi);
 }

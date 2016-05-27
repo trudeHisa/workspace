@@ -5,7 +5,7 @@
 class Star :public GameObject
 {
 public:
-	Star(const std::string& textrue, const GSvector2 position,StarMediator* mediator);
+	Star(const std::string& textrue, const GSvector2 position);
 	~Star();
 	void initialize();
 	void updata();
@@ -14,7 +14,6 @@ public:
 	Star* clone();
 	void finish();
 private:
-	StarMediator* mediator;
 	GSvector2 startPosi;
 	//’¼ü
 	void LinePattern1(GSvector2* _velocity);//‰E‰º‚É—‚¿‚é
