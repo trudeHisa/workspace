@@ -2,15 +2,14 @@
 #define PAI 3.14f
 //”g
 Star_wave::Star_wave(GSvector2 vel, float shwidth)
-:rot(0), velocity(vel), sindw(shwidth)
+	:rot(0), velocity(vel), sindw(shwidth)
 {
-	rot = 0;
 }
 Star_wave::Star_wave(const Star_wave& other)
+	: velocity(other.velocity),
+	sindw(other.sindw),
+	rot(0)
 {
-	velocity = other.velocity;
-	sindw = other.sindw;
-	rot = 0;
 }
 Star_wave::~Star_wave()
 {

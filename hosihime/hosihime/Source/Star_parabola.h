@@ -6,6 +6,7 @@ class Star_paradola : public IStarMove
 {
 public:
 	Star_paradola(float speed);
+	Star_paradola(const Star_paradola& other);
 	~Star_paradola();
 	GSvector2 moving();
 	IStarMove* clone();

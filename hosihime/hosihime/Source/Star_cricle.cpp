@@ -2,11 +2,14 @@
 #define PAI 3.14f
 //‰~
 Star_circle::Star_circle(float speed)
-	:spd(speed)
+	:spd(speed), rot(0)
 {
-	rot = 0;
 }
+Star_circle::Star_circle(const Star_circle& other)
+	: spd(other.spd), rot(0)
+{
 
+}
 Star_circle::~Star_circle()
 {
 

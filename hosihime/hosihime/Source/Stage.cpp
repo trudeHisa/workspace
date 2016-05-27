@@ -36,7 +36,7 @@ void Stage::initialize()
 }
 void Stage::updata()
 {
-	starManager.StarResporn();
+	starManager.updata();
 	control.updata();
 	timer.update();
 	resTime.update();

@@ -2,9 +2,14 @@
 #define PAI 3.14f
 //8‚ÌŽš
 Star_eight::Star_eight(float speed,float sdwidth)
-	:spd(speed), sindw(sdwidth)
+	:spd(speed), sindw(sdwidth), rot(0)
 {
-	rot = 0;
+}
+
+Star_eight::Star_eight(const Star_eight& other)
+	: spd(other.spd), sindw(other.sindw), rot(0)
+{
+
 }
 
 Star_eight::~Star_eight()

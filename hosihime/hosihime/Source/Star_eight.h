@@ -6,6 +6,7 @@ class Star_eight : public IStarMove
 {
 public:
 	Star_eight(float speed,float shwidth);
+	Star_eight(const Star_eight& other);
 	~Star_eight();
 	GSvector2 moving();
 	IStarMove* clone();

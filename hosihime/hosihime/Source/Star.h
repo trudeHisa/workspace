@@ -2,8 +2,9 @@
 #define _STAR_H_
 #include <string>
 #include "GameObject.h"
-#include "StarMediator.h"
-#include "IStarMove.h"
+
+class IStarMove;
+
 class Star :public GameObject
 {
 public:

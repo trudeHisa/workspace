@@ -6,7 +6,11 @@ Star_pendulum::Star_pendulum(float speed, float shwidth)
 {
 	rot = 0;
 }
+Star_pendulum::Star_pendulum(const Star_pendulum& other)
+	: spd(other.spd), sindw(other.sindw), rot(0)
+{
 
+}
 Star_pendulum::~Star_pendulum()
 {
 

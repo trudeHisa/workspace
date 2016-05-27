@@ -1,5 +1,5 @@
 #include "Star.h"
-#include "Star_wave.h"
+#include "IStarMove.h"
 #define PAI 3.14f
 Star::Star(const std::string& textrue, const GSvector2& position,IStarMove* move)
 	:GameObject(textrue, MyRectangle(position, position + GSvector2(64, 64)), STAR), 

@@ -77,6 +77,7 @@
     <ClInclude Include="Source\StageSelect.h" />
     <ClInclude Include="Source\Star.h" />
     <ClInclude Include="Source\StarManager.h" />
+    <ClInclude Include="Source\StarMediator.h" />
     <ClInclude Include="Source\Star_cricle.h" />
     <ClInclude Include="Source\Star_eight.h" />
     <ClInclude Include="Source\Star_parabola.h" />

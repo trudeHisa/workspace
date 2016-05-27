@@ -61,6 +61,12 @@
     <Filter Include="ソース ファイル\util\device">
       <UniqueIdentifier>{75455e3e-482d-4b0d-b435-1827203e20cd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\gameobject\star\move">
+      <UniqueIdentifier>{b0b1b51f-2ea0-41f4-ba39-ba361e003dfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\gameobject\star\move">
+      <UniqueIdentifier>{23c229f2-9d4a-4583-8601-d491ec4abd6f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\game.cpp">
@@ -120,24 +126,6 @@
     <ClCompile Include="Source\Star.cpp">
       <Filter>ソース ファイル\gameobject</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Star_paradola.cpp">
-      <Filter>ソース ファイル\gameobject\star</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Star_slashdown.cpp">
-      <Filter>ソース ファイル\gameobject\star</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Star_wave.cpp">
-      <Filter>ソース ファイル\gameobject\star</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Star_eight.cpp">
-      <Filter>ソース ファイル\gameobject\star</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Star_pendulum.cpp">
-      <Filter>ソース ファイル\gameobject\star</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Star_cricle.cpp">
-      <Filter>ソース ファイル\gameobject\star</Filter>
-    </ClCompile>
     <ClCompile Include="Source\MyRectangle.cpp">
       <Filter>ソース ファイル\util\diagram</Filter>
     </ClCompile>
@@ -164,6 +152,24 @@
     </ClCompile>
     <ClCompile Include="Source\StarManager.cpp">
       <Filter>ソース ファイル\gameobject\star</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Star_cricle.cpp">
+      <Filter>ソース ファイル\gameobject\star\move</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Star_eight.cpp">
+      <Filter>ソース ファイル\gameobject\star\move</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Star_paradola.cpp">
+      <Filter>ソース ファイル\gameobject\star\move</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Star_pendulum.cpp">
+      <Filter>ソース ファイル\gameobject\star\move</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Star_slashdown.cpp">
+      <Filter>ソース ファイル\gameobject\star\move</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Star_wave.cpp">
+      <Filter>ソース ファイル\gameobject\star\move</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -233,27 +239,6 @@
     <ClInclude Include="Source\Star.h">
       <Filter>ヘッダー ファイル\gameobject</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Star_slashdown.h">
-      <Filter>ヘッダー ファイル\gameobject\star</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Star_wave.h">
-      <Filter>ヘッダー ファイル\gameobject\star</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Star_eight.h">
-      <Filter>ヘッダー ファイル\gameobject\star</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Star_parabola.h">
-      <Filter>ヘッダー ファイル\gameobject\star</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Star_pendulum.h">
-      <Filter>ヘッダー ファイル\gameobject\star</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Star_cricle.h">
-      <Filter>ヘッダー ファイル\gameobject\star</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\IStarMove.h">
-      <Filter>ヘッダー ファイル\gameobject\star</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Circle.h">
       <Filter>ヘッダー ファイル\util\diagram</Filter>
     </ClInclude>
@@ -280,6 +265,30 @@
     </ClInclude>
     <ClInclude Include="Source\StarManager.h">
       <Filter>ヘッダー ファイル\gameobject\star</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StarMediator.h">
+      <Filter>ヘッダー ファイル\gameobject\star</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\IStarMove.h">
+      <Filter>ヘッダー ファイル\gameobject\star\move</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Star_cricle.h">
+      <Filter>ヘッダー ファイル\gameobject\star\move</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Star_eight.h">
+      <Filter>ヘッダー ファイル\gameobject\star\move</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Star_parabola.h">
+      <Filter>ヘッダー ファイル\gameobject\star\move</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Star_pendulum.h">
+      <Filter>ヘッダー ファイル\gameobject\star\move</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Star_slashdown.h">
+      <Filter>ヘッダー ファイル\gameobject\star\move</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Star_wave.h">
+      <Filter>ヘッダー ファイル\gameobject\star\move</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

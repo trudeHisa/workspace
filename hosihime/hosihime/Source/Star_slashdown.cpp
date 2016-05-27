@@ -5,7 +5,11 @@ Star_slashdown::Star_slashdown(const GSvector2 &velocity)
 {
 
 }
+Star_slashdown::Star_slashdown(const Star_slashdown& other)
+	: velocity(other.velocity)
+{
 
+}
 Star_slashdown::~Star_slashdown()
 {
 

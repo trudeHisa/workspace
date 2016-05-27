@@ -68,7 +68,7 @@ void GameObjControl::add_Star(starsContainer& stars)
 {
 	for each(Star* star in stars)
 	{
-		add(star);
+		add((GameObject*)star);
 	}
 }
 
@@ -100,5 +100,5 @@ void GameObjControl::reqestClone(Star* starclone)
 {
 	//‰ŠúˆÊ’u‚ª‰æ–Ê“à‚È‚ç
 	//if ()
-	add(starclone);
+	add((GameObject*)starclone);
 }
