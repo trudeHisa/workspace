@@ -16,6 +16,6 @@ public:
 private:
 	int startTime;
 	int time;
-	bool isStar;
+	bool isStart;
 };
 #endif

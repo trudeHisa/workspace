@@ -17,7 +17,7 @@ void AnimationTimer::setStarTimer(float time)
 void AnimationTimer::initialize()
 {
 	time = startTime;
-	isStar = true;
+	isStart = true;
 }
 void AnimationTimer::updata()
 {
@@ -30,7 +30,7 @@ void AnimationTimer::reset()
 }
 bool AnimationTimer::isStop()
 {
-	return !isStar;
+	return !isStart;
 }
 bool AnimationTimer::isZero()
 {
@@ -38,9 +38,9 @@ bool AnimationTimer::isZero()
 }
 void AnimationTimer::stop()
 {
-	isStar = false;
+	isStart = false;
 }
 void AnimationTimer::start()
 {
-	isStar = true;
+	isStart = true;
 }

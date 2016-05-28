@@ -13,8 +13,8 @@ GameObject::~GameObject()
 void GameObject::draw(Renderer& renderer, const Scroll* scroll)
 {
 	GSvector2 pos = rect.getPosition();
-	pos.x -= scroll->getMovingAmount();
-	if (!scroll->isInsideWindow(pos.x, rect.getWidth()))
+	pos-= scroll->getMovingAmount();
+	if (!scroll->isInsideWindow(pos, rect.getSize()))
 	{
 		return;
 	}

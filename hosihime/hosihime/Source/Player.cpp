@@ -52,7 +52,7 @@ void Player::updata()
 	respawn();
 	if (!isGround)
 	{
-		scroll->moving(velocity.x);
+		scroll->moving(velocity);
 	}
 	//*gsFrameTimerGetTime()
 	rect.translate(velocity);
