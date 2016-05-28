@@ -1,59 +1,69 @@
 #include "Player.h"
 #include "Star.h"
-
-Player::Player(const std::string& textrue, const GSvector2* velocityition, Scroll* scroll)
-	:GameObject(textrue, &Point(1, 1), PLAYER, velocityition), star(NULL), scroll(scroll)
+#include "Rock.h"
+Player::Player(const std::string& textrue, const GSvector2& position, Scroll* scroll)
+	:GameObject(textrue, MyRectangle(position, position + GSvector2(64, 64)), PLAYER),
+	star(NULL), scroll(scroll), rock(NULL)
 {
-
+	jflag = false;
 }
+
 Player::~Player()
 {
+	delete rock;
+	rock = NULL;
 	delete star;
 	star = NULL;
 	delete scroll;
 	scroll = NULL;
 }
-void Player::updata(MapData* mapdata)
-{
-	starDestroy();
-	GSvector2 nextVel(0, 0);
-	if (star != NULL)
-	{
-		star->pickUp(&nextVel);
-	}
-	if (GetAsyncKeyState(VK_UP) && jflag == false)
-	{
-		jflag = true;
-		y_prev = position.y;
-		nextVel.y = -20;
-	}
-	if (jflag == true){
-		y_temp = position.y;
-		nextVel.y = (position.y - y_prev) + 5;
-		y_prev = y_temp;
 
-	}
-	if (!isNextMove(mapdata, &nextVel))
+void Player::moving()
+{
+	if (jump() == true)
 	{
 		return;
 	}
-	if (jflag == true){
-		y_temp = position.y;
-		velocity.y = (position.y - y_prev) + 5;
-		y_prev = y_temp;
-
-	}
-	if (GetAsyncKeyState(VK_UP)&&jflag == true)
+	if (!isGround)
 	{
-		velocity.y = -20;
+		velocity = GSvector2(0, 3);
+		if (star != NULL)
+		{
+			star->pickUp(&velocity);
+		}
+		starDestroy();
+		jumpstart();
+		return;
 	}
-
-	if (star != NULL)
+	velocity = GSvector2(0, 0);
+	jumpstart();
+	moveLR();
+}
+void Player::updata()
+{
+	moving();
+	respawn();
+	if (!isGround)
 	{
-		star->pickUp(&velocity);
+		scroll->moving(velocity.x);
 	}
-	scroll->moving(velocity.x);
-	move(mapdata);
+	//*gsFrameTimerGetTime()
+	rect.translate(velocity);
+}
+void Player::respawn()
+{
+	if (WINDOW_HEIGHT + rect.getHeight() >= rect.getMin().y)
+	{
+		return;
+	}
+	jflag = false;
+	if (rock != NULL)
+	{
+		rock->respawn(rect.getMin(), &velocity);
+		return;
+	}
+	velocity.x = 64 - rect.getMin().x;
+	velocity.y = 50 - rect.getMin().y;
 }
 void Player::starDestroy()
 {
@@ -65,19 +75,97 @@ void Player::starDestroy()
 	{
 		return;
 	}
-	velocity = GSvector2(0, 0);
+	velocity = GSvector2(0, 1);
+	star = NULL;
+}void Player::jumpstart()
+{
+	if (!gsGetKeyTrigger(GKEY_SPACE))
+	{
+		return;
+	}
+	jflag = true;
+	y_prev = rect.getMin().y;
+	velocity = GSvector2(0, -25);
 	star = NULL;
 }
-bool Player::collision(int nextvelocityType)
+bool Player::jump()
 {
-	return nextvelocityType != ROCK;
-}
-bool Player::setStar(GameObject* _star)
-{
-	if (!_star->isSameLocation(location))
+	if (jflag == false)
 	{
 		return false;
 	}
-	star = (Star*)_star;
+	if (gsGetKeyState(GKEY_RIGHT))
+	{
+		velocity.x = 3;
+	}
+	if (gsGetKeyState(GKEY_LEFT))
+	{
+		velocity.x = -3;
+	}
+	y_temp = rect.getMin().y;
+	velocity.y = (rect.getMin().y - y_prev) + 1;
+	y_prev = y_temp;
 	return true;
 }
+void Player::moveLR()
+{
+	if (gsGetKeyState(GKEY_RIGHT))
+	{
+		velocity = GSvector2(3, 0);
+	}
+	if (gsGetKeyState(GKEY_LEFT))
+	{
+		velocity = GSvector2(-3, 0);
+	}
+}
+void Player::collision(const GameObject* obj)
+{
+	if (obj->isSameType(STAR))
+	{
+		if (star == NULL)
+		{
+			star = (Star*)obj;
+			star->ride(&rect);
+		}
+		else
+		{
+			jflag = false;
+		}
+	}
+	if (obj->isSameType(ROCK))
+	{
+		rock = NULL;
+		rock = (Rock*)obj;
+		
+	}
+	
+
+	if (obj->isSameType(ROCK))
+	{
+		isGround = true;
+		jflag = false;
+	}
+	else if (obj->isSameType(START))
+	{
+		isGround = true;
+		jflag = false;
+	}
+	else if (obj->isSameType(GOAL))
+	{
+		isGround = true;
+		jflag = false;
+	}
+	else
+	{
+		isGround = false;
+	}
+
+	if (obj->isSameType(GOAL))
+	{
+		isDead = true;
+	}
+}
+//bool Player::setStar(GameObject* _star)
+//{
+//	return false;
+//}

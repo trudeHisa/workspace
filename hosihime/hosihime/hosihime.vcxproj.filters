@@ -31,12 +31,39 @@
     <Filter Include="ヘッダー ファイル\scene">
       <UniqueIdentifier>{95d4af53-4dcc-4e6a-868c-956c7f2af5c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\util\animation">
+      <UniqueIdentifier>{fb5f3ea7-c5d7-4848-a542-cbce1f9167dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\util\animation">
+      <UniqueIdentifier>{7da6bf87-b9dd-45a0-8193-31ac43cc5747}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\gameobject">
+      <UniqueIdentifier>{1209c428-f830-440c-884b-377e6308602d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\gameobject\star">
+      <UniqueIdentifier>{e4fea392-358b-4adf-8d88-5b9ab4ce8de0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\gameobject">
+      <UniqueIdentifier>{376e7bac-24b4-449d-b342-3d13458cad24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\gameobject\star">
+      <UniqueIdentifier>{4f7c262d-56f6-4e5e-82f5-51f9c93ef732}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\util\diagram">
+      <UniqueIdentifier>{1dba8f7b-75c0-4c0e-8099-995bddb69e63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\util\diagram">
+      <UniqueIdentifier>{f5f54024-383c-4a45-afd1-ae02e6d25574}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\util\device">
+      <UniqueIdentifier>{c854592b-5495-4b02-96f8-d40e5225179b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\util\device">
+      <UniqueIdentifier>{75455e3e-482d-4b0d-b435-1827203e20cd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\game.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\main..cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Source\Ending.cpp">
@@ -57,34 +84,10 @@
     <ClCompile Include="Source\Point.cpp">
       <Filter>ソース ファイル\util</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Renderer.cpp">
-      <Filter>ソース ファイル\util</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Timer.cpp">
       <Filter>ソース ファイル\util</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Sound.cpp">
-      <Filter>ソース ファイル\util</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\CSVStream.cpp">
-      <Filter>ソース ファイル\util</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GameObjControl.cpp">
-      <Filter>ソース ファイル\stage</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GameObject.cpp">
-      <Filter>ソース ファイル\stage</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Rock.cpp">
-      <Filter>ソース ファイル\stage</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Star.cpp">
-      <Filter>ソース ファイル\stage</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Stage.cpp">
-      <Filter>ソース ファイル\stage</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Player.cpp">
       <Filter>ソース ファイル\stage</Filter>
     </ClCompile>
     <ClCompile Include="Source\Scroll.cpp">
@@ -92,6 +95,72 @@
     </ClCompile>
     <ClCompile Include="Source\StageSelect.cpp">
       <Filter>ソース ファイル\stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Animation.cpp">
+      <Filter>ソース ファイル\util\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AnimationTimer.cpp">
+      <Filter>ソース ファイル\util\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameObjControl.cpp">
+      <Filter>ソース ファイル\gameobject</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameObject.cpp">
+      <Filter>ソース ファイル\gameobject</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Player.cpp">
+      <Filter>ソース ファイル\gameobject</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rock.cpp">
+      <Filter>ソース ファイル\gameobject</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Star.cpp">
+      <Filter>ソース ファイル\gameobject</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Star_paradola.cpp">
+      <Filter>ソース ファイル\gameobject\star</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Star_slashdown.cpp">
+      <Filter>ソース ファイル\gameobject\star</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Star_wave.cpp">
+      <Filter>ソース ファイル\gameobject\star</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Star_eight.cpp">
+      <Filter>ソース ファイル\gameobject\star</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Star_pendulum.cpp">
+      <Filter>ソース ファイル\gameobject\star</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Star_cricle.cpp">
+      <Filter>ソース ファイル\gameobject\star</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MyRectangle.cpp">
+      <Filter>ソース ファイル\util\diagram</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Circle.cpp">
+      <Filter>ソース ファイル\util\diagram</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CSVStream.cpp">
+      <Filter>ソース ファイル\util\device</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Renderer.cpp">
+      <Filter>ソース ファイル\util\device</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Sound.cpp">
+      <Filter>ソース ファイル\util\device</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Planet.cpp">
+      <Filter>ソース ファイル\gameobject</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Start.cpp">
+      <Filter>ソース ファイル\gameobject</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Goal.cpp">
+      <Filter>ソース ファイル\gameobject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -128,37 +197,10 @@
     <ClInclude Include="Source\Point.h">
       <Filter>ヘッダー ファイル\util</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Renderer.h">
-      <Filter>ヘッダー ファイル\util</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Timer.h">
       <Filter>ヘッダー ファイル\util</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Sound.h">
-      <Filter>ヘッダー ファイル\util</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\CSVStream.h">
-      <Filter>ヘッダー ファイル\util</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GAMEOBJ_TYPE.h">
-      <Filter>ヘッダー ファイル\stage</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GameObjControl.h">
-      <Filter>ヘッダー ファイル\stage</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Rock.h">
-      <Filter>ヘッダー ファイル\stage</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Stage.h">
-      <Filter>ヘッダー ファイル\stage</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Star.h">
-      <Filter>ヘッダー ファイル\stage</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GamaObject.h">
-      <Filter>ヘッダー ファイル\stage</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Player.h">
       <Filter>ヘッダー ファイル\stage</Filter>
     </ClInclude>
     <ClInclude Include="Source\Scroll.h">
@@ -166,6 +208,72 @@
     </ClInclude>
     <ClInclude Include="Source\StageSelect.h">
       <Filter>ヘッダー ファイル\stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Animation.h">
+      <Filter>ヘッダー ファイル\util\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AnimationTimer.h">
+      <Filter>ヘッダー ファイル\util\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GamaObject.h">
+      <Filter>ヘッダー ファイル\gameobject</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GAMEOBJ_TYPE.h">
+      <Filter>ヘッダー ファイル\gameobject</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameObjControl.h">
+      <Filter>ヘッダー ファイル\gameobject</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Player.h">
+      <Filter>ヘッダー ファイル\gameobject</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Rock.h">
+      <Filter>ヘッダー ファイル\gameobject</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Star.h">
+      <Filter>ヘッダー ファイル\gameobject</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Star_slashdown.h">
+      <Filter>ヘッダー ファイル\gameobject\star</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Star_wave.h">
+      <Filter>ヘッダー ファイル\gameobject\star</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Star_eight.h">
+      <Filter>ヘッダー ファイル\gameobject\star</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Star_parabola.h">
+      <Filter>ヘッダー ファイル\gameobject\star</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Star_pendulum.h">
+      <Filter>ヘッダー ファイル\gameobject\star</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Star_cricle.h">
+      <Filter>ヘッダー ファイル\gameobject\star</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\IStarMove.h">
+      <Filter>ヘッダー ファイル\gameobject\star</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Circle.h">
+      <Filter>ヘッダー ファイル\util\diagram</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MyRectangle.h">
+      <Filter>ヘッダー ファイル\util\diagram</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CSVStream.h">
+      <Filter>ヘッダー ファイル\util\device</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Renderer.h">
+      <Filter>ヘッダー ファイル\util\device</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Sound.h">
+      <Filter>ヘッダー ファイル\util\device</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Planet.h">
+      <Filter>ヘッダー ファイル\gameobject</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Goal.h">
+      <Filter>ヘッダー ファイル\gameobject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

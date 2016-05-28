@@ -15,5 +15,7 @@ public:
 	bool IsEnd();
 private:
 	bool isEnd;
+	int index;//‘I‘ğˆŠÇ—
+	bool boolSpace;//
 };
 #endif

@@ -1,18 +1,21 @@
 #include "Rock.h"
-Rock::Rock(const std::string& textrue, const GSvector2* position)
-	:GameObject(textrue, &Point(2,1), ROCK, position)
+Rock::Rock(const std::string& textrue, const GSvector2& position)
+	:GameObject(textrue, MyRectangle(position, position+GSvector2(64*4, 64*2)), ROCK)
 {
 }
 
 Rock::~Rock()
 {
 }
-void Rock::updata(MapData* mapdata)
+void Rock::updata()
 {
-	//castLocation(&position, &location);
-	//mapUpdata(mapdata, &location, SPACE);
 }
-bool Rock::collision(int nextPosType)
+void Rock::collision(const GameObject* obj)
 {
-	return false;
+
+}
+void Rock::respawn(const GSvector2& pos,GSvector2* vel)
+{
+	vel->x =rect.getMin().x-pos.x;
+	vel->y = 50- pos.y;
 }
