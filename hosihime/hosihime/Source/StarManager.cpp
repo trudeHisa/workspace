@@ -17,6 +17,11 @@ StarManger::StarManger()
 }
 StarManger::~StarManger()
 {
+	for each (Star* star in stars)
+	{
+		delete star;
+	}
+	//stars
 }
 void StarManger::initialize(StarMediator* _mediator)
 {

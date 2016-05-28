@@ -62,6 +62,7 @@ void Scroll::moving(const GSvector2& velocity)
 
 		position1.x = calc.wrap(position1.x - velocity.x, -windowSize.x, windowSize.x);
 		position2.x = calc.wrap(position2.x - velocity.x, -windowSize.x, windowSize.x);
+
 		break;
 	case HORIZONTAL:
 		movingAmount.y += velocity.y;
@@ -71,6 +72,7 @@ void Scroll::moving(const GSvector2& velocity)
 		break;
 	case OMNIDIRECTIONAL:
 		movingAmount += velocity;
+
 		warp(&position1, velocity);
 		warp(&position2, velocity);
 		break;

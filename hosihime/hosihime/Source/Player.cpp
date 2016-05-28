@@ -54,7 +54,7 @@ void Player::updata()
 	{
 		scroll->moving(velocity);
 	}
-	//*gsFrameTimerGetTime()
+	//gsFrameTimerGetTime()
 	rect.translate(velocity);
 }
 void Player::respawn()

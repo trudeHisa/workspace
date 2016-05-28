@@ -1,5 +1,6 @@
 #include "GameObjControl.h"
 #include "Player.h"
+#include "Star.h"
 #include <algorithm>
 
 GameObjControl::GameObjControl()
@@ -64,7 +65,7 @@ void GameObjControl::add(GameObject* object)
 
 
 //‰æ–Ê“à‚É“ü‚Á‚Ä‚¢‚é¯‚ğobjControl‚É“n‚·
-void GameObjControl::add_Star(starsContainer& stars)
+void GameObjControl::add_Star(Stars_inScreen& stars)
 {
 	for each(Star* star in stars)
 	{

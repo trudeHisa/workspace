@@ -10,8 +10,8 @@ Star::Star(const std::string& textrue, const MyRectangle& rect,IStarMove* move)
 
 Star::~Star()
 {
-	delete move;
-	move = NULL;
+	//delete move;
+	//move = NULL;
 }
 void Star::finish()
 {
