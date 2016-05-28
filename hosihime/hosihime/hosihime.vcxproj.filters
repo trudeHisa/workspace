@@ -168,6 +168,9 @@
     <ClCompile Include="Source\StarDataStream.cpp">
       <Filter>ソース ファイル\util\device</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Star_nomove.cpp">
+      <Filter>ソース ファイル\gameobject\star\move</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Definition.h">
@@ -289,6 +292,9 @@
     </ClInclude>
     <ClInclude Include="Source\STARTYPE.h">
       <Filter>ヘッダー ファイル\gameobject\star</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Star_nomove.h">
+      <Filter>ヘッダー ファイル\gameobject\star\move</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

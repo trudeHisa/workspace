@@ -77,10 +77,6 @@ void Stage::objCreate(int x, int y, Array2D<bool>* check)
 	GSvector2 fsize;
 	switch (mapdata(y, x))
 	{
-		/*case STAR:
-			size = Point(1, 1);//ílÇÕ5ÇäÓèÄÅH waveÇÃGSvector2ÇÃyÇÕ0Ç≈
-			control.add(new Star("star.bmp",GSvector2(x * BLOCKSIZE,y* BLOCKSIZE),new Star_wave(GSvector2(3,3),5)));
-			break;*/
 	case ROCK:
 		size = Point(4, 2);
 		fsize = GSvector2(size.x*BLOCKSIZE, size.y*BLOCKSIZE);
@@ -92,7 +88,7 @@ void Stage::objCreate(int x, int y, Array2D<bool>* check)
 		control.add(new Player("player.bmp", MyRectangle(pos, fsize), &scroll));
 		break;
 	case PLANET:
-		size = Point(1, 1);
+		size = Point(2,2);
 		fsize = GSvector2(size.x*BLOCKSIZE, size.y*BLOCKSIZE);
 		control.add(new ImMovable("planet.bmp", MyRectangle(pos, fsize), PLANET));
 		break;

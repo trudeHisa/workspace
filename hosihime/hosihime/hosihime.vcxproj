@@ -38,6 +38,7 @@
     <ClCompile Include="Source\StarManager.cpp" />
     <ClCompile Include="Source\Star_cricle.cpp" />
     <ClCompile Include="Source\Star_eight.cpp" />
+    <ClCompile Include="Source\Star_nomove.cpp" />
     <ClCompile Include="Source\Star_paradola.cpp" />
     <ClCompile Include="Source\Star_pendulum.cpp" />
     <ClCompile Include="Source\Star_slashdown.cpp" />
@@ -80,6 +81,7 @@
     <ClInclude Include="Source\STARTYPE.h" />
     <ClInclude Include="Source\Star_cricle.h" />
     <ClInclude Include="Source\Star_eight.h" />
+    <ClInclude Include="Source\Star_nomove.h" />
     <ClInclude Include="Source\Star_parabola.h" />
     <ClInclude Include="Source\Star_pendulum.h" />
     <ClInclude Include="Source\Star_slashdown.h" />

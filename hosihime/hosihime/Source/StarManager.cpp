@@ -9,6 +9,8 @@
 #include "Star_pendulum.h"
 #include "Star_slashdown.h"
 #include "Star_wave.h"
+#include "Star_nomove.h"
+
 #include "StarDataStream.h"
 
 #include "STARTYPE.h"
@@ -49,6 +51,9 @@ IStarMove* StarManger::createMove(std::vector<std::string>& param)
 		break;
 	case WAVE:
 		return new Star_wave(GSvector2(stof(param[7]), stof(param[8])), stof(param[9]));
+		break;
+	case NOMOVE:
+		return new Star_nomove();
 		break;
 	default:
 		return NULL;

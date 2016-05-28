@@ -12,7 +12,8 @@ enum MOVETYPE
 	PARABOLA=2,
 	PENDULAM=3,
 	SLASHDOWN=4,
-	WAVE=5
+	WAVE=5,
+	NOMOVE=6
 };
 
 #endif
