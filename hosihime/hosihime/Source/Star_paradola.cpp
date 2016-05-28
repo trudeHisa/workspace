@@ -2,11 +2,15 @@
 #define PAI 3.14f
 //•ú•¨
 Star_paradola::Star_paradola(float speed)
-	:spd(speed)
+	:spd(speed), rot(0)
 {
-	rot = 0;
-}
 
+}
+Star_paradola::Star_paradola(const Star_paradola& other)
+	: spd(other.spd), rot(0)
+{
+
+}
 Star_paradola::~Star_paradola()
 {
 
@@ -15,8 +19,8 @@ Star_paradola::~Star_paradola()
 GSvector2 Star_paradola::moving()
 {
 	rot -= 0.2;
-	
-	GSvector2 velocity(0,0);
+
+	GSvector2 velocity(0, 0);
 	velocity.x = cos(rot * PAI / 180) * spd;
 	velocity.y = -sin(rot * PAI / 180) * spd;
 
@@ -24,4 +28,8 @@ GSvector2 Star_paradola::moving()
 	if ((rot -= 0.1) < -90) rot = -90;
 
 	return velocity;
+}
+IStarMove* Star_paradola::clone()
+{
+	return new Star_paradola(*this);
 }

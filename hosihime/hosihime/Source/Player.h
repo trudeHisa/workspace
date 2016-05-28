@@ -8,9 +8,10 @@ class Star;
 class Player :public GameObject
 {
 public:
-	Player(const std::string& textrue, const GSvector2& position,Scroll* scroll);
+	Player(const std::string& textrue, const MyRectangle& rect, Scroll* scroll);
 	~Player();
 	void updata();
+    void initialize();
 	//starÇ…èÊÇÍÇΩÇ©ÅH
 	//bool setStar(GameObject* _star);
 	void collision(const GameObject* obj);

@@ -2,13 +2,15 @@
 #define _GAMEOBJCONTROL_H_
 
 #include "GameObject.h"
+#include "StarManager.h"
+#include "StarMediator.h"
 #include <vector>
 #include <memory>
 
 typedef std::shared_ptr<GameObject> GameObj_Ptr;
 typedef std::vector<GameObj_Ptr> GameObjs;
 class Player;
-class GameObjControl
+class GameObjControl :public StarMediator
 {
 public:
 	GameObjControl();
@@ -18,6 +20,8 @@ public:
 	void add(GameObject* object);
 	void draw(Renderer& renderer, const Scroll* scroll);
 	void finish();
+	void add_Star(starsContainer& stars);
+	void reqestClone(Star* starclone);
 	bool isDeadPlayer();
 private:
 	void allCollision();

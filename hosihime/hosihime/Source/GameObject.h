@@ -15,7 +15,7 @@ class GameObject
 public:
 	GameObject(const std::string& textrue, const MyRectangle& rect,
 		const GAMEOBJ_TYPE type);
-	~GameObject();
+	virtual ~GameObject();
 	virtual void updata() = 0;
 	virtual void draw(Renderer& renderer,const Scroll* scroll);
 	virtual void initialize();

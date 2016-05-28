@@ -6,7 +6,11 @@ Star_pendulum::Star_pendulum(float speed, float shwidth)
 {
 	rot = 0;
 }
+Star_pendulum::Star_pendulum(const Star_pendulum& other)
+	: spd(other.spd), sindw(other.sindw), rot(0)
+{
 
+}
 Star_pendulum::~Star_pendulum()
 {
 
@@ -21,4 +25,9 @@ GSvector2 Star_pendulum::moving()
 	velocity.y = -sin(rot * PAI / 180) * sindw;
 
 	return velocity;
+}
+
+IStarMove* Star_pendulum::clone()
+{
+	return new Star_pendulum(*this);
 }

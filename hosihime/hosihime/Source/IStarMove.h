@@ -6,6 +6,7 @@ class IStarMove
 {
 public:
 	virtual GSvector2 moving() = 0;
+	virtual IStarMove* clone() = 0;
 };
 
 #endif

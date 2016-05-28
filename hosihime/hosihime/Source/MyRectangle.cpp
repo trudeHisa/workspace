@@ -1,60 +1,59 @@
 #include "MyRectangle.h"
 //
-MyRectangle::MyRectangle(float left, float top, float right, float bottom)
-	:min_(left,top), max_(right,bottom)
+MyRectangle::MyRectangle(float left, float top, float width, float height)
+	:position(left,top), size(width,height)
 {
 
 }
-MyRectangle::MyRectangle(const GSvector2& min, const GSvector2& max)
-	: min_(min), max_(max)
+MyRectangle::MyRectangle(const GSvector2& position, const GSvector2& size)
+	: position(position), size(size)
 {
 
 }
+
 MyRectangle::~MyRectangle()
 {
 
 }
 
 //点が矩形内にあるか
-const bool MyRectangle::contains(const GSvector2& position)const
+const bool MyRectangle::contains(const GSvector2& _position)const
 {
-	return (min_.x <= position.x&&position.x <= max_.x) &&
-		(min_.y <= position.y&&position.y <= max_.y);
+	return (position.x <= _position.x&&_position.x <= (position.x+size.x)) &&
+		(position.y <= _position.y&&_position.y <=( position.y+size.y));
 }
 //矩形同士が重なっているか
 const bool MyRectangle::intersects(const MyRectangle& other)const
 {
-	if (min_.x > other.max_.x)return false;
-	if (max_.x < other.min_.x)return false;
-	if (min_.y > other.max_.y)return false;
-	if (max_.y < other.min_.y)return false;
+	if (position.x > (other.position.x+other.size.x))return false;
+	if ((position.x+size.x) < other.position.x)return false;
+	if (position.y > (other.position.y+other.size.y))return false;
+	if ((position.y+size.y) < other.position.y)return false;
 	return true;
 }
 //平行移動
-void MyRectangle::translate(const GSvector2& position)
+void MyRectangle::translate(const GSvector2& _position)
 {
-	min_ += position;
-	max_ += position;
+	position += _position;
 }
 //サイズ拡張
-void MyRectangle::expand(const GSvector2& size)
+void MyRectangle::expand(const GSvector2& _size)
 {
-	min_ -= size;
-	max_ += size;
+	size += _size;
 }
 const float MyRectangle::getWidth()const
 {
-	return max_.x - min_.x;
+	return size.x;
 }
 const float MyRectangle::getHeight()const
 {
-	return max_.y - min_.y;
+	return size.y;
 }
-const GSvector2& MyRectangle::getMin()const
+const GSvector2& MyRectangle::getPosition()const
 {
-	return min_;
+	return position;
 }
-const GSvector2& MyRectangle::getMax()const
+const GSvector2& MyRectangle::getSize()const
 {
-	return max_;
+	return size;
 }

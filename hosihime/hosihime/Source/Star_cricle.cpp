@@ -2,11 +2,14 @@
 #define PAI 3.14f
 //‰~
 Star_circle::Star_circle(float speed)
-	:spd(speed)
+	:spd(speed), rot(0)
 {
-	rot = 0;
 }
+Star_circle::Star_circle(const Star_circle& other)
+	: spd(other.spd), rot(0)
+{
 
+}
 Star_circle::~Star_circle()
 {
 
@@ -21,4 +24,9 @@ GSvector2 Star_circle::moving()
 	velocity.y = -sin(rot * PAI / 90) * spd;
 
 	return velocity;
+}
+
+IStarMove* Star_circle::clone()
+{
+	return new Star_circle(*this);
 }

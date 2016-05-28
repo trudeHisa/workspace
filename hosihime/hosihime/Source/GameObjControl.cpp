@@ -12,12 +12,13 @@ GameObjControl::~GameObjControl()
 }
 void GameObjControl::updata()
 {
+	remove();
 	for each (GameObj_Ptr obj in objs)
 	{
 		obj->updata();
 	}
 	allCollision();
-	remove();
+//	remove();
 }
 void GameObjControl::allCollision()
 {
@@ -53,13 +54,24 @@ void GameObjControl::remove()
 }
 void GameObjControl::inisialize()
 {
-	objs.clear();
+	objs.clear(); 
 }
 void GameObjControl::add(GameObject* object)
 {
 	object->initialize();
 	objs.push_back(GameObj_Ptr(object));
 }
+
+
+//‰æ–Ê“à‚É“ü‚Á‚Ä‚¢‚é¯‚ğobjControl‚É“n‚·
+void GameObjControl::add_Star(starsContainer& stars)
+{
+	for each(Star* star in stars)
+	{
+		add((GameObject*)star);
+	}
+}
+
 void GameObjControl::draw(Renderer& renderer, const Scroll* scroll)
 {
 	for each (GameObj_Ptr obj in objs)
@@ -82,4 +94,11 @@ bool GameObjControl::isDeadPlayer()
 void GameObjControl::finish()
 {
 
+}
+
+void GameObjControl::reqestClone(Star* starclone)
+{
+	//‰ŠúˆÊ’u‚ª‰æ–Ê“à‚È‚ç
+	//if ()
+	add((GameObject*)starclone);
 }
