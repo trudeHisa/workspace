@@ -34,6 +34,7 @@
     <ClCompile Include="Source\Stage.cpp" />
     <ClCompile Include="Source\StageSelect.cpp" />
     <ClCompile Include="Source\Star.cpp" />
+    <ClCompile Include="Source\StarDataStream.cpp" />
     <ClCompile Include="Source\StarManager.cpp" />
     <ClCompile Include="Source\Star_cricle.cpp" />
     <ClCompile Include="Source\Star_eight.cpp" />
@@ -73,8 +74,10 @@
     <ClInclude Include="Source\Stage.h" />
     <ClInclude Include="Source\StageSelect.h" />
     <ClInclude Include="Source\Star.h" />
+    <ClInclude Include="Source\StarDataStream.h" />
     <ClInclude Include="Source\StarManager.h" />
     <ClInclude Include="Source\StarMediator.h" />
+    <ClInclude Include="Source\STARTYPE.h" />
     <ClInclude Include="Source\Star_cricle.h" />
     <ClInclude Include="Source\Star_eight.h" />
     <ClInclude Include="Source\Star_parabola.h" />

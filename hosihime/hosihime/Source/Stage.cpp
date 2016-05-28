@@ -8,10 +8,6 @@
 
 #include "ImMovable.h"
 
-#include "Star_cricle.h"
-#include "Star_pendulum.h"
-#include "Star_wave.h"
-#include "Star_eight.h"
 Stage::Stage(const std::string& csvname)
 	:scroll(&Point(WINDOW_WIDTH, WINDOW_HEIGHT)), timer(30, 30)
 	, resTime(1, 10)

@@ -165,6 +165,9 @@
     <ClCompile Include="Source\ImMovable.cpp">
       <Filter>ソース ファイル\gameobject</Filter>
     </ClCompile>
+    <ClCompile Include="Source\StarDataStream.cpp">
+      <Filter>ソース ファイル\util\device</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Definition.h">
@@ -280,6 +283,12 @@
     </ClInclude>
     <ClInclude Include="Source\ImMovable.h">
       <Filter>ヘッダー ファイル\gameobject</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\StarDataStream.h">
+      <Filter>ヘッダー ファイル\util\device</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\STARTYPE.h">
+      <Filter>ヘッダー ファイル\gameobject\star</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
