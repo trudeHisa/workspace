@@ -57,3 +57,15 @@ void StageSelect::finish()
 {
 
 }
+
+void  StageSelect::debugMapCreate(Stage** stage)
+{
+	*stage = NULL;
+	std::string datanames[3] =
+	{
+		"testmap.csv",
+		"testmap.csv",
+		"testmap.csv"
+	};
+	*stage = new Stage("mapdata\\\\" + datanames[active]);
+}

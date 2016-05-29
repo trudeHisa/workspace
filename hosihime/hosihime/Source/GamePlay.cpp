@@ -40,6 +40,11 @@ void GamePlay::Update()
 		}
 		break;
 	case PLAY:
+		if (gsGetKeyTrigger(GKEY_R))
+		{
+			stageSelect.debugMapCreate(&stage);
+			stage->initialize();
+		}
 		stage->updata();
 		isEnd=stage->getIsEnd();
 		break;

@@ -33,8 +33,8 @@ void Stage::updata()
 {
 	starManager.updata();
 	control.updata();
-	timer.update();
-	resTime.update();
+	//timer.update();
+	//resTime.update();
 	/*if (resTime.isEnd())
 	{
 	//IStarMove* s[]=

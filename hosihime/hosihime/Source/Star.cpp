@@ -10,8 +10,8 @@ Star::Star(const std::string& textrue, const MyRectangle& rect,IStarMove* move)
 
 Star::~Star()
 {
-	//delete move;
-	//move = NULL;
+	delete move;
+	move = NULL;
 }
 void Star::finish()
 {
@@ -27,10 +27,10 @@ void Star::initialize()
 void Star::updata()
 {
 	velocity = move->moving();
-	//velocity = GSvector2(3,0);
 	//*gsFrameTimerGetTime()
 	rect.translate(velocity);
-	if (WINDOW_HEIGHT + rect.getHeight() < rect.getPosition().y)
+	if (rect.getPosition().y >WINDOW_HEIGHT + rect.getHeight() * 2
+		|| rect.getPosition().y< - rect.getHeight() * 2)
 	{
 		isDead = true;
 	}

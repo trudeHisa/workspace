@@ -11,6 +11,8 @@ public:
 	bool updata(Stage** stage);
 	void draw(Renderer& renderer);
 	void finish();
+
+	void debugMapCreate(Stage** stage);
 private:
 	void select();
 	bool stageCreate(Stage** stage);
