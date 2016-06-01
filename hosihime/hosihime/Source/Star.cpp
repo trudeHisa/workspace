@@ -27,7 +27,6 @@ void Star::initialize()
 void Star::updata()
 {
 	velocity = move->moving();
-	//*
 	rect.translate(velocity*gsFrameTimerGetTime());
 	if (rect.getPosition().y >WINDOW_HEIGHT + rect.getHeight() * 2
 		|| rect.getPosition().y< - rect.getHeight() * 2)
