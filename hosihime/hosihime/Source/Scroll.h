@@ -24,6 +24,7 @@ public:
 
 	void setMode(SCROLLMODE _mode);
 	const SCROLLMODE getMode()const;
+	void oneSizeWarp(float* y1, float* y2, float margin, float winsize);
 
 	void stop();
 	void start();
