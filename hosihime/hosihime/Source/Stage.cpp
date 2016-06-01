@@ -4,13 +4,13 @@
 
 #include "Star.h"
 #include "Player.h"
-#include "Rock.h"
-
+#include "Respawn.h"
 #include "ImMovable.h"
 
-Stage::Stage(const std::string& csvname)
-	:scroll(&Point(WINDOW_WIDTH, WINDOW_HEIGHT)), timer(30, 30)
-	, resTime(1, 10)
+#include "Input.h"
+Stage::Stage(const std::string& csvname,const Input& input)
+	:scroll(&Point(WINDOW_WIDTH, WINDOW_HEIGHT)), timer(30,3600)
+	, resTime(1, 10), input(input)
 {
 	CSVStream stream;
 	stream.input(&mapdata, csvname.c_str());
@@ -33,7 +33,7 @@ void Stage::updata()
 {
 	starManager.updata();
 	control.updata();
-	//timer.update();
+	timer.update();
 	//resTime.update();
 	/*if (resTime.isEnd())
 	{
@@ -77,15 +77,15 @@ void Stage::objCreate(int x, int y, Array2D<bool>* check)
 	GSvector2 fsize;
 	switch (mapdata(y, x))
 	{
-	case ROCK:
+	case RESPAWN:
 		size = Point(4, 2);
 		fsize = GSvector2(size.x*BLOCKSIZE, size.y*BLOCKSIZE);
-		control.add(new Rock("rock.bmp", MyRectangle(pos,fsize)));
+		control.add(new Respawn("rock.bmp", MyRectangle(pos, fsize)));
 		break;
 	case PLAYER:
 		size = Point(1, 1);
 		fsize = GSvector2(size.x*BLOCKSIZE, size.y*BLOCKSIZE);
-		control.add(new Player("player.bmp", MyRectangle(pos, fsize), &scroll));
+		control.add(new Player("player.bmp", MyRectangle(pos, fsize), &scroll,input));
 		break;
 	case PLANET:
 		size = Point(2,2);

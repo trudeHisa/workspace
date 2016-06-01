@@ -2,20 +2,20 @@
 #define _STAGESELECT_H_
 #include "Renderer.h"
 class Stage;
+class Input;
 class StageSelect
 {
 public:
-	StageSelect();
+	StageSelect(const Input& input);
 	void initialize();
 	//trueÇ»ÇÁStageê∂ê¨Ç≥ÇÍÇΩ
-	bool updata(Stage** stage);
+	void updata();
 	void draw(Renderer& renderer);
 	void finish();
-
-	void debugMapCreate(Stage** stage);
+	Stage* createStage();
 private:
 	void select();
-	bool stageCreate(Stage** stage);
+	const Input& input;
 	int active;
 };
 #endif

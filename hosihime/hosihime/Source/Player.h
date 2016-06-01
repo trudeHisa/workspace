@@ -2,37 +2,37 @@
 #define _PLAYER_H_
 #include <gslib.h>
 #include "GameObject.h"
-class Rock;
-class Star;
+#include "Timer.h"
+class Input;
 #define GSfloat gravity 3;
+
 class Player :public GameObject
 {
 public:
-	Player(const std::string& textrue, const MyRectangle& rect, Scroll* scroll);
+	Player(const std::string& textrue, const MyRectangle& rect, Scroll* scroll, const Input& input);
 	~Player();
 	void updata();
     void initialize();
-	//starÇ…èÊÇÍÇΩÇ©ÅH
-	//bool setStar(GameObject* _star);
 	void collision(const GameObject* obj);
 private:
-	void respawn();
-	void starDestroy();
-	void freeFall();
 	void moving();
-	bool jump();
-	void jumpstart();
-	void moveLR();
+	void gravity();
+	void jumpStart();
+	void jump();
+	void moveHorizontal();
+	bool respawn();
 
+	void collisionGround(const GameObject* obj);
+	void collisionStar(const GameObject* obj);
+	void collisionRespawn(const GameObject* obj);
 private:
-	Star* star;
+	const Input& input;
 	Scroll* scroll;
-	Rock* rock;
-
-	bool isGround=false;
-	bool jflag = false;
-	int y_temp = 0;
-	int y_prev = 0;
-	int count = 0;
+	
+	Timer jumpTimer;
+	float speed;
+	GSvector2 respawnPos;
+	bool isGround;
+	bool isJump;
 };
 #endif

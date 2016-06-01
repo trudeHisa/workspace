@@ -21,13 +21,14 @@
     <ClCompile Include="Source\GameObject.cpp" />
     <ClCompile Include="Source\GamePlay.cpp" />
     <ClCompile Include="Source\ImMovable.cpp" />
+    <ClCompile Include="Source\Input.cpp" />
     <ClCompile Include="Source\Load.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\Point.cpp" />
     <ClCompile Include="Source\MyRectangle.cpp" />
     <ClCompile Include="Source\Renderer.cpp" />
-    <ClCompile Include="Source\Rock.cpp" />
+    <ClCompile Include="Source\Respawn.cpp" />
     <ClCompile Include="Source\SceneManager.cpp" />
     <ClCompile Include="Source\Scroll.cpp" />
     <ClCompile Include="Source\Sound.cpp" />
@@ -61,6 +62,7 @@
     <ClInclude Include="Source\GAMEOBJ_TYPE.h" />
     <ClInclude Include="Source\GamePlay.h" />
     <ClInclude Include="Source\ImMovable.h" />
+    <ClInclude Include="Source\Input.h" />
     <ClInclude Include="Source\IScene.h" />
     <ClInclude Include="Source\IStarMove.h" />
     <ClInclude Include="Source\Load.h" />
@@ -68,7 +70,7 @@
     <ClInclude Include="Source\Point.h" />
     <ClInclude Include="Source\MyRectangle.h" />
     <ClInclude Include="Source\Renderer.h" />
-    <ClInclude Include="Source\Rock.h" />
+    <ClInclude Include="Source\Respawn.h" />
     <ClInclude Include="Source\SceneManager.h" />
     <ClInclude Include="Source\Scroll.h" />
     <ClInclude Include="Source\Sound.h" />

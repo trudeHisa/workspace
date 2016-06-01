@@ -2,7 +2,9 @@
 //タイトルクラスコンストラクタ
 #include "Point.h"
 #include "Calculate.h"
-Title::Title()
+#include "Input.h"
+Title::Title(const Input& input)
+	:input(input)
 {
 }
 Title::~Title()
@@ -19,18 +21,18 @@ void Title::Update()
 	//メニュー選択の処理
 	if (boolSpace)
 	{
-		if (gsGetKeyTrigger(GKEY_UPARROW))
+		if (input.getUpTrigger())
 		{
 			index -= 1;
 		}
 
-		if (gsGetKeyTrigger(GKEY_DOWNARROW))
+		if (input.getDownTrigger())
 		{
 			index += 1;
 		}
 		Calculate<int>calc;
 		index = calc.wrap(index, 0, 3);
-		isEnd = !!gsGetKeyTrigger(GKEY_SPACE);
+		isEnd = input.getActionTrigger();
 	}
 
 	//スペースキーを押すとメニューを表示

@@ -3,14 +3,14 @@
 
 #include "GameObject.h"
 
-class Rock:public GameObject
+class Respawn:public GameObject
 {
 public:
-	Rock(const std::string& textrue,const MyRectangle& rect);
-	~Rock();
+	Respawn(const std::string& textrue, const MyRectangle& rect);
+	~Respawn();
 	void updata();
 	void collision(const GameObject* obj);
-	void respawn(const GSvector2& pos,GSvector2* vel);
+	void setRespawn(GSvector2* pos);
 private:
 };
 #endif

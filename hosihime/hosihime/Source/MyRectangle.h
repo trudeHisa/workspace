@@ -14,6 +14,9 @@ public:
 	const bool intersects(const MyRectangle& other)const;
 	//平行移動
 	void translate(const GSvector2& _position);
+	//resetposition
+	void resetPosition(const GSvector2& _position);
+
 	//サイズ拡張
 	void expand(const GSvector2& _size);
 

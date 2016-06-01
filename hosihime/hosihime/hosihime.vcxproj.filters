@@ -120,9 +120,6 @@
     <ClCompile Include="Source\Player.cpp">
       <Filter>ソース ファイル\gameobject</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Rock.cpp">
-      <Filter>ソース ファイル\gameobject</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Star.cpp">
       <Filter>ソース ファイル\gameobject</Filter>
     </ClCompile>
@@ -170,6 +167,12 @@
     </ClCompile>
     <ClCompile Include="Source\Star_nomove.cpp">
       <Filter>ソース ファイル\gameobject\star\move</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Input.cpp">
+      <Filter>ソース ファイル\util\device</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Respawn.cpp">
+      <Filter>ソース ファイル\gameobject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -233,9 +236,6 @@
     <ClInclude Include="Source\Player.h">
       <Filter>ヘッダー ファイル\gameobject</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Rock.h">
-      <Filter>ヘッダー ファイル\gameobject</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Star.h">
       <Filter>ヘッダー ファイル\gameobject</Filter>
     </ClInclude>
@@ -295,6 +295,12 @@
     </ClInclude>
     <ClInclude Include="Source\Star_nomove.h">
       <Filter>ヘッダー ファイル\gameobject\star\move</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Input.h">
+      <Filter>ヘッダー ファイル\util\device</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Respawn.h">
+      <Filter>ヘッダー ファイル\gameobject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

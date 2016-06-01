@@ -50,6 +50,11 @@ void Scroll::warp(GSvector2* pos,const GSvector2& velocity)
 	
 	pos->y = calc.wrap(pos->y - velocity.y, -windowSize.y, windowSize.y);
 }
+void Scroll::reSetMoveing(const GSvector2& position)
+{
+	movingAmount = position;
+}
+
 //Scrollèàóù
 void Scroll::moving(const GSvector2& velocity)
 {
@@ -58,23 +63,23 @@ void Scroll::moving(const GSvector2& velocity)
 	switch (mode)
 	{
 	case VERTICAL:
-		movingAmount.x += velocity.x;
+		movingAmount.x = velocity.x;
 
-		position1.x = calc.wrap(position1.x - velocity.x, -windowSize.x, windowSize.x);
-		position2.x = calc.wrap(position2.x - velocity.x, -windowSize.x, windowSize.x);
+		//position1.x = calc.wrap(position1.x - velocity.x, -windowSize.x, windowSize.x);
+		//position2.x = calc.wrap(position2.x - velocity.x, -windowSize.x, windowSize.x);
 
 		break;
 	case HORIZONTAL:
-		movingAmount.y += velocity.y;
+		movingAmount.y = velocity.y;
 
-		position1.y = calc.wrap(position1.y - velocity.y, -windowSize.y, windowSize.y);
-		position2.y = calc.wrap(position2.y - velocity.y, -windowSize.y, windowSize.y);
+		//position1.y = calc.wrap(position1.y - velocity.y, -windowSize.y, windowSize.y);
+		//position2.y = calc.wrap(position2.y - velocity.y, -windowSize.y, windowSize.y);
 		break;
 	case OMNIDIRECTIONAL:
-		movingAmount += velocity;
+		movingAmount = velocity;
 
-		warp(&position1, velocity);
-		warp(&position2, velocity);
+		//warp(&position1, velocity);
+	//	warp(&position2, velocity);
 		break;
 	}
 }

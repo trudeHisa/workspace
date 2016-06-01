@@ -36,6 +36,10 @@ void MyRectangle::translate(const GSvector2& _position)
 {
 	position += _position;
 }
+void MyRectangle::resetPosition(const GSvector2& _position)
+{
+	position = _position;
+}
 //ÉTÉCÉYägí£
 void MyRectangle::expand(const GSvector2& _size)
 {

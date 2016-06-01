@@ -4,7 +4,8 @@
 #include "Sound.h"
 #include "Stage.h"
 #include "StageSelect.h"
-#include "Animation.h"
+class Input;
+//#include "Animation.h"
 enum PLAY_MODE
 {
 	SELECT, PLAY
@@ -12,7 +13,7 @@ enum PLAY_MODE
 class GamePlay :public IScene
 {
 public:
-	GamePlay(Sound* sound);
+	GamePlay(Sound* sound, const Input& input);
 	~GamePlay();
 	void Init();
 	void Update();
@@ -21,12 +22,13 @@ public:
 	Scene Next();
 	bool IsEnd();
 private:
-	Animation anim;
-	AnimationTimer animTimer;
+	/*Animation anim;
+	AnimationTimer animTimer;*/
 	bool isEnd;
 	Sound sound;
 	Stage* stage;
 	PLAY_MODE mode;
 	StageSelect stageSelect;
+	const Input& input;
 };
 #endif

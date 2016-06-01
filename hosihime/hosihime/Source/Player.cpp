@@ -1,176 +1,151 @@
 #include "Player.h"
+#include "Input.h"
 #include "Star.h"
-#include "Rock.h"
-Player::Player(const std::string& textrue, const MyRectangle& rect, Scroll* scroll)
+#include "Calculate.h"
+#include "Respawn.h"
+#define GRAVITY 10
+#define JUMPSPEED 0.3
+
+enum SPEED
+{
+	GROUND = 10, JUMP = 3
+};
+
+Player::Player(const std::string& textrue, const MyRectangle& rect, Scroll* scroll, const Input& input)
 	:GameObject(textrue, rect, PLAYER),
-	star(NULL), scroll(scroll), rock(NULL), jflag(false)
+	scroll(scroll), isJump(false),
+	input(input), jumpTimer(40, 40), speed(3)
+	, respawnPos(rect.getPosition())
 {
 }
 
 Player::~Player()
 {
-	delete rock;
-	rock = NULL;
-	delete star;
-	star = NULL;
 	delete scroll;
 	scroll = NULL;
 }
 void Player::initialize()
-{	
-	GameObject::initialize();
-	jflag = false;
-	star = NULL;
-	rock = NULL;
-}
-
-void Player::moving()
 {
-	if (jump() == true)
-	{
-		return;
-	}
-	if (!isGround)
-	{
-		velocity = GSvector2(0, 3);
-		if (star != NULL)
-		{
-			star->pickUp(&velocity);
-		}
-		starDestroy();
-		jumpstart();
-		return;
-	}
-	velocity = GSvector2(0, 0);
-	jumpstart();
-	moveLR();
+	speed = SPEED::GROUND;
+	GameObject::initialize();
+	jumpTimer.initialize();
+	isJump = false;
 }
 void Player::updata()
 {
-	//starDestroy();
 	moving();
-	respawn();
+	if (respawn())
+	{
+		return;
+	}
+	//scroll->moving(rect.getPosition()-GSvector2(100,0));
+	//
+	rect.translate(velocity*gsFrameTimerGetTime());
+}
+
+void Player::gravity()
+{
+	if (isGround)
+	{
+		velocity.y = 0;
+		return;
+	}
+	Calculate<float> calc;
+	velocity.x = calc.clamp(velocity.x - 0.05f, 0, 3);
+	velocity.y = GRAVITY;
+}
+void Player::moving()
+{
+	gravity();
+	jumpStart();
+	moveHorizontal();
+	jump();
+}
+void Player::jumpStart()
+{
 	if (!isGround)
 	{
-		scroll->moving(velocity);
+		return;
 	}
-	//gsFrameTimerGetTime()
-	rect.translate(velocity);
+	if (isJump)
+	{
+		return;
+	}
+	if (!input.getActionTrigger())
+	{
+		return;
+	}
+	isJump = true;
+	speed = SPEED::JUMP;
 }
-void Player::respawn()
+void Player::jump()
 {
-	if (WINDOW_HEIGHT + rect.getHeight() >= rect.getPosition().y)
+	if (!isJump)
 	{
 		return;
 	}
-	jflag = false;
-	if (rock != NULL)
+	velocity.y = -jumpTimer.getTime()*JUMPSPEED;
+	jumpTimer.update();
+	if (!jumpTimer.isEnd())
 	{
-		rock->respawn(rect.getPosition(), &velocity);
 		return;
 	}
-	velocity.x = 64 - rect.getPosition().x;
-	velocity.y = 50 - rect.getPosition().y;
+	isJump = false;
+	speed = SPEED::GROUND;
+	jumpTimer.initialize();
 }
-void Player::starDestroy()
+void Player::moveHorizontal()
 {
-	if (star == NULL)
+	if (!isGround && !isJump)
 	{
 		return;
 	}
-	if (!star->getIsDead())
-	{
-		return;
-	}
-	velocity = GSvector2(0, 1);
-	star = NULL;
-}void Player::jumpstart()
-{
-	if (!gsGetKeyTrigger(GKEY_SPACE))
-	{
-		return;
-	}
-	jflag = true;
-	y_prev = rect.getPosition().y;
-	velocity = GSvector2(0, -25);
-	star = NULL;
+	velocity.x = input.getVelocity().x * speed;
 }
-bool Player::jump()
+bool Player::respawn()
 {
-	if (jflag == false)
+	if (rect.getPosition().y <= WINDOW_HEIGHT + rect.getHeight())
 	{
 		return false;
 	}
-	if (gsGetKeyState(GKEY_RIGHT))
-	{
-		velocity.x = 3;
-	}
-	if (gsGetKeyState(GKEY_LEFT))
-	{
-		velocity.x = -3;
-	}
-	y_temp = rect.getPosition().y;
-	velocity.y = (rect.getPosition().y - y_prev) + 1;
-	y_prev = y_temp;
+	rect.resetPosition(respawnPos);
 	return true;
-}
-void Player::moveLR()
-{
-	if (gsGetKeyState(GKEY_RIGHT))
-	{
-		velocity = GSvector2(3, 0);
-	}
-	if (gsGetKeyState(GKEY_LEFT))
-	{
-		velocity = GSvector2(-3, 0);
-	}
 }
 void Player::collision(const GameObject* obj)
 {
-	if (obj->isSameType(STAR))
-	{
-		if (star == NULL)
-		{
-			star = (Star*)obj;
-			star->ride(&rect);
-		}
-		else
-		{
-			jflag = false;
-		}
-	}
-	if (obj->isSameType(ROCK))
-	{
-		rock = NULL;
-		rock = (Rock*)obj;		
-	}
-
-	if (obj->isSameType(ROCK))
-	{
-		isGround = true;
-		jflag = false;
-	}
-	else if (obj->isSameType(START))
-	{
-		isGround = true;
-		jflag = false;
-	}
-	else if (obj->isSameType(GOAL))
-	{
-		isGround = true;
-		jflag = false;
-	}
-	else
-	{
-		isGround = false;
-	}
-
-	if (obj->isSameType(GOAL))
-	{
-		isDead = true;
-	}
+	collisionStar(obj);
+	collisionRespawn(obj);
+	collisionGround(obj);
 }
-//bool Player::setStar(GameObject* _star)
-//{
-//	return false;
-//}
+void Player::collisionGround(const GameObject* obj)
+{
+	if (obj->isSameType(RESPAWN) ||
+		obj->isSameType(START) ||
+		obj->isSameType(GOAL))
+	{
+		isGround = true;
+		isJump = false;
+		return;
+	}
+	isGround = false;
+}
+void Player::collisionStar(const GameObject* obj)
+{
+	if (!obj->isSameType(STAR))
+	{
+		return;
+	}
+	Star* s = (Star*)&obj;
+	s->ride(&rect);
+	s->pickUp(&velocity);
+	scroll->start();
+}
+void Player::collisionRespawn(const GameObject* obj)
+{
+	if (!obj->isSameType(RESPAWN))
+	{
+		return;
+	}
+	Respawn* respawn = (Respawn*)obj;
+	respawn->setRespawn(&respawnPos);
+}

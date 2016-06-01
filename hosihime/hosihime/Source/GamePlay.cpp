@@ -1,48 +1,51 @@
 #include"GamePlay.h"
 #include "Stage.h"
-
-
-GamePlay::GamePlay(Sound* sound)
-:sound(*sound), stage(0), animTimer(5), anim(&animTimer)
+#include "Input.h"
+GamePlay::GamePlay(Sound* sound, const Input& input)
+:sound(*sound), stage(NULL),input(input),stageSelect(input)//, animTimer(5), anim(&animTimer)
 {
 
 }
 GamePlay::~GamePlay()
 {
 	delete stage;
-	stage = 0;
+	stage = NULL;
 }
 void GamePlay::Init()
 {
 	mode = SELECT;
 	isEnd = false;
 	stageSelect.initialize();
-	anim.addCell("D", 1, 3, 64, 64);
-	anim.addCell("A", 2, 3, 64, 64);
+	stage = NULL;
+	/*anim.addCell("D", 1, 3, 64, 64);
+	anim.addCell("A", 2, 3, 64, 64);*/
 }
 void GamePlay::Update()
 {
-	std::string n = "D";
+	/*std::string n = "D";
 	if (gsGetKeyState(GKEY_S))
 	{
 		n = "A";
 	}
 	animTimer.updata();
-	anim.updata(n);
+	anim.updata(n);*/
 	switch (mode)
 	{
 	case SELECT:
-		if (stageSelect.updata(&stage))
+		stageSelect.updata();
+		if (input.getActionTrigger())
 		{
+			stage = stageSelect.createStage();
 			stage->initialize();
 			stageSelect.finish();
 			mode = PLAY;
 		}
 		break;
 	case PLAY:
-		if (gsGetKeyTrigger(GKEY_R))
+		if (input.getDebugResetTrigger())
 		{
-			stageSelect.debugMapCreate(&stage);
+			stage = NULL;
+			stage = stageSelect.createStage();
 			stage->initialize();
 		}
 		stage->updata();

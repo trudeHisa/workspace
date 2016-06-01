@@ -1,5 +1,7 @@
 #include "Ending.h"
-Ending::Ending()
+#include "Input.h"
+Ending::Ending(const Input& input)
+	:input(input)
 {
 }
 Ending::~Ending()
@@ -11,7 +13,7 @@ void Ending::Init()
 }
 void Ending::Update()
 {
-	isEnd = !!gsGetKeyTrigger(GKEY_SPACE);
+	isEnd = input.getActionTrigger();
 }
 void Ending::Draw(Renderer& renderer)
 {	

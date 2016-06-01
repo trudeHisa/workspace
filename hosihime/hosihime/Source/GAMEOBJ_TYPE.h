@@ -12,7 +12,7 @@ enum GAMEOBJ_TYPE
 	STRA_NoMove=11,
 	STAR_NoMove_Crack=12, 
 	
-	ROCK =20,
+	RESPAWN = 20,
 	PLANET = 21,
 	MAGPIE=22,
 	START =30, 

@@ -1,7 +1,9 @@
 #include "StageSelect.h"
 #include "Stage.h"
 #include "Calculate.h"
-StageSelect::StageSelect()
+#include "Input.h"
+StageSelect::StageSelect(const Input& input)
+	:input(input)
 {
 
 }
@@ -9,39 +11,35 @@ void StageSelect::initialize()
 {
 	active = 0;
 }
-bool StageSelect::updata(Stage** stage)
+void StageSelect::updata()
 {
 	select();
-	return stageCreate(stage);
 }
 void StageSelect::select()
 {
-	if (gsGetKeyTrigger(GKEY_UP))
+	if (input.getUpTrigger())
 	{
 		active++;
 	}
-	if (gsGetKeyTrigger(GKEY_DOWN))
+	if (input.getDownTrigger())
 	{
 		active--;
 	}
 	Calculate<int> calc;
 	active = calc.wrap(active, 0, 3);
 }
-bool StageSelect::stageCreate(Stage** stage)
+
+Stage* StageSelect::createStage()
 {
-	if (!gsGetKeyTrigger(GKEY_SPACE))
-	{
-		return false;
-	}
 	std::string datanames[3] =
 	{
 		"testmap.csv",
 		"testmap.csv",
 		"testmap.csv"
 	};
-	*stage = new Stage("mapdata\\\\" + datanames[active]);
-	return true;
+	return new Stage("mapdata\\\\" + datanames[active],input);
 }
+
 void StageSelect::draw(Renderer& renderer) 
 {
 	GSvector2 poss[3] =
@@ -56,16 +54,4 @@ void StageSelect::draw(Renderer& renderer)
 void StageSelect::finish()
 {
 
-}
-
-void  StageSelect::debugMapCreate(Stage** stage)
-{
-	*stage = NULL;
-	std::string datanames[3] =
-	{
-		"testmap.csv",
-		"testmap.csv",
-		"testmap.csv"
-	};
-	*stage = new Stage("mapdata\\\\" + datanames[active]);
 }

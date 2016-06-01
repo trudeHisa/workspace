@@ -37,7 +37,7 @@ void Star::updata()
 }
 void Star::collision(const GameObject* obj)
 {
-	if (obj->isSameType(ROCK) || obj->isSameType(PLANET))
+	if (obj->isSameType(RESPAWN) || obj->isSameType(PLANET))
 	{
 		isDead = true;
 	}

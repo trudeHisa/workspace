@@ -8,10 +8,11 @@
 #include "Scroll.h"
 #include "Array2D.h"
 #include "Timer.h"
+class Input;
 class Stage
 {
 public:
-	Stage(const std::string& csvname);
+	Stage(const std::string& csvname,const Input& input);
 	~Stage();
 	void updata();
 	void initialize();
@@ -21,8 +22,10 @@ public:
 private:
 	void mapCreate();
 	void objCreate(int x, int y, Array2D<bool>* check);
-	Array2D<int> mapdata;
 	void Stars_IsInScreen();
+private:
+	Array2D<int> mapdata;
+	
 	GameObjControl control;
 	StarManger starManager;
 	Scroll scroll;
@@ -30,5 +33,7 @@ private:
 	Timer timer;
 	Timer resTime;
 	bool isEnd;
+
+	const Input& input;
 };
 #endif

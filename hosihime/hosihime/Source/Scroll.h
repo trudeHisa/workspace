@@ -16,6 +16,7 @@ public:
 	void initialize();
 	void updata();
 	void draw(Renderer& renderer);
+	void reSetMoveing(const GSvector2& position);
 	//Scroll処理
 	void moving(const GSvector2& velocity);
 	//ウィンドウの中にあるか
