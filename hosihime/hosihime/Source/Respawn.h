@@ -10,7 +10,7 @@ public:
 	~Respawn();
 	void updata();
 	void collision(const GameObject* obj);
-	void setRespawn(GSvector2* pos);
+	void setRespawn(float* posx);
 private:
 };
 #endif

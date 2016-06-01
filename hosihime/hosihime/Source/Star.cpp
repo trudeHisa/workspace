@@ -27,8 +27,8 @@ void Star::initialize()
 void Star::updata()
 {
 	velocity = move->moving();
-	//*gsFrameTimerGetTime()
-	rect.translate(velocity);
+	//*
+	rect.translate(velocity*gsFrameTimerGetTime());
 	if (rect.getPosition().y >WINDOW_HEIGHT + rect.getHeight() * 2
 		|| rect.getPosition().y< - rect.getHeight() * 2)
 	{
@@ -41,19 +41,12 @@ void Star::collision(const GameObject* obj)
 	{
 		isDead = true;
 	}
-
-}
-void Star::pickUp(GSvector2* vel)
-{
-	vel->x = velocity.x;
-	vel->y = velocity.y;
 }
 void Star::ride(MyRectangle* rect)
 {
-	GSvector2 vel(0,0);
-	vel.x = this->rect.getPosition().x - rect->getPosition().x;
-	vel.y = (this->rect.getPosition().y - rect->getHeight()) - rect->getPosition().y;
-	rect->translate(vel);
+	GSvector2 pos(this->rect.getPosition());
+	pos.y -= rect->getHeight();
+	rect->resetPosition(pos);
 }
 
 Star* Star::clone()

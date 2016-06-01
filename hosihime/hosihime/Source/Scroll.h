@@ -16,9 +16,8 @@ public:
 	void initialize();
 	void updata();
 	void draw(Renderer& renderer);
-	void reSetMoveing(const GSvector2& position);
 	//Scroll処理
-	void moving(const GSvector2& velocity);
+	void moving(const GSvector2& position, const GSvector2& offset=GSvector2(0,0));
 	//ウィンドウの中にあるか
 	const bool isInsideWindow(const GSvector2& pos, const GSvector2& size)const;
 	const GSvector2& getMovingAmount()const;
@@ -30,6 +29,9 @@ public:
 	void start();
 	bool isStop();
 private:
+	void verticalMoving(float x, float alpha);
+	void horizontalMoving(float y, float alpha);
+	void omnidirectionalMoving(const GSvector2& pos, float alpha);
 	void warp(GSvector2* pos,const GSvector2& velocity);
 private:
 	SCROLLMODE mode;

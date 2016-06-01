@@ -14,8 +14,7 @@ void Respawn::collision(const GameObject* obj)
 {
 
 }
-void Respawn::setRespawn(GSvector2* pos)
+void Respawn::setRespawn(float* posx)
 {
-	pos->x = rect.getPosition().x;
-	pos->y = rect.getPosition().y;
+	*posx= rect.getPosition().x;
 }

@@ -18,7 +18,6 @@ Player::Player(const std::string& textrue, const MyRectangle& rect, Scroll* scro
 	, respawnPos(rect.getPosition())
 {
 }
-
 Player::~Player()
 {
 	delete scroll;
@@ -26,10 +25,8 @@ Player::~Player()
 }
 void Player::initialize()
 {
-	speed = SPEED::GROUND;
 	GameObject::initialize();
-	jumpTimer.initialize();
-	isJump = false;
+	jumpEnd();
 }
 void Player::updata()
 {
@@ -38,11 +35,9 @@ void Player::updata()
 	{
 		return;
 	}
-	//scroll->moving(rect.getPosition()-GSvector2(100,0));
-	//
+	scroll->moving(rect.getPosition(),GSvector2(-256,0));
 	rect.translate(velocity*gsFrameTimerGetTime());
 }
-
 void Player::gravity()
 {
 	if (isGround)
@@ -63,7 +58,7 @@ void Player::moving()
 }
 void Player::jumpStart()
 {
-	if (!isGround)
+	if (!isGround&&!isRide)
 	{
 		return;
 	}
@@ -90,6 +85,10 @@ void Player::jump()
 	{
 		return;
 	}
+	jumpEnd();
+}
+void Player::jumpEnd()
+{
 	isJump = false;
 	speed = SPEED::GROUND;
 	jumpTimer.initialize();
@@ -102,7 +101,7 @@ void Player::moveHorizontal()
 	}
 	velocity.x = input.getVelocity().x * speed;
 }
-bool Player::respawn()
+const  bool Player::respawn()
 {
 	if (rect.getPosition().y <= WINDOW_HEIGHT + rect.getHeight())
 	{
@@ -113,7 +112,7 @@ bool Player::respawn()
 }
 void Player::collision(const GameObject* obj)
 {
-	collisionStar(obj);
+	isRide=collisionStar(obj);
 	collisionRespawn(obj);
 	collisionGround(obj);
 }
@@ -125,20 +124,22 @@ void Player::collisionGround(const GameObject* obj)
 	{
 		isGround = true;
 		isJump = false;
+		scroll->stop();
 		return;
 	}
+	scroll->start();
 	isGround = false;
 }
-void Player::collisionStar(const GameObject* obj)
+const bool Player::collisionStar(const GameObject* obj)
 {
 	if (!obj->isSameType(STAR))
 	{
-		return;
+		return false;
 	}
-	Star* s = (Star*)&obj;
+	Star* s = (Star*)obj;
 	s->ride(&rect);
-	s->pickUp(&velocity);
-	scroll->start();
+	jumpEnd();
+	return true;
 }
 void Player::collisionRespawn(const GameObject* obj)
 {
@@ -147,5 +148,5 @@ void Player::collisionRespawn(const GameObject* obj)
 		return;
 	}
 	Respawn* respawn = (Respawn*)obj;
-	respawn->setRespawn(&respawnPos);
+	respawn->setRespawn(&respawnPos.x);
 }

@@ -50,36 +50,47 @@ void Scroll::warp(GSvector2* pos,const GSvector2& velocity)
 	
 	pos->y = calc.wrap(pos->y - velocity.y, -windowSize.y, windowSize.y);
 }
-void Scroll::reSetMoveing(const GSvector2& position)
+
+void Scroll::verticalMoving(float x,float alpha)
 {
-	movingAmount = position;
+	Calculate<float>calc;
+	float lerpx = LERP(alpha, movingAmount.x, x);
+	movingAmount.x = lerpx;
+	//position1.x = calc.wrap(position1.x - movingAmount.x, -windowSize.x, windowSize.x);
+	//position2.x = calc.wrap(position2.x - movingAmount.x, -windowSize.x, windowSize.x);
+}
+void Scroll::horizontalMoving(float y, float alpha)
+{
+	Calculate<float>calc;
+	float lerpy = LERP(alpha, movingAmount.y,y);
+	movingAmount.y = lerpy;
+	/*position1.y = calc.wrap(position1.y - movingAmount.y, -windowSize.y, windowSize.y);
+	position2.y = calc.wrap(position2.y -movingAmount.y, -windowSize.y, windowSize.y);*/
+}
+void Scroll::omnidirectionalMoving(const GSvector2& pos, float alpha)
+{
+	GSvector2 lerp = movingAmount.lerp(pos, alpha);
+	movingAmount = lerp;
+	/*warp(&position1, lerp);
+	warp(&position2, lerp);*/
 }
 
 //Scrollèàóù
-void Scroll::moving(const GSvector2& velocity)
+void Scroll::moving(const GSvector2&  position, const GSvector2& offset)
 {
 	if (isStop()){ return; }
-	Calculate<float>calc;
+	
+	float alpha = gsFrameTimerGetTime()*0.2f;
 	switch (mode)
 	{
 	case VERTICAL:
-		movingAmount.x = velocity.x;
-
-		//position1.x = calc.wrap(position1.x - velocity.x, -windowSize.x, windowSize.x);
-		//position2.x = calc.wrap(position2.x - velocity.x, -windowSize.x, windowSize.x);
-
+		verticalMoving(position.x+offset.x,alpha);
 		break;
 	case HORIZONTAL:
-		movingAmount.y = velocity.y;
-
-		//position1.y = calc.wrap(position1.y - velocity.y, -windowSize.y, windowSize.y);
-		//position2.y = calc.wrap(position2.y - velocity.y, -windowSize.y, windowSize.y);
+		horizontalMoving(position.y + offset.y, alpha);
 		break;
 	case OMNIDIRECTIONAL:
-		movingAmount = velocity;
-
-		//warp(&position1, velocity);
-	//	warp(&position2, velocity);
+		omnidirectionalMoving(position + offset, alpha);
 		break;
 	}
 }

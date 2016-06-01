@@ -19,11 +19,12 @@ private:
 	void gravity();
 	void jumpStart();
 	void jump();
+	void jumpEnd();
 	void moveHorizontal();
-	bool respawn();
+	const bool respawn();
 
 	void collisionGround(const GameObject* obj);
-	void collisionStar(const GameObject* obj);
+ 	const bool collisionStar(const GameObject* obj);
 	void collisionRespawn(const GameObject* obj);
 private:
 	const Input& input;
@@ -34,5 +35,6 @@ private:
 	GSvector2 respawnPos;
 	bool isGround;
 	bool isJump;
+	bool isRide;
 };
 #endif
