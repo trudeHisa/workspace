@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <algorithm>
+#define PI 3.14159265
 template<class T>
 class Calculate
 {
@@ -18,6 +19,11 @@ public:
 	T clamp(T x, T low, T hight)
 	{
 		return std::min<T>(std::max<T>(x, low), hight);
+	}
+	T degTorad(T deg)
+	{
+		T rad=deg*(PI/180.0f);
+		return rad;
 	}
 };
 #endif

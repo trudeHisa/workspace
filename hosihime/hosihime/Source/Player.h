@@ -15,6 +15,7 @@ public:
     void initialize();
 	void collision(const GameObject* obj);
 private:
+	void fallHorizontal();
 	void moving();
 	void gravity();
 	void jumpStart();

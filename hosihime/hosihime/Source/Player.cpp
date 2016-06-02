@@ -8,29 +8,34 @@
 
 enum SPEED
 {
-	GROUND = 10, JUMP = 3
+	GROUND = 10, NONGROUND = 3
 };
 
 Player::Player(const std::string& textrue, const MyRectangle& rect, Scroll* scroll, const Input& input)
 	:GameObject(textrue, rect, PLAYER),
 	scroll(scroll), isJump(false),
-	input(input), jumpTimer(40, 40), speed(3)
-	, respawnPos(rect.getPosition()), scrollOffset(-rect.getPosition())
+	input(input), jumpTimer(40, 40), speed(3),
+	respawnPos(rect.getPosition()),
+	scrollOffset(-rect.getPosition())
 {
-
 }
 Player::~Player()
 {
-	delete scroll;
 	scroll = NULL;
 }
 void Player::initialize()
 {
 	GameObject::initialize();
 	jumpEnd();
+	speed = SPEED::NONGROUND;
+}
+void Player::jumpEnd()
+{
+	isJump = false;
+	jumpTimer.initialize();
 }
 void Player::updata()
-{
+{	
 	moving();
 	if (respawn())
 	{
@@ -39,15 +44,23 @@ void Player::updata()
 	scroll->moving(rect.getPosition(),scrollOffset);
 	rect.translate(velocity*gsFrameTimerGetTime());
 }
+//ˆÚ“®
+void Player::fallHorizontal()
+{
+	speed = SPEED::NONGROUND;
+	Calculate<float> calc;
+	velocity.x = calc.clamp(velocity.x, -SPEED::NONGROUND, SPEED::NONGROUND);
+	velocity.x = LERP(gsFrameTimerGetTime()*0.01f, velocity.x, 0);
+}
 void Player::gravity()
 {
 	if (isGround)
 	{
+		speed = SPEED::GROUND;
 		velocity.y = 0;
 		return;
 	}
-	Calculate<float> calc;
-	velocity.x = calc.clamp(velocity.x - 0.05f, 0, 3);
+	fallHorizontal();
 	velocity.y = GRAVITY;
 }
 void Player::moving()
@@ -72,7 +85,6 @@ void Player::jumpStart()
 		return;
 	}
 	isJump = true;
-	speed = SPEED::JUMP;
 }
 void Player::jump()
 {
@@ -88,12 +100,6 @@ void Player::jump()
 	}
 	jumpEnd();
 }
-void Player::jumpEnd()
-{
-	isJump = false;
-	speed = SPEED::GROUND;
-	jumpTimer.initialize();
-}
 void Player::moveHorizontal()
 {
 	if (!isGround && !isJump)
@@ -102,6 +108,7 @@ void Player::moveHorizontal()
 	}
 	velocity.x = input.getVelocity().x * speed;
 }
+//
 const  bool Player::respawn()
 {
 	if (rect.getPosition().y <= WINDOW_HEIGHT + rect.getHeight())
@@ -109,8 +116,10 @@ const  bool Player::respawn()
 		return false;
 	}
 	rect.resetPosition(respawnPos);
+	velocity = GSvector2(0, 0);
 	return true;
 }
+//Õ“Ë
 void Player::collision(const GameObject* obj)
 {
 	isRide=collisionStar(obj);
@@ -139,6 +148,7 @@ const bool Player::collisionStar(const GameObject* obj)
 	}
 	Star* s = (Star*)obj;
 	s->ride(&rect);
+	s->pickUp(&velocity);
 	jumpEnd();
 	return true;
 }

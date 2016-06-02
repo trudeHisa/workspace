@@ -11,11 +11,10 @@ void Scroll::initialize()
 	position2 = GSvector2(windowSize.getWidth(), 0);
 	movingAmount = GSvector2(0, 0);
 	isStart = true;
-	mode = VERTICAL;
+	mode = MODE_VERTICAL;
 }
 void Scroll::updata()
 {
-
 }
 void Scroll::draw(Renderer& renderer)
 {
@@ -40,16 +39,10 @@ void Scroll::warp(GSvector2* pos,const GSvector2& velocity)
 void Scroll::moving(const GSvector2&  position, const GSvector2& offset)
 {
 	if (isStop()){ return; }	
-	GSvector2 modes[] = 
-	{
-		GSvector2(1,0),
-		GSvector2(0,1),
-		GSvector2(1,1)
-	};
 
 	float alpha = gsFrameTimerGetTime()*0.1f;
 	GSvector2 lerp = movingAmount.lerp(position+offset, alpha);
-	lerp *= modes[mode];
+	lerp *=mode;
 	//ç∑ï™ämï€
 	GSvector2 margin = movingAmount - lerp;
 	movingAmount = lerp;
@@ -62,11 +55,11 @@ const GSvector2& Scroll::getMovingAmount()const
 {
 	return movingAmount;
 }
-void Scroll::setMode(SCROLLMODE _mode)
+void Scroll::setMode(SCROLL_MODE _mode)
 {
 	mode = _mode;
 }
-const SCROLLMODE Scroll::getMode()const
+const SCROLL_MODE& Scroll::getMode()const
 {
 	return mode;
 }

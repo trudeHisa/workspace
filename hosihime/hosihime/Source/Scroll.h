@@ -4,12 +4,11 @@
 #include "Point.h"
 #include "Renderer.h"
 #include "MyRectangle.h"
-enum SCROLLMODE
-{
-	VERTICAL=0,// x
-	HORIZONTAL,//y
-	OMNIDIRECTIONAL//xy
-};
+
+typedef GSvector2 SCROLL_MODE;
+#define MODE_VERTICAL SCROLL_MODE(1,0)
+#define MODE_HORIZONTAL SCROLL_MODE(0,1)
+#define MODE_OMNIDIRECTIONAL SCROLL_MODE(1,1)
 class Scroll
 {
 public:
@@ -23,8 +22,8 @@ public:
 	const bool isInsideWindow(const GSvector2& pos, const GSvector2& size)const;
 	const GSvector2& getMovingAmount()const;
 
-	void setMode(SCROLLMODE _mode);
-	const SCROLLMODE getMode()const;
+	void setMode(SCROLL_MODE _mode);
+	const SCROLL_MODE& getMode()const;
 
 	void stop();
 	void start();
@@ -32,7 +31,7 @@ public:
 private:
 	void warp(GSvector2* pos,const GSvector2& velocity);
 private:
-	SCROLLMODE mode;
+	SCROLL_MODE mode;
 	bool isStart;
 	GSvector2 position1;
 	GSvector2 position2;
