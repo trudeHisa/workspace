@@ -1,13 +1,14 @@
 #include "Scroll.h"
 #include "Calculate.h"
-Scroll::Scroll(const Point* windowSize)
-	:windowSize(*windowSize)
+
+Scroll::Scroll(float widht, float height)
+	:windowSize(0, 0, widht, height)
 {
 }
 void Scroll::initialize()
 {
 	position1 = GSvector2(0, 0);
-	position2 = GSvector2(windowSize.x, 0);
+	position2 = GSvector2(windowSize.getWidth(), 0);
 	movingAmount = GSvector2(0, 0);
 	isStart = true;
 	mode = VERTICAL;
@@ -24,75 +25,38 @@ void Scroll::draw(Renderer& renderer)
 //ウィンドウの中にあるか
 const bool Scroll::isInsideWindow(const GSvector2& pos, const GSvector2& size)const
 {
-	if (pos.x > windowSize.x)
-	{
-		return false;
-	}
-	if (pos.x + size.x < 0)
-	{
-		return false;
-	}
-
-	if (pos.y > windowSize.y)
-	{
-		return false;
-	}
-	if (pos.y + size.y < 0)
-	{
-		return false;
-	}
-	return true;
+	MyRectangle rect(pos,size);
+	return rect.intersects(windowSize);
 }
 void Scroll::warp(GSvector2* pos,const GSvector2& velocity)
 {
 	Calculate<float>calc;
-	pos->x = calc.wrap(pos->x - velocity.x, -windowSize.x, windowSize.x);
-	
-	pos->y = calc.wrap(pos->y - velocity.y, -windowSize.y, windowSize.y);
+	float width = windowSize.getWidth();
+	float height = windowSize.getHeight();
+	pos->x = calc.wrap(pos->x - velocity.x, -width, width);
+	pos->y = calc.wrap(pos->y - velocity.y, -height, height);
 }
-
-void Scroll::verticalMoving(float x,float alpha)
-{
-	Calculate<float>calc;
-	float lerpx = LERP(alpha, movingAmount.x, x);
-	movingAmount.x = lerpx;
-	//position1.x = calc.wrap(position1.x - movingAmount.x, -windowSize.x, windowSize.x);
-	//position2.x = calc.wrap(position2.x - movingAmount.x, -windowSize.x, windowSize.x);
-}
-void Scroll::horizontalMoving(float y, float alpha)
-{
-	Calculate<float>calc;
-	float lerpy = LERP(alpha, movingAmount.y,y);
-	movingAmount.y = lerpy;
-	/*position1.y = calc.wrap(position1.y - movingAmount.y, -windowSize.y, windowSize.y);
-	position2.y = calc.wrap(position2.y -movingAmount.y, -windowSize.y, windowSize.y);*/
-}
-void Scroll::omnidirectionalMoving(const GSvector2& pos, float alpha)
-{
-	GSvector2 lerp = movingAmount.lerp(pos, alpha);
-	movingAmount = lerp;
-	/*warp(&position1, lerp);
-	warp(&position2, lerp);*/
-}
-
 //Scroll処理
 void Scroll::moving(const GSvector2&  position, const GSvector2& offset)
 {
-	if (isStop()){ return; }
-	
-	float alpha = gsFrameTimerGetTime()*0.2f;
-	switch (mode)
+	if (isStop()){ return; }	
+	GSvector2 modes[] = 
 	{
-	case VERTICAL:
-		verticalMoving(position.x+offset.x,alpha);
-		break;
-	case HORIZONTAL:
-		horizontalMoving(position.y + offset.y, alpha);
-		break;
-	case OMNIDIRECTIONAL:
-		omnidirectionalMoving(position + offset, alpha);
-		break;
-	}
+		GSvector2(1,0),
+		GSvector2(0,1),
+		GSvector2(1,1)
+	};
+
+	float alpha = gsFrameTimerGetTime()*0.1f;
+	GSvector2 lerp = movingAmount.lerp(position+offset, alpha);
+	lerp *= modes[mode];
+	//差分確保
+	GSvector2 margin = movingAmount - lerp;
+	movingAmount = lerp;
+	
+	//背景スクロール
+	warp(&position1, -margin);
+	warp(&position2, -margin);
 }
 const GSvector2& Scroll::getMovingAmount()const
 {

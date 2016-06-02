@@ -15,8 +15,9 @@ Player::Player(const std::string& textrue, const MyRectangle& rect, Scroll* scro
 	:GameObject(textrue, rect, PLAYER),
 	scroll(scroll), isJump(false),
 	input(input), jumpTimer(40, 40), speed(3)
-	, respawnPos(rect.getPosition())
+	, respawnPos(rect.getPosition()), scrollOffset(-rect.getPosition())
 {
+
 }
 Player::~Player()
 {
@@ -35,7 +36,7 @@ void Player::updata()
 	{
 		return;
 	}
-	scroll->moving(rect.getPosition(),GSvector2(-256,0));
+	scroll->moving(rect.getPosition(),scrollOffset);
 	rect.translate(velocity*gsFrameTimerGetTime());
 }
 void Player::gravity()

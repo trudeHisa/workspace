@@ -27,14 +27,14 @@ private:
  	const bool collisionStar(const GameObject* obj);
 	void collisionRespawn(const GameObject* obj);
 private:
-	const Input& input;
-	Scroll* scroll;
-	
-	Timer jumpTimer;
-	float speed;
-	GSvector2 respawnPos;
 	bool isGround;
 	bool isJump;
 	bool isRide;
+	float speed;
+	GSvector2 respawnPos;
+	GSvector2 scrollOffset;
+	Timer jumpTimer;
+	const Input& input;
+	Scroll* scroll;	
 };
 #endif
