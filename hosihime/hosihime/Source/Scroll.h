@@ -3,16 +3,17 @@
 
 #include "Point.h"
 #include "Renderer.h"
+#include "MyRectangle.h"
 enum SCROLLMODE
 {
-	VERTICAL,// x
+	VERTICAL=0,// x
 	HORIZONTAL,//y
 	OMNIDIRECTIONAL//xy
 };
 class Scroll
 {
 public:
-	Scroll(const Point* windowSize);
+	Scroll(float widht,float height);
 	void initialize();
 	void updata();
 	void draw(Renderer& renderer);
@@ -24,22 +25,18 @@ public:
 
 	void setMode(SCROLLMODE _mode);
 	const SCROLLMODE getMode()const;
-	void oneSizeWarp(float* y1, float* y2, float margin, float winsize);
 
 	void stop();
 	void start();
 	bool isStop();
 private:
-	void verticalMoving(float x, float alpha);
-	void horizontalMoving(float y, float alpha);
-	void omnidirectionalMoving(const GSvector2& pos, float alpha);
 	void warp(GSvector2* pos,const GSvector2& velocity);
 private:
 	SCROLLMODE mode;
 	bool isStart;
 	GSvector2 position1;
 	GSvector2 position2;
-	Point windowSize;
+	MyRectangle windowSize;
 	GSvector2 movingAmount;//‚Ç‚ê‚¾‚¯Scroll‚µ‚½‚©
 };
 #endif

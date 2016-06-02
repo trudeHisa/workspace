@@ -9,8 +9,8 @@
 
 #include "Input.h"
 Stage::Stage(const std::string& csvname,const Input& input)
-	:scroll(&Point(WINDOW_WIDTH, WINDOW_HEIGHT)), timer(30,3600)
-	, resTime(1, 10), input(input)
+	:scroll(WINDOW_WIDTH, WINDOW_HEIGHT), timer(30,3600)
+	,input(input)
 {
 	CSVStream stream;
 	stream.input(&mapdata, csvname.c_str());

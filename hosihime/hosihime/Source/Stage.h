@@ -24,16 +24,13 @@ private:
 	void objCreate(int x, int y, Array2D<bool>* check);
 	void Stars_IsInScreen();
 private:
-	Array2D<int> mapdata;
-	
+	int BLOCKSIZE = 64;
+	bool isEnd;
+	Array2D<int> mapdata;	
 	GameObjControl control;
 	StarManger starManager;
 	Scroll scroll;
-	int BLOCKSIZE = 64;
 	Timer timer;
-	Timer resTime;
-	bool isEnd;
-
 	const Input& input;
 };
 #endif
