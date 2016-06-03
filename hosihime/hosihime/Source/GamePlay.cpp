@@ -13,6 +13,7 @@ GamePlay::~GamePlay()
 }
 void GamePlay::Init()
 {
+	sound.StopSE("Opening.wav");
 	mode = SELECT;
 	isEnd = false;
 	stageSelect.initialize();

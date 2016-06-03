@@ -9,6 +9,7 @@ Ending::~Ending()
 }
 void Ending::Init()
 {
+	sound.StopSE("GameMode_1.wav");
 	isEnd = false;
 	sound.PlaySE("Ending.wav");
 }

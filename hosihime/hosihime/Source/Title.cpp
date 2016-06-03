@@ -11,6 +11,7 @@ Title::~Title()
 }
 void Title::Init()
 {
+	sound.StopSE("Ending.wav");
 	isEnd = false;
 	sound.PlaySE("Opening.wav");
 }

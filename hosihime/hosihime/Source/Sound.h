@@ -29,6 +29,7 @@ public:
 	void Release();
 	bool IsPlayBGM();
 	bool IsPlaySE(const std::string& name);
+	void StopSE(const std::string& name);
 private:
 	std::map<const std::string, GSuint>ses;
 	std::map<const std::string, GSuint>bgms;

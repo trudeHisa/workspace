@@ -54,6 +54,10 @@ bool Sound::IsPlaySE(const std::string& name)
 {
 	return !!gsIsPlaySE(ses[name]);
 }
+void Sound::StopSE(const std::string& name)
+{
+	gsStopSE(ses[name]);
+}
 void Sound::Release()
 {
 	for (auto itr = bgms.begin(); itr != bgms.end(); ++itr)
