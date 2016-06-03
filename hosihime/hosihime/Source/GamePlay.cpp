@@ -1,8 +1,8 @@
 #include"GamePlay.h"
 #include "Stage.h"
 #include "Input.h"
-GamePlay::GamePlay( Sound& sound, const Input& input)
-:sound(sound), stage(NULL),input(input),stageSelect(sound,input)//, animTimer(5), anim(&animTimer)
+GamePlay::GamePlay(Sound& sound, const Input& input,TimeScore& score)
+:sound(sound), stage(NULL),input(input),stageSelect(input),score(score)//, animTimer(5), anim(&animTimer)
 {
 
 }
@@ -18,13 +18,13 @@ void GamePlay::Init()
 	isEnd = false;
 	stageSelect.initialize();
 	stage = NULL;
-	/*anim.addCell("D", 1, 3, 64, 64);
-	anim.addCell("A", 2, 3, 64, 64);*/
+	//anim.addCell("D", 1, 3, 64, 64);
+	//anim.addCell("A", 2, 3, 64, 64);
 }
 void GamePlay::Update()
 {
 	/*std::string n = "D";
-	if (gsGetKeyState(GKEY_S))
+	if (gsGetKeyState(GKEY_S)!=0)
 	{
 		n = "A";
 	}
@@ -52,7 +52,9 @@ void GamePlay::Update()
 			stage->initialize();
 		}
 		stage->updata();
+
 		isEnd=stage->getIsEnd();
+		stage->saveScore(score);
 		break;
 	}
 }

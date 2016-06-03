@@ -8,6 +8,7 @@
 #include "Scroll.h"
 #include "Array2D.h"
 #include "Timer.h"
+#include "TimeScore.h"
 #include "Sound.h"
 class Input;
 class Stage
@@ -20,12 +21,12 @@ public:
 	void draw(Renderer& renderer);
 	void finish();
 	bool getIsEnd();
+	void saveScore(TimeScore& score);
 private:
 	void mapCreate();
 	void objCreate(int x, int y, Array2D<bool>* check);
 	void Stars_IsInScreen();
 private:
-	int BLOCKSIZE = 64;
 	bool isEnd;
 	Array2D<int> mapdata;	
 	GameObjControl control;

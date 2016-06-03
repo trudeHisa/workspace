@@ -5,7 +5,7 @@
 #include "Respawn.h"
 #define GRAVITY 8
 #define JUMPSPEED 0.3
-
+#define JUMPTIME 0.6
 enum SPEED
 {
 	GROUND = 6, NONGROUND = 3
@@ -14,7 +14,7 @@ enum SPEED
 Player::Player(const std::string& textrue, const MyRectangle& rect, Scroll* scroll, const Input& input, Sound& sound)
 	:GameObject(textrue, rect, PLAYER),
 	scroll(scroll), isJump(false),
-	input(input), jumpTimer(37, 37), speed(3),
+input(input), jumpTimer(JUMPTIME, JUMPTIME), speed(3),
 	respawnPos(rect.getPosition()),
 	scrollOffset(-rect.getPosition()),
 	sound(sound)
@@ -44,7 +44,7 @@ void Player::updata()
 	{
 		return;
 	}
-	scroll->moving(rect.getPosition(),scrollOffset);
+	scroll->moving(rect.getPosition(), scrollOffset);
 	rect.translate(velocity*gsFrameTimerGetTime());
 	}
 //ˆÚ“®
@@ -95,7 +95,7 @@ void Player::jumpStart()
 void Player::jump()
 {
 	if (!isJump)
-	{
+{
 		return;
 	}
 	velocity.y = -jumpTimer.getTime()*JUMPSPEED;
@@ -136,7 +136,7 @@ const  bool Player::respawn()
 //Õ“Ë
 void Player::collision(const GameObject* obj)
 {
-	isRide=collisionStar(obj);
+	isRide = collisionStar(obj);
 	collisionRespawn(obj);
 	collisionGround(obj);
 }
@@ -150,6 +150,7 @@ void Player::collisionGround(const GameObject* obj)
 		isJump = false;
 		isAnyfall = false;
 		scroll->stop();
+		if (obj->isSameType(GOAL)) isDead = true;
 		return;
 		sound.PlaySE("Landing.wav");
 	}
