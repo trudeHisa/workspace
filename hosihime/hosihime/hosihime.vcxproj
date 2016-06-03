@@ -46,6 +46,7 @@
     <ClCompile Include="Source\Star_slashdown.cpp" />
     <ClCompile Include="Source\Star_wave.cpp" />
     <ClCompile Include="Source\Timer.cpp" />
+    <ClCompile Include="Source\TimeScore.cpp" />
     <ClCompile Include="Source\Title.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +92,7 @@
     <ClInclude Include="Source\Star_slashdown.h" />
     <ClInclude Include="Source\Star_wave.h" />
     <ClInclude Include="Source\Timer.h" />
+    <ClInclude Include="Source\TimeScore.h" />
     <ClInclude Include="Source\Title.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

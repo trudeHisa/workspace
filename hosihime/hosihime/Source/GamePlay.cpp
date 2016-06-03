@@ -1,8 +1,8 @@
 #include"GamePlay.h"
 #include "Stage.h"
 #include "Input.h"
-GamePlay::GamePlay( Sound& sound, const Input& input)
-:sound(sound), stage(NULL),input(input),stageSelect(sound,input)//, animTimer(5), anim(&animTimer)
+GamePlay::GamePlay(Sound& sound, const Input& input,TimeScore& score)
+:sound(sound), stage(NULL),input(input),stageSelect(input),score(score)//, animTimer(5), anim(&animTimer)
 {
 
 }

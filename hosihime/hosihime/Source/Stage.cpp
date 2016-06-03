@@ -1,16 +1,15 @@
 #include "Stage.h"
 #include "CSVStream.h"
 #include "game.h"
-
 #include "Star.h"
 #include "Player.h"
 #include "Respawn.h"
 #include "ImMovable.h"
-
 #include "Input.h"
+#define  BLOCKSIZE 64.f
 Stage::Stage(const std::string& csvname, const Input& input,Sound& sound)
-	:scroll(WINDOW_WIDTH, WINDOW_HEIGHT), timer(30,3600)
-	, input(input), starManager(scroll), sound(sound)
+	:scroll(WINDOW_WIDTH, WINDOW_HEIGHT), timer(60,60)
+	, input(input), starManager(scroll)
 {
 	CSVStream stream;
 	stream.input(&mapdata, csvname.c_str());
@@ -35,24 +34,30 @@ void Stage::updata()
 	starManager.updata();
 	control.updata();
 	timer.update();
-	
 	if (timer.isEnd() || control.isDeadPlayer())
 	{
+		
+		timer.stop();
 		isEnd = true;
 	}
-
 }
 void Stage::draw(Renderer& renderer)
 {
 	scroll.draw(renderer);
 	control.draw(renderer, &scroll);
-	int t = timer.getTime()/60;
+	int t = timer.getTime()/FRAMETIME;
 	renderer.DrawString(std::to_string(t), &GSvector2(50, 50), 50);
 }
 void Stage::finish()
 {
 	control.finish();
 }
+
+void Stage::saveScore(TimeScore& score)
+{
+	score.setScore(timer);
+}
+
 bool Stage::getIsEnd()
 {
 	return isEnd;
@@ -81,7 +86,7 @@ void Stage::objCreate(int x, int y, Array2D<bool>* check)
 	case PLANET:
 		size = Point(2,2);
 		fsize = GSvector2(size.x*BLOCKSIZE, size.y*BLOCKSIZE);
-		control.add(new ImMovable("planet.bmp", MyRectangle(pos, fsize), PLANET));
+		control.add(new ImMovable("rock.bmp", MyRectangle(pos, fsize), PLANET));
 		break;
 	case START:
 		size = Point(3, 3);
