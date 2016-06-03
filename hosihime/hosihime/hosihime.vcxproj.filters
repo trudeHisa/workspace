@@ -67,9 +67,6 @@
     <Filter Include="ソース ファイル\gameobject\star\move">
       <UniqueIdentifier>{23c229f2-9d4a-4583-8601-d491ec4abd6f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\util\shader">
-      <UniqueIdentifier>{cb876810-02fd-4c5f-8f28-225aa7691411}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\Source\Star_wave.cpp">
@@ -316,12 +313,6 @@
     </ClInclude>
     <ClInclude Include="Code\Include\game.h">
       <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Include\EffectGL.h">
-      <Filter>ヘッダー ファイル\util\shader</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Include\RenderTarget.h">
-      <Filter>ヘッダー ファイル\util\shader</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
