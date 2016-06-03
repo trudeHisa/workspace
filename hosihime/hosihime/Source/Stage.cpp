@@ -1,67 +1,58 @@
 #include "Stage.h"
 #include "CSVStream.h"
+#include "game.h"
+
 #include "Star.h"
 #include "Player.h"
-#include "Rock.h"
-#include "game.h"
-Stage::Stage(const std::string& csvname)
-	:scroll(&Point(WINDOW_WIDTH,WINDOW_HEIGHT))
+#include "Respawn.h"
+#include "ImMovable.h"
+
+#include "Input.h"
+Stage::Stage(const std::string& csvname,const Input& input)
+	:scroll(WINDOW_WIDTH, WINDOW_HEIGHT), timer(30,3600)
+	,input(input)
 {
 	CSVStream stream;
-	stream.input(&mapdata,csvname.c_str());
+	stream.input(&mapdata, csvname.c_str());
 }
 Stage::~Stage()
 {
 }
 void Stage::initialize()
 {
+	//resTime.initialize();
+	timer.initialize();
 	control.inisialize();
+	starManager.initialize(&control);
 	scroll.initialize();
 	mapCreate();
+	Stars_IsInScreen();
+	isEnd = false;
 }
 void Stage::updata()
 {
-	control.updata(&mapdata);
+	starManager.updata();
+	control.updata();
+	timer.update();
+	if (timer.isEnd() || control.isDeadPlayer())
+	{
+		isEnd = true;
+	}
 }
 void Stage::draw(Renderer& renderer)
 {
 	scroll.draw(renderer);
-	control.draw(renderer,&scroll);
-	//for (int y = -1; y < mapdata.getSize0()-1; y++)
-	//{
-	//	for (int x = -1; x < mapdata.getSize1()-1; x++)
-	//	{
-	//		if (scroll.isInsideWindow(x *  BLOCKSIZE,BLOCKSIZE))
-	//		{
-	//			std::string tex = "space";
-	//			GScolor c = GScolor(1,1,1,1);
-	//			switch (mapdata(y, x))
-	//			{
-	//			case GAMEOBJ_TYPE::SPACE:
-	//				break;
-	//			case GAMEOBJ_TYPE::STAR:
-	//				tex = "star";
-	//				c = GScolor(0,1, 0, 1);
-	//				break;
-	//			case GAMEOBJ_TYPE::PLAYER:
-	//				tex = "player";
-	//				c = GScolor(1,0,0, 1);
-	//				break;
-	//			case GAMEOBJ_TYPE::ROCK:
-	//				tex = "rock";
-	//				break;
-	//			default:
-	//				tex = "other";
-	//				break;
-	//			}
-	//			renderer.DrawString(tex, &GSvector2(x *  BLOCKSIZE-scroll.getMovingAmount(), y *  BLOCKSIZE), 10,&c);
-	//		}			
-	//	}
-	//}
+	control.draw(renderer, &scroll);
+	int t = timer.getTime();
+	renderer.DrawString(std::to_string(t), &GSvector2(50, 50), 50);
 }
 void Stage::finish()
 {
 	control.finish();
+}
+bool Stage::getIsEnd()
+{
+	return isEnd;
 }
 void Stage::objCreate(int x, int y, Array2D<bool>* check)
 {
@@ -70,16 +61,34 @@ void Stage::objCreate(int x, int y, Array2D<bool>* check)
 		return;
 	}
 	Point size;
+	GSvector2 pos = GSvector2(x * BLOCKSIZE, y* BLOCKSIZE);
+	GSvector2 fsize;
 	switch (mapdata(y, x))
 	{
-	case STAR:
-		size = control.add(new Star("star.bmp", &GSvector2(x * BLOCKSIZE,y* BLOCKSIZE)));
-		break;
-	case ROCK:
-		size = control.add(new Rock("rock.bmp", &GSvector2(x * BLOCKSIZE,y* BLOCKSIZE)));
+	case RESPAWN:
+		size = Point(4, 2);
+		fsize = GSvector2(size.x*BLOCKSIZE, size.y*BLOCKSIZE);
+		control.add(new Respawn("rock.bmp", MyRectangle(pos, fsize)));
 		break;
 	case PLAYER:
-		size = control.add(new Player("player.bmp", &GSvector2(x * BLOCKSIZE, y* BLOCKSIZE), &scroll));
+		size = Point(1, 1);
+		fsize = GSvector2(size.x*BLOCKSIZE, size.y*BLOCKSIZE);
+		control.add(new Player("player.bmp", MyRectangle(pos, fsize), &scroll,input));
+		break;
+	case PLANET:
+		size = Point(2,2);
+		fsize = GSvector2(size.x*BLOCKSIZE, size.y*BLOCKSIZE);
+		control.add(new ImMovable("planet.bmp", MyRectangle(pos, fsize), PLANET));
+		break;
+	case START:
+		size = Point(5, 3);
+		fsize = GSvector2(size.x*BLOCKSIZE, size.y*BLOCKSIZE);
+		control.add(new ImMovable("start.bmp", MyRectangle(pos, fsize), START));
+		break;
+	case GOAL:
+		size = Point(5, 3);
+		fsize = GSvector2(size.x*BLOCKSIZE, size.y*BLOCKSIZE);
+		control.add(new ImMovable("goal.bmp", MyRectangle(pos, fsize), GOAL));
 		break;
 	}
 	for (int sy = 0; sy < size.y; sy++)
@@ -105,7 +114,17 @@ void Stage::mapCreate()
 	{
 		for (int x = 0; x < mapdata.getSize1(); x++)
 		{
-			objCreate(x,y,&check);
+			objCreate(x, y, &check);
 		}
 	}
+	//スターの原型を全部生成
+	starManager.createStarProt();
+}
+
+void Stage::Stars_IsInScreen()
+{
+	//画面内に入ってる星を見る
+	starManager.addInScreenStars();
+	//objcontrolに追加
+	control.add_Star(starManager.getInScreenStars());
 }
