@@ -14,7 +14,7 @@ enum SPEED
 Player::Player(const std::string& textrue, const MyRectangle& rect, Scroll* scroll, const Input& input)
 :GameObject(textrue, rect, PLAYER),
 scroll(scroll), isJump(false),
-input(input), jumpTimer(JUMPTIME,JUMPTIME), speed(3),
+input(input), jumpTimer(JUMPTIME, JUMPTIME), speed(3),
 respawnPos(rect.getPosition()),
 scrollOffset(-rect.getPosition())
 {
