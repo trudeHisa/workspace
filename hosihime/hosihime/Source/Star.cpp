@@ -48,7 +48,7 @@ void Star::draw(Renderer& renderer, const Scroll* scroll)
 }
 void Star::collision(const GameObject* obj)
 {
-	if (obj->isSameType(RESPAWN) || obj->isSameType(PLANET))
+	if ( obj->isSameType(PLANET))
 	{
 		isDead = true;
 	}
@@ -66,6 +66,11 @@ void Star::pickUp(GSvector2* velocity)
 Star* Star::clone()
 {
 	return new Star(textrue, MyRectangle(startPosi,rect.getSize()), move->clone());
+}
+
+const GSvector2& Star::getSPosi() const
+{
+	return startPosi;
 }
 
 void Star::rotate()

@@ -14,7 +14,8 @@
 #include "StarDataStream.h"
 
 #include "STARTYPE.h"
-StarManger::StarManger()
+StarManger::StarManger(Scroll& _scroll)
+:scroll(_scroll)
 {
 }
 StarManger::~StarManger()
@@ -78,7 +79,7 @@ void StarManger::createData()
 		switch (stoi(param[0]))
 		{
 		case DEF:
-			stars.push_back(new Star(param[1],createRect(param),createMove(param)));
+			stars.emplace_back(new Star(param[1],createRect(param),createMove(param)));
 			break;
 		case HIBI:
 
@@ -98,6 +99,7 @@ void StarManger::addInScreenStars()
 {
 	for each (Star* star in stars)
 	{
+		//if (scroll.isInsideWindow(star->getSPosi(), GSvector2(64,64)))
 		inScreens.push_back(star->clone());
 	}
 }

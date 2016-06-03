@@ -14,6 +14,7 @@ public:
 	void updata();
 	void collision(const GameObject* obj);
 	void draw(Renderer& renderer, const Scroll* scroll);
+	const GSvector2& getSPosi() const;
 public:
 	void ride(MyRectangle* rect);
 	void pickUp(GSvector2* velocity);
