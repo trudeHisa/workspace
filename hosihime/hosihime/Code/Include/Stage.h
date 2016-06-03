@@ -4,7 +4,6 @@
 #include "Renderer.h"
 #include "GameObjControl.h"
 #include "StarManager.h"
-#include "Definition.h"
 #include "Scroll.h"
 #include "Array2D.h"
 #include "Timer.h"
