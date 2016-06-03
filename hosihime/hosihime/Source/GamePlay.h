@@ -13,7 +13,7 @@ enum PLAY_MODE
 class GamePlay :public IScene
 {
 public:
-	GamePlay(Sound* sound, const Input& input);
+	GamePlay(Sound& sound, const Input& input);
 	~GamePlay();
 	void Init();
 	void Update();
@@ -25,7 +25,7 @@ private:
 	/*Animation anim;
 	AnimationTimer animTimer;*/
 	bool isEnd;
-	Sound sound;
+	Sound& sound;
 	Stage* stage;
 	PLAY_MODE mode;
 	StageSelect stageSelect;

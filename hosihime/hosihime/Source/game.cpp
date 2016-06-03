@@ -15,10 +15,10 @@ Sound sound;
 Input input;
 void gameInit(void)
 {	
-	sceneManager.Add(Scene::MODE_LOAD, new Load(renderer,&sound));
+	sceneManager.Add(Scene::MODE_LOAD, new Load(renderer,sound));
 	sceneManager.Add(Scene::MODE_TITLE, new Title(input));
 	sceneManager.Add(Scene::MODE_MENU,new Menu(input));
-	sceneManager.Add(Scene::MODE_GAMEPLAY, new GamePlay(&sound, input));
+	sceneManager.Add(Scene::MODE_GAMEPLAY, new GamePlay(sound, input));
 	sceneManager.Add(Scene::MODE_ENDING, new Ending(input));
 	sceneManager.Change(Scene::MODE_LOAD);
 }

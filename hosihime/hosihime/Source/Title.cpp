@@ -2,8 +2,8 @@
 //タイトルクラスコンストラクタ
 #include "Calculate.h"
 #include "Input.h"
-Title::Title(const Input& input)
-	:input(input)
+Title::Title(Sound& sound,const Input& input)
+	:sound(sound),input(input)
 {
 }
 Title::~Title()
@@ -12,6 +12,7 @@ Title::~Title()
 void Title::Init()
 {
 	isEnd = false;
+	sound.PlaySE("Opening.wav");
 }
 void Title::Update()
 {

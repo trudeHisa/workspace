@@ -8,9 +8,9 @@
 #include "ImMovable.h"
 
 #include "Input.h"
-Stage::Stage(const std::string& csvname,const Input& input)
+Stage::Stage(const std::string& csvname, const Input& input,Sound& sound)
 	:scroll(WINDOW_WIDTH, WINDOW_HEIGHT), timer(30,3600)
-	, input(input), starManager(scroll)
+	, input(input), starManager(scroll), sound(sound)
 {
 	CSVStream stream;
 	stream.input(&mapdata, csvname.c_str());
@@ -20,6 +20,7 @@ Stage::~Stage()
 }
 void Stage::initialize()
 {
+	sound.PlaySE("GameMode_1.wav");
 	//resTime.initialize();
 	timer.initialize();
 	control.inisialize();
@@ -34,10 +35,12 @@ void Stage::updata()
 	starManager.updata();
 	control.updata();
 	timer.update();
+	
 	if (timer.isEnd() || control.isDeadPlayer())
 	{
 		isEnd = true;
 	}
+
 }
 void Stage::draw(Renderer& renderer)
 {

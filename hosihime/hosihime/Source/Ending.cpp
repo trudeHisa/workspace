@@ -1,7 +1,7 @@
 #include "Ending.h"
 #include "Input.h"
-Ending::Ending(const Input& input)
-	:input(input)
+Ending::Ending(Sound& sound,const Input& input)
+	:sound(sound),input(input)
 {
 }
 Ending::~Ending()
@@ -10,6 +10,7 @@ Ending::~Ending()
 void Ending::Init()
 {
 	isEnd = false;
+	sound.PlaySE("Ending.wav");
 }
 void Ending::Update()
 {

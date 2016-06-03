@@ -2,14 +2,15 @@
 #include "Stage.h"
 #include "Calculate.h"
 #include "Input.h"
-StageSelect::StageSelect(const Input& input)
-	:input(input)
+StageSelect::StageSelect(Sound& sound,const Input& input)
+	:sound(sound),input(input)
 {
 
 }
 void StageSelect::initialize()
 {
 	active = 0;
+	sound.PlaySE("Map.wav");
 }
 void StageSelect::updata()
 {
@@ -20,10 +21,12 @@ void StageSelect::select()
 	if (input.getUpTrigger())
 	{
 		active++;
+		sound.PlaySE("cursormove.wav");
 	}
 	if (input.getDownTrigger())
 	{
 		active--;
+		sound.PlaySE("cursormove.wav");
 	}
 	Calculate<int> calc;
 	active = calc.wrap(active, 0, 3);
@@ -37,7 +40,7 @@ Stage* StageSelect::createStage()
 		"testmap.csv",
 		"testmap.csv"
 	};
-	return new Stage("mapdata\\\\" + datanames[active],input);
+	return new Stage("mapdata\\\\" + datanames[active],input,sound);
 }
 
 void StageSelect::draw(Renderer& renderer) 

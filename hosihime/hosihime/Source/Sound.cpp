@@ -7,6 +7,11 @@ Sound::Sound()
 	ses.clear();
 	bgms.clear();
 }
+Sound::Sound(const Sound& sound)
+	:ses(sound.ses), bgms(sound.bgms)
+{
+
+}
 void Sound::LoadBGM(const std::string& name,const std::string& ps)
 {
 	std::string name_ps = ps + name;

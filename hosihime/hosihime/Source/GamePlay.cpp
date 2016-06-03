@@ -1,8 +1,8 @@
 #include"GamePlay.h"
 #include "Stage.h"
 #include "Input.h"
-GamePlay::GamePlay(Sound* sound, const Input& input)
-:sound(*sound), stage(NULL),input(input),stageSelect(input)//, animTimer(5), anim(&animTimer)
+GamePlay::GamePlay( Sound& sound, const Input& input)
+:sound(sound), stage(NULL),input(input),stageSelect(sound,input)//, animTimer(5), anim(&animTimer)
 {
 
 }
@@ -35,6 +35,7 @@ void GamePlay::Update()
 		stageSelect.updata();
 		if (input.getActionTrigger())
 		{
+			sound.PlaySE("decision.wav");
 			stage = stageSelect.createStage();
 			stage->initialize();
 			stageSelect.finish();
@@ -44,6 +45,7 @@ void GamePlay::Update()
 	case PLAY:
 		if (input.getDebugResetTrigger())
 		{
+			sound.PlaySE("decision.wav");
 			stage = NULL;
 			stage = stageSelect.createStage();
 			stage->initialize();

@@ -11,12 +11,13 @@ enum SPEED
 	GROUND = 6, NONGROUND = 3
 };
 
-Player::Player(const std::string& textrue, const MyRectangle& rect, Scroll* scroll, const Input& input)
+Player::Player(const std::string& textrue, const MyRectangle& rect, Scroll* scroll, const Input& input, Sound& sound)
 	:GameObject(textrue, rect, PLAYER),
 	scroll(scroll), isJump(false),
 	input(input), jumpTimer(37, 37), speed(3),
 	respawnPos(rect.getPosition()),
-	scrollOffset(-rect.getPosition())
+	scrollOffset(-rect.getPosition()),
+	sound(sound)
 {
 }
 Player::~Player()
@@ -85,6 +86,7 @@ void Player::jumpStart()
 		return;
 	}
 	isJump = true;
+
 }
 void Player::jump()
 {
@@ -136,6 +138,7 @@ void Player::collisionGround(const GameObject* obj)
 		isJump = false;
 		scroll->stop();
 		return;
+		sound.PlaySE("Landing.wav");
 	}
 	scroll->start();
 	isGround = false;

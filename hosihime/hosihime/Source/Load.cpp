@@ -1,6 +1,6 @@
 #include "Load.h"
-Load::Load(Renderer& renderer, Sound* sound)
-	:renderer(renderer), sound(*sound)
+Load::Load(Renderer& renderer,Sound& sound)
+	:renderer(renderer), sound(sound)
 {
 	renderer.LoadTextrue("load.bmp");
 }
@@ -52,24 +52,23 @@ void Load::Update()
 
 	//SE
 	sound.LoadSE("Broken.wav", 5);
-	sound.LoadSE("Fire.wav", 5);
+	sound.LoadSE("Fire.wav", 3);
 	sound.LoadSE("Jump.wav", 5);
 	sound.LoadSE("Landing.wav", 5);	//’…’n
 	sound.LoadSE("cursormove.wav", 5);
 	sound.LoadSE("decision.wav", 5);	//Œˆ’è
 
 	//BGM
-	sound.LoadSE("Clear_1.wav", 5, GWAVE_LOOP);
-	sound.LoadSE("Clear_2.wav", 5, GWAVE_LOOP);
-	sound.LoadSE("Ending.wav", 5, GWAVE_LOOP);
-	sound.LoadSE("Opening.wav", 5, GWAVE_LOOP);
-	sound.LoadSE("GameMode_1.wav", 5, GWAVE_LOOP);
-	sound.LoadSE("GameMode_2.wav", 5, GWAVE_LOOP);
-	sound.LoadSE("Gameover.wav", 5, GWAVE_LOOP);
-	sound.LoadSE("Map.wav", 5, GWAVE_LOOP);
-	sound.LoadSE("Title.wav", 5, GWAVE_LOOP);
-
-
+	std::string path = "Sound\\\\BGM\\\\";
+	sound.LoadSE("Clear_1.wav", 5, GWAVE_LOOP,path);
+	sound.LoadSE("Clear_2.wav", 5, GWAVE_LOOP, path);
+	sound.LoadSE("Ending.wav", 5, GWAVE_LOOP, path);
+	sound.LoadSE("Opening.wav", 5, GWAVE_LOOP, path);
+	sound.LoadSE("GameMode_1.wav", 5, GWAVE_LOOP, path);
+	sound.LoadSE("GameMode_2.wav", 5, GWAVE_LOOP, path);
+	sound.LoadSE("Gameover.wav", 5, GWAVE_LOOP, path);
+	sound.LoadSE("Map.wav", 5, GWAVE_LOOP, path);
+	sound.LoadSE("Title.wav", 5, GWAVE_LOOP, path);
 
 	isEnd = true;
 }

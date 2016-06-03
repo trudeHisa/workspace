@@ -1,11 +1,12 @@
 #ifndef _TITLE_H_
 #define _TITLE_H_
 #include "IScene.h"
+#include "Sound.h"
 class Input;
 class Title :public IScene
 {
 public:
-	Title(const Input& input);
+	Title(Sound& sound,const Input& input);
 	~Title();
 	void Init();
 	void Update();
@@ -18,5 +19,6 @@ private:
 	bool isEnd;
 	int index;//‘I‘ğˆŠÇ—
 	bool boolSpace;//
+	Sound& sound;
 };
 #endif

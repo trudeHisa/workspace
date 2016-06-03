@@ -3,13 +3,14 @@
 #include <gslib.h>
 #include "GameObject.h"
 #include "Timer.h"
+#include "Sound.h"
 class Input;
 #define GSfloat gravity 3;
 
 class Player :public GameObject
 {
 public:
-	Player(const std::string& textrue, const MyRectangle& rect, Scroll* scroll, const Input& input);
+	Player(const std::string& textrue, const MyRectangle& rect, Scroll* scroll, const Input& input,Sound& sound);
 	~Player();
 	void updata();
     void initialize();
@@ -36,6 +37,7 @@ private:
 	GSvector2 scrollOffset;
 	Timer jumpTimer;
 	const Input& input;
-	Scroll* scroll;	
+	Scroll* scroll;
+	Sound& sound;
 };
 #endif

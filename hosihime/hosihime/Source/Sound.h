@@ -9,6 +9,7 @@ class Sound
 {
 public:
 	Sound();
+	Sound(const Sound& sound);
 	void LoadBGM(const std::string& name,
 		const std::string& ps = "Sound\\\\BGM\\\\");
 	/*

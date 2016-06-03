@@ -8,11 +8,12 @@
 #include "Scroll.h"
 #include "Array2D.h"
 #include "Timer.h"
+#include "Sound.h"
 class Input;
 class Stage
 {
 public:
-	Stage(const std::string& csvname,const Input& input);
+	Stage(const std::string& csvname, const Input& input,Sound& sound);
 	~Stage();
 	void updata();
 	void initialize();
@@ -31,6 +32,7 @@ private:
 	StarManger starManager;
 	Scroll scroll;
 	Timer timer;
+	Sound& sound;
 	const Input& input;
 };
 #endif
