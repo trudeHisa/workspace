@@ -15,12 +15,12 @@ void Load::Init()
 void Load::Update()
 {
 	renderer.LoadTextrue("anim.bmp");
-
-	renderer.LoadTextrue("star.bmp", GS_TEXCOLOR_KEY_AUTO);
-	renderer.LoadTextrue("player.bmp");
+	renderer.LoadTextrue("orihime.bmp", GS_TEXCOLOR_KEY_AUTO);
+	renderer.LoadTextrue("star.bmp");
+	renderer.LoadTextrue("player.bmp",GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("start.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("goal.bmp", GS_TEXCOLOR_KEY_AUTO);
-	renderer.LoadTextrue("rock2.bmp", GS_TEXCOLOR_KEY_AUTO);
+	renderer.LoadTextrue("rock.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("planet.bmp", GS_TEXCOLOR_KEY_WHITE);
 	renderer.LoadTextrue("space.bmp");
 	renderer.LoadTextrue("space2.bmp");

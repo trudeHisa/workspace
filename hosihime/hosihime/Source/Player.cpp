@@ -5,18 +5,18 @@
 #include "Respawn.h"
 #define GRAVITY 10
 #define JUMPSPEED 0.3
-
+#define JUMPTIME 0.6
 enum SPEED
 {
 	GROUND = 6, NONGROUND = 3
 };
 
 Player::Player(const std::string& textrue, const MyRectangle& rect, Scroll* scroll, const Input& input)
-	:GameObject(textrue, rect, PLAYER),
-	scroll(scroll), isJump(false),
-	input(input), jumpTimer(37, 37), speed(3),
-	respawnPos(rect.getPosition()),
-	scrollOffset(-rect.getPosition())
+:GameObject(textrue, rect, PLAYER),
+scroll(scroll), isJump(false),
+input(input), jumpTimer(JUMPTIME,JUMPTIME), speed(3),
+respawnPos(rect.getPosition()),
+scrollOffset(-rect.getPosition())
 {
 }
 Player::~Player()
@@ -30,23 +30,23 @@ void Player::initialize()
 	speed = SPEED::GROUND;
 }
 void Player::jumpEnd()
-	{
+{
 	isJump = false;
 	jumpTimer.initialize();
-	}
+}
 void Player::updata()
-	{
+{
 	moving();
 	if (respawn())
 	{
 		return;
 	}
-	scroll->moving(rect.getPosition(),scrollOffset);
+	scroll->moving(rect.getPosition(), scrollOffset);
 	rect.translate(velocity*gsFrameTimerGetTime());
-	}
+}
 //ˆÚ“®
 void Player::fallHorizontal()
-	{
+{
 	//speed = SPEED::NONGROUND;
 	Calculate<float> calc;
 	velocity.x = calc.clamp(velocity.x, -SPEED::NONGROUND, SPEED::NONGROUND);
@@ -89,7 +89,7 @@ void Player::jumpStart()
 void Player::jump()
 {
 	if (!isJump)
-{
+	{
 		return;
 	}
 	velocity.y = -jumpTimer.getTime()*JUMPSPEED;
@@ -122,7 +122,7 @@ const  bool Player::respawn()
 //Õ“Ë
 void Player::collision(const GameObject* obj)
 {
-	isRide=collisionStar(obj);
+	isRide = collisionStar(obj);
 	collisionRespawn(obj);
 	collisionGround(obj);
 }
@@ -131,10 +131,11 @@ void Player::collisionGround(const GameObject* obj)
 	if (obj->isSameType(RESPAWN) ||
 		obj->isSameType(START) ||
 		obj->isSameType(GOAL))
-{
+	{
 		isGround = true;
 		isJump = false;
 		scroll->stop();
+		if (obj->isSameType(GOAL)) isDead = true;
 		return;
 	}
 	scroll->start();

@@ -1,15 +1,15 @@
 #include "Stage.h"
 #include "CSVStream.h"
 #include "game.h"
-
 #include "Star.h"
 #include "Player.h"
 #include "Respawn.h"
 #include "ImMovable.h"
-
 #include "Input.h"
+#define  BLOCKSIZE 64.f
+
 Stage::Stage(const std::string& csvname,const Input& input)
-	:scroll(WINDOW_WIDTH, WINDOW_HEIGHT), timer(30,3600)
+	:scroll(WINDOW_WIDTH, WINDOW_HEIGHT), timer(60,60)
 	, input(input), starManager(scroll)
 {
 	CSVStream stream;
@@ -36,6 +36,8 @@ void Stage::updata()
 	timer.update();
 	if (timer.isEnd() || control.isDeadPlayer())
 	{
+		
+		timer.stop();
 		isEnd = true;
 	}
 }
@@ -43,13 +45,19 @@ void Stage::draw(Renderer& renderer)
 {
 	scroll.draw(renderer);
 	control.draw(renderer, &scroll);
-	int t = timer.getTime()/60;
+	int t = timer.getTime()/FRAMETIME;
 	renderer.DrawString(std::to_string(t), &GSvector2(50, 50), 50);
 }
 void Stage::finish()
 {
 	control.finish();
 }
+
+void Stage::saveScore(TimeScore& score)
+{
+	score.setScore(timer);
+}
+
 bool Stage::getIsEnd()
 {
 	return isEnd;
@@ -68,7 +76,7 @@ void Stage::objCreate(int x, int y, Array2D<bool>* check)
 	case RESPAWN:
 		size = Point(2, 2);
 		fsize = GSvector2(size.x*BLOCKSIZE, size.y*BLOCKSIZE);
-		control.add(new Respawn("rock2.bmp", MyRectangle(pos, fsize)));
+		control.add(new Respawn("rock.bmp", MyRectangle(pos, fsize)));
 		break;
 	case PLAYER:
 		size = Point(1, 1);

@@ -3,6 +3,7 @@
 #include "IScene.h"
 #include "Sound.h"
 #include "Stage.h"
+#include "TimeScore.h"
 #include "StageSelect.h"
 class Input;
 //#include "Animation.h"
@@ -13,7 +14,7 @@ enum PLAY_MODE
 class GamePlay :public IScene
 {
 public:
-	GamePlay(Sound* sound, const Input& input);
+	GamePlay(Sound* sound, const Input& input,TimeScore& score);
 	~GamePlay();
 	void Init();
 	void Update();
@@ -30,5 +31,7 @@ private:
 	PLAY_MODE mode;
 	StageSelect stageSelect;
 	const Input& input;
+	TimeScore& score;
+
 };
 #endif
