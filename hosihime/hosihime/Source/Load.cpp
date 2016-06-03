@@ -18,7 +18,7 @@ void Load::Update()
 
 	renderer.LoadTextrue("star.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("player.bmp");
-	renderer.LoadTextrue("start.bmp", GS_TEXCOLOR_KEY_AUTO);
+	renderer.LoadTextrue("start.bmp",GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("goal.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("rock2.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("planet.bmp", GS_TEXCOLOR_KEY_WHITE);
@@ -27,6 +27,16 @@ void Load::Update()
 	renderer.LoadTextrue("title.bmp");
 	renderer.LoadTextrue("gameplay.bmp");
 	renderer.LoadTextrue("ending.bmp");
+
+	//åªç›égÇ¡ÇƒÇ»Ç¢âÊëú
+	renderer.LoadTextrue("title_logo.bmp");
+	renderer.LoadTextrue("starb.bmp");
+	renderer.LoadTextrue("space3.bmp");
+	renderer.LoadTextrue("sasa.bmp");
+	renderer.LoadTextrue("shooting.bmp");
+	renderer.LoadTextrue("shooting2.bmp");
+	renderer.LoadTextrue("shooting3.bmp");
+	//Ç±Ç±Ç‹Ç≈
 
 	renderer.LoadTextrue("activeselect.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("stageselect.bmp");
@@ -40,8 +50,26 @@ void Load::Update()
 	renderer.LoadTextrue("credit.bmp", GS_TEXCOLOR_KEY_WHITE);
 	renderer.LoadTextrue("credit_g.bmp", GS_TEXCOLOR_KEY_WHITE);
 
-	sound.LoadSE("testSE.wav", 5, GWAVE_LOOP);
-	sound.LoadSE("testSE2.wav", 5);
+	//SE
+	sound.LoadSE("Broken.wav", 5);
+	sound.LoadSE("Fire.wav", 5);
+	sound.LoadSE("Jump.wav", 5);
+	sound.LoadSE("Landing.wav", 5);	//íÖín
+	sound.LoadSE("cursormove.wav", 5);
+	sound.LoadSE("decision.wav", 5);	//åàíË
+
+	//BGM
+	sound.LoadSE("Clear_1.wav", 5, GWAVE_LOOP);
+	sound.LoadSE("Clear_2.wav", 5, GWAVE_LOOP);
+	sound.LoadSE("Ending.wav", 5, GWAVE_LOOP);
+	sound.LoadSE("Opening.wav", 5, GWAVE_LOOP);
+	sound.LoadSE("GameMode_1.wav", 5, GWAVE_LOOP);
+	sound.LoadSE("GameMode_2.wav", 5, GWAVE_LOOP);
+	sound.LoadSE("Gameover.wav", 5, GWAVE_LOOP);
+	sound.LoadSE("Map.wav", 5, GWAVE_LOOP);
+	sound.LoadSE("Title.wav", 5, GWAVE_LOOP);
+
+
 
 	isEnd = true;
 }
