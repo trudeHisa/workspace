@@ -76,7 +76,7 @@ void Stage::objCreate(int x, int y, Array2D<bool>* check)
 	case PLAYER:
 		size = Point(1, 1);
 		fsize = GSvector2(size.x*BLOCKSIZE, size.y*BLOCKSIZE);
-		control.add(new Player("player.bmp", MyRectangle(pos, fsize), &scroll,input));
+		control.add(new Player("player.bmp", MyRectangle(pos, fsize), &scroll,input,sound));
 		break;
 	case PLANET:
 		size = Point(2,2);
