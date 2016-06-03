@@ -22,6 +22,7 @@ private:
 	void jump();
 	void jumpEnd();
 	void moveHorizontal();
+	void Anyfall();
 	const bool respawn();
 
 	void collisionGround(const GameObject* obj);
@@ -31,6 +32,8 @@ private:
 	bool isGround;
 	bool isJump;
 	bool isRide;
+	bool isAnyfall;
+	bool isres;
 	float speed;
 	GSvector2 respawnPos;
 	GSvector2 scrollOffset;
