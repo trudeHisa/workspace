@@ -20,6 +20,7 @@ Stage::~Stage()
 }
 void Stage::initialize()
 {
+	sound.StopSE("Map.wav");
 	sound.PlaySE("GameMode_1.wav");
 	//resTime.initialize();
 	timer.initialize();
