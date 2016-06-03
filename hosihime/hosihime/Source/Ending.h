@@ -2,23 +2,21 @@
 #define _ENDING_H_
 #include "IScene.h"
 #include "TimeScore.h"
-#include "Sound.h"
-class Input;
+class Device;
 class Ending :public IScene
 {
 public:
-	Ending(Sound& sound, const Input& input, TimeScore& score);
+	Ending(Device& device, TimeScore& score);
 	~Ending();
  	 void Init();
 	 void Update();
-	 void Draw(Renderer& renderer);
+	 void Draw(const Renderer& renderer);
 	 void Finish();
 	 Scene Next();
 	 bool IsEnd();
 private:
 	bool isEnd;
-	const Input& input;
-	Sound& sound;
+	Device& device;
 	TimeScore& score;
 };
 #endif

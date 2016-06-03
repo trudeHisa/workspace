@@ -1,5 +1,5 @@
 #include "Player.h"
-#include "Input.h"
+#include "Device.h"
 #include "Star.h"
 #include "Calculate.h"
 #include "Respawn.h"
@@ -11,13 +11,13 @@ enum SPEED
 	GROUND = 6, NONGROUND = 3
 };
 
-Player::Player(const std::string& textrue, const MyRectangle& rect, Scroll* scroll, const Input& input, Sound& sound)
+Player::Player(const std::string& textrue, const MyRectangle& rect, Scroll* scroll, Device& device)
 	:GameObject(textrue, rect, PLAYER),
 	scroll(scroll), isJump(false),
-input(input), jumpTimer(JUMPTIME, JUMPTIME), speed(3),
+	jumpTimer(JUMPTIME, JUMPTIME), speed(3),
 	respawnPos(rect.getPosition()),
 	scrollOffset(-rect.getPosition()),
-	sound(sound)
+	device(device)
 {
 }
 Player::~Player()
@@ -31,12 +31,12 @@ void Player::initialize()
 	speed = SPEED::GROUND;
 }
 void Player::jumpEnd()
-	{
+{
 	isJump = false;
 	jumpTimer.initialize();
-	}
+}
 void Player::updata()
-	{
+{
 	moving();
 	if (respawn())
 	{
@@ -44,10 +44,10 @@ void Player::updata()
 	}
 	scroll->moving(rect.getPosition(), scrollOffset);
 	rect.translate(velocity*gsFrameTimerGetTime());
-	}
+}
 //ˆÚ“®
 void Player::fallHorizontal()
-	{
+{
 	//speed = SPEED::NONGROUND;
 	Calculate<float> calc;
 	velocity.x = calc.clamp(velocity.x, -SPEED::NONGROUND, SPEED::NONGROUND);
@@ -81,7 +81,7 @@ void Player::jumpStart()
 	{
 		return;
 	}
-	if (!input.getActionTrigger())
+	if (!device.getInput().getActionTrigger())
 	{
 		return;
 	}
@@ -91,7 +91,7 @@ void Player::jumpStart()
 void Player::jump()
 {
 	if (!isJump)
-{
+	{
 		return;
 	}
 	velocity.y = -jumpTimer.getTime()*JUMPSPEED;
@@ -108,7 +108,7 @@ void Player::moveHorizontal()
 	{
 		return;
 	}
-	velocity.x = input.getVelocity().x * speed;
+	velocity.x = device.getInput().getVelocity().x * speed;
 }
 //
 const  bool Player::respawn()
@@ -133,13 +133,13 @@ void Player::collisionGround(const GameObject* obj)
 	if (obj->isSameType(RESPAWN) ||
 		obj->isSameType(START) ||
 		obj->isSameType(GOAL))
-{
+	{
 		isGround = true;
 		isJump = false;
 		scroll->stop();
 		if (obj->isSameType(GOAL)) isDead = true;
 		return;
-		sound.PlaySE("Landing.wav");
+		device.getSound().PlaySE("Landing.wav");
 	}
 	scroll->start();
 	isGround = false;

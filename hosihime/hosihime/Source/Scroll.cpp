@@ -16,7 +16,7 @@ void Scroll::initialize()
 void Scroll::updata()
 {
 }
-void Scroll::draw(Renderer& renderer)
+void Scroll::draw(const Renderer& renderer)
 {
 	renderer.DrawTextrue("space.bmp", &position1);
 	renderer.DrawTextrue("space2.bmp", &position2);

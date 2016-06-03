@@ -1,22 +1,22 @@
 #ifndef _LOAD_H_
 #define _LOAD_H_
 #include "IScene.h"
-
-#include "Sound.h"
+class Device;
 class Load :public IScene
 {
 public:
-	Load(Renderer& renderer, Sound& sound);
+	Load(Device& device);
 	~Load();
 	void Init();
 	void Update();
-	void Draw(Renderer& renderer);
+	void Draw(const Renderer& renderer);
 	void Finish();
 	Scene Next();
 	bool IsEnd();
+	void loadTextrue();
+	void loadSound();
 private:
 	bool isEnd;
-	Renderer& renderer;
-	 Sound& sound;
+	Device& device;
 };
 #endif

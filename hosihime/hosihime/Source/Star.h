@@ -13,7 +13,7 @@ public:
 	void initialize();
 	void updata();
 	void collision(const GameObject* obj);
-	void draw(Renderer& renderer, const Scroll* scroll);
+	void draw(const Renderer& renderer, const Scroll& scroll);
 	const GSvector2& getSPosi() const;
 public:
 	void ride(MyRectangle* rect);

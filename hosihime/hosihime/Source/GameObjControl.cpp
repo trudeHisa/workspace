@@ -73,7 +73,7 @@ void GameObjControl::add_Star(Stars_inScreen& stars)
 	}
 }
 
-void GameObjControl::draw(Renderer& renderer, const Scroll* scroll)
+void GameObjControl::draw(const Renderer& renderer, const Scroll& scroll)
 {
 	for each (GameObj_Ptr obj in objs)
 	{

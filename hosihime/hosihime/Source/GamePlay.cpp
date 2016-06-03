@@ -1,8 +1,10 @@
 #include"GamePlay.h"
 #include "Stage.h"
 #include "Input.h"
-GamePlay::GamePlay(Sound& sound, const Input& input,TimeScore& score)
-:sound(sound), stage(NULL),input(input),stageSelect(input),score(score)//, animTimer(5), anim(&animTimer)
+#include "Device.h"
+GamePlay::GamePlay(Device& device, TimeScore& score)
+: device(device),stage(NULL),stageSelect(device),score(score)
+//, animTimer(5), anim(&animTimer)
 {
 
 }
@@ -13,7 +15,7 @@ GamePlay::~GamePlay()
 }
 void GamePlay::Init()
 {
-	sound.StopSE("Opening.wav");
+	device.getSound().StopSE("Opening.wav");
 	mode = SELECT;
 	isEnd = false;
 	stageSelect.initialize();
@@ -34,9 +36,9 @@ void GamePlay::Update()
 	{
 	case SELECT:
 		stageSelect.updata();
-		if (input.getActionTrigger())
+		if (device.getInput().getActionTrigger())
 		{
-			sound.PlaySE("decision.wav");
+			device.getSound().PlaySE("decision.wav");
 			stage = stageSelect.createStage();
 			stage->initialize();
 			stageSelect.finish();
@@ -44,9 +46,9 @@ void GamePlay::Update()
 		}
 		break;
 	case PLAY:
-		if (input.getDebugResetTrigger())
+		if (device.getInput().getDebugResetTrigger())
 		{
-			sound.PlaySE("decision.wav");
+			device.getSound().PlaySE("decision.wav");
 			stage = NULL;
 			stage = stageSelect.createStage();
 			stage->initialize();
@@ -56,7 +58,7 @@ void GamePlay::Update()
 		break;
 	}
 }
-void GamePlay::Draw(Renderer& renderer)
+void GamePlay::Draw(const Renderer& renderer)
 {
 	switch (mode)
 	{

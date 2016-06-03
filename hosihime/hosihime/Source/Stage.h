@@ -9,16 +9,17 @@
 #include "Array2D.h"
 #include "Timer.h"
 #include "TimeScore.h"
-#include "Sound.h"
-class Input;
+
+class Device;
+
 class Stage
 {
 public:
-	Stage(const std::string& csvname, const Input& input,Sound& sound);
+	Stage(const std::string& csvname, Device& device);
 	~Stage();
 	void updata();
 	void initialize();
-	void draw(Renderer& renderer);
+	void draw(const Renderer& renderer);
 	void finish();
 	bool getIsEnd();
 	void saveScore(TimeScore& score);
@@ -34,7 +35,6 @@ private:
 	StarManger starManager;
 	Scroll scroll;
 	Timer timer;
-	Sound& sound;
-	const Input& input;
+	Device& device;
 };
 #endif

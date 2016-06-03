@@ -5,11 +5,7 @@
 StarDataStream::StarDataStream()
 {
 }
-
-StarDataStream::~StarDataStream()
-{
-}
-void StarDataStream::input(std::vector<std::vector<std::string>>* data, const char* name)
+void StarDataStream::input(std::vector<std::vector<std::string>>* data, const char* name)const
 {
 	std::ifstream ifs(name);
 	if (!ifs)

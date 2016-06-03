@@ -5,7 +5,6 @@ class Input
 {
 public:
 	Input();
-	~Input();
 	const bool getActionTrigger()const;
 	const GSvector2& getVelocity()const;
 	const float getHorizontal()const;//…•½	

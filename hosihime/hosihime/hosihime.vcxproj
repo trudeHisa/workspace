@@ -15,6 +15,7 @@
     <ClCompile Include="Source\AnimationTimer.cpp" />
     <ClCompile Include="Source\Circle.cpp" />
     <ClCompile Include="Source\CSVStream.cpp" />
+    <ClCompile Include="Source\Device.cpp" />
     <ClCompile Include="Source\Ending.cpp" />
     <ClCompile Include="Source\game.cpp" />
     <ClCompile Include="Source\GameObjControl.cpp" />
@@ -57,6 +58,7 @@
     <ClInclude Include="Source\Circle.h" />
     <ClInclude Include="Source\CSVStream.h" />
     <ClInclude Include="Source\Definition.h" />
+    <ClInclude Include="Source\Device.h" />
     <ClInclude Include="Source\Ending.h" />
     <ClInclude Include="Source\game.h" />
     <ClInclude Include="Source\GameObjControl.h" />

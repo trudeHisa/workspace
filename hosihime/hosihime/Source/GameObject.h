@@ -17,7 +17,7 @@ public:
 		const GAMEOBJ_TYPE type);
 	virtual ~GameObject();
 	virtual void updata() = 0;
-	virtual void draw(Renderer& renderer,const Scroll* scroll);
+	virtual void draw(const Renderer& renderer, const Scroll& scroll);
 	virtual void initialize();
 	virtual void finish();
 	//オブジェクトと当たっているか？

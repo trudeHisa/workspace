@@ -18,7 +18,7 @@ public:
 	void updata();
 	void inisialize();
 	void add(GameObject* object);
-	void draw(Renderer& renderer, const Scroll* scroll);
+	void draw(const Renderer& renderer, const Scroll& scroll);
 	void finish();
 	void add_Star(Stars_inScreen& stars);
 	void reqestClone(Star* starclone);

@@ -5,7 +5,7 @@ void Renderer::LoadTextrue(const std::string& name, const GSenum colorKeyMode, c
 	std::string name_ps = ps + name;
 	gsTextureColorKeyMode(colorKeyMode);
 	gsLoadTexture(container.size(),name_ps.c_str());
-	container[name] = container.size();
+	container.insert(std::pair<const std::string, GSuint>(name, container.size()));
 }
 void Renderer::Release()
 {
@@ -23,7 +23,7 @@ void Renderer::DrawSprite2D(
 	GSfloat          fRotation,
 	const GSvector2* pTranslation,
 	const GScolor*    pColor
-	)
+	)const
 {
 	GSrect rTexCoord;
 	GLfloat fWidth;
@@ -105,25 +105,25 @@ void Renderer::DrawSprite2D(
 	glColor4fv((GLfloat*)&CurrentColor);
 	glPopAttrib();
 }
-void Renderer::DrawTextrue(const std::string& name, const GSvector2* _position)
+void Renderer::DrawTextrue(const std::string& name, const GSvector2* _position)const
 {
-	DrawSprite2D(container[name], NULL, NULL, NULL, NULL, _position, &GScolor(1, 1, 1, 1));
+	DrawSprite2D(container.at(name), NULL, NULL, NULL, NULL, _position, &GScolor(1, 1, 1, 1));
 }
-void Renderer::DrawTextrue(const std::string& name, const GSvector2* _position, const GSrect* _rect)
+void Renderer::DrawTextrue(const std::string& name, const GSvector2* _position, const GSrect* _rect)const
 {
-	DrawSprite2D(container[name], _rect, NULL, NULL, NULL, _position, &GScolor(1, 1, 1, 1));
+	DrawSprite2D(container.at(name), _rect, NULL, NULL, NULL, _position, &GScolor(1, 1, 1, 1));
 }
-void Renderer::DrawTextrue(const std::string& name, const GSvector2* _position, const GScolor* _color)
+void Renderer::DrawTextrue(const std::string& name, const GSvector2* _position, const GScolor* _color)const
 {
-	DrawSprite2D(container[name], NULL, NULL, NULL, NULL, _position, _color);
+	DrawSprite2D(container.at(name), NULL, NULL, NULL, NULL, _position, _color);
 }
-void Renderer::DrawTextrue(const std::string& name, const GSvector2* _position, const GSvector2* _scaling, const GScolor* _color)
+void Renderer::DrawTextrue(const std::string& name, const GSvector2* _position, const GSvector2* _scaling, const GScolor* _color)const
 {
-	DrawSprite2D(container[name], NULL, NULL, _scaling, NULL, _position, _color);
+	DrawSprite2D(container.at(name), NULL, NULL, _scaling, NULL, _position, _color);
 }
-void Renderer::DrawTextrue(const std::string& name, const GSvector2* _position, const GSrect* _rect, const GScolor* _color)
+void Renderer::DrawTextrue(const std::string& name, const GSvector2* _position, const GSrect* _rect, const GScolor* _color)const
 {
-	DrawSprite2D(container[name], _rect, NULL, NULL, NULL, _position, _color);
+	DrawSprite2D(container.at(name), _rect, NULL, NULL, NULL, _position, _color);
 }
 void Renderer::DrawTextrue(
 	const std::string& name,
@@ -133,15 +133,24 @@ void Renderer::DrawTextrue(
 	const GSvector2* _scaling,
 	GSfloat _rotation,
 	const GScolor* _color
-	)
+	)const
 {
-	DrawSprite2D(container[name], _rect, _center, _scaling, _rotation, _position, _color);
+	DrawSprite2D(container.at(name), _rect, _center, _scaling, _rotation, _position, _color);
 }
 void Renderer::DrawString(const std::string& text, const GSvector2* _position, const GSuint size,
-	const GScolor* _color, const GSbitfield& fontcode,const char* fontname)
+	const GScolor* _color, const GSbitfield& fontcode, const char* fontname)const
 {
 	gsFontParameter(fontcode,size,fontname);
 	glColor4f(_color->r, _color->g, _color->b, _color->a);
 	gsTextPos(_position->x, _position->y);
 	gsDrawText(text.c_str());
 }
+
+void Renderer::InitBlendFunc()const
+{
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+}
+void Renderer::AdditionBlend()const
+{
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+};

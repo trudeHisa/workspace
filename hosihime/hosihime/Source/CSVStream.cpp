@@ -10,7 +10,7 @@ CSVStream.cpp
 CSVStream::CSVStream()
 {
 }
-void CSVStream::output(Array2D<int>* out, const char* name)
+void CSVStream::output(Array2D<int>* out, const char* name)const
 {
 	std::ofstream ofs(name);
 	for (int y = 0; y <out->getSize0(); y++)
@@ -23,7 +23,7 @@ void CSVStream::output(Array2D<int>* out, const char* name)
 	}
 	ofs.close();
 }
-void CSVStream::input(Array2D<int>* input, const char* name)
+void CSVStream::input(Array2D<int>* input, const char* name)const
 {
 	std::ifstream ifs(name);
 	if (!ifs)

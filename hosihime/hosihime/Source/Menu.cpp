@@ -1,12 +1,8 @@
 #include "Menu.h"
-#include "Input.h"
 #include "Calculate.h"
-Menu::Menu(const Input& input)
-	:input(input), index(0)
-{
-}
-
-Menu::~Menu()
+#include "Device.h"
+Menu::Menu(Device& device)
+	:device(device), index(0)
 {
 }
 
@@ -17,6 +13,7 @@ void Menu::Init()
 }
 void Menu::Update()
 {
+	const Input input = device.getInput();
 	if (input.getUpTrigger())
 	{
 		index -= 1;
@@ -30,7 +27,7 @@ void Menu::Update()
 
 	isEnd = input.getActionTrigger();
 }
-void Menu::Draw(Renderer& renderer)
+void Menu::Draw(const Renderer& renderer)
 {
 	renderer.DrawTextrue("title.bmp", &GSvector2(0, 0));
 	renderer.DrawTextrue("titletext.bmp", &GSvector2(200, 120));

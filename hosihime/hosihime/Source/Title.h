@@ -1,24 +1,22 @@
 #ifndef _TITLE_H_
 #define _TITLE_H_
 #include "IScene.h"
-#include "Sound.h"
-class Input;
+class Device;
 class Title :public IScene
 {
 public:
-	Title(Sound& sound,const Input& input);
+	Title(Device& device);
 	~Title();
 	void Init();
 	void Update();
-	void Draw(Renderer& renderer);
+	void Draw(const Renderer& renderer);
 	void Finish();
 	Scene Next();
 	bool IsEnd();
 private:
-	const Input& input;
+	Device& device;
 	bool isEnd;
 	int index;//‘I‘ğˆŠÇ—
 	bool boolSpace;//
-	Sound& sound;
 };
 #endif

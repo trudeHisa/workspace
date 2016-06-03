@@ -31,11 +31,11 @@ void Star::updata()
 		isDead = true;
 	}
 }
-void Star::draw(Renderer& renderer, const Scroll* scroll)
+void Star::draw(const Renderer& renderer, const Scroll& scroll)
 {
 	GSvector2 pos = rect.getPosition();
-	pos -= scroll->getMovingAmount();
-	if (!scroll->isInsideWindow(pos, rect.getSize()))
+	pos -= scroll.getMovingAmount();
+	if (!scroll.isInsideWindow(pos, rect.getSize()))
 	{
 		return;
 	}

@@ -1,11 +1,6 @@
-
 #include "Input.h"
 
 Input::Input()
-{
-}
-
-Input::~Input()
 {
 }
 const bool Input::getActionTrigger()const

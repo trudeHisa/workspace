@@ -1,20 +1,19 @@
 #ifndef _MENU_H_
 #define _MENU_H_
 #include "IScene.h"
-class Input;
+class Device;
 class Menu :public IScene
 {
 public:
-	Menu(const Input& input);
-	~Menu();
+	Menu(Device& device);
 	void Init();
 	void Update();
-	void Draw(Renderer& renderer);
+	void Draw(const Renderer& renderer);
 	void Finish();
 	Scene Next();
 	bool IsEnd();
 private:
-	const Input& input;
+	Device& device;
 	int index;//‘I‘ğˆŠÇ—
 	bool isEnd;
 };

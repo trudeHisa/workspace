@@ -1,7 +1,7 @@
 #include "Ending.h"
-#include "Input.h"
-Ending::Ending(Sound& sound, const Input& input TimeScore& score)
-: sound(sound), input(input), score(score)
+#include "Device.h"
+Ending::Ending(Device& device, TimeScore& score)
+: device(device), score(score)
 {
 }
 Ending::~Ending()
@@ -9,15 +9,15 @@ Ending::~Ending()
 }
 void Ending::Init()
 {
-	sound.StopSE("GameMode_1.wav");
+	device.getSound().StopSE("GameMode_1.wav");
 	isEnd = false;
-	sound.PlaySE("Ending.wav");
+	device.getSound().PlaySE("Ending.wav");
 }
 void Ending::Update()
 {
-	isEnd = input.getActionTrigger();
+	isEnd = device.getInput().getActionTrigger();
 }
-void Ending::Draw(Renderer& renderer)
+void Ending::Draw(const Renderer& renderer)
 {	
 	renderer.DrawTextrue("ending.bmp", &GSvector2(0, 0));
 	renderer.DrawString(std::to_string(score.getScore()/FRAMETIME), &GSvector2(50, 50), 50);

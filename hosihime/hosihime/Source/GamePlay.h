@@ -1,12 +1,11 @@
 #ifndef _GAMEPLAY_H_
 #define _GAMEPLAY_H_
 #include "IScene.h"
-#include "Sound.h"
 #include "Stage.h"
 #include "TimeScore.h"
 #include "StageSelect.h"
-class Input;
-//#include "Animation.h"
+
+class Device;
 enum PLAY_MODE
 {
 	SELECT, PLAY
@@ -14,24 +13,20 @@ enum PLAY_MODE
 class GamePlay :public IScene
 {
 public:
-	GamePlay(Sound* sound, const Input& input,TimeScore& score);
+	GamePlay(Device& device, TimeScore& score);
 	~GamePlay();
 	void Init();
 	void Update();
-	void Draw(Renderer& renderer);
+	void Draw(const Renderer& renderer);
 	void Finish();
 	Scene Next();
 	bool IsEnd();
 private:
-	/*Animation anim;
-	AnimationTimer animTimer;*/
 	bool isEnd;
-	Sound& sound;
 	Stage* stage;
 	PLAY_MODE mode;
 	StageSelect stageSelect;
-	const Input& input;
 	TimeScore& score;
-
+	Device& device;
 };
 #endif
