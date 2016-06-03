@@ -3,7 +3,7 @@
 #include "Star.h"
 #include "Calculate.h"
 #include "Respawn.h"
-#define GRAVITY 10
+#define GRAVITY 8
 #define JUMPSPEED 0.3
 
 enum SPEED
@@ -26,6 +26,8 @@ Player::~Player()
 }
 void Player::initialize()
 {
+	isAnyfall = false;
+	isres = false;
 	GameObject::initialize();
 	jumpEnd();
 	speed = SPEED::GROUND;
@@ -50,13 +52,14 @@ void Player::fallHorizontal()
 	{
 	//speed = SPEED::NONGROUND;
 	Calculate<float> calc;
-	velocity.x = calc.clamp(velocity.x, -SPEED::NONGROUND, SPEED::NONGROUND);
-	velocity.x = LERP(gsFrameTimerGetTime()*0.01f, velocity.x, 0);
+	/*velocity.x = calc.clamp(velocity.x, -SPEED::NONGROUND, SPEED::NONGROUND);
+	velocity.x = LERP(gsFrameTimerGetTime()*0.01f, velocity.x, 0);*/
 }
 void Player::gravity()
 {
 	if (isGround)
 	{
+		isres = false;
 		//speed = SPEED::GROUND;
 		velocity.y = 0;
 		return;
@@ -66,6 +69,7 @@ void Player::gravity()
 }
 void Player::moving()
 {
+	Anyfall();
 	gravity();
 	jumpStart();
 	moveHorizontal();
@@ -91,7 +95,7 @@ void Player::jumpStart()
 void Player::jump()
 {
 	if (!isJump)
-{
+	{
 		return;
 	}
 	velocity.y = -jumpTimer.getTime()*JUMPSPEED;
@@ -102,9 +106,16 @@ void Player::jump()
 	}
 	jumpEnd();
 }
+void  Player::Anyfall()
+{
+	if (isAnyfall)
+	{
+		velocity.y = 5;
+	}
+}
 void Player::moveHorizontal()
 {
-	if (!isGround && !isJump)
+	if (isRide||isres)
 	{
 		return;
 	}
@@ -119,6 +130,7 @@ const  bool Player::respawn()
 	}
 	rect.resetPosition(respawnPos);
 	velocity = GSvector2(0, 0);
+	isres = true;
 	return true;
 }
 //Õ“Ë
@@ -136,6 +148,7 @@ void Player::collisionGround(const GameObject* obj)
 {
 		isGround = true;
 		isJump = false;
+		isAnyfall = false;
 		scroll->stop();
 		return;
 		sound.PlaySE("Landing.wav");
@@ -149,10 +162,17 @@ const bool Player::collisionStar(const GameObject* obj)
 	{
 		return false;
 	}
+	if (gsGetKeyTrigger(GKEY_DOWN))
+	{
+		isAnyfall = true;
+		rect.translate(GSvector2(0,58));
+		return false;
+	}
 	Star* s = (Star*)obj;
 	s->ride(&rect);
 	s->pickUp(&velocity);
 	jumpEnd();
+	isAnyfall = false;
 	return true;
 }
 void Player::collisionRespawn(const GameObject* obj)
