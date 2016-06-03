@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Star.h"
 
+//test
 Player::Player(const std::string& textrue, const GSvector2* velocityition, Scroll* scroll)
 	:GameObject(textrue, &Point(1, 1), PLAYER, velocityition), star(NULL), scroll(scroll)
 {
