@@ -3,10 +3,20 @@ GAMEOBJ_TYPE.h
 */
 #ifndef _GAMEOBJ_TYPE_H_
 #define _GAMEOBJ_TYPE_H_
-#include "Array2D.h"
 enum GAMEOBJ_TYPE
 {
-	SPACE=0,PLAYER=1,STAR=2,ROCK=3
+	SPACE = 0,
+	PLAYER = 100,
+
+	STAR = 10,
+	STRA_NoMove=11,
+	STAR_NoMove_Crack=12, 
+	
+	RESPAWN = 20,
+	PLANET = 21,
+	MAGPIE=22,
+	START =30, 
+	GOAL =40
 };
 
 #endif

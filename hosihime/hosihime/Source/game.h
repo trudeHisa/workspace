@@ -33,5 +33,4 @@ extern void gameDraw( void );				/* ƒQ[ƒ€•`‰æˆ—		*/
 extern void gameFinish( void );				/* ƒQ[ƒ€I—¹ˆ—		*/
 
 #endif
-
 /********** End of File ******************************************************/

@@ -1,5 +1,6 @@
 #include "GameObjControl.h"
 #include "Player.h"
+#include "Star.h"
 #include <algorithm>
 
 GameObjControl::GameObjControl()
@@ -10,71 +11,68 @@ GameObjControl::~GameObjControl()
 {
 
 }
-void GameObjControl::updata(MapData* mapdata)
+void GameObjControl::updata()
 {
+	remove();
 	for each (GameObj_Ptr obj in objs)
 	{
-		obj->updata(mapdata);
+		obj->updata();
 	}
-	sendStarsPlayer();
-	remove(mapdata);
+	allCollision();
+//	remove();
 }
-void GameObjControl::sendStarsPlayer()
+void GameObjControl::allCollision()
 {
-	for each (GameObj_Ptr obj in objs)
+	for each (GameObj_Ptr obj1 in objs)
 	{
-		setStar(obj);
+		for each (GameObj_Ptr obj2 in objs)
+		{
+			collision(obj1, obj2);
+		}
 	}
 }
-void GameObjControl::setStar(GameObj_Ptr obj)
+void GameObjControl::collision(GameObj_Ptr obj1, GameObj_Ptr obj2)
 {
-	if (!obj->isSameType(STAR))
+	if (!obj1->isCollision(obj2.get()))
 	{
 		return;
 	}
-	GameObjs_Itr::_Vector_const_iterator player;
-	if (!findPlayer(&player))
-	{
-		return;
-	}
-	((Player*)player->get())->setStar(obj.get());
+	obj1->collision(obj2.get());
+	obj2->collision(obj1.get());
 }
-const bool GameObjControl::findPlayer(GameObjs_Itr::_Vector_const_iterator* player)const
+void GameObjControl::remove()
 {
-	auto itr = std::find_if(objs.begin(), objs.end(), [](GameObj_Ptr obj)
-	{
-		return obj->isSameType(PLAYER);
-	});
-	if (itr == objs.end())
-	{
-		return false;
-	}
-	*player = itr;
-	return true;
-}
-void GameObjControl::remove(MapData* mapdata)
-{
-	auto itrNewEnd = std::remove_if(objs.begin(), objs.end(), [&](GameObj_Ptr obj)->bool
+	auto itrNewEnd = std::remove_if(objs.begin(), objs.end(), [](GameObj_Ptr obj)->bool
 	{
 		if (!obj->getIsDead())
 		{
 			return false;
 		}
-		obj->finish(mapdata);
+		obj->finish();
 		return true;
 	});
 	objs.erase(itrNewEnd, objs.end());
 }
 void GameObjControl::inisialize()
 {
-	objs.clear();
+	objs.clear(); 
 }
-const Point& GameObjControl::add(GameObject* object)
+void GameObjControl::add(GameObject* object)
 {
 	object->initialize();
 	objs.push_back(GameObj_Ptr(object));
-	return object->getSize();
 }
+
+
+//‰æ–Ê“à‚É“ü‚Á‚Ä‚¢‚é¯‚ğobjControl‚É“n‚·
+void GameObjControl::add_Star(Stars_inScreen& stars)
+{
+	for each(Star* star in stars)
+	{
+		add((GameObject*)star);
+	}
+}
+
 void GameObjControl::draw(Renderer& renderer, const Scroll* scroll)
 {
 	for each (GameObj_Ptr obj in objs)
@@ -82,7 +80,26 @@ void GameObjControl::draw(Renderer& renderer, const Scroll* scroll)
 		obj->draw(renderer, scroll);
 	}
 }
+bool GameObjControl::isDeadPlayer()
+{
+	auto itr = std::find_if(objs.begin(), objs.end(), [](GameObj_Ptr obj)->bool
+	{
+		return obj->isSameType(PLAYER);
+	});
+	if (itr == objs.end())
+	{
+		return true;
+	}
+	return false;
+}
 void GameObjControl::finish()
 {
 
+}
+
+void GameObjControl::reqestClone(Star* starclone)
+{
+	//‰ŠúˆÊ’u‚ª‰æ–Ê“à‚È‚ç
+	//if ()
+	add((GameObject*)starclone);
 }

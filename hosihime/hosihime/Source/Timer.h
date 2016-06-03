@@ -4,12 +4,13 @@
 class Timer
 {
 public:
-	Timer(int _timer, int _setting);
+	Timer(float _timer, float _setting);
 	void initialize();
 	void update();
 	bool isEnd();
+	float getTime();
 private:
-	int timer;
-	int setting;
+	float timer;
+	float setting;
 };
 #endif

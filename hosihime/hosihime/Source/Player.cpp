@@ -1,84 +1,163 @@
 #include "Player.h"
+#include "Input.h"
 #include "Star.h"
+#include "Calculate.h"
+#include "Respawn.h"
+#define GRAVITY 10
+#define JUMPSPEED 0.3
 
-//test
-Player::Player(const std::string& textrue, const GSvector2* velocityition, Scroll* scroll)
-	:GameObject(textrue, &Point(1, 1), PLAYER, velocityition), star(NULL), scroll(scroll)
+enum SPEED
 {
+	GROUND = 10, NONGROUND = 3
+};
 
+Player::Player(const std::string& textrue, const MyRectangle& rect, Scroll* scroll, const Input& input)
+	:GameObject(textrue, rect, PLAYER),
+	scroll(scroll), isJump(false),
+	input(input), jumpTimer(40, 40), speed(3),
+	respawnPos(rect.getPosition()),
+	scrollOffset(-rect.getPosition())
+{
 }
 Player::~Player()
 {
-	delete star;
-	star = NULL;
-	delete scroll;
 	scroll = NULL;
 }
-void Player::updata(MapData* mapdata)
+void Player::initialize()
 {
-	starDestroy();
-	GSvector2 nextVel(0, 0);
-	if (star != NULL)
+	GameObject::initialize();
+	jumpEnd();
+	speed = SPEED::NONGROUND;
+}
+void Player::jumpEnd()
 	{
-		star->pickUp(&nextVel);
+	isJump = false;
+	jumpTimer.initialize();
 	}
-	if (GetAsyncKeyState(VK_UP) && jflag == false)
+void Player::updata()
 	{
-		jflag = true;
-		y_prev = position.y;
-		nextVel.y = -20;
-	}
-	if (jflag == true){
-		y_temp = position.y;
-		nextVel.y = (position.y - y_prev) + 5;
-		y_prev = y_temp;
-
-	}
-	if (!isNextMove(mapdata, &nextVel))
+	moving();
+	if (respawn())
 	{
 		return;
 	}
-	if (jflag == true){
-		y_temp = position.y;
-		velocity.y = (position.y - y_prev) + 5;
-		y_prev = y_temp;
-
+	scroll->moving(rect.getPosition(),scrollOffset);
+	rect.translate(velocity*gsFrameTimerGetTime());
 	}
-	if (GetAsyncKeyState(VK_UP)&&jflag == true)
+//ˆÚ“®
+void Player::fallHorizontal()
 	{
-		velocity.y = -20;
-	}
-
-	if (star != NULL)
-	{
-		star->pickUp(&velocity);
-	}
-	scroll->moving(velocity.x);
-	move(mapdata);
+	speed = SPEED::NONGROUND;
+	Calculate<float> calc;
+	velocity.x = calc.clamp(velocity.x, -SPEED::NONGROUND, SPEED::NONGROUND);
+	velocity.x = LERP(gsFrameTimerGetTime()*0.01f, velocity.x, 0);
 }
-void Player::starDestroy()
+void Player::gravity()
 {
-	if (star == NULL)
+	if (isGround)
+	{
+		speed = SPEED::GROUND;
+		velocity.y = 0;
+		return;
+	}
+	fallHorizontal();
+	velocity.y = GRAVITY;
+}
+void Player::moving()
+{
+	gravity();
+	jumpStart();
+	moveHorizontal();
+	jump();
+}
+void Player::jumpStart()
+{
+	if (!isGround&&!isRide)
 	{
 		return;
 	}
-	if (!star->getIsDead())
+	if (isJump)
 	{
 		return;
 	}
-	velocity = GSvector2(0, 0);
-	star = NULL;
+	if (!input.getActionTrigger())
+	{
+		return;
+	}
+	isJump = true;
 }
-bool Player::collision(int nextvelocityType)
+void Player::jump()
 {
-	return nextvelocityType != ROCK;
+	if (!isJump)
+{
+		return;
+	}
+	velocity.y = -jumpTimer.getTime()*JUMPSPEED;
+	jumpTimer.update();
+	if (!jumpTimer.isEnd())
+	{
+		return;
+	}
+	jumpEnd();
 }
-bool Player::setStar(GameObject* _star)
+void Player::moveHorizontal()
 {
-	if (!_star->isSameLocation(location))
+	if (!isGround && !isJump)
+	{
+		return;
+	}
+	velocity.x = input.getVelocity().x * speed;
+}
+//
+const  bool Player::respawn()
+{
+	if (rect.getPosition().y <= WINDOW_HEIGHT + rect.getHeight())
 	{
 		return false;
 	}
-	star = (Star*)_star;
+	rect.resetPosition(respawnPos);
+	velocity = GSvector2(0, 0);
 	return true;
+}
+//Õ“Ë
+void Player::collision(const GameObject* obj)
+{
+	isRide=collisionStar(obj);
+	collisionRespawn(obj);
+	collisionGround(obj);
+}
+void Player::collisionGround(const GameObject* obj)
+{
+	if (obj->isSameType(RESPAWN) ||
+		obj->isSameType(START) ||
+		obj->isSameType(GOAL))
+{
+		isGround = true;
+		isJump = false;
+		scroll->stop();
+		return;
+	}
+	scroll->start();
+	isGround = false;
+}
+const bool Player::collisionStar(const GameObject* obj)
+{
+	if (!obj->isSameType(STAR))
+	{
+		return false;
+	}
+	Star* s = (Star*)obj;
+	s->ride(&rect);
+	s->pickUp(&velocity);
+	jumpEnd();
+	return true;
+}
+void Player::collisionRespawn(const GameObject* obj)
+{
+	if (!obj->isSameType(RESPAWN))
+	{
+		return;
+	}
+	Respawn* respawn = (Respawn*)obj;
+	respawn->setRespawn(&respawnPos.x);
 }

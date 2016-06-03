@@ -1,29 +1,28 @@
 #ifndef _STAR_H_
 #define _STAR_H_
-#include "GamaObject.h"
-class Star:public GameObject
+#include <string>
+#include "GameObject.h"
+
+class IStarMove;
+
+class Star :public GameObject
 {
 public:
-	Star(const std::string& textrue, const GSvector2* position);
+	Star(const std::string& textrue, const MyRectangle& rect, IStarMove* move);
 	~Star();
-	void inisialize();
-	 void updata(MapData* mapdata);	
-	 void pickUp(GSvector2* pos);
+	void initialize();
+	void updata();
+	void collision(const GameObject* obj);
+	void draw(Renderer& renderer, const Scroll* scroll);
+public:
+	void ride(MyRectangle* rect);
+	void pickUp(GSvector2* velocity);
+	Star* clone();
 private:
-	//’¼ü
-	void LinePattern1(GSvector2* _velocity);//‰E‰º‚É—‚¿‚é
-	void LinePattern2(GSvector2* _velocity);//¶‰º‚É—‚¿‚é
-	//•ú•¨ü
-	void LinePattern3(GSvector2* _velocity, float* rot);//‰E‰º
-	void LinePattern4(GSvector2* _velocity, float* rot);//¶‰º
-
-	//‰~‰^“®
-	void LinePattern5(GSvector2* _velocity, float* rot);
-	//ƒuƒ‰ƒ“ƒR‚İ‚½‚¢‚È“®‚«
-	void LinePattern6(GSvector2* _velocity, float* rot);
-	//”gü
-	void LinePattern7(GSvector2* _velocity, float* rot);
-	float ang,  spd, sindw, rot = 0;
-	bool collision(int nextPosType);
+	void rotate();
+private:
+	IStarMove* move;
+	float angle;//rad
+	GSvector2 startPosi;
 };
 #endif

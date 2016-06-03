@@ -37,6 +37,7 @@ public:
 	void DrawString(const std::string& text, const GSvector2* _position, const GSuint size,
 		const GScolor* _color = &GScolor(1, 1, 1, 1), const GSbitfield& fontcode = GS_FONT_NORMAL,
 		const char* fonstname="MS ÉSÉVÉbÉN");
+	
 	void InitBlendFunc()
 	{
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

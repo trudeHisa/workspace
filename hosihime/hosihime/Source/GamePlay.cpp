@@ -1,43 +1,60 @@
 #include"GamePlay.h"
 #include "Stage.h"
-#include "Star.h"
-
-GamePlay::GamePlay(Sound* sound)
-	:sound(*sound), stage(0)
+#include "Input.h"
+GamePlay::GamePlay(Sound* sound, const Input& input)
+:sound(*sound), stage(NULL),input(input),stageSelect(input)//, animTimer(5), anim(&animTimer)
 {
-	
+
 }
 GamePlay::~GamePlay()
 {
 	delete stage;
-	stage = 0;
+	stage = NULL;
 }
 void GamePlay::Init()
 {
 	mode = SELECT;
 	isEnd = false;
-	stageSelect.initialize();	
+	stageSelect.initialize();
+	stage = NULL;
+	/*anim.addCell("D", 1, 3, 64, 64);
+	anim.addCell("A", 2, 3, 64, 64);*/
 }
 void GamePlay::Update()
 {
+	/*std::string n = "D";
+	if (gsGetKeyState(GKEY_S))
+	{
+		n = "A";
+	}
+	animTimer.updata();
+	anim.updata(n);*/
 	switch (mode)
 	{
 	case SELECT:
-		if (stageSelect.updata(&stage))
-		{			
+		stageSelect.updata();
+		if (input.getActionTrigger())
+		{
+			stage = stageSelect.createStage();
 			stage->initialize();
 			stageSelect.finish();
 			mode = PLAY;
 		}
 		break;
 	case PLAY:
+		if (input.getDebugResetTrigger())
+		{
+			stage = NULL;
+			stage = stageSelect.createStage();
+			stage->initialize();
+		}
 		stage->updata();
+		isEnd=stage->getIsEnd();
 		break;
 	}
 }
 void GamePlay::Draw(Renderer& renderer)
-{	
-	
+{
 	switch (mode)
 	{
 	case SELECT:
@@ -46,11 +63,12 @@ void GamePlay::Draw(Renderer& renderer)
 	case PLAY:
 		stage->draw(renderer);
 		break;
-	}	
+	}
+	//anim.draw(renderer, "anim.bmp", &GSvector2(50, 50));
 }
 void GamePlay::Finish()
 {
-	stage->finish();	
+	stage->finish();
 }
 Scene GamePlay::Next()
 {

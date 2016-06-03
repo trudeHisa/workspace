@@ -6,7 +6,8 @@ enum Scene
 	MODE_LOAD,
 	MODE_TITLE,
 	MODE_GAMEPLAY,
-	MODE_ENDING
+	MODE_ENDING,
+	MODE_MENU
 };
 __interface IScene
 {
