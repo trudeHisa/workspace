@@ -29,14 +29,15 @@ private:
 	void collisionRespawn(const GameObject* obj);
 private:
 	bool isGround;
+	float jumpPower;
+
 	bool isJump;
 	bool isRide;
 	float speed;
 	GSvector2 respawnPos;
 	GSvector2 scrollOffset;
-	Timer jumpTimer;
-	Scroll* scroll;
 
+	Scroll* scroll;
 	Device& device;
 };
 #endif

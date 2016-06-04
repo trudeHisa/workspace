@@ -24,7 +24,7 @@ public:
 	void saveScore(TimeScore& score);
 private:
 	void mapCreate();
-	void objCreate(int x, int y, Array2D<bool>* check);
+	void objCreate(int x, int y);
 	void Stars_IsInScreen();
 private:
 	int BLOCKSIZE = 64;
