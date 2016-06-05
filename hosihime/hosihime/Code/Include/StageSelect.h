@@ -7,7 +7,6 @@ class StageSelect
 public:
 	StageSelect(Device& device,std::string& stageName);
 	void initialize();
-	//trueÇ»ÇÁStageê∂ê¨Ç≥ÇÍÇΩ
 	void updata();
 	void draw(const Renderer& renderer);
 	void finish();

@@ -1,13 +1,14 @@
 #include"GamePlay.h"
-#include "Stage.h"
 #include "Input.h"
 #include "Device.h"
-GamePlay::GamePlay(Device& device, TimeScore& score)
-	: device(device), stage(NULL), stageName(""),
-	stageSelect(device, stageName), score(score)
-	//, animTimer(5), anim(&animTimer)
-{
+#include "PlayMode_Play.h"
+#include "PlayMode_Select.h"
 
+GamePlay::GamePlay(Device& device, TimeScore& score)
+	: device(device), stageName(""),
+	mode(0),
+	score(score)
+{
 }
 GamePlay::~GamePlay()
 {
@@ -15,66 +16,50 @@ GamePlay::~GamePlay()
 void GamePlay::Init()
 {
 	//device.getSound().StopSE("Opening.wav");
-	mode = SELECT;
 	isEnd = false;
-	stageSelect.initialize();
-	stage = NULL;
 	stageName = "";
+	mode = Mode(new PlayMode_Select(device, stageName));
+	mode->initialize();
 	/*anim.addCell("D", 1, 3, 64, 64);
 	anim.addCell("A", 2, 3, 64, 64);*/
 }
 void GamePlay::Update()
 {
-	/*std::string n = "D";
-	if (gsGetKeyState(GKEY_S))
+	mode->updata();
+	if (device.getInput().getDebugResetTrigger())
 	{
-	n = "A";
+		createStage();
 	}
-	animTimer.updata();
-	anim.updata(n);*/
-	switch (mode)
-	{
-	case SELECT:
-		stageSelect.updata();
-		if (stageSelect.isEnd())
-		{
-			createStage();
-		}
-		break;
-	case PLAY:
-		if (device.getInput().getDebugResetTrigger())
-		{
-			createStage();
-		}
-		stage->updata();
-		isEnd = stage->getIsEnd();
-		break;
-	}
+	modeEnd();
 }
 void GamePlay::createStage()
 {
 	device.getSound().PlaySE("decision.wav");
-	stage = std::shared_ptr<Stage>(new Stage(stageName, device));
-	stage->initialize();
-	stageSelect.finish();
-	mode = PLAY;
+	mode = Mode(new PlayMode_Play(device, stageName));
+	mode->initialize();
+}
+void GamePlay::modeEnd()
+{
+	if (!mode->isEnd())
+	{
+		return;
+	}
+	mode->finish();
+	if (mode->getMode() == SELECT)
+	{
+		createStage();
+		return;
+	}
+	isEnd = true;
 }
 void GamePlay::Draw(const Renderer& renderer)
 {
-	switch (mode)
-	{
-	case SELECT:
-		stageSelect.draw(renderer);
-		break;
-	case PLAY:
-		stage->draw(renderer);
-		break;
-	}
+	mode->draw(renderer);
 	//anim.draw(renderer, "anim.bmp", &GSvector2(50, 50));
 }
 void GamePlay::Finish()
 {
-	stage->finish();
+	mode->finish();
 }
 Scene GamePlay::Next()
 {

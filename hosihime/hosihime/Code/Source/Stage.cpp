@@ -56,7 +56,7 @@ void Stage::saveScore(TimeScore& score)
 	score.setScore(timer);
 }
 
-bool Stage::getIsEnd()
+const bool Stage::getIsEnd()const
 {
 	return isEnd;
 }

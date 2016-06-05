@@ -1,15 +1,11 @@
 #ifndef _GAMEPLAY_H_
 #define _GAMEPLAY_H_
 #include "IScene.h"
-#include "Stage.h"
 #include "TimeScore.h"
-#include "StageSelect.h"
-
+#include "IPlayMode.h"
+#include <memory>
 class Device;
-enum PLAY_MODE
-{
-	SELECT, PLAY
-};
+typedef std::shared_ptr<IPlayMode> Mode;
 class GamePlay :public IScene
 {
 public:
@@ -22,13 +18,12 @@ public:
 	Scene Next();
 	bool IsEnd();
 private:
+	void modeEnd();
 	void createStage();
 private:
 	std::string stageName;
 	bool isEnd;
-	std::shared_ptr<Stage>stage;
-	PLAY_MODE mode;
-	StageSelect stageSelect;
+	Mode mode;
 	TimeScore& score;
 	Device& device;
 };

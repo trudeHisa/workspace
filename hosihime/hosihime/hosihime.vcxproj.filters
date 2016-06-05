@@ -73,6 +73,12 @@
     <Filter Include="ソース ファイル\gameobject\Factory">
       <UniqueIdentifier>{955aba82-d913-4752-81ff-57bba383752e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\scene\GamePlay">
+      <UniqueIdentifier>{0e32caf9-3414-4c85-a1db-9fb3492e782b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scene\GamePlay">
+      <UniqueIdentifier>{35b0c2d5-b1b2-43b3-9b8f-7f72ff448a4d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\Source\Star_wave.cpp">
@@ -191,6 +197,12 @@
     </ClCompile>
     <ClCompile Include="Code\Source\GameObjectFactory.cpp">
       <Filter>ソース ファイル\gameobject\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\PlayMode_Select.cpp">
+      <Filter>ソース ファイル\scene\GamePlay</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\PlayMode_Play.cpp">
+      <Filter>ソース ファイル\scene\GamePlay</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -331,6 +343,15 @@
     </ClInclude>
     <ClInclude Include="Code\Include\GameObjectFactory.h">
       <Filter>ヘッダー ファイル\gameobject\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\IPlayMode.h">
+      <Filter>ヘッダー ファイル\scene\GamePlay</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\PlayMode_Select.h">
+      <Filter>ヘッダー ファイル\scene\GamePlay</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\PlayMode_Play.h">
+      <Filter>ヘッダー ファイル\scene\GamePlay</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

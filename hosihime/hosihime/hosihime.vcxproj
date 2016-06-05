@@ -29,6 +29,8 @@
     <ClCompile Include="Code\Source\Menu.cpp" />
     <ClCompile Include="Code\Source\MyRectangle.cpp" />
     <ClCompile Include="Code\Source\Player.cpp" />
+    <ClCompile Include="Code\Source\PlayMode_Play.cpp" />
+    <ClCompile Include="Code\Source\PlayMode_Select.cpp" />
     <ClCompile Include="Code\Source\Point.cpp" />
     <ClCompile Include="Code\Source\Renderer.cpp" />
     <ClCompile Include="Code\Source\Respawn.cpp" />
@@ -70,12 +72,15 @@
     <ClInclude Include="Code\Include\GamePlay.h" />
     <ClInclude Include="Code\Include\ImMovable.h" />
     <ClInclude Include="Code\Include\Input.h" />
+    <ClInclude Include="Code\Include\IPlayMode.h" />
     <ClInclude Include="Code\Include\IScene.h" />
     <ClInclude Include="Code\Include\IStarMove.h" />
     <ClInclude Include="Code\Include\Load.h" />
     <ClInclude Include="Code\Include\Menu.h" />
     <ClInclude Include="Code\Include\MyRectangle.h" />
     <ClInclude Include="Code\Include\Player.h" />
+    <ClInclude Include="Code\Include\PlayMode_Play.h" />
+    <ClInclude Include="Code\Include\PlayMode_Select.h" />
     <ClInclude Include="Code\Include\Point.h" />
     <ClInclude Include="Code\Include\Renderer.h" />
     <ClInclude Include="Code\Include\SceneManager.h" />

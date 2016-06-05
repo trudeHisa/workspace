@@ -4,7 +4,7 @@
 #include "Device.h"
 #define STAGELENGTH 3
 StageSelect::StageSelect(Device& device, std::string& stageName)
-	:device(device), isend(false), stageName(stageName)
+	:device(device), isend(false), stageName(stageName), active(0)
 {
 
 }

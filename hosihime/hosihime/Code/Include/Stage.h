@@ -21,7 +21,7 @@ public:
 	void initialize();
 	void draw(const Renderer& renderer);
 	void finish();
-	bool getIsEnd();
+	const bool getIsEnd()const;
 	void saveScore(TimeScore& score);
 private:
 	void mapCreate();
