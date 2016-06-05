@@ -15,7 +15,7 @@ GamePlay::~GamePlay()
 }
 void GamePlay::Init()
 {
-	device.getSound().StopSE("Opening.wav");
+	//device.getSound().StopSE("Opening.wav");
 	mode = SELECT;
 	isEnd = false;
 	stageSelect.initialize();

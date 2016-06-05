@@ -1,12 +1,12 @@
 #ifndef _STARMEDIATOR_H_
 #define _STARMEDIATOR_H_
-class Star;
+#include "GameObje_Include.h"
 
 class StarMediator
 {
 public:
 	~StarMediator(){}
-	virtual void reqestClone(Star* starclone)=0;
+	virtual void reqestClone(Star_Ptr starclone) = 0;
 };
 
 #endif

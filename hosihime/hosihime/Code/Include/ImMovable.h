@@ -8,7 +8,6 @@ public:
 	~ImMovable();
 	void updata();
 	void collision(const GameObject* obj);
-private:
-
+	GameObject* clone(const GSvector2& position);
 };
 #endif

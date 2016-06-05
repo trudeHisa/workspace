@@ -7,18 +7,12 @@
 #define JUMPMAXPOW -20
 #define JUMPSPEED 0.1
 
-enum SPEED
-{
-	GROUND = 6, NONGROUND = 3
-};
-
 Player::Player(const std::string& textrue, const MyRectangle& rect, Scroll* scroll, Device& device)
 	:GameObject(textrue, rect, PLAYER),
 	scroll(scroll), isJump(false),
 	jumpPower(0),
-	speed(3),
+	speed(6),
 	respawnPos(rect.getPosition()),
-	scrollOffset(-rect.getPosition()),
 	device(device)
 {
 }
@@ -30,7 +24,7 @@ void Player::initialize()
 {
 	GameObject::initialize();
 	jumpEnd();
-	speed = SPEED::GROUND;
+	speed = 6;
 	jumpPower = 0;
 }
 void Player::jumpEnd()
@@ -45,34 +39,42 @@ void Player::updata()
 	{
 		return;
 	}
-	scroll->moving(rect.getPosition(), scrollOffset);
+	scroll->moving(rect.getPosition(), -respawnPos);
 	rect.translate(velocity*gsFrameTimerGetTime());
-}
-//ˆÚ“®
-void Player::fallHorizontal()
-{
-	//speed = SPEED::NONGROUND;
-	Calculate<float> calc;
-	velocity.x = calc.clamp(velocity.x, -SPEED::NONGROUND, SPEED::NONGROUND);
-	velocity.x = LERP(gsFrameTimerGetTime()*0.01f, velocity.x, 0);
 }
 void Player::gravity()
 {
 	if (isGround)
 	{
-		//speed = SPEED::GROUND;
 		velocity.y = 0;
 		return;
 	}
-	fallHorizontal();
 	velocity.y = GRAVITY;
 }
 void Player::moving()
 {
 	gravity();
 	jumpStart();
+	rideUpDown();
 	moveHorizontal();
 	jump();
+}
+void Player::rideUpDown()
+{
+	if (!isRide)
+	{
+		return;
+	}
+	if (device.getInput().getDownTrigger())
+	{
+		velocity = GSvector2(0, 0);
+		rect.translate(GSvector2(0, rect.getHeight() + 64));
+	}
+	if (device.getInput().getUpTrigger())
+	{
+		isJump = true;
+		jumpPower = JUMPMAXPOW;
+	}
 }
 void Player::jumpStart()
 {
@@ -89,7 +91,7 @@ void Player::jumpStart()
 		return;
 	}
 	isJump = true;
-	jumpPower =JUMPMAXPOW;
+	jumpPower = JUMPMAXPOW;
 }
 void Player::jump()
 {
@@ -102,10 +104,10 @@ void Player::jump()
 }
 void Player::moveHorizontal()
 {
-	if (!isGround && !isJump)
-	{
-		return;
-	}
+	//if (!isGround && !isJump)
+	//{
+	//	return;
+	//}
 	velocity.x = device.getInput().getVelocity().x * speed;
 }
 //
@@ -117,6 +119,7 @@ const  bool Player::respawn()
 	}
 	rect.resetPosition(respawnPos);
 	velocity = GSvector2(0, 0);
+	jumpPower = 0;
 	return true;
 }
 //Õ“Ë
@@ -136,7 +139,11 @@ void Player::collisionGround(const GameObject* obj)
 		isGround = true;
 		jumpEnd();
 		scroll->stop();
-		//device.getSound().PlaySE("Landing.wav");		
+		/*	const Sound& sound = device.getSound();
+			if (!sound.IsPlaySE("Landing.wav")&&velocity.x!=0)
+			{
+			sound.PlaySE("Landing.wav");
+			}	*/
 		return;
 	}
 	scroll->start();
@@ -162,4 +169,8 @@ void Player::collisionRespawn(const GameObject* obj)
 	}
 	Respawn* respawn = (Respawn*)obj;
 	respawn->setRespawn(&respawnPos.x);
+}
+GameObject* Player::clone(const GSvector2& position)
+{
+	return new Player(textrue, MyRectangle(position, rect.getSize()),scroll,device);
 }

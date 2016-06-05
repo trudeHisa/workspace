@@ -16,13 +16,15 @@ public:
 	GameObject(const std::string& textrue, const MyRectangle& rect,
 		const GAMEOBJ_TYPE type);
 	virtual ~GameObject();
-	virtual void updata() = 0;
+	virtual void updata() = 0;	
 	virtual void draw(const Renderer& renderer, const Scroll& scroll);
 	virtual void initialize();
 	virtual void finish();
+	virtual void collision(const GameObject* obj) = 0;
+
+	virtual GameObject* clone(const GSvector2& position)=0;
 	//オブジェクトと当たっているか？
 	const bool isCollision(const GameObject* obj)const;
-	virtual void collision(const GameObject* obj)=0;
 public:
 	const bool getIsDead()const;
 	//同じならtrue

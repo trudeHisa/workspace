@@ -12,8 +12,8 @@ Title::~Title()
 }
 void Title::Init()
 {
-	device.getSound().StopSE("Ending.wav");
-	device.getSound().PlaySE("Opening.wav");
+//	device.getSound().StopSE("Ending.wav");
+	//device.getSound().PlaySE("Opening.wav");
 	isEnd = false;	
 }
 void Title::Update()

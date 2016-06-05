@@ -1,6 +1,6 @@
 #include "StarManager.h"
 #include <algorithm>
-#include "Star.h"
+
 #include "StarMediator.h"
 
 #include "Star_cricle.h"
@@ -20,11 +20,6 @@ StarManger::StarManger(Scroll& _scroll)
 }
 StarManger::~StarManger()
 {
-	for each (Star* star in stars)
-	{
-		delete star;
-	}
-	//stars
 }
 void StarManger::initialize(StarMediator* _mediator)
 {
@@ -97,10 +92,10 @@ void StarManger::createStarProt()
 //原型コンテナの中で画面内に入っている星をピックアップして格納
 void StarManger::addInScreenStars()
 {
-	for each (Star* star in stars)
+	for each (Star_Ptr star in stars)
 	{
 		//if (scroll.isInsideWindow(star->getSPosi(), GSvector2(64,64)))
-		inScreens.push_back(star->clone());
+		inScreens.emplace_back(star->clone());
 	}
 }
 
@@ -110,13 +105,13 @@ void StarManger::updata()
 	remove();
 }
 
-void StarManger::findDeads(std::vector<Star*>* deads)
+void StarManger::findDeads(std::vector<Star_Ptr>* deads)
 {
-	for each (Star* s in inScreens)
+	for each (Star_Ptr s in inScreens)
 	{
 		if (s->getIsDead())
 		{
-			deads->push_back(s);
+			deads->emplace_back(s);
 		}
 	}
 }
@@ -136,22 +131,22 @@ void StarManger::starResporn()
 	//なのでisDeadがtrueの星をvectorにすべて追加し
 	//追加された全ての星のクローンをつくりmediatorに登録
 
-	std::vector<Star*> deads;
+	std::vector<Star_Ptr> deads;
 	deads.clear();
 	findDeads(&deads);
 	if (deads.empty())
 	{
 		return;
 	}
-	for each (Star* star in deads)
+	for each (Star_Ptr star in deads)
 	{
-		inScreens.push_back(star->clone());
+		inScreens.emplace_back(star->clone());
 		mediator->reqestClone(inScreens.back());
 	}
 }
 void StarManger::remove()
 {
-	auto itrNewEnd = std::remove_if(inScreens.begin(), inScreens.end(), [](Star* obj)->bool
+	auto itrNewEnd = std::remove_if(inScreens.begin(), inScreens.end(), [](Star_Ptr obj)->bool
 	{
 		return obj->getIsDead();
 	});

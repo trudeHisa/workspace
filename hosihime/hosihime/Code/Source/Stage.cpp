@@ -1,26 +1,25 @@
 #include "Stage.h"
-
 #include "game.h"
-#include "Star.h"
-#include "Player.h"
-#include "Respawn.h"
-#include "ImMovable.h"
-
 #include "Device.h"
+#include "CSVStream.h"
+#include "GAMEOBJ_TYPE.h"
 
 #define  BLOCKSIZE 64.f
 Stage::Stage(const std::string& csvname, Device& device)
 	:scroll(WINDOW_WIDTH, WINDOW_HEIGHT), timer(60,60)
-	, starManager(scroll), device(device)
+	, starManager(scroll), device(device),
+	factory(std::shared_ptr<Factory>(new GameObjectFactory(scroll, device)))
 {
- 	device.getCsvStream().input(&mapdata, csvname.c_str());
+	CSVStream stream;
+	stream.input(&mapdata, csvname.c_str());
 }
 Stage::~Stage()
 {
 }
 void Stage::initialize()
 {
-	device.getSound().PlaySE("GameMode_1.wav");
+	factory->addContainer();
+	//device.getSound().PlaySE("GameMode_1.wav");
 	timer.initialize();
 	control.inisialize();
 	starManager.initialize(&control);
@@ -61,39 +60,16 @@ bool Stage::getIsEnd()
 {
 	return isEnd;
 }
+
 void Stage::objCreate(int x, int y)
 {
-	Point size;
-	GSvector2 pos = GSvector2(x * BLOCKSIZE, y* BLOCKSIZE);
-	GSvector2 fsize;
-	switch (mapdata(y, x))
+	int data = mapdata(y, x);
+	if (0 == data)
 	{
-	case RESPAWN:
-		size = Point(2, 2);
-		fsize = GSvector2(size.x*BLOCKSIZE, size.y*BLOCKSIZE);
-		control.add(new Respawn("rock2.bmp", MyRectangle(pos, fsize)));
-		break;
-	case PLAYER:
-		size = Point(1, 1);
-		fsize = GSvector2(size.x*BLOCKSIZE, size.y*BLOCKSIZE);
-		control.add(new Player("player.bmp", MyRectangle(pos, fsize), &scroll,device));
-		break;
-	case PLANET:
-		size = Point(2,2);
-		fsize = GSvector2(size.x*BLOCKSIZE, size.y*BLOCKSIZE);
-		control.add(new ImMovable("rock.bmp", MyRectangle(pos, fsize), PLANET));
-		break;
-	case START:
-		size = Point(3, 3);
-		fsize = GSvector2(size.x*BLOCKSIZE, size.y*BLOCKSIZE);
-		control.add(new ImMovable("start.bmp", MyRectangle(pos, fsize), START));
-		break;
-	case GOAL:
-		size = Point(3, 3);
-		fsize = GSvector2(size.x*BLOCKSIZE, size.y*BLOCKSIZE);
-		control.add(new ImMovable("goal.bmp", MyRectangle(pos, fsize), GOAL));
-		break;
-	}
+		return;
+	}	
+	GSvector2 pos = GSvector2(x * BLOCKSIZE, y* BLOCKSIZE);
+	control.add(factory->create(static_cast<GAMEOBJ_TYPE>(data), pos));	
 }
 void Stage::mapCreate()
 {

@@ -1,6 +1,5 @@
 #include "GameObjControl.h"
 #include "Player.h"
-#include "Star.h"
 #include <algorithm>
 
 GameObjControl::GameObjControl()
@@ -57,19 +56,19 @@ void GameObjControl::inisialize()
 {
 	objs.clear(); 
 }
-void GameObjControl::add(GameObject* object)
+void GameObjControl::add(GameObj_Ptr object)
 {
 	object->initialize();
-	objs.push_back(GameObj_Ptr(object));
+	objs.emplace_back(object);
 }
 
 
 //‰æ–Ê“à‚É“ü‚Á‚Ä‚¢‚é¯‚ğobjControl‚É“n‚·
 void GameObjControl::add_Star(Stars_inScreen& stars)
 {
-	for each(Star* star in stars)
+	for each(Star_Ptr star in stars)
 	{
-		add((GameObject*)star);
+		add((GameObj_Ptr)star);
 	}
 }
 
@@ -97,9 +96,9 @@ void GameObjControl::finish()
 
 }
 
-void GameObjControl::reqestClone(Star* starclone)
+void GameObjControl::reqestClone(Star_Ptr starclone)
 {
 	//‰ŠúˆÊ’u‚ª‰æ–Ê“à‚È‚ç
 	//if ()
-	add((GameObject*)starclone);
+	add((GameObj_Ptr)starclone);
 }
