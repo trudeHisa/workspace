@@ -2,19 +2,30 @@
 #include "Stage.h"
 #include "Calculate.h"
 #include "Device.h"
-StageSelect::StageSelect(Device& device)
-	:device(device)
+#define STAGELENGTH 3
+StageSelect::StageSelect(Device& device, std::string& stageName)
+	:device(device), isend(false), stageName(stageName)
 {
 
 }
 void StageSelect::initialize()
 {
 	active = 0;
+	isend = false;
 	//device.getSound().PlaySE("Map.wav");
 }
 void StageSelect::updata()
 {
 	select();
+	if (device.getInput().getActionTrigger())
+	{
+		stageName = selectStageName();
+		isend = true;
+	}
+}
+const bool StageSelect::isEnd()const
+{
+	return isend;
 }
 void StageSelect::select()
 {
@@ -29,23 +40,23 @@ void StageSelect::select()
 		device.getSound().PlaySE("cursormove.wav");
 	}
 	Calculate<int> calc;
-	active = calc.wrap(active, 0, 3);
+	active = calc.wrap(active, 0, STAGELENGTH);
 }
 
-Stage* StageSelect::createStage()
+const std::string StageSelect::selectStageName()const
 {
-	std::string datanames[3] =
+	std::string datanames[STAGELENGTH] =
 	{
 		"testmap.csv",
 		"testmap.csv",
 		"testmap.csv"
 	};
-	return new Stage("mapdata\\\\" + datanames[active],device);
+	return "mapdata\\\\" + datanames[active];
 }
 
 void StageSelect::draw(const Renderer& renderer) 
 {
-	GSvector2 poss[3] =
+	GSvector2 poss[STAGELENGTH] =
 	{
 		GSvector2(190, 570),
 		GSvector2(1035, 375),

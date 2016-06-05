@@ -19,7 +19,7 @@ void Scroll::updata()
 void Scroll::draw(const Renderer& renderer)
 {
 	renderer.DrawTextrue("space.bmp", &position1);
-	renderer.DrawTextrue("space2.bmp", &position2);
+	renderer.DrawTextrue("space.bmp", &position2);
 }
 //ウィンドウの中にあるか
 const bool Scroll::isInsideWindow(const GSvector2& pos, const GSvector2& size)const

@@ -31,6 +31,21 @@ void Star::updata()
 		isDead = true;
 	}
 }
+void Star::blurdraw(const Renderer& renderer, const GSvector2& position, const GSvector2& center)
+{
+	GSvector2 vel = velocity;
+	float addRot = gsFrameTimerGetTime()*velocity.length();
+	int max = 5;
+	renderer.AdditionBlend();
+	for (int i = max; i>0; i--)
+	{
+		GSvector2 fp = position - vel*i;
+		float fang = angle - addRot*i;
+		float alpha = (max - i)*0.05f;
+		renderer.DrawTextrue(textrue, &fp, NULL, &center, &GSvector2(1, 1), angle, &GScolor(1, 1, 1, alpha));
+	}
+	renderer.InitBlendFunc();
+}
 void Star::draw(const Renderer& renderer, const Scroll& scroll)
 {
 	GSvector2 pos = rect.getPosition();
@@ -42,22 +57,8 @@ void Star::draw(const Renderer& renderer, const Scroll& scroll)
 	GSvector2 center(rect.getSize());
 	center /= 2;
 	pos += center;
-	//
-	GSvector2 vel = velocity;
-	float addRot = gsFrameTimerGetTime()*velocity.length()*0.5f;
-	int max = 5;	
-	renderer.AdditionBlend();
-	for (int i = max; i>0; i--)
-	{
-		GSvector2 fp = pos - vel*i;
-		float fang = angle - addRot*i;
-		float alpha = (max - i)*0.05f;
-		renderer.DrawTextrue(textrue, &fp, NULL, &center, &GSvector2(1, 1), angle, &GScolor(1, 1, 1, alpha));
-	}
-	renderer.InitBlendFunc();
-	//
+	blurdraw(renderer,pos,center);
 	renderer.DrawTextrue(textrue, &pos,NULL,&center,&GSvector2(1,1),angle,NULL);
-
 }
 void Star::collision(const GameObject* obj)
 {

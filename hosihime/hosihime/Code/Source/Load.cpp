@@ -51,7 +51,6 @@ void Load::loadTextrue()
 	renderer.LoadTextrue("space.bmp");
 	renderer.LoadTextrue("space2.bmp");
 	renderer.LoadTextrue("title.bmp");
-	renderer.LoadTextrue("gameplay.bmp");
 	renderer.LoadTextrue("ending.bmp");
 
 	//Œ»İg‚Á‚Ä‚È‚¢‰æ‘œ

@@ -14,6 +14,7 @@ public:
 	void updata();
 	void collision(const GameObject* obj);
 	void draw(const Renderer& renderer, const Scroll& scroll);
+
 	const GSvector2& getSPosi() const;
 public:
 	void ride(MyRectangle* rect);
@@ -22,6 +23,7 @@ public:
 	GameObject* clone(const GSvector2& position);
 private:
 	void rotate();
+	void blurdraw(const Renderer& renderer, const GSvector2& position, const GSvector2& center);
 private:
 	IStarMove* move;
 	float angle;//rad

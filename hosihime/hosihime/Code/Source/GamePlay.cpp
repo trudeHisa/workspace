@@ -3,15 +3,14 @@
 #include "Input.h"
 #include "Device.h"
 GamePlay::GamePlay(Device& device, TimeScore& score)
-: device(device),stage(NULL),stageSelect(device),score(score)
-//, animTimer(5), anim(&animTimer)
+	: device(device), stage(NULL), stageName(""),
+	stageSelect(device, stageName), score(score)
+	//, animTimer(5), anim(&animTimer)
 {
 
 }
 GamePlay::~GamePlay()
 {
-	delete stage;
-	stage = NULL;
 }
 void GamePlay::Init()
 {
@@ -20,6 +19,7 @@ void GamePlay::Init()
 	isEnd = false;
 	stageSelect.initialize();
 	stage = NULL;
+	stageName = "";
 	/*anim.addCell("D", 1, 3, 64, 64);
 	anim.addCell("A", 2, 3, 64, 64);*/
 }
@@ -28,7 +28,7 @@ void GamePlay::Update()
 	/*std::string n = "D";
 	if (gsGetKeyState(GKEY_S))
 	{
-		n = "A";
+	n = "A";
 	}
 	animTimer.updata();
 	anim.updata(n);*/
@@ -36,27 +36,28 @@ void GamePlay::Update()
 	{
 	case SELECT:
 		stageSelect.updata();
-		if (device.getInput().getActionTrigger())
+		if (stageSelect.isEnd())
 		{
-			device.getSound().PlaySE("decision.wav");
-			stage = stageSelect.createStage();
-			stage->initialize();
-			stageSelect.finish();
-			mode = PLAY;
+			createStage();
 		}
 		break;
 	case PLAY:
 		if (device.getInput().getDebugResetTrigger())
 		{
-			device.getSound().PlaySE("decision.wav");
-			stage = NULL;
-			stage = stageSelect.createStage();
-			stage->initialize();
+			createStage();
 		}
 		stage->updata();
-		isEnd=stage->getIsEnd();
+		isEnd = stage->getIsEnd();
 		break;
 	}
+}
+void GamePlay::createStage()
+{
+	device.getSound().PlaySE("decision.wav");
+	stage = std::shared_ptr<Stage>(new Stage(stageName, device));
+	stage->initialize();
+	stageSelect.finish();
+	mode = PLAY;
 }
 void GamePlay::Draw(const Renderer& renderer)
 {

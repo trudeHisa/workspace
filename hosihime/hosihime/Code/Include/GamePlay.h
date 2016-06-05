@@ -22,8 +22,11 @@ public:
 	Scene Next();
 	bool IsEnd();
 private:
+	void createStage();
+private:
+	std::string stageName;
 	bool isEnd;
-	Stage* stage;
+	std::shared_ptr<Stage>stage;
 	PLAY_MODE mode;
 	StageSelect stageSelect;
 	TimeScore& score;
