@@ -67,6 +67,12 @@
     <Filter Include="ソース ファイル\gameobject\star\move">
       <UniqueIdentifier>{23c229f2-9d4a-4583-8601-d491ec4abd6f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\gameobject\Factory">
+      <UniqueIdentifier>{72a623f7-9941-4939-a4c6-65d740eed442}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\gameobject\Factory">
+      <UniqueIdentifier>{955aba82-d913-4752-81ff-57bba383752e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\Source\Star_wave.cpp">
@@ -182,6 +188,9 @@
     </ClCompile>
     <ClCompile Include="Code\Source\main.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\GameObjectFactory.cpp">
+      <Filter>ソース ファイル\gameobject\Factory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -313,6 +322,15 @@
     </ClInclude>
     <ClInclude Include="Code\Include\game.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\GameObje_Include.h">
+      <Filter>ヘッダー ファイル\gameobject</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\Factory.h">
+      <Filter>ヘッダー ファイル\gameobject\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\GameObjectFactory.h">
+      <Filter>ヘッダー ファイル\gameobject\Factory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
