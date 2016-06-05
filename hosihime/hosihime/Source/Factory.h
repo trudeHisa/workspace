@@ -1,10 +1,6 @@
 #ifndef _FACTORY_H_
 #define _FACTORY_H_
-#include "GameObject.h"
-
-#include <memory>
-typedef std::shared_ptr<GameObject> GameObj_Ptr;
-class Device;
+#include "GameObje_Include.h"
 class Factory
 {
 public:

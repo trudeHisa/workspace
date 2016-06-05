@@ -17,7 +17,7 @@ GameObjectFactory::~GameObjectFactory()
 }
 void GameObjectFactory::addContainer()
 {
-	GSvector2 position(0, 0);	
+	GSvector2 position(0,0);	
 	const int length = 5;
 	GameObject* objs[length] = 
 	{
@@ -39,7 +39,7 @@ void GameObjectFactory::addContainer()
 	{
 		GameObj_Ptr obj = GameObj_Ptr(objs[i]);
 		container.insert(std::pair<GAMEOBJ_TYPE, GameObj_Ptr>(types[i], obj));
-	}	
+	}
 }
 GameObj_Ptr GameObjectFactory::createGameObject(GAMEOBJ_TYPE type, const GSvector2& position)
 {

@@ -9,7 +9,7 @@
 #include <map>
 #include "GAMEOBJ_TYPE.h"
 #include "Factory.h"
-
+class Device;
 class GameObjectFactory :public Factory
 {
 public:
