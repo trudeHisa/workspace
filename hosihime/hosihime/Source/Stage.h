@@ -1,10 +1,10 @@
 #ifndef _STAGE_H_
 #define _STAGE_H_
-#include "GAMEOBJ_TYPE.h"
+
 #include "Renderer.h"
 #include "GameObjControl.h"
 #include "StarManager.h"
-#include "Definition.h"
+
 #include "Scroll.h"
 #include "Array2D.h"
 #include "Timer.h"

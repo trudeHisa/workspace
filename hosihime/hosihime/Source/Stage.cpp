@@ -1,8 +1,8 @@
 #include "Stage.h"
 #include "game.h"
 #include "Device.h"
-
 #include "CSVStream.h"
+#include "GAMEOBJ_TYPE.h"
 
 #define  BLOCKSIZE 64.f
 Stage::Stage(const std::string& csvname, Device& device)

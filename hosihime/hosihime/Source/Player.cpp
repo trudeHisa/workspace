@@ -119,6 +119,7 @@ const  bool Player::respawn()
 	}
 	rect.resetPosition(respawnPos);
 	velocity = GSvector2(0, 0);
+	jumpPower = 0;
 	return true;
 }
 //è’ìÀ
