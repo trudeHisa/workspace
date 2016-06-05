@@ -39,7 +39,7 @@ void Star::blurdraw(const Renderer& renderer, const GSvector2& position, const G
 	renderer.AdditionBlend();
 	for (int i = max; i>0; i--)
 	{
-		GSvector2 fp = position - vel*i;
+		GSvector2 fp = position - vel*i*0.8f;
 		float fang = angle - addRot*i;
 		float alpha = (max - i)*0.05f;
 		renderer.DrawTextrue(textrue, &fp, NULL, &center, &GSvector2(1, 1), angle, &GScolor(1, 1, 1, alpha));
