@@ -20,6 +20,7 @@ private:
 	void jumpStart();
 	void jump();
 	void jumpEnd();
+	void rideUpDown();
 	void moveHorizontal();
 	const bool respawn();
 

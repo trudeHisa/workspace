@@ -39,7 +39,7 @@ void Player::updata()
 	{
 		return;
 	}
-	scroll->moving(rect.getPosition(),-respawnPos);
+	scroll->moving(rect.getPosition(), -respawnPos);
 	rect.translate(velocity*gsFrameTimerGetTime());
 }
 void Player::gravity()
@@ -55,8 +55,26 @@ void Player::moving()
 {
 	gravity();
 	jumpStart();
+	rideUpDown();
 	moveHorizontal();
 	jump();
+}
+void Player::rideUpDown()
+{
+	if (!isRide)
+	{
+		return;
+	}
+	if (device.getInput().getDownTrigger())
+	{
+		velocity = GSvector2(0, 0);
+		rect.translate(GSvector2(0, rect.getHeight() + 64));
+	}
+	if (device.getInput().getUpTrigger())
+	{
+		isJump = true;
+		jumpPower = JUMPMAXPOW;
+	}
 }
 void Player::jumpStart()
 {
@@ -86,10 +104,10 @@ void Player::jump()
 }
 void Player::moveHorizontal()
 {
-	if (!isGround && !isJump)
-	{
-		return;
-	}
+	//if (!isGround && !isJump)
+	//{
+	//	return;
+	//}
 	velocity.x = device.getInput().getVelocity().x * speed;
 }
 //
@@ -120,11 +138,11 @@ void Player::collisionGround(const GameObject* obj)
 		isGround = true;
 		jumpEnd();
 		scroll->stop();
-	/*	const Sound& sound = device.getSound();
-		if (!sound.IsPlaySE("Landing.wav")&&velocity.x!=0)
-		{
+		/*	const Sound& sound = device.getSound();
+			if (!sound.IsPlaySE("Landing.wav")&&velocity.x!=0)
+			{
 			sound.PlaySE("Landing.wav");
-		}	*/	
+			}	*/
 		return;
 	}
 	scroll->start();
