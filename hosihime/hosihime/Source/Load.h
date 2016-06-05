@@ -2,10 +2,11 @@
 #define _LOAD_H_
 #include "IScene.h"
 class Device;
+class Renderer;
 class Load :public IScene
 {
 public:
-	Load(Device& device);
+	Load(Device& device, Renderer& renderer);
 	~Load();
 	void Init();
 	void Update();
@@ -17,6 +18,7 @@ public:
 	void loadSound();
 private:
 	bool isEnd;
+	Renderer& renderer;
 	Device& device;
 };
 #endif

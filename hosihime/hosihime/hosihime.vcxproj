@@ -20,6 +20,7 @@
     <ClCompile Include="Source\game.cpp" />
     <ClCompile Include="Source\GameObjControl.cpp" />
     <ClCompile Include="Source\GameObject.cpp" />
+    <ClCompile Include="Source\GameObjectFactory.cpp" />
     <ClCompile Include="Source\GamePlay.cpp" />
     <ClCompile Include="Source\ImMovable.cpp" />
     <ClCompile Include="Source\Input.cpp" />
@@ -60,9 +61,12 @@
     <ClInclude Include="Source\Definition.h" />
     <ClInclude Include="Source\Device.h" />
     <ClInclude Include="Source\Ending.h" />
+    <ClInclude Include="Source\Factory.h" />
     <ClInclude Include="Source\game.h" />
     <ClInclude Include="Source\GameObjControl.h" />
     <ClInclude Include="Source\GameObject.h" />
+    <ClInclude Include="Source\GameObjectFactory.h" />
+    <ClInclude Include="Source\GameObje_Include.h" />
     <ClInclude Include="Source\GAMEOBJ_TYPE.h" />
     <ClInclude Include="Source\GamePlay.h" />
     <ClInclude Include="Source\ImMovable.h" />

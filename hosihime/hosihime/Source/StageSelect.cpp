@@ -10,7 +10,7 @@ StageSelect::StageSelect(Device& device)
 void StageSelect::initialize()
 {
 	active = 0;
-	device.getSound().PlaySE("Map.wav");
+	//device.getSound().PlaySE("Map.wav");
 }
 void StageSelect::updata()
 {

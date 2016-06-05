@@ -183,6 +183,9 @@
     <ClCompile Include="Source\TimeScore.cpp">
       <Filter>ソース ファイル\stage</Filter>
     </ClCompile>
+    <ClCompile Include="Source\GameObjectFactory.cpp">
+      <Filter>ソース ファイル\gameobject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Definition.h">
@@ -319,6 +322,15 @@
     </ClInclude>
     <ClInclude Include="Source\TimeScore.h">
       <Filter>ヘッダー ファイル\stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Factory.h">
+      <Filter>ヘッダー ファイル\gameobject</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameObjectFactory.h">
+      <Filter>ヘッダー ファイル\gameobject</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameObje_Include.h">
+      <Filter>ヘッダー ファイル\gameobject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
