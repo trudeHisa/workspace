@@ -17,18 +17,18 @@ MyRectangle::~MyRectangle()
 }
 
 //点が矩形内にあるか
-const bool MyRectangle::contains(const GSvector2& _position)const
+const bool MyRectangle::contains(const GSvector2* _position)const
 {
-	return (position.x <= _position.x&&_position.x <= (position.x+size.x)) &&
-		(position.y <= _position.y&&_position.y <=( position.y+size.y));
+	return (position.x <= _position->x&&_position->x <= (position.x + size.x)) &&
+		(position.y <= _position->y&&_position->y <= (position.y + size.y));
 }
 //矩形同士が重なっているか
-const bool MyRectangle::intersects(const MyRectangle& other)const
+const bool MyRectangle::intersects(const MyRectangle* other)const
 {
-	if (position.x > (other.position.x+other.size.x))return false;
-	if ((position.x+size.x) < other.position.x)return false;
-	if (position.y > (other.position.y+other.size.y))return false;
-	if ((position.y+size.y) < other.position.y)return false;
+	if (position.x > (other->position.x + other->size.x))return false;
+	if ((position.x + size.x) < other->position.x)return false;
+	if (position.y > (other->position.y + other->size.y))return false;
+	if ((position.y + size.y) < other->position.y)return false;
 	return true;
 }
 //平行移動

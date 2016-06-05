@@ -9,9 +9,9 @@ public:
 	MyRectangle(const GSvector2& position, const GSvector2& size);
 	~MyRectangle();
 	//点が矩形内にあるか
-	const bool contains(const GSvector2& _position)const;
+	const bool contains(const GSvector2* _position)const;
 	//矩形同士が重なっているか
-	const bool intersects(const MyRectangle& other)const;
+	const bool intersects(const MyRectangle* other)const;
 	//平行移動
 	void translate(const GSvector2& _position);
 	//resetposition

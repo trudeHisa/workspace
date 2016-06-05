@@ -38,5 +38,5 @@ const bool GameObject::isSameType(GAMEOBJ_TYPE _type)const
 }
 const bool GameObject::isCollision(const GameObject* obj)const
 {
-	return rect.intersects(obj->rect);
+	return rect.intersects(&obj->rect);
 }

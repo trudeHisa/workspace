@@ -25,7 +25,7 @@ void Scroll::draw(const Renderer& renderer)
 const bool Scroll::isInsideWindow(const GSvector2& pos, const GSvector2& size)const
 {
 	MyRectangle rect(pos,size);
-	return rect.intersects(windowSize);
+	return rect.intersects(&windowSize);
 }
 void Scroll::warp(GSvector2* pos,const GSvector2& velocity)
 {
