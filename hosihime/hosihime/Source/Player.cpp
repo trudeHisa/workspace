@@ -4,19 +4,15 @@
 #include "Calculate.h"
 #include "Respawn.h"
 #define GRAVITY 10
-#define JUMPSPEED 0.3
-#define JUMPTIME 0.6
-enum SPEED
-{
-	GROUND = 6, NONGROUND = 3
-};
+#define JUMPMAXPOW -20
+#define JUMPSPEED 0.1
 
 Player::Player(const std::string& textrue, const MyRectangle& rect, Scroll* scroll, Device& device)
 	:GameObject(textrue, rect, PLAYER),
 	scroll(scroll), isJump(false),
-	jumpTimer(JUMPTIME, JUMPTIME), speed(3),
+	jumpPower(0),
+	speed(6),
 	respawnPos(rect.getPosition()),
-	scrollOffset(-rect.getPosition()),
 	device(device)
 {
 }
@@ -28,12 +24,13 @@ void Player::initialize()
 {
 	GameObject::initialize();
 	jumpEnd();
-	speed = SPEED::GROUND;
+	speed = 6;
+	jumpPower = 0;
 }
 void Player::jumpEnd()
 {
 	isJump = false;
-	jumpTimer.initialize();
+	jumpPower = 0;
 }
 void Player::updata()
 {
@@ -42,26 +39,16 @@ void Player::updata()
 	{
 		return;
 	}
-	scroll->moving(rect.getPosition(), scrollOffset);
+	scroll->moving(rect.getPosition(),-respawnPos);
 	rect.translate(velocity*gsFrameTimerGetTime());
-}
-//ˆÚ“®
-void Player::fallHorizontal()
-{
-	//speed = SPEED::NONGROUND;
-	Calculate<float> calc;
-	velocity.x = calc.clamp(velocity.x, -SPEED::NONGROUND, SPEED::NONGROUND);
-	velocity.x = LERP(gsFrameTimerGetTime()*0.01f, velocity.x, 0);
 }
 void Player::gravity()
 {
 	if (isGround)
 	{
-		//speed = SPEED::GROUND;
 		velocity.y = 0;
 		return;
 	}
-	fallHorizontal();
 	velocity.y = GRAVITY;
 }
 void Player::moving()
@@ -86,7 +73,7 @@ void Player::jumpStart()
 		return;
 	}
 	isJump = true;
-
+	jumpPower = JUMPMAXPOW;
 }
 void Player::jump()
 {
@@ -94,13 +81,8 @@ void Player::jump()
 	{
 		return;
 	}
-	velocity.y = -jumpTimer.getTime()*JUMPSPEED;
-	jumpTimer.update();
-	if (!jumpTimer.isEnd())
-	{
-		return;
-	}
-	jumpEnd();
+	velocity.y = jumpPower;
+	jumpPower += GRAVITY*gsFrameTimerGetTime()*JUMPSPEED;
 }
 void Player::moveHorizontal()
 {
@@ -127,6 +109,7 @@ void Player::collision(const GameObject* obj)
 	isRide = collisionStar(obj);
 	collisionRespawn(obj);
 	collisionGround(obj);
+	if (obj->isSameType(GOAL)) isDead = true;
 }
 void Player::collisionGround(const GameObject* obj)
 {
@@ -135,11 +118,14 @@ void Player::collisionGround(const GameObject* obj)
 		obj->isSameType(GOAL))
 	{
 		isGround = true;
-		isJump = false;
+		jumpEnd();
 		scroll->stop();
-		if (obj->isSameType(GOAL)) isDead = true;
+	/*	const Sound& sound = device.getSound();
+		if (!sound.IsPlaySE("Landing.wav")&&velocity.x!=0)
+		{
+			sound.PlaySE("Landing.wav");
+		}	*/	
 		return;
-		device.getSound().PlaySE("Landing.wav");
 	}
 	scroll->start();
 	isGround = false;

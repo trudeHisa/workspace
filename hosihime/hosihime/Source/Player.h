@@ -12,10 +12,9 @@ public:
 	Player(const std::string& textrue, const MyRectangle& rect, Scroll* scroll, Device& device);
 	~Player();
 	void updata();
-    void initialize();
+	void initialize();
 	void collision(const GameObject* obj);
 private:
-	void fallHorizontal();
 	void moving();
 	void gravity();
 	void jumpStart();
@@ -25,18 +24,18 @@ private:
 	const bool respawn();
 
 	void collisionGround(const GameObject* obj);
- 	const bool collisionStar(const GameObject* obj);
+	const bool collisionStar(const GameObject* obj);
 	void collisionRespawn(const GameObject* obj);
 private:
 	bool isGround;
+	float jumpPower;
+
 	bool isJump;
 	bool isRide;
 	float speed;
 	GSvector2 respawnPos;
-	GSvector2 scrollOffset;
-	Timer jumpTimer;
-	Scroll* scroll;
 
+	Scroll* scroll;
 	Device& device;
 };
 #endif
