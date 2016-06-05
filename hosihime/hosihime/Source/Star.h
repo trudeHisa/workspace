@@ -19,6 +19,7 @@ public:
 	void ride(MyRectangle* rect);
 	void pickUp(GSvector2* velocity);
 	Star* clone();
+	GameObject* clone(const GSvector2& position);
 private:
 	void rotate();
 private:

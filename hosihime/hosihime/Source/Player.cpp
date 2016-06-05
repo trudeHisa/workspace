@@ -169,3 +169,7 @@ void Player::collisionRespawn(const GameObject* obj)
 	Respawn* respawn = (Respawn*)obj;
 	respawn->setRespawn(&respawnPos.x);
 }
+GameObject* Player::clone(const GSvector2& position)
+{
+	return new Player(textrue, MyRectangle(position, rect.getSize()),scroll,device);
+}

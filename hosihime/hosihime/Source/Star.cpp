@@ -80,6 +80,10 @@ Star* Star::clone()
 {
 	return new Star(textrue, MyRectangle(startPosi,rect.getSize()), move->clone());
 }
+GameObject* Star::clone(const GSvector2& position)
+{
+	return new Star(textrue, MyRectangle(position, rect.getSize()), move->clone());
+}
 
 const GSvector2& Star::getSPosi() const
 {

@@ -1,16 +1,14 @@
 #include "Stage.h"
 #include "game.h"
-
-#include "GameObjectFactory.h"
 #include "Device.h"
 
-#include<memory>
 #include "CSVStream.h"
 
 #define  BLOCKSIZE 64.f
 Stage::Stage(const std::string& csvname, Device& device)
 	:scroll(WINDOW_WIDTH, WINDOW_HEIGHT), timer(60,60)
-	, starManager(scroll), device(device)
+	, starManager(scroll), device(device),
+	factory(std::shared_ptr<Factory>(new GameObjectFactory(scroll, device)))
 {
 	CSVStream stream;
 	stream.input(&mapdata, csvname.c_str());
@@ -20,6 +18,7 @@ Stage::~Stage()
 }
 void Stage::initialize()
 {
+	factory->addContainer();
 	//device.getSound().PlaySE("GameMode_1.wav");
 	timer.initialize();
 	control.inisialize();
@@ -70,7 +69,6 @@ void Stage::objCreate(int x, int y)
 		return;
 	}	
 	GSvector2 pos = GSvector2(x * BLOCKSIZE, y* BLOCKSIZE);
-	std::shared_ptr<Factory> factory = std::shared_ptr<Factory>(new GameObjectFactory(scroll, device));
 	control.add(factory->create(static_cast<GAMEOBJ_TYPE>(data), pos));	
 }
 void Stage::mapCreate()

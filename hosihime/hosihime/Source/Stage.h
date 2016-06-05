@@ -9,9 +9,9 @@
 #include "Array2D.h"
 #include "Timer.h"
 #include "TimeScore.h"
-
+#include "GameObjectFactory.h"
+#include<memory>
 class Device;
-
 class Stage
 {
 public:
@@ -36,5 +36,6 @@ private:
 	Scroll scroll;
 	Timer timer;
 	Device& device;
+	std::shared_ptr<Factory> factory;
 };
 #endif

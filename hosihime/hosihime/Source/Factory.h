@@ -12,6 +12,7 @@ public:
 	{
 		return createGameObject(type,position);
 	}
+	virtual void addContainer() = 0;
 private:
 	virtual GameObj_Ptr createGameObject(GAMEOBJ_TYPE type, const GSvector2& position)=0;
 };
