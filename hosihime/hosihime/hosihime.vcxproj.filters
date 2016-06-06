@@ -49,12 +49,6 @@
     <Filter Include="ソース ファイル\gameobject\star">
       <UniqueIdentifier>{4f7c262d-56f6-4e5e-82f5-51f9c93ef732}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\util\diagram">
-      <UniqueIdentifier>{1dba8f7b-75c0-4c0e-8099-995bddb69e63}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\util\diagram">
-      <UniqueIdentifier>{f5f54024-383c-4a45-afd1-ae02e6d25574}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\util\device">
       <UniqueIdentifier>{c854592b-5495-4b02-96f8-d40e5225179b}</UniqueIdentifier>
     </Filter>
@@ -78,6 +72,12 @@
     </Filter>
     <Filter Include="ソース ファイル\scene\GamePlay">
       <UniqueIdentifier>{35b0c2d5-b1b2-43b3-9b8f-7f72ff448a4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\util\shape">
+      <UniqueIdentifier>{1dba8f7b-75c0-4c0e-8099-995bddb69e63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\util\shape">
+      <UniqueIdentifier>{f5f54024-383c-4a45-afd1-ae02e6d25574}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -178,10 +178,10 @@
       <Filter>ソース ファイル\util\device</Filter>
     </ClCompile>
     <ClCompile Include="Code\Source\Circle.cpp">
-      <Filter>ソース ファイル\util\diagram</Filter>
+      <Filter>ソース ファイル\util\shape</Filter>
     </ClCompile>
     <ClCompile Include="Code\Source\MyRectangle.cpp">
-      <Filter>ソース ファイル\util\diagram</Filter>
+      <Filter>ソース ファイル\util\shape</Filter>
     </ClCompile>
     <ClCompile Include="Code\Source\Point.cpp">
       <Filter>ソース ファイル\util</Filter>
@@ -205,10 +205,10 @@
       <Filter>ソース ファイル\scene\GamePlay</Filter>
     </ClCompile>
     <ClCompile Include="Code\Source\Segment.cpp">
-      <Filter>ソース ファイル\util\diagram</Filter>
+      <Filter>ソース ファイル\util\shape</Filter>
     </ClCompile>
     <ClCompile Include="Code\Source\Collision.cpp">
-      <Filter>ソース ファイル\util\diagram</Filter>
+      <Filter>ソース ファイル\util\shape</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -333,10 +333,10 @@
       <Filter>ヘッダー ファイル\util\device</Filter>
     </ClInclude>
     <ClInclude Include="Code\Include\Circle.h">
-      <Filter>ヘッダー ファイル\util\diagram</Filter>
+      <Filter>ヘッダー ファイル\util\shape</Filter>
     </ClInclude>
     <ClInclude Include="Code\Include\MyRectangle.h">
-      <Filter>ヘッダー ファイル\util\diagram</Filter>
+      <Filter>ヘッダー ファイル\util\shape</Filter>
     </ClInclude>
     <ClInclude Include="Code\Include\game.h">
       <Filter>ヘッダー ファイル</Filter>
@@ -360,10 +360,10 @@
       <Filter>ヘッダー ファイル\scene\GamePlay</Filter>
     </ClInclude>
     <ClInclude Include="Code\Include\Collision.h">
-      <Filter>ヘッダー ファイル\util\diagram</Filter>
+      <Filter>ヘッダー ファイル\util\shape</Filter>
     </ClInclude>
     <ClInclude Include="Code\Include\Segment.h">
-      <Filter>ヘッダー ファイル\util\diagram</Filter>
+      <Filter>ヘッダー ファイル\util\shape</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
