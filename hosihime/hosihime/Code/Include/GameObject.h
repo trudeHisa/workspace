@@ -30,12 +30,12 @@ public:
 	//同じならtrue
 	const bool isSameType(GAMEOBJ_TYPE _type)const;
 protected:	
-	std::string textrue;
-	GAMEOBJ_TYPE type;
-	MyRectangle rect;
-	GSvector2 position;
-	GSvector2 viewSize;
+	std::string textrue;//テクスチャ名
+	GAMEOBJ_TYPE type;//オブジェクトのタイプ
+	MyRectangle rect;//当たり判定
+	GSvector2 position;//位置
+	GSvector2 viewSize;//見た目のサイズ
 	bool isDead;
-	GSvector2 velocity;
+	GSvector2 velocity;//毎フレームごとの速度
 };
 #endif
