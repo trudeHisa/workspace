@@ -11,7 +11,7 @@ void Scroll::initialize()
 	position2 = GSvector2(windowSize.getWidth(), 0);
 	movingAmount = GSvector2(0, 0);
 	isStart = true;
-	mode = MODE_OMNIDIRECTIONAL;
+	mode = MODE_VERTICAL;
 }
 void Scroll::updata()
 {
@@ -38,8 +38,7 @@ void Scroll::warp(GSvector2* pos,const GSvector2& velocity)
 //Scrollèàóù
 void Scroll::moving(const GSvector2&  position, const GSvector2& offset)
 {
-	if (isStop()){ return; }	
-
+	if (isStop()){ return; }
 	float alpha = gsFrameTimerGetTime()*0.1f;
 	GSvector2 lerp = movingAmount.lerp(position+offset, alpha);
 	lerp *=mode;

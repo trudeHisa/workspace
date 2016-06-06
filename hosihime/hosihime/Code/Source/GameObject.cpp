@@ -2,9 +2,11 @@
 GameObject.cpp
 */
 #include "GameObject.h"
-GameObject::GameObject(const std::string& textrue,
+GameObject::GameObject(
+	const std::string& textrue,
+	const GSvector2& position,
 	const MyRectangle& rect,const GAMEOBJ_TYPE type)
-	:textrue(textrue),rect(rect), type(type)
+	:textrue(textrue),position(position),rect(rect), type(type)
 {
 }
 GameObject::~GameObject()
@@ -12,7 +14,7 @@ GameObject::~GameObject()
 }
 void GameObject::draw(const Renderer& renderer, const Scroll& scroll)
 {
-	GSvector2 pos = rect.getPosition();
+	GSvector2 pos = position;
 	pos-= scroll.getMovingAmount();
 	if (!scroll.isInsideWindow(pos, rect.getSize()))
 	{
@@ -38,5 +40,7 @@ const bool GameObject::isSameType(GAMEOBJ_TYPE _type)const
 }
 const bool GameObject::isCollision(const GameObject* obj)const
 {
-	return rect.intersects(&obj->rect);
+	MyRectangle myrect(position+rect.getPosition(),rect.getSize());
+	MyRectangle otrect(obj->position + obj->rect.getPosition(), obj->rect.getSize());
+	return myrect.intersects(&otrect);
 }

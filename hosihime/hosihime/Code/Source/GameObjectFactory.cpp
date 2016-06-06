@@ -17,15 +17,15 @@ GameObjectFactory::~GameObjectFactory()
 }
 void GameObjectFactory::addContainer()
 {
-	GSvector2 position(0,0);	
+	GSvector2 zero(0,0);
 	const int length = 5;
 	GameObject* objs[length] = 
 	{
-		new Respawn("rock2.bmp", MyRectangle(position, GSvector2(153, 153))),
-		new Player("player.bmp", MyRectangle(position, GSvector2(64, 64)), &scroll, device),
-		new ImMovable("rock.bmp", MyRectangle(position, GSvector2(158, 100)),PLANET),
-		new ImMovable("start.bmp", MyRectangle(position, GSvector2(200, 126)), START),
-		new ImMovable("goal.bmp", MyRectangle(position, GSvector2(317, 200)), GOAL)
+		new Respawn("rock2.bmp", zero, MyRectangle(zero, GSvector2(153, 153))),
+		new Player("player.bmp", zero, MyRectangle(zero, GSvector2(64, 64)), &scroll, device),
+		new ImMovable("rock.bmp", zero, MyRectangle(zero, GSvector2(158, 100)), PLANET),
+		new ImMovable("start.bmp", zero, MyRectangle(zero, GSvector2(200, 126)), START),
+		new ImMovable("goal.bmp", zero, MyRectangle(zero, GSvector2(317, 200)), GOAL)
 	};
 	GAMEOBJ_TYPE types[length]=
 	{

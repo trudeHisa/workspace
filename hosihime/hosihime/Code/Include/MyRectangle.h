@@ -12,10 +12,10 @@ public:
 	const bool contains(const GSvector2* _position)const;
 	//矩形同士が重なっているか
 	const bool intersects(const MyRectangle* other)const;
-	//平行移動
+	//平行移動(加算)
 	void translate(const GSvector2& _position);
-	//resetposition
-	void resetPosition(const GSvector2& _position);
+	//移転(代入)
+	void transfer(const GSvector2& _position);
 
 	//サイズ拡張
 	void expand(const GSvector2& _size);

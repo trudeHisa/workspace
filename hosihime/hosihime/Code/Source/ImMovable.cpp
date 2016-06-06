@@ -1,13 +1,11 @@
 #include "ImMovable.h"
 
-ImMovable::ImMovable(const std::string& textrue, const MyRectangle& rect, GAMEOBJ_TYPE type)
-	:GameObject(textrue,rect, type)
+ImMovable::ImMovable(const std::string& textrue, const GSvector2& position, const MyRectangle& rect, GAMEOBJ_TYPE type)
+	:GameObject(textrue,position,rect, type)
 {
-
 }
 ImMovable::~ImMovable()
 {
-
 }
 void ImMovable::updata()
 {
@@ -19,5 +17,5 @@ void ImMovable::collision(const GameObject* obj)
 }
 GameObject* ImMovable::clone(const GSvector2& position)
 {
-	return new ImMovable(textrue, MyRectangle(position, rect.getSize()),type);
+	return new ImMovable(textrue,position, MyRectangle(GSvector2(0,0), rect.getSize()),type);
 }

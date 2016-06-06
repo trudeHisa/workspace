@@ -3,19 +3,17 @@
 #include "Star.h"
 #include "Calculate.h"
 #include "Respawn.h"
-#define GRAVITY 10
-#define JUMPMAXPOW -15
-#define JUMPSPEED 0.1
-#define VERTICAL 5
-#define JUMPVERTICAL 10
-#define SCROLLOFFSET GSvector2(-150,-450)
 
-Player::Player(const std::string& textrue, const MyRectangle& rect, Scroll* scroll, Device& device)
-	:GameObject(textrue, rect, PLAYER),
+Player::Player(const std::string& textrue,const GSvector2& position ,const MyRectangle& rect, Scroll* scroll, Device& device)
+	:GameObject(textrue,position,rect, PLAYER),
+	GRAVITY(10), VERTICAL(5),
+	JUMPMAXPOW(-15),JUMPSPEED(0.1),
+	JUMPVERTICAL(10),
+	SCROLLOFFSET(GSvector2(-150, -450)),
 	scroll(scroll), isJump(false),
 	jumpPower(0),
 	speed(VERTICAL),
-	respawnPos(rect.getPosition()),
+	respawnPos(position),
 	device(device)
 {
 }
@@ -42,8 +40,8 @@ void Player::updata()
 	{
 		return;
 	}
-	scroll->moving(rect.getPosition(),SCROLLOFFSET);
-	rect.translate(velocity*gsFrameTimerGetTime());
+	scroll->moving(position,SCROLLOFFSET);
+	position += velocity*gsFrameTimerGetTime();
 }
 void Player::gravity()
 {
@@ -71,7 +69,8 @@ void Player::rideUpDown()
 	if (device.getInput().getDownTrigger())
 	{
 		velocity = GSvector2(0, 0);
-		rect.translate(GSvector2(0, rect.getHeight() + 64));
+		position = GSvector2(0, rect.getHeight() + 64);
+		//rect.translate(GSvector2(0, rect.getHeight() + 64));
 	}
 	if (device.getInput().getUpTrigger())
 	{
@@ -116,13 +115,13 @@ void Player::moveHorizontal()
 	velocity.x = device.getInput().getVelocity().x * speed;
 }
 //
-const  bool Player::respawn()
+const bool Player::respawn()
 {
-	if (rect.getPosition().y <= WINDOW_HEIGHT + rect.getHeight())
+	if (position.y <= WINDOW_HEIGHT + rect.getHeight())
 	{
 		return false;
 	}
-	rect.resetPosition(respawnPos);
+	position=respawnPos;
 	velocity = GSvector2(0, 0);
 	jumpPower = 0;
 	return true;
@@ -143,11 +142,11 @@ void Player::collisionGround(const GameObject* obj)
 	{
 		isGround = true;
 		jumpEnd();
-		/*	const Sound& sound = device.getSound();
-			if (!sound.IsPlaySE("Landing.wav")&&velocity.x!=0)
-			{
-			sound.PlaySE("Landing.wav");
-			}	*/
+		/*const Sound& sound = device.getSound();
+		if (!sound.IsPlaySE("Landing.wav")&&velocity.x!=0)
+		{
+		   sound.PlaySE("Landing.wav");
+		}*/
 		return;
 	}
 	isGround = false;
@@ -159,7 +158,7 @@ const bool Player::collisionStar(const GameObject* obj)
 		return false;
 	}
 	Star* s = (Star*)obj;
-	s->ride(&rect);
+	s->ride(&position,&rect.getSize());
 	s->pickUp(&velocity);
 	jumpEnd();
 	return true;
@@ -175,5 +174,5 @@ void Player::collisionRespawn(const GameObject* obj)
 }
 GameObject* Player::clone(const GSvector2& position)
 {
-	return new Player(textrue, MyRectangle(position, rect.getSize()),scroll,device);
+	return new Player(textrue,position,MyRectangle(GSvector2(0,0), rect.getSize()),scroll,device);
 }

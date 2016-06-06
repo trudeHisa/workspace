@@ -365,5 +365,8 @@
     <ClInclude Include="Code\Include\Segment.h">
       <Filter>ヘッダー ファイル\util\shape</Filter>
     </ClInclude>
+    <ClInclude Include="Code\Include\Respawn.h">
+      <Filter>ヘッダー ファイル\gameobject</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

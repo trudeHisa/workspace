@@ -86,6 +86,7 @@
     <ClInclude Include="Code\Include\PlayMode_Select.h" />
     <ClInclude Include="Code\Include\Point.h" />
     <ClInclude Include="Code\Include\Renderer.h" />
+    <ClInclude Include="Code\Include\Respawn.h" />
     <ClInclude Include="Code\Include\SceneManager.h" />
     <ClInclude Include="Code\Include\Scroll.h" />
     <ClInclude Include="Code\Include\Segment.h" />

@@ -5,12 +5,11 @@
 #include "Timer.h"
 class Device;
 #define GSfloat gravity 3;
-
 class Player :public GameObject
 {
 public:
-	Player(const std::string& textrue, const MyRectangle& rect, Scroll* scroll, Device& device);
-	~Player();
+	Player(const std::string& textrue, const GSvector2& position, const MyRectangle& rect, Scroll* scroll, Device& device);
+	virtual ~Player();
 	void updata();
     void initialize();
 	void collision(const GameObject* obj);
@@ -38,9 +37,14 @@ private:
 	bool isRide;
 	float speed;
 	GSvector2 respawnPos;
-
 	Scroll* scroll;
-
 	Device& device;
+
+	const float GRAVITY; 
+		const float JUMPMAXPOW;
+		const float JUMPSPEED;
+		const float VERTICAL; 
+		const float JUMPVERTICAL;
+		const GSvector2 SCROLLOFFSET;
 };
 #endif

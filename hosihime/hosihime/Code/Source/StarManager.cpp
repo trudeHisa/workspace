@@ -58,9 +58,8 @@ IStarMove* StarManger::createMove(std::vector<std::string>& param)
 }
 MyRectangle StarManger::createRect(std::vector<std::string>& param)
 {
-	GSvector2 pos(stof(param[2]), stof(param[3]));
 	GSvector2 size(stof(param[4]),stof(param[5]));
-	return MyRectangle(pos,size);
+	return MyRectangle(GSvector2(0, 0), size);
 }
 void StarManger::createData()
 {
@@ -71,10 +70,13 @@ void StarManger::createData()
 
 	for each (std::vector<std::string> param in data)
 	{
+		GSvector2 pos(stof(param[2]), stof(param[3]));
 		switch (stoi(param[0]))
 		{
+			
 		case DEF:
-			stars.emplace_back(new Star(param[1],createRect(param),createMove(param)));
+			
+			stars.emplace_back(new Star(param[1],pos,createRect(param),createMove(param)));
 			break;
 		case HIBI:
 

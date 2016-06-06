@@ -4,11 +4,10 @@
 #include "GameObject.h"
 
 class IStarMove;
-
 class Star :public GameObject
 {
 public:
-	Star(const std::string& textrue, const MyRectangle& rect, IStarMove* move);
+	Star(const std::string& textrue,const GSvector2& position, const MyRectangle& rect, IStarMove* move);
 	~Star();
 	void initialize();
 	void updata();
@@ -17,7 +16,7 @@ public:
 
 	const GSvector2& getSPosi() const;
 public:
-	void ride(MyRectangle* rect);
+	void ride(GSvector2* position, const GSvector2* size);
 	void pickUp(GSvector2* velocity);
 	Star* clone();
 	GameObject* clone(const GSvector2& position);

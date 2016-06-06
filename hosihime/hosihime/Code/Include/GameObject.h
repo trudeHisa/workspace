@@ -13,7 +13,7 @@ GameObject.h
 class GameObject
 {
 public:
-	GameObject(const std::string& textrue, const MyRectangle& rect,
+	GameObject(const std::string& textrue, const GSvector2& position,const MyRectangle& rect,
 		const GAMEOBJ_TYPE type);
 	virtual ~GameObject();
 	virtual void updata() = 0;	
@@ -33,6 +33,7 @@ protected:
 	std::string textrue;
 	GAMEOBJ_TYPE type;
 	MyRectangle rect;
+	GSvector2 position;
 	bool isDead;
 	GSvector2 velocity;
 };

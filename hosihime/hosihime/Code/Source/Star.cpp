@@ -2,10 +2,10 @@
 #include "IStarMove.h"
 #include "Calculate.h"
 
-Star::Star(const std::string& textrue, const MyRectangle& rect,IStarMove* move)
-	:GameObject(textrue, rect, STAR), 
+Star::Star(const std::string& textrue,const GSvector2& position, const MyRectangle& rect,IStarMove* move)
+	:GameObject(textrue,position,rect, STAR), 
 	move(move), 
-	startPosi(rect.getPosition()),
+	startPosi(position),
 	angle(0)
 {
 }
@@ -24,9 +24,10 @@ void Star::updata()
 {
 	velocity = move->moving();
 	rotate();
-	rect.translate(velocity*gsFrameTimerGetTime());
-	if (rect.getPosition().y >WINDOW_HEIGHT + rect.getHeight() * 2
-		|| rect.getPosition().y< - rect.getHeight() * 2)
+
+	position += velocity*gsFrameTimerGetTime();
+	if (position.y >WINDOW_HEIGHT + rect.getHeight() * 2
+		|| position.y< -rect.getHeight() * 2)
 	{
 		isDead = true;
 	}
@@ -46,7 +47,7 @@ void Star::blurdraw(const Renderer& renderer, const GSvector2& position, const G
 }
 void Star::draw(const Renderer& renderer, const Scroll& scroll)
 {
-	GSvector2 pos = rect.getPosition();
+	GSvector2 pos = position;
 	pos -= scroll.getMovingAmount();
 	if (!scroll.isInsideWindow(pos, rect.getSize()))
 	{
@@ -67,11 +68,11 @@ void Star::collision(const GameObject* obj)
 		isDead = true;
 	}
 }
-void Star::ride(MyRectangle* rect)
+void Star::ride(GSvector2* position,const GSvector2* size)
 {
-	GSvector2 pos(this->rect.getPosition());
-	pos.y -= rect->getHeight();
-	rect->resetPosition(pos);
+	GSvector2 pos(this->position);
+	pos.y -=size->y;
+	*position = pos;
 }
 void Star::pickUp(GSvector2* velocity)
 {
@@ -79,18 +80,16 @@ void Star::pickUp(GSvector2* velocity)
 }
 Star* Star::clone()
 {
-	return new Star(textrue, MyRectangle(startPosi,rect.getSize()), move->clone());
+	return new Star(textrue, startPosi, MyRectangle(GSvector2(0, 0), rect.getSize()), move->clone());
 }
 GameObject* Star::clone(const GSvector2& position)
 {
-	return new Star(textrue, MyRectangle(position, rect.getSize()), move->clone());
+	return new Star(textrue, position,MyRectangle(GSvector2(0, 0), rect.getSize()), move->clone());
 }
-
 const GSvector2& Star::getSPosi() const
 {
 	return startPosi;
 }
-
 void Star::rotate()
 {
 	Calculate<float>calc;

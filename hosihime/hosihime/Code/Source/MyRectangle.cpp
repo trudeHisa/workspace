@@ -31,12 +31,13 @@ const bool MyRectangle::intersects(const MyRectangle* other)const
 	if ((position.y + size.y) < other->position.y)return false;
 	return true;
 }
+
 //ïΩçsà⁄ìÆ
 void MyRectangle::translate(const GSvector2& _position)
 {
 	position += _position;
 }
-void MyRectangle::resetPosition(const GSvector2& _position)
+void MyRectangle::transfer(const GSvector2& _position)
 {
 	position = _position;
 }
