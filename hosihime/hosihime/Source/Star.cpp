@@ -42,9 +42,9 @@ void Star::draw(Renderer& renderer, const Scroll* scroll)
 	GSvector2 center(rect.getSize());
 	center /= 2;
 	pos += center;
-	renderer.AdditionBlend();
+	//renderer.AdditionBlend();
 	renderer.DrawTextrue(textrue, &pos,NULL,&center,&GSvector2(1,1),angle,NULL);
-	renderer.InitBlendFunc();
+	//renderer.InitBlendFunc();
 }
 void Star::collision(const GameObject* obj)
 {

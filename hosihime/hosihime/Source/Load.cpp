@@ -16,7 +16,7 @@ void Load::Update()
 {
 	renderer.LoadTextrue("anim.bmp");
 	renderer.LoadTextrue("orihime.bmp", GS_TEXCOLOR_KEY_AUTO);
-	renderer.LoadTextrue("star.bmp");
+	renderer.LoadTextrue("star.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("player.bmp",GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("start.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("goal.bmp", GS_TEXCOLOR_KEY_AUTO);

@@ -8,8 +8,8 @@
 #include "Input.h"
 #define  BLOCKSIZE 64.f
 
-Stage::Stage(const std::string& csvname, const Input& input, , Sound& sound)
-	:scroll(WINDOW_WIDTH, WINDOW_HEIGHT), timer(30,3600)
+Stage::Stage(const std::string& csvname, const Input& input, Sound& sound)
+	:scroll(WINDOW_WIDTH, WINDOW_HEIGHT), timer(30,60)
 	, input(input), starManager(scroll), sound(sound)
 {
 	CSVStream stream;

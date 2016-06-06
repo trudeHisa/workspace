@@ -2,7 +2,7 @@
 #include "Stage.h"
 #include "Input.h"
 GamePlay::GamePlay(Sound& sound, const Input& input,TimeScore& score)
-:sound(sound), stage(NULL),input(input),stageSelect(input),score(score)//, animTimer(5), anim(&animTimer)
+:sound(sound), stage(NULL),input(input),stageSelect(sound,input),score(score)//, animTimer(5), anim(&animTimer)
 {
 
 }
