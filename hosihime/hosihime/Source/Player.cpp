@@ -41,7 +41,7 @@ void Player::updata()
 	{
 		return;
 	}
-	scroll->moving(rect.getPosition(), -respawnPos);
+	scroll->moving(rect.getPosition(), -GSvector2(100,100));
 	rect.translate(velocity*gsFrameTimerGetTime());
 	}
 void Player::gravity()
@@ -55,7 +55,7 @@ void Player::gravity()
 }
 void Player::moving()
 {
-	Anyfall();
+	//Anyfall();
 	gravity();
 	jumpStart();
 	rideUpDown();

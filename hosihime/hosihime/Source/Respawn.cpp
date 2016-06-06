@@ -16,7 +16,7 @@ void Respawn::collision(const GameObject* obj)
 }
 void Respawn::setRespawn(float* posx)
 {
-	*posx= rect.getPosition().x;
+	*posx = rect.getPosition().x;
 }
 GameObject* Respawn::clone(const GSvector2& position)
 {
