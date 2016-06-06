@@ -18,5 +18,5 @@ void Respawn::setRespawn(float* posx)
 }
 GameObject* Respawn::clone(const GSvector2& position)
 {
-	return new Respawn(textrue, position, MyRectangle(GSvector2(0, 0), rect.getSize()));
+	return new Respawn(textrue, position, rect);
 }

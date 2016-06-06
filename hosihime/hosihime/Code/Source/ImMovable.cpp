@@ -17,5 +17,5 @@ void ImMovable::collision(const GameObject* obj)
 }
 GameObject* ImMovable::clone(const GSvector2& position)
 {
-	return new ImMovable(textrue,position, MyRectangle(GSvector2(0,0), rect.getSize()),type);
+	return new ImMovable(textrue,position, rect,type);
 }

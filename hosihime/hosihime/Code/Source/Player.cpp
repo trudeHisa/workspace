@@ -4,7 +4,8 @@
 #include "Calculate.h"
 #include "Respawn.h"
 
-Player::Player(const std::string& textrue,const GSvector2& position ,const MyRectangle& rect, Scroll* scroll, Device& device)
+Player::Player(const std::string& textrue,const GSvector2& position,
+	const MyRectangle& rect, Scroll* scroll, Device& device)
 	:GameObject(textrue,position,rect, PLAYER),
 	GRAVITY(10), VERTICAL(5),
 	JUMPMAXPOW(-15),JUMPSPEED(0.1),
@@ -174,5 +175,5 @@ void Player::collisionRespawn(const GameObject* obj)
 }
 GameObject* Player::clone(const GSvector2& position)
 {
-	return new Player(textrue,position,MyRectangle(GSvector2(0,0), rect.getSize()),scroll,device);
+	return new Player(textrue,position,rect,scroll,device);
 }

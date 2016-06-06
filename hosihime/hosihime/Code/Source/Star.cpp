@@ -68,7 +68,7 @@ void Star::collision(const GameObject* obj)
 void Star::ride(GSvector2* position,const GSvector2* size)
 {
 	GSvector2 pos(this->position);
-	pos.y -=size->y;
+	pos.y -=64;
 	*position = pos;
 }
 void Star::pickUp(GSvector2* velocity)
@@ -77,11 +77,11 @@ void Star::pickUp(GSvector2* velocity)
 }
 Star* Star::clone()
 {
-	return new Star(textrue, startPosi, MyRectangle(GSvector2(0, 0), rect.getSize()), StarMode_Ptr(move->clone()));
+	return new Star(textrue, startPosi,rect, StarMode_Ptr(move->clone()));
 }
 GameObject* Star::clone(const GSvector2& position)
 {
-	return new Star(textrue, position, MyRectangle(GSvector2(0, 0), rect.getSize()), StarMode_Ptr(move->clone()));
+	return new Star(textrue, position, rect, StarMode_Ptr(move->clone()));
 }
 const GSvector2& Star::getSPosi() const
 {

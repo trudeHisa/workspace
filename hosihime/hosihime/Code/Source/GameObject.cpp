@@ -5,7 +5,8 @@ GameObject.cpp
 GameObject::GameObject(
 	const std::string& textrue,
 	const GSvector2& position,
-	const MyRectangle& rect,const GAMEOBJ_TYPE type)
+	const MyRectangle& rect,
+	const GAMEOBJ_TYPE type)
 	:textrue(textrue),position(position),rect(rect), type(type)
 {
 }
