@@ -4,14 +4,17 @@
 #include "Calculate.h"
 #include "Respawn.h"
 #define GRAVITY 10
-#define JUMPMAXPOW -20
+#define JUMPMAXPOW -15
 #define JUMPSPEED 0.1
+#define VERTICAL 5
+#define JUMPVERTICAL 10
+#define SCROLLOFFSET GSvector2(-150,-450)
 
 Player::Player(const std::string& textrue, const MyRectangle& rect, Scroll* scroll, Device& device)
 	:GameObject(textrue, rect, PLAYER),
 	scroll(scroll), isJump(false),
 	jumpPower(0),
-	speed(6),
+	speed(VERTICAL),
 	respawnPos(rect.getPosition()),
 	device(device)
 {
@@ -24,7 +27,7 @@ void Player::initialize()
 {
 	GameObject::initialize();
 	jumpEnd();
-	speed = 6;
+	speed = VERTICAL;
 	jumpPower = 0;
 }
 void Player::jumpEnd()
@@ -39,7 +42,7 @@ void Player::updata()
 	{
 		return;
 	}
-	scroll->moving(rect.getPosition(), -respawnPos);
+	scroll->moving(rect.getPosition(),SCROLLOFFSET);
 	rect.translate(velocity*gsFrameTimerGetTime());
 }
 void Player::gravity()
@@ -97,8 +100,10 @@ void Player::jump()
 {
 	if (!isJump)
 	{
+		speed = VERTICAL;
 		return;
 	}
+	speed = JUMPVERTICAL;
 	velocity.y = jumpPower;
 	jumpPower += GRAVITY*gsFrameTimerGetTime()*JUMPSPEED;
 }
@@ -138,7 +143,6 @@ void Player::collisionGround(const GameObject* obj)
 	{
 		isGround = true;
 		jumpEnd();
-		scroll->stop();
 		/*	const Sound& sound = device.getSound();
 			if (!sound.IsPlaySE("Landing.wav")&&velocity.x!=0)
 			{
@@ -146,7 +150,6 @@ void Player::collisionGround(const GameObject* obj)
 			}	*/
 		return;
 	}
-	scroll->start();
 	isGround = false;
 }
 const bool Player::collisionStar(const GameObject* obj)

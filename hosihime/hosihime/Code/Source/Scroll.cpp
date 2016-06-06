@@ -11,7 +11,7 @@ void Scroll::initialize()
 	position2 = GSvector2(windowSize.getWidth(), 0);
 	movingAmount = GSvector2(0, 0);
 	isStart = true;
-	mode = MODE_VERTICAL;
+	mode = MODE_OMNIDIRECTIONAL;
 }
 void Scroll::updata()
 {
