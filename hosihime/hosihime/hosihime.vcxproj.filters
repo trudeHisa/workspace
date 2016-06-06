@@ -67,6 +67,12 @@
     <Filter Include="ソース ファイル\gameobject\star\move">
       <UniqueIdentifier>{23c229f2-9d4a-4583-8601-d491ec4abd6f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\gameobject\Factory">
+      <UniqueIdentifier>{890f7721-9712-44d8-99d4-5cfb5d933538}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\gameobject\Factory">
+      <UniqueIdentifier>{31227a6e-bb96-4161-a154-3f69d5ca8ab7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\game.cpp">
@@ -176,6 +182,15 @@
     </ClCompile>
     <ClCompile Include="Source\Menu.cpp">
       <Filter>ソース ファイル\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Device.cpp">
+      <Filter>ソース ファイル\util\device</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TimeScore.cpp">
+      <Filter>ソース ファイル\stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameObjectFactory.cpp">
+      <Filter>ソース ファイル\gameobject\Factory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -307,6 +322,21 @@
     </ClInclude>
     <ClInclude Include="Source\Menu.h">
       <Filter>ヘッダー ファイル\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Device.h">
+      <Filter>ヘッダー ファイル\util\device</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TimeScore.h">
+      <Filter>ヘッダー ファイル\stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameObje_Include.h">
+      <Filter>ヘッダー ファイル\gameobject</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Factory.h">
+      <Filter>ヘッダー ファイル\gameobject\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\GameObjectFactory.h">
+      <Filter>ヘッダー ファイル\gameobject\Factory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

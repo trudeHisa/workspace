@@ -10,11 +10,11 @@ GameObject::GameObject(const std::string& textrue,
 GameObject::~GameObject()
 {
 }
-void GameObject::draw(Renderer& renderer, const Scroll* scroll)
+void GameObject::draw(const Renderer& renderer, const Scroll& scroll)
 {
 	GSvector2 pos = rect.getPosition();
-	pos-= scroll->getMovingAmount();
-	if (!scroll->isInsideWindow(pos, rect.getSize()))
+	pos-= scroll.getMovingAmount();
+	if (!scroll.isInsideWindow(pos, rect.getSize()))
 	{
 		return;
 	}

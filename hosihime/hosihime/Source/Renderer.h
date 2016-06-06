@@ -12,11 +12,11 @@ public:
 		const GSenum colorKeyMode = GS_TEXCOLOR_KEY_DISABLE,
 		const std::string& ps = "Textrue\\\\");
 	void Release();
-	void DrawTextrue(const std::string& name, const GSvector2* _position);
-	void DrawTextrue(const std::string& name, const GSvector2* _position, const GSrect* _rect);
-	void DrawTextrue(const std::string& name, const GSvector2* _position, const GScolor* _color);
-	void DrawTextrue(const std::string& name, const GSvector2* _position, const GSvector2* _scaling, const GScolor* _color);
-	void DrawTextrue(const std::string& name, const GSvector2* _position, const GSrect* _rect, const GScolor* _color);
+	void DrawTextrue(const std::string& name, const GSvector2* _position)const;
+	void DrawTextrue(const std::string& name, const GSvector2* _position, const GSrect* _rect)const;
+	void DrawTextrue(const std::string& name, const GSvector2* _position, const GScolor* _color)const;
+	void DrawTextrue(const std::string& name, const GSvector2* _position, const GSvector2* _scaling, const GScolor* _color)const;
+	void DrawTextrue(const std::string& name, const GSvector2* _position, const GSrect* _rect, const GScolor* _color)const;
 	void DrawTextrue(
 		const std::string& name,
 		const GSvector2* _position,
@@ -25,7 +25,7 @@ public:
 		const GSvector2* _scaling,
 		GSfloat          _rotation,
 		const GScolor*    _color
-		);
+		)const;
 	/*
 	GS_FONT_NORMAL 何もしない
 	GS_FONT_BOLD   太字
@@ -36,17 +36,10 @@ public:
 	*/
 	void DrawString(const std::string& text, const GSvector2* _position, const GSuint size,
 		const GScolor* _color = &GScolor(1, 1, 1, 1), const GSbitfield& fontcode = GS_FONT_NORMAL,
-		const char* fonstname="MS ゴシック");
+		const char* fonstname = "MS ゴシック")const;
 	
-	void InitBlendFunc()
-	{
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	}
-	void AdditionBlend()
-	{
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE);
-	}
-
+	void InitBlendFunc()const;
+	void AdditionBlend()const;
 private:	
 	void DrawSprite2D(
 		GSuint           uTextureID,
@@ -56,7 +49,7 @@ private:
 		GSfloat          fRotation,
 		const GSvector2* pTranslation,
 		const GScolor*    pColor
-		);
+		) const;
 	std::map<const std::string, GSuint> container;
 };
 #endif

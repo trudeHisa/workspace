@@ -21,15 +21,17 @@ public:
 	void LoadSE(const std::string& name, int max, 
 		GWAVEFLAG flag = GWAVE_DEFAULT,
 		const std::string& ps = "Sound\\\\SE\\\\");
-	void PlayBGM(const std::string& name);
-	void PauseBGM();
-	void RestartBGM();
-	void StopBGM();	
-	void PlaySE(const std::string& name);
 	void Release();
-	bool IsPlayBGM();
-	bool IsPlaySE(const std::string& name);
-	void StopSE(const std::string& name);
+
+	void PlayBGM(const std::string& name)const;
+	void PauseBGM()const;
+	void RestartBGM()const;
+	bool IsPlayBGM()const;
+	void StopBGM()const;
+
+	void PlaySE(const std::string& name)const;	
+	bool IsPlaySE(const std::string& name)const;
+	void StopSE(const std::string& name)const;
 private:
 	std::map<const std::string, GSuint>ses;
 	std::map<const std::string, GSuint>bgms;

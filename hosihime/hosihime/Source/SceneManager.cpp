@@ -18,7 +18,7 @@ void SceneManager::Update()
 		Change(currentScene->Next());
 	}
 }
-void SceneManager::Draw(Renderer& renderer)
+void SceneManager::Draw(const Renderer& renderer)
 {
 	currentScene->Draw(renderer);
 }

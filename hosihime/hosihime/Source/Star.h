@@ -13,12 +13,13 @@ public:
 	void initialize();
 	void updata();
 	void collision(const GameObject* obj);
-	void draw(Renderer& renderer, const Scroll* scroll);
+	void draw(const Renderer& renderer, const Scroll& scroll);
 	const GSvector2& getSPosi() const;
 public:
 	void ride(MyRectangle* rect);
 	void pickUp(GSvector2* velocity);
 	Star* clone();
+	GameObject* clone(const GSvector2& position);
 private:
 	void rotate();
 private:

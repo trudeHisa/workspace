@@ -15,10 +15,12 @@
     <ClCompile Include="Source\AnimationTimer.cpp" />
     <ClCompile Include="Source\Circle.cpp" />
     <ClCompile Include="Source\CSVStream.cpp" />
+    <ClCompile Include="Source\Device.cpp" />
     <ClCompile Include="Source\Ending.cpp" />
     <ClCompile Include="Source\game.cpp" />
     <ClCompile Include="Source\GameObjControl.cpp" />
     <ClCompile Include="Source\GameObject.cpp" />
+    <ClCompile Include="Source\GameObjectFactory.cpp" />
     <ClCompile Include="Source\GamePlay.cpp" />
     <ClCompile Include="Source\ImMovable.cpp" />
     <ClCompile Include="Source\Input.cpp" />
@@ -46,6 +48,7 @@
     <ClCompile Include="Source\Star_slashdown.cpp" />
     <ClCompile Include="Source\Star_wave.cpp" />
     <ClCompile Include="Source\Timer.cpp" />
+    <ClCompile Include="Source\TimeScore.cpp" />
     <ClCompile Include="Source\Title.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -56,10 +59,14 @@
     <ClInclude Include="Source\Circle.h" />
     <ClInclude Include="Source\CSVStream.h" />
     <ClInclude Include="Source\Definition.h" />
+    <ClInclude Include="Source\Device.h" />
     <ClInclude Include="Source\Ending.h" />
+    <ClInclude Include="Source\Factory.h" />
     <ClInclude Include="Source\game.h" />
     <ClInclude Include="Source\GameObjControl.h" />
     <ClInclude Include="Source\GameObject.h" />
+    <ClInclude Include="Source\GameObjectFactory.h" />
+    <ClInclude Include="Source\GameObje_Include.h" />
     <ClInclude Include="Source\GAMEOBJ_TYPE.h" />
     <ClInclude Include="Source\GamePlay.h" />
     <ClInclude Include="Source\ImMovable.h" />
@@ -91,6 +98,7 @@
     <ClInclude Include="Source\Star_slashdown.h" />
     <ClInclude Include="Source\Star_wave.h" />
     <ClInclude Include="Source\Timer.h" />
+    <ClInclude Include="Source\TimeScore.h" />
     <ClInclude Include="Source\Title.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

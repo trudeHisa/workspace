@@ -11,7 +11,7 @@ public:
 	void Add(Scene name,IScene* scene);
 	void Change(Scene name);
 	void Update();
-	void Draw(Renderer& renderer);
+	void Draw(const Renderer& renderer);
 	void Finish();
 private:
 	Scenes scenes;

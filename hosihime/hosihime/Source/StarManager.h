@@ -2,15 +2,16 @@
 #define _STARMANAGER_H_
 
 #include <vector>
-#include <memory>
 
 class StarMediator;
-class Star;
 class IStarMove;
 #include "MyRectangle.h"
 #include "Scroll.h"
-typedef std::vector<Star*> starsContainer;
-typedef std::vector<Star*> Stars_inScreen;
+
+#include "GameObje_Include.h"
+
+typedef std::vector<Star_Ptr> starsContainer;
+typedef std::vector<Star_Ptr> Stars_inScreen;
 class StarManger
 {
 public:
@@ -24,7 +25,7 @@ public:
 private:
 	void starResporn();
 	void remove();
-	void findDeads(std::vector<Star*>* deads);
+	void findDeads(std::vector<Star_Ptr>* deads);
 	void createData();
 
 	IStarMove* createMove(std::vector<std::string>& param);

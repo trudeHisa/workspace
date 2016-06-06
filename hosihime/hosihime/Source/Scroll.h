@@ -15,7 +15,7 @@ public:
 	Scroll(float widht,float height);
 	void initialize();
 	void updata();
-	void draw(Renderer& renderer);
+	void draw(const Renderer& renderer);
 	//Scroll処理
 	void moving(const GSvector2& position, const GSvector2& offset=GSvector2(0,0));
 	//ウィンドウの中にあるか

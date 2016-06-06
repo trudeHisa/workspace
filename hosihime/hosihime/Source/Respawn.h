@@ -11,6 +11,6 @@ public:
 	void updata();
 	void collision(const GameObject* obj);
 	void setRespawn(float* posx);
-private:
+	GameObject* clone(const GSvector2& position);
 };
 #endif

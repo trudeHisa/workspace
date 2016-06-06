@@ -1,9 +1,10 @@
 #include "Title.h"
-//タイトルクラスコンストラクタ
+
 #include "Calculate.h"
-#include "Input.h"
-Title::Title(Sound& sound,const Input& input)
-	:sound(sound),input(input)
+#include "Device.h"
+//タイトルクラスコンストラクタ
+Title::Title(Device& device)
+	:device(device)
 {
 }
 Title::~Title()
@@ -11,15 +12,15 @@ Title::~Title()
 }
 void Title::Init()
 {
-	sound.StopSE("Ending.wav");
-	isEnd = false;
-	sound.PlaySE("Opening.wav");
+//	device.getSound().StopSE("Ending.wav");
+	//device.getSound().PlaySE("Opening.wav");
+	isEnd = false;	
 }
 void Title::Update()
 {
-	isEnd = input.getActionTrigger();
+	isEnd =device.getInput().getActionTrigger();
 }
-void Title::Draw(Renderer& renderer)
+void Title::Draw(const Renderer& renderer)
 {
 	renderer.DrawTextrue("title.bmp", &GSvector2(0, 0));
 	renderer.DrawTextrue("titletext.bmp", &GSvector2(200, 120));

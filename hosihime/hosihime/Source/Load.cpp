@@ -1,6 +1,8 @@
 #include "Load.h"
-Load::Load(Renderer& renderer,Sound& sound)
-	:renderer(renderer), sound(sound)
+#include "Device.h"
+#include "Renderer.h"
+Load::Load(Device& device,Renderer& renderer)
+	:device(device), renderer(renderer)
 {
 	renderer.LoadTextrue("load.bmp");
 }
@@ -14,10 +16,34 @@ void Load::Init()
 }
 void Load::Update()
 {
+	loadTextrue();
+	loadSound();
+
+	isEnd = true;
+}
+void Load::Draw(const Renderer& renderer)
+{
+	renderer.DrawTextrue("load.bmp", &GSvector2(0, 0));
+}
+void Load::Finish()
+{
+}
+Scene Load::Next()
+{
+	return MODE_TITLE;
+}
+bool Load::IsEnd()
+{
+	return isEnd;
+}
+
+void Load::loadTextrue()
+{
 	renderer.LoadTextrue("anim.bmp");
 	renderer.LoadTextrue("orihime.bmp", GS_TEXCOLOR_KEY_AUTO);
-	renderer.LoadTextrue("star.bmp", GS_TEXCOLOR_KEY_AUTO);
-	renderer.LoadTextrue("player.bmp",GS_TEXCOLOR_KEY_AUTO);
+	renderer.LoadTextrue("orihime.bmp", GS_TEXCOLOR_KEY_AUTO);
+	renderer.LoadTextrue("star.bmp",GS_TEXCOLOR_KEY_AUTO);
+	renderer.LoadTextrue("player.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("start.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("goal.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("rock.bmp", GS_TEXCOLOR_KEY_AUTO);
@@ -42,14 +68,17 @@ void Load::Update()
 	renderer.LoadTextrue("stageselect.bmp");
 
 	renderer.LoadTextrue("titletext.bmp", GS_TEXCOLOR_KEY_WHITE);	
-	renderer.LoadTextrue("spacetext.bmp",GS_TEXCOLOR_KEY_WHITE);
+	renderer.LoadTextrue("spacetext.bmp", GS_TEXCOLOR_KEY_WHITE);
 	renderer.LoadTextrue("gs.bmp", GS_TEXCOLOR_KEY_WHITE);
 	renderer.LoadTextrue("gs_g.bmp", GS_TEXCOLOR_KEY_WHITE);
 	renderer.LoadTextrue("operationText.bmp", GS_TEXCOLOR_KEY_WHITE);
 	renderer.LoadTextrue("operationText_g.bmp", GS_TEXCOLOR_KEY_WHITE);
 	renderer.LoadTextrue("credit.bmp", GS_TEXCOLOR_KEY_WHITE);
 	renderer.LoadTextrue("credit_g.bmp", GS_TEXCOLOR_KEY_WHITE);
-
+}
+void Load::loadSound()
+{
+	Sound& sound = device.getNonConstSound();
 	//SE
 	sound.LoadSE("Broken.wav", 5);
 	sound.LoadSE("Fire.wav", 3);
@@ -57,10 +86,9 @@ void Load::Update()
 	sound.LoadSE("Landing.wav", 5);	//’…’n
 	sound.LoadSE("cursormove.wav", 5);
 	sound.LoadSE("decision.wav", 5);	//Œˆ’è
-
 	//BGM
 	std::string path = "Sound\\\\BGM\\\\";
-	sound.LoadSE("Clear_1.wav", 5, GWAVE_LOOP,path);
+	sound.LoadSE("Clear_1.wav", 5, GWAVE_LOOP, path);
 	sound.LoadSE("Clear_2.wav", 5, GWAVE_LOOP, path);
 	sound.LoadSE("Ending.wav", 5, GWAVE_LOOP, path);
 	sound.LoadSE("Opening.wav", 5, GWAVE_LOOP, path);
@@ -69,21 +97,4 @@ void Load::Update()
 	sound.LoadSE("Gameover.wav", 5, GWAVE_LOOP, path);
 	sound.LoadSE("Map.wav", 5, GWAVE_LOOP, path);
 	sound.LoadSE("Title.wav", 5, GWAVE_LOOP, path);
-
-	isEnd = true;
-}
-void Load::Draw(Renderer& renderer)
-{
-	renderer.DrawTextrue("load.bmp", &GSvector2(0, 0));
-}
-void Load::Finish()
-{
-}
-Scene Load::Next()
-{
-	return MODE_TITLE;
-}
-bool Load::IsEnd()
-{
-	return isEnd;
 }

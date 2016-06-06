@@ -1,16 +1,16 @@
 #include "StageSelect.h"
 #include "Stage.h"
 #include "Calculate.h"
-#include "Input.h"
-StageSelect::StageSelect(Sound& sound,const Input& input)
-	:sound(sound),input(input)
+#include "Device.h"
+StageSelect::StageSelect(Device& device)
+	:device(device)
 {
 
 }
 void StageSelect::initialize()
 {
 	active = 0;
-	sound.PlaySE("Map.wav");
+	//device.getSound().PlaySE("Map.wav");
 }
 void StageSelect::updata()
 {
@@ -18,15 +18,15 @@ void StageSelect::updata()
 }
 void StageSelect::select()
 {
-	if (input.getUpTrigger())
+	if (device.getInput().getUpTrigger())
 	{
 		active++;
-		sound.PlaySE("cursormove.wav");
+		device.getSound().PlaySE("cursormove.wav");
 	}
-	if (input.getDownTrigger())
+	if (device.getInput().getDownTrigger())
 	{
 		active--;
-		sound.PlaySE("cursormove.wav");
+		device.getSound().PlaySE("cursormove.wav");
 	}
 	Calculate<int> calc;
 	active = calc.wrap(active, 0, 3);
@@ -40,10 +40,10 @@ Stage* StageSelect::createStage()
 		"testmap.csv",
 		"testmap.csv"
 	};
-	return new Stage("mapdata\\\\" + datanames[active],input,sound);
+	return new Stage("mapdata\\\\" + datanames[active],device);
 }
 
-void StageSelect::draw(Renderer& renderer) 
+void StageSelect::draw(const Renderer& renderer) 
 {
 	GSvector2 poss[3] =
 	{

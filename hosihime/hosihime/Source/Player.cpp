@@ -1,23 +1,19 @@
 #include "Player.h"
-#include "Input.h"
+#include "Device.h"
 #include "Star.h"
 #include "Calculate.h"
 #include "Respawn.h"
-#define GRAVITY 8
-#define JUMPSPEED 0.3
-#define JUMPTIME 0.6
-enum SPEED
-{
-	GROUND = 6, NONGROUND = 3
-};
+#define GRAVITY 10
+#define JUMPMAXPOW -20
+#define JUMPSPEED 0.1
 
-Player::Player(const std::string& textrue, const MyRectangle& rect, Scroll* scroll, const Input& input, Sound& sound)
+Player::Player(const std::string& textrue, const MyRectangle& rect, Scroll* scroll, Device& device)
 	:GameObject(textrue, rect, PLAYER),
 	scroll(scroll), isJump(false),
-input(input), jumpTimer(JUMPTIME, JUMPTIME), speed(3),
+	jumpPower(0),
+	speed(6),
 	respawnPos(rect.getPosition()),
-	scrollOffset(-rect.getPosition()),
-	sound(sound)
+	device(device)
 {
 }
 Player::~Player()
@@ -30,12 +26,13 @@ void Player::initialize()
 	isres = false;
 	GameObject::initialize();
 	jumpEnd();
-	speed = SPEED::GROUND;
+	speed = 6;
+	jumpPower = 0;
 }
 void Player::jumpEnd()
 	{
 	isJump = false;
-	jumpTimer.initialize();
+	jumpPower = 0;
 	}
 void Player::updata()
 	{
@@ -44,27 +41,16 @@ void Player::updata()
 	{
 		return;
 	}
-	scroll->moving(rect.getPosition(), scrollOffset);
+	scroll->moving(rect.getPosition(), -respawnPos);
 	rect.translate(velocity*gsFrameTimerGetTime());
 	}
-//ˆÚ“®
-void Player::fallHorizontal()
-	{
-	//speed = SPEED::NONGROUND;
-	Calculate<float> calc;
-	/*velocity.x = calc.clamp(velocity.x, -SPEED::NONGROUND, SPEED::NONGROUND);
-	velocity.x = LERP(gsFrameTimerGetTime()*0.01f, velocity.x, 0);*/
-}
 void Player::gravity()
 {
 	if (isGround)
 	{
-		isres = false;
-		//speed = SPEED::GROUND;
 		velocity.y = 0;
 		return;
 	}
-	fallHorizontal();
 	velocity.y = GRAVITY;
 }
 void Player::moving()
@@ -72,8 +58,26 @@ void Player::moving()
 	Anyfall();
 	gravity();
 	jumpStart();
+	rideUpDown();
 	moveHorizontal();
 	jump();
+}
+void Player::rideUpDown()
+{
+	if (!isRide)
+	{
+		return;
+	}
+	if (device.getInput().getDownTrigger())
+	{
+		velocity = GSvector2(0, 0);
+		rect.translate(GSvector2(0, rect.getHeight() + 64));
+	}
+	if (device.getInput().getUpTrigger())
+	{
+		isJump = true;
+		jumpPower = JUMPMAXPOW;
+	}
 }
 void Player::jumpStart()
 {
@@ -85,12 +89,12 @@ void Player::jumpStart()
 	{
 		return;
 	}
-	if (!input.getActionTrigger())
+	if (!device.getInput().getActionTrigger())
 	{
 		return;
 	}
 	isJump = true;
-
+	jumpPower = JUMPMAXPOW;
 }
 void Player::jump()
 {
@@ -98,28 +102,16 @@ void Player::jump()
 {
 		return;
 	}
-	velocity.y = -jumpTimer.getTime()*JUMPSPEED;
-	jumpTimer.update();
-	if (!jumpTimer.isEnd())
-	{
-		return;
+	velocity.y = jumpPower;
+	jumpPower += GRAVITY*gsFrameTimerGetTime()*JUMPSPEED;
 	}
-	jumpEnd();
-}
-void  Player::Anyfall()
-{
-	if (isAnyfall)
-	{
-		velocity.y = 5;
-	}
-}
 void Player::moveHorizontal()
 {
-	if (isRide||isres)
-	{
-		return;
-	}
-	velocity.x = input.getVelocity().x * speed;
+	//if (!isGround && !isJump)
+	//{
+	//	return;
+	//}
+	velocity.x = device.getInput().getVelocity().x * speed;
 }
 //
 const  bool Player::respawn()
@@ -130,7 +122,7 @@ const  bool Player::respawn()
 	}
 	rect.resetPosition(respawnPos);
 	velocity = GSvector2(0, 0);
-	isres = true;
+	jumpPower = 0;
 	return true;
 }
 //Õ“Ë
@@ -139,6 +131,7 @@ void Player::collision(const GameObject* obj)
 	isRide = collisionStar(obj);
 	collisionRespawn(obj);
 	collisionGround(obj);
+	if (obj->isSameType(GOAL)) isDead = true;
 }
 void Player::collisionGround(const GameObject* obj)
 {
@@ -147,12 +140,14 @@ void Player::collisionGround(const GameObject* obj)
 		obj->isSameType(GOAL))
 {
 		isGround = true;
-		isJump = false;
-		isAnyfall = false;
+		jumpEnd();
 		scroll->stop();
-		if (obj->isSameType(GOAL)) isDead = true;
+		/*	const Sound& sound = device.getSound();
+			if (!sound.IsPlaySE("Landing.wav")&&velocity.x!=0)
+			{
+			sound.PlaySE("Landing.wav");
+			}	*/
 		return;
-		sound.PlaySE("Landing.wav");
 	}
 	scroll->start();
 	isGround = false;
@@ -184,4 +179,8 @@ void Player::collisionRespawn(const GameObject* obj)
 	}
 	Respawn* respawn = (Respawn*)obj;
 	respawn->setRespawn(&respawnPos.x);
+}
+GameObject* Player::clone(const GSvector2& position)
+{
+	return new Player(textrue, MyRectangle(position, rect.getSize()),scroll,device);
 }

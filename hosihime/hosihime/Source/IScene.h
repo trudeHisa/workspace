@@ -13,7 +13,7 @@ __interface IScene
 {
 	 void Init() ;
 	 void Update() = 0;
-	 void Draw(Renderer& renderer);
+	 void Draw(const Renderer& renderer);
 	 void Finish();
 	Scene Next();
 	bool IsEnd();

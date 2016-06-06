@@ -31,20 +31,33 @@ void Star::updata()
 		isDead = true;
 	}
 }
-void Star::draw(Renderer& renderer, const Scroll* scroll)
+void Star::draw(const Renderer& renderer, const Scroll& scroll)
 {
 	GSvector2 pos = rect.getPosition();
-	pos -= scroll->getMovingAmount();
-	if (!scroll->isInsideWindow(pos, rect.getSize()))
+	pos -= scroll.getMovingAmount();
+	if (!scroll.isInsideWindow(pos, rect.getSize()))
 	{
 		return;
 	}
 	GSvector2 center(rect.getSize());
 	center /= 2;
 	pos += center;
-	//renderer.AdditionBlend();
+	//
+	GSvector2 vel = velocity;
+	float addRot = gsFrameTimerGetTime()*velocity.length()*0.5f;
+	int max = 5;	
+	renderer.AdditionBlend();
+	for (int i = max; i>0; i--)
+	{
+		GSvector2 fp = pos - vel*i;
+		float fang = angle - addRot*i;
+		float alpha = (max - i)*0.05f;
+		renderer.DrawTextrue(textrue, &fp, NULL, &center, &GSvector2(1, 1), angle, &GScolor(1, 1, 1, alpha));
+	}
+	renderer.InitBlendFunc();
+	//
 	renderer.DrawTextrue(textrue, &pos,NULL,&center,&GSvector2(1,1),angle,NULL);
-	//renderer.InitBlendFunc();
+
 }
 void Star::collision(const GameObject* obj)
 {
@@ -66,6 +79,10 @@ void Star::pickUp(GSvector2* velocity)
 Star* Star::clone()
 {
 	return new Star(textrue, MyRectangle(startPosi,rect.getSize()), move->clone());
+}
+GameObject* Star::clone(const GSvector2& position)
+{
+	return new Star(textrue, MyRectangle(position, rect.getSize()), move->clone());
 }
 
 const GSvector2& Star::getSPosi() const

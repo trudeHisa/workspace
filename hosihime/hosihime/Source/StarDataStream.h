@@ -7,9 +7,6 @@ class StarDataStream
 {
 public:
 	StarDataStream();
-	~StarDataStream();
-	void input(std::vector<std::vector<std::string>>* data, const char* name);
-private:
-
+	void input(std::vector<std::vector<std::string>>* data, const char* name)const;
 };
 #endif
