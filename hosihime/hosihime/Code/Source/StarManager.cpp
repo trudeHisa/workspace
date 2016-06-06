@@ -76,7 +76,7 @@ void StarManger::createData()
 			
 		case DEF:
 			
-			stars.emplace_back(new Star(param[1],pos,createRect(param),createMove(param)));
+			stars.emplace_back(new Star(param[1], pos, createRect(param), StarMode_Ptr(createMove(param))));
 			break;
 		case HIBI:
 

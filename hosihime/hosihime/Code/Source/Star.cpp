@@ -1,8 +1,7 @@
 #include "Star.h"
-#include "IStarMove.h"
 #include "Calculate.h"
 
-Star::Star(const std::string& textrue,const GSvector2& position, const MyRectangle& rect,IStarMove* move)
+Star::Star(const std::string& textrue, const GSvector2& position, const MyRectangle& rect, StarMode_Ptr move)
 	:GameObject(textrue,position,rect, STAR), 
 	move(move), 
 	startPosi(position),
@@ -11,8 +10,6 @@ Star::Star(const std::string& textrue,const GSvector2& position, const MyRectang
 }
 Star::~Star()
 {
-	delete move;
-	move = NULL;
 }
 void Star::initialize()
 {
@@ -80,11 +77,11 @@ void Star::pickUp(GSvector2* velocity)
 }
 Star* Star::clone()
 {
-	return new Star(textrue, startPosi, MyRectangle(GSvector2(0, 0), rect.getSize()), move->clone());
+	return new Star(textrue, startPosi, MyRectangle(GSvector2(0, 0), rect.getSize()), StarMode_Ptr(move->clone()));
 }
 GameObject* Star::clone(const GSvector2& position)
 {
-	return new Star(textrue, position,MyRectangle(GSvector2(0, 0), rect.getSize()), move->clone());
+	return new Star(textrue, position, MyRectangle(GSvector2(0, 0), rect.getSize()), StarMode_Ptr(move->clone()));
 }
 const GSvector2& Star::getSPosi() const
 {

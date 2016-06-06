@@ -3,11 +3,11 @@
 #include <string>
 #include "GameObject.h"
 
-class IStarMove;
+#include "IStarMove.h"
 class Star :public GameObject
 {
 public:
-	Star(const std::string& textrue,const GSvector2& position, const MyRectangle& rect, IStarMove* move);
+	Star(const std::string& textrue, const GSvector2& position, const MyRectangle& rect, StarMode_Ptr move);
 	~Star();
 	void initialize();
 	void updata();
@@ -24,7 +24,7 @@ private:
 	void rotate();
 	void blurdraw(const Renderer& renderer, const GSvector2& position, const GSvector2& center);
 private:
-	IStarMove* move;
+	StarMode_Ptr move;
 	float angle;//rad
 	GSvector2 startPosi;
 };
