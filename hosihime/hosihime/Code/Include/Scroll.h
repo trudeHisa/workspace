@@ -33,8 +33,11 @@ private:
 private:
 	SCROLL_MODE mode;
 	bool isStart;
-	GSvector2 position1;
-	GSvector2 position2;
+	//l,t,r,b
+	GSrect s;// x
+	GSrect t;// y
+	float scroll_ts;
+	float scroll_tt;
 	MyRectangle windowSize;
 	GSvector2 movingAmount;//‚Ç‚ê‚¾‚¯Scroll‚µ‚½‚©
 };

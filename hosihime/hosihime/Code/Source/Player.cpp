@@ -71,6 +71,10 @@ void Player::rideUpDown()
 	if (device.getInput().getDownTrigger())
 	{
 		velocity = GSvector2(0, 0);
+		/*
+		*64は星のサイズ
+		*要リファクタリング
+		*/
 		position = GSvector2(0,viewSize.y + 64);
 		//rect.translate(GSvector2(0, rect.getHeight() + 64));
 	}

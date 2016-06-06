@@ -4,12 +4,12 @@ void Renderer::LoadTextrue(const std::string& name, const GSenum colorKeyMode, c
 {
 	std::string name_ps = ps + name;
 	gsTextureColorKeyMode(colorKeyMode);
-	gsLoadTexture(container.size(),name_ps.c_str());
+	gsLoadTexture(container.size(), name_ps.c_str());
 	container.insert(std::pair<const std::string, GSuint>(name, container.size()));
 }
 void Renderer::Release()
 {
-	for (auto itr = container.begin(); itr != container.end(); ++itr) 
+	for (auto itr = container.begin(); itr != container.end(); ++itr)
 	{
 		gsDeleteTexture(itr->second);
 	}
@@ -25,28 +25,37 @@ void Renderer::DrawSprite2D(
 	const GScolor*    pColor
 	)const
 {
-	GSrect rTexCoord;
-	GLfloat fWidth;
-	GLfloat fHeight;
-	GLsizei sTexWidth;
-	GLsizei sTexHeight;
+	disables();
 	GScolor CurrentColor;
-	
-	glPushAttrib(GL_ENABLE_BIT);
-	glDisable(GL_LIGHTING);
-	glDisable(GL_DEPTH_TEST);
-	glDisable(GL_CULL_FACE);
 	glGetFloatv(GL_CURRENT_COLOR, (GLfloat*)&CurrentColor);
 	gsBindTexture(uTextureID);
 
-	glMatrixMode(GL_PROJECTION);
-	glPushMatrix();
-	glLoadIdentity();
-	gluOrtho2D(0, WINDOW_WIDTH,WINDOW_HEIGHT, 0);
+	draw2DSetting();
+	setParameter(pCenter,pScaling,fRotation,pTranslation,pColor);
 
+	GLsizei sTexWidth;
+	GLsizei sTexHeight;
+	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &sTexWidth);
+	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &sTexHeight);
+
+	GSrect rTexCoord = getTexCoord(pSrcRect,sTexWidth,sTexHeight);
+	GSvector2 texSize = getTexSize(pSrcRect, sTexWidth, sTexHeight);
+
+	drawQuad(rTexCoord,texSize);
+
+	glPopMatrix();
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
 	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
-	glLoadIdentity();
+	glColor4fv((GLfloat*)&CurrentColor);
+	glPopAttrib();
+}
+void Renderer::setParameter(const GSvector2* pCenter,
+	const GSvector2* pScaling,
+	GSfloat          fRotation,
+	const GSvector2* pTranslation,
+	const GScolor*    pColor)const
+{
 	if (pTranslation != NULL)
 	{
 		glTranslatef(pTranslation->x, pTranslation->y, 0);
@@ -64,47 +73,69 @@ void Renderer::DrawSprite2D(
 	{
 		glColor4fv((GLfloat*)pColor);
 	}
-	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &sTexWidth);
-	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &sTexHeight);
+}
+void Renderer::draw2DSetting()const
+{
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+	gluOrtho2D(0, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
 
-	if (pSrcRect != NULL)
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
+}
+void Renderer::disables()const
+{
+	glPushAttrib(GL_ENABLE_BIT);
+	glDisable(GL_LIGHTING);
+	glDisable(GL_DEPTH_TEST);
+	glDisable(GL_CULL_FACE);
+}
+const GSrect Renderer::getTexCoord(const GSrect* rect, GLsizei sTexWidth, GLsizei sTexHeight)const
+{
+	GSrect texCoord;
+	if (rect != NULL)
 	{
-		rTexCoord.left = pSrcRect->left / sTexWidth;
-		rTexCoord.top = pSrcRect->top / sTexHeight;
-		rTexCoord.right = pSrcRect->right / sTexWidth;
-		rTexCoord.bottom = pSrcRect->bottom / sTexHeight;
-
-		fWidth = ABS(pSrcRect->right - pSrcRect->left);
-		fHeight = ABS(pSrcRect->bottom - pSrcRect->top);
+		texCoord.left = rect->left / sTexWidth;
+		texCoord.top = rect->top / sTexHeight;
+		texCoord.right = rect->right / sTexWidth;
+		texCoord.bottom = rect->bottom / sTexHeight;
+		return texCoord;
 	}
-	else
+	texCoord.left = 0;
+	texCoord.top = 0;
+	texCoord.right = 1;
+	texCoord.bottom = 1;
+	return texCoord;
+}
+const GSvector2 Renderer::getTexSize(const GSrect* rect, GLsizei sTexWidth, GLsizei sTexHeight)const
+{
+	GSvector2 size;
+	if (rect != NULL)
 	{
-		rTexCoord.left = 0;
-		rTexCoord.top = 0;
-		rTexCoord.right = 1;
-		rTexCoord.bottom = 1;
-		fWidth = (GSfloat)sTexWidth;
-		fHeight = (GSfloat)sTexHeight;
+		size.x = ABS(rect->right - rect->left);
+		size.y = ABS(rect->bottom - rect->top);
+		return size; 
 	}
-
+	size.x = (GSfloat)sTexWidth;
+	size.y = (GSfloat)sTexHeight;
+	return size;
+}
+void Renderer::drawQuad(const GSrect& rTexCoord,const GSvector2& size)const
+{
 	glBegin(GL_QUADS);
 	glTexCoord2f(rTexCoord.left, rTexCoord.top);
 	glVertex2f(0, 0);
 	glTexCoord2f(rTexCoord.left, rTexCoord.bottom);
-	glVertex2f(0, fHeight);
+	glVertex2f(0, size.y);
 	glTexCoord2f(rTexCoord.right, rTexCoord.bottom);
-	glVertex2f(fWidth, fHeight);
+	glVertex2f(size.x, size.y);
 	glTexCoord2f(rTexCoord.right, rTexCoord.top);
-	glVertex2f(fWidth, 0);
+	glVertex2f(size.x, 0);
 	glEnd();
-
-	glPopMatrix();
-	glMatrixMode(GL_PROJECTION);
-	glPopMatrix();
-	glMatrixMode(GL_MODELVIEW);
-	glColor4fv((GLfloat*)&CurrentColor);
-	glPopAttrib();
 }
+
 void Renderer::DrawTextrue(const std::string& name, const GSvector2* _position)const
 {
 	DrawSprite2D(container.at(name), NULL, NULL, NULL, NULL, _position, &GScolor(1, 1, 1, 1));
@@ -140,7 +171,7 @@ void Renderer::DrawTextrue(
 void Renderer::DrawString(const std::string& text, const GSvector2* _position, const GSuint size,
 	const GScolor* _color, const GSbitfield& fontcode, const char* fontname)const
 {
-	gsFontParameter(fontcode,size,fontname);
+	gsFontParameter(fontcode, size, fontname);
 	glColor4f(_color->r, _color->g, _color->b, _color->a);
 	gsTextPos(_position->x, _position->y);
 	gsDrawText(text.c_str());
@@ -154,3 +185,42 @@ void Renderer::AdditionBlend()const
 {
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 };
+void Renderer::DrawTextrueScroll(const std::string& name, const GSrect& s, const GSrect& t)const
+{
+	DrawSprite2DScroll(container.at(name),s,t);
+}
+void Renderer::DrawSprite2DScroll(GSuint uTextureID, const GSrect& s, const GSrect& t) const
+{
+	disables();
+	GScolor CurrentColor;
+	glGetFloatv(GL_CURRENT_COLOR, (GLfloat*)&CurrentColor);
+	gsBindTexture(uTextureID);
+	draw2DSetting();
+	GLsizei sTexWidth;
+	GLsizei sTexHeight;
+	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &sTexWidth);
+	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &sTexHeight);
+	GSvector2 texSize = getTexSize(0, sTexWidth, sTexHeight);
+
+	drawQuadScroll(s,t, texSize);
+
+	glPopMatrix();
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+	glColor4fv((GLfloat*)&CurrentColor);
+	glPopAttrib();
+}
+void Renderer::drawQuadScroll(const GSrect& s, const GSrect& t, const GSvector2& size)const
+{
+	glBegin(GL_QUADS);
+	glTexCoord2f(s.left, t.left);
+	glVertex2f(0, 0);
+	glTexCoord2f(s.top, t.top);
+	glVertex2f(0, size.y);
+	glTexCoord2f(s.right, t.right);
+	glVertex2f(size.x, size.y);
+	glTexCoord2f(s.bottom, t.bottom);
+	glVertex2f(size.x, 0);
+	glEnd();
+}

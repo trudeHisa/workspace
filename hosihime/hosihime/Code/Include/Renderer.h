@@ -40,7 +40,20 @@ public:
 	
 	void InitBlendFunc()const;
 	void AdditionBlend()const;
+	void DrawTextrueScroll(const std::string& name, const GSrect& s, const GSrect& t)const;
 private:	
+	//2d•`‰æ
+	void disables()const;
+	void draw2DSetting()const;
+	void setParameter(
+		const GSvector2* pCenter,
+		const GSvector2* pScaling,
+		GSfloat          fRotation,
+		const GSvector2* pTranslation,
+		const GScolor*    pColor)const;
+	const GSrect getTexCoord(const GSrect* rect, GLsizei sTexWidth, GLsizei sTexHeight)const;
+	const GSvector2 getTexSize(const GSrect* rect, GLsizei sTexWidth, GLsizei sTexHeight)const;
+	void drawQuad(const GSrect& rTexCoord,const GSvector2& size)const;
 	void DrawSprite2D(
 		GSuint           uTextureID,
 		const GSrect*    pSrcRect,
@@ -50,6 +63,10 @@ private:
 		const GSvector2* pTranslation,
 		const GScolor*    pColor
 		) const;
+	//Scroll
+	void DrawSprite2DScroll(GSuint uTextureID, const GSrect& s, const GSrect& t) const;
+	void drawQuadScroll(const GSrect& s, const GSrect& t, const GSvector2& size)const;
+private:
 	std::map<const std::string, GSuint> container;
 };
 #endif
