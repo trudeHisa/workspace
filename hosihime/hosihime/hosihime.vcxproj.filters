@@ -79,6 +79,12 @@
     <Filter Include="ヘッダー ファイル\util\shape">
       <UniqueIdentifier>{f5f54024-383c-4a45-afd1-ae02e6d25574}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\gameobject\objects">
+      <UniqueIdentifier>{291146a6-94b4-4968-a65e-ad9416b14bea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\gameobject\objects">
+      <UniqueIdentifier>{b53c865a-2423-4d6c-b1b0-4e1fbfdd952e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\Source\Star_wave.cpp">
@@ -106,21 +112,6 @@
       <Filter>ソース ファイル\gameobject\star</Filter>
     </ClCompile>
     <ClCompile Include="Code\Source\GameObjControl.cpp">
-      <Filter>ソース ファイル\gameobject</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\Source\GameObject.cpp">
-      <Filter>ソース ファイル\gameobject</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\Source\ImMovable.cpp">
-      <Filter>ソース ファイル\gameobject</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\Source\Player.cpp">
-      <Filter>ソース ファイル\gameobject</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\Source\Respawn.cpp">
-      <Filter>ソース ファイル\gameobject</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\Source\Star.cpp">
       <Filter>ソース ファイル\gameobject</Filter>
     </ClCompile>
     <ClCompile Include="Code\Source\Ending.cpp">
@@ -210,24 +201,27 @@
     <ClCompile Include="Code\Source\Collision.cpp">
       <Filter>ソース ファイル\util\shape</Filter>
     </ClCompile>
+    <ClCompile Include="Code\Source\GameObject.cpp">
+      <Filter>ソース ファイル\gameobject\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\ImMovable.cpp">
+      <Filter>ソース ファイル\gameobject\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\Respawn.cpp">
+      <Filter>ソース ファイル\gameobject\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\Player.cpp">
+      <Filter>ソース ファイル\gameobject\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\Star.cpp">
+      <Filter>ソース ファイル\gameobject\objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Include\GAMEOBJ_TYPE.h">
       <Filter>ヘッダー ファイル\gameobject</Filter>
     </ClInclude>
     <ClInclude Include="Code\Include\GameObjControl.h">
-      <Filter>ヘッダー ファイル\gameobject</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Include\GameObject.h">
-      <Filter>ヘッダー ファイル\gameobject</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Include\ImMovable.h">
-      <Filter>ヘッダー ファイル\gameobject</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Include\Player.h">
-      <Filter>ヘッダー ファイル\gameobject</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Include\Star.h">
       <Filter>ヘッダー ファイル\gameobject</Filter>
     </ClInclude>
     <ClInclude Include="Code\Include\StarManager.h">
@@ -365,8 +359,20 @@
     <ClInclude Include="Code\Include\Segment.h">
       <Filter>ヘッダー ファイル\util\shape</Filter>
     </ClInclude>
+    <ClInclude Include="Code\Include\GameObject.h">
+      <Filter>ヘッダー ファイル\gameobject\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\ImMovable.h">
+      <Filter>ヘッダー ファイル\gameobject\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\Player.h">
+      <Filter>ヘッダー ファイル\gameobject\objects</Filter>
+    </ClInclude>
     <ClInclude Include="Code\Include\Respawn.h">
-      <Filter>ヘッダー ファイル\gameobject</Filter>
+      <Filter>ヘッダー ファイル\gameobject\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\Star.h">
+      <Filter>ヘッダー ファイル\gameobject\objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

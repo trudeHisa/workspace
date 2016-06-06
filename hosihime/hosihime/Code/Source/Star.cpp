@@ -1,8 +1,9 @@
 #include "Star.h"
 #include "Calculate.h"
 
-Star::Star(const std::string& textrue, const GSvector2& position, const MyRectangle& rect, StarMode_Ptr move)
-	:GameObject(textrue,position,rect, STAR), 
+Star::Star(const std::string& textrue, const GSvector2& position,
+	const MyRectangle& rect,StarMode_Ptr move)
+	:GameObject(textrue,position,rect.getSize(),rect, STAR), 
 	move(move), 
 	startPosi(position),
 	angle(0)
@@ -23,8 +24,8 @@ void Star::updata()
 	rotate();
 
 	position += velocity*gsFrameTimerGetTime();
-	if (position.y >WINDOW_HEIGHT + rect.getHeight() * 2
-		|| position.y< -rect.getHeight() * 2)
+	if (position.y >WINDOW_HEIGHT + viewSize.y * 2
+		|| position.y< -viewSize.y * 2)
 	{
 		isDead = true;
 	}
@@ -36,21 +37,21 @@ void Star::blurdraw(const Renderer& renderer, const GSvector2& position, const G
 	int max =7;
 	for (int i = max; i>0; i--)
 	{
-		GSvector2 fp = position - vel*i*0.8f;
-		float fang = angle - addRot*i;
+		GSvector2 prevpos = position - vel*i*0.8f;
+		float prevang = angle - addRot*i;
 		float alpha = (max - i)*0.05f;
-		renderer.DrawTextrue(textrue, &fp, NULL, &center, &GSvector2(1, 1), angle, &GScolor(1, 1, 1, alpha));
+		renderer.DrawTextrue(textrue, &prevpos, NULL, &center, &GSvector2(1, 1), prevang, &GScolor(1, 1, 1, alpha));
 	}
 }
 void Star::draw(const Renderer& renderer, const Scroll& scroll)
 {
 	GSvector2 pos = position;
 	pos -= scroll.getMovingAmount();
-	if (!scroll.isInsideWindow(pos, rect.getSize()))
+	if (!scroll.isInsideWindow(pos, viewSize))
 	{
 		return;
 	}
-	GSvector2 center(rect.getSize());
+	GSvector2 center(viewSize);
 	center /= 2;
 	pos += center;
 	renderer.AdditionBlend();
@@ -68,7 +69,7 @@ void Star::collision(const GameObject* obj)
 void Star::ride(GSvector2* position,const GSvector2* size)
 {
 	GSvector2 pos(this->position);
-	pos.y -=64;
+	pos.y -=size->y;
 	*position = pos;
 }
 void Star::pickUp(GSvector2* velocity)

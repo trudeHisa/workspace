@@ -5,9 +5,11 @@ GameObject.cpp
 GameObject::GameObject(
 	const std::string& textrue,
 	const GSvector2& position,
+	const GSvector2& viewSize,
 	const MyRectangle& rect,
 	const GAMEOBJ_TYPE type)
-	:textrue(textrue),position(position),rect(rect), type(type)
+	:textrue(textrue),position(position),
+	viewSize(viewSize),rect(rect), type(type)
 {
 }
 GameObject::~GameObject()
@@ -17,7 +19,7 @@ void GameObject::draw(const Renderer& renderer, const Scroll& scroll)
 {
 	GSvector2 pos = position;
 	pos-= scroll.getMovingAmount();
-	if (!scroll.isInsideWindow(pos, rect.getSize()))
+	if (!scroll.isInsideWindow(pos, viewSize))
 	{
 		return;
 	}

@@ -4,7 +4,8 @@
 class ImMovable: public GameObject
 {
 public:
-	ImMovable(const std::string& textrue,const GSvector2& position ,const MyRectangle& rect,GAMEOBJ_TYPE type);
+	ImMovable(const std::string& textrue,const GSvector2& position ,
+		const GSvector2& viewSize,const MyRectangle& rect, GAMEOBJ_TYPE type);
 	virtual ~ImMovable();
 	void updata();
 	void collision(const GameObject* obj);

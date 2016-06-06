@@ -8,7 +8,9 @@ class Device;
 class Player :public GameObject
 {
 public:
-	Player(const std::string& textrue, const GSvector2& position, const MyRectangle& rect, Scroll* scroll, Device& device);
+	Player(const std::string& textrue, const GSvector2& position, 
+		const GSvector2& viewSize, const MyRectangle& rect, 
+		Scroll* scroll, Device& device);
 	virtual ~Player();
 	void updata();
     void initialize();

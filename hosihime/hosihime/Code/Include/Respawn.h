@@ -6,7 +6,8 @@
 class Respawn:public GameObject
 {
 public:
-	Respawn(const std::string& textrue, const GSvector2& position, const MyRectangle& rect);
+	Respawn(const std::string& textrue, const GSvector2& position,
+		const GSvector2& viewSize,const MyRectangle& rect);
 	~Respawn();
 	void updata();
 	void collision(const GameObject* obj);

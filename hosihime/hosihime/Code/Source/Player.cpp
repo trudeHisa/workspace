@@ -5,8 +5,9 @@
 #include "Respawn.h"
 
 Player::Player(const std::string& textrue,const GSvector2& position,
-	const MyRectangle& rect, Scroll* scroll, Device& device)
-	:GameObject(textrue,position,rect, PLAYER),
+	const GSvector2& viewSize,const MyRectangle& rect,
+	Scroll* scroll, Device& device)
+	:GameObject(textrue,position,viewSize,rect, PLAYER),
 	GRAVITY(10), VERTICAL(5),
 	JUMPMAXPOW(-15),JUMPSPEED(0.1),
 	JUMPVERTICAL(10),
@@ -70,7 +71,7 @@ void Player::rideUpDown()
 	if (device.getInput().getDownTrigger())
 	{
 		velocity = GSvector2(0, 0);
-		position = GSvector2(0, rect.getHeight() + 64);
+		position = GSvector2(0,viewSize.y + 64);
 		//rect.translate(GSvector2(0, rect.getHeight() + 64));
 	}
 	if (device.getInput().getUpTrigger())
@@ -118,7 +119,7 @@ void Player::moveHorizontal()
 //
 const bool Player::respawn()
 {
-	if (position.y <= WINDOW_HEIGHT + rect.getHeight())
+	if (position.y <= WINDOW_HEIGHT +viewSize.y)
 	{
 		return false;
 	}
@@ -159,7 +160,7 @@ const bool Player::collisionStar(const GameObject* obj)
 		return false;
 	}
 	Star* s = (Star*)obj;
-	s->ride(&position,&rect.getSize());
+	s->ride(&position,&viewSize);
 	s->pickUp(&velocity);
 	jumpEnd();
 	return true;
@@ -175,5 +176,5 @@ void Player::collisionRespawn(const GameObject* obj)
 }
 GameObject* Player::clone(const GSvector2& position)
 {
-	return new Player(textrue,position,rect,scroll,device);
+	return new Player(textrue,position,viewSize,rect,scroll,device);
 }

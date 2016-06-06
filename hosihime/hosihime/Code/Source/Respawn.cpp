@@ -1,6 +1,7 @@
 #include "Respawn.h"
-Respawn::Respawn(const std::string& textrue, const GSvector2& position, const MyRectangle& rect)
-	:GameObject(textrue,position,rect, RESPAWN)
+Respawn::Respawn(const std::string& textrue, const GSvector2& position,
+	const GSvector2& viewSize,const MyRectangle& rect)
+	:GameObject(textrue,position,viewSize,rect, RESPAWN)
 {
 }
 Respawn::~Respawn()
@@ -18,5 +19,5 @@ void Respawn::setRespawn(float* posx)
 }
 GameObject* Respawn::clone(const GSvector2& position)
 {
-	return new Respawn(textrue, position, rect);
+	return new Respawn(textrue, position,viewSize, rect);
 }

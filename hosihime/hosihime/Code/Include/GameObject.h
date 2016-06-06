@@ -13,8 +13,8 @@ GameObject.h
 class GameObject
 {
 public:
-	GameObject(const std::string& textrue, const GSvector2& position,const MyRectangle& rect,
-		const GAMEOBJ_TYPE type);
+	GameObject(const std::string& textrue, const GSvector2& position,
+		const GSvector2& viewSize, const MyRectangle& rect, const GAMEOBJ_TYPE type);
 	virtual ~GameObject();
 	virtual void updata() = 0;	
 	virtual void draw(const Renderer& renderer, const Scroll& scroll);
@@ -34,6 +34,7 @@ protected:
 	GAMEOBJ_TYPE type;
 	MyRectangle rect;
 	GSvector2 position;
+	GSvector2 viewSize;
 	bool isDead;
 	GSvector2 velocity;
 };
