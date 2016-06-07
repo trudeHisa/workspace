@@ -26,9 +26,9 @@ private:
 	void rotate();
 	void blurdraw(const Renderer& renderer, const GSvector2& position, const GSvector2& center);
 protected:
-	Animation animation;
-	AnimationTimer animTimer;
-	int activeAnimKey;
+	//Animation animation;
+	//AnimationTimer animTimer;
+	//int activeAnimKey;
 	StarMode_Ptr move;
 	float angle;//rad
 	GSvector2 startPosi;

@@ -76,7 +76,6 @@ void Player::rideUpDown()
 		*要リファクタリング
 		*/
 		position.y +=viewSize.y + 64;
-		//rect.translate(GSvector2(0, rect.getHeight() + 64));
 	}
 	if (device.getInput().getUpTrigger())
 	{

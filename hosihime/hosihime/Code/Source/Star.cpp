@@ -5,8 +5,8 @@
 Star::Star(const std::string& textrue, const GSvector2& position,
 	const GSvector2& viewSize,const MyRectangle& rect,StarMode_Ptr move)
 	:GameObject(textrue, position, viewSize, rect,STAR),
-	move(move),startPosi(position),angle(0),
-	animTimer(6),animation(animTimer),activeAnimKey(1)//5,4:64:64
+	move(move),startPosi(position),angle(0)
+	//,animTimer(6),animation(animTimer),activeAnimKey(1)//5,4:64:64
 {
 }
 Star::~Star()
