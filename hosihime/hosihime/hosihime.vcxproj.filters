@@ -219,6 +219,9 @@
     <ClCompile Include="Code\Source\BreakStar.cpp">
       <Filter>ソース ファイル\gameobject\objects\star</Filter>
     </ClCompile>
+    <ClCompile Include="Code\Source\BurnStar.cpp">
+      <Filter>ソース ファイル\gameobject\objects\star</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Include\GAMEOBJ_TYPE.h">
@@ -382,6 +385,9 @@
     </ClInclude>
     <ClInclude Include="Code\Include\GameObject_Parameter.h">
       <Filter>ヘッダー ファイル\gameobject</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\BurnStar.h">
+      <Filter>ヘッダー ファイル\gameobject\objects\star</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

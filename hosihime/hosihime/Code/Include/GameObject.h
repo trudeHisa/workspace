@@ -13,6 +13,7 @@ GameObject.h
 class GameObject
 {
 public:
+	//コンストラクタ要リファクタリング
 	GameObject(const std::string& textrue, const GSvector2& position,
 		const GSvector2& viewSize, const MyRectangle& rect, const GAMEOBJ_TYPE type);
 	virtual ~GameObject();

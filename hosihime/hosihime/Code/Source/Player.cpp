@@ -138,7 +138,10 @@ void Player::collision(const GameObject* obj)
 	isRide = collisionStar(obj);
 	collisionRespawn(obj);
 	collisionGround(obj);
-	if (obj->getType()==GOAL) isDead = true;
+	if (obj->getType() == GOAL || obj->getType() == BURNSTAR)
+	{
+		isDead = true;
+	}
 }
 void Player::collisionGround(const GameObject* obj)
 {
