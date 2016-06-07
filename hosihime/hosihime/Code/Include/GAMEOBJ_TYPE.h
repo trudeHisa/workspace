@@ -9,8 +9,9 @@ enum GAMEOBJ_TYPE
 	PLAYER = 100,
 
 	STAR = 10,
-	STRA_NoMove=11,
-	STAR_NoMove_Crack=12, 
+	BREAKSTAR=11,
+	STRA_NoMove=12,
+	BREAKSTAR_NoMove = 13,
 	
 	RESPAWN = 20,
 	PLANET = 21,

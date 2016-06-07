@@ -37,9 +37,13 @@ const bool GameObject::getIsDead()const
 {
 	return isDead;
 }
-const bool GameObject::isSameType(GAMEOBJ_TYPE _type)const
+const GAMEOBJ_TYPE GameObject::getType()const
 {
-	return type == _type;
+	return type;
+}
+const GSvector2& GameObject::getPosition()const
+{
+	return position;
 }
 const bool GameObject::isCollision(const GameObject* obj)const
 {

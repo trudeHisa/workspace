@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="Code\Source\Animation.cpp" />
     <ClCompile Include="Code\Source\AnimationTimer.cpp" />
+    <ClCompile Include="Code\Source\BreakStar.cpp" />
     <ClCompile Include="Code\Source\Circle.cpp" />
     <ClCompile Include="Code\Source\Collision.cpp" />
     <ClCompile Include="Code\Source\CSVStream.cpp" />
@@ -59,6 +60,7 @@
     <ClInclude Include="Code\Include\Animation.h" />
     <ClInclude Include="Code\Include\AnimationTimer.h" />
     <ClInclude Include="Code\Include\Array2D.h" />
+    <ClInclude Include="Code\Include\BreakStar.h" />
     <ClInclude Include="Code\Include\Calculate.h" />
     <ClInclude Include="Code\Include\Circle.h" />
     <ClInclude Include="Code\Include\Collision.h" />
@@ -70,6 +72,7 @@
     <ClInclude Include="Code\Include\GameObjControl.h" />
     <ClInclude Include="Code\Include\GameObject.h" />
     <ClInclude Include="Code\Include\GameObjectFactory.h" />
+    <ClInclude Include="Code\Include\GameObject_Parameter.h" />
     <ClInclude Include="Code\Include\GameObje_Include.h" />
     <ClInclude Include="Code\Include\GAMEOBJ_TYPE.h" />
     <ClInclude Include="Code\Include\GamePlay.h" />

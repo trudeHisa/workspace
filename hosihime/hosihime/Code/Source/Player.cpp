@@ -4,10 +4,10 @@
 #include "Calculate.h"
 #include "Respawn.h"
 
-Player::Player(const std::string& textrue,const GSvector2& position,
-	const GSvector2& viewSize,const MyRectangle& rect,
+Player::Player(const std::string& textrue, const GSvector2& position,
+	const GSvector2& viewSize, const MyRectangle& rect,
 	Scroll* scroll, Device& device)
-	:GameObject(textrue,position,viewSize,rect, PLAYER),
+	:GameObject(textrue,position,viewSize,rect,PLAYER),
 	GRAVITY(10), VERTICAL(5),
 	JUMPMAXPOW(-15),JUMPSPEED(0.1),
 	JUMPVERTICAL(10),
@@ -42,7 +42,7 @@ void Player::updata()
 	{
 		return;
 	}
-	scroll->moving(position,SCROLLOFFSET);
+	scroll->moving(position, SCROLLOFFSET);
 	position += velocity*gsFrameTimerGetTime();
 }
 void Player::gravity()
@@ -127,7 +127,7 @@ const bool Player::respawn()
 	{
 		return false;
 	}
-	position=respawnPos;
+	position = respawnPos;
 	velocity = GSvector2(0, 0);
 	jumpPower = 0;
 	return true;
@@ -138,13 +138,14 @@ void Player::collision(const GameObject* obj)
 	isRide = collisionStar(obj);
 	collisionRespawn(obj);
 	collisionGround(obj);
-	if (obj->isSameType(GOAL)) isDead = true;
+	if (obj->getType()==GOAL) isDead = true;
 }
 void Player::collisionGround(const GameObject* obj)
 {
-	if (obj->isSameType(RESPAWN) ||
-		obj->isSameType(START) ||
-		obj->isSameType(GOAL))
+	GAMEOBJ_TYPE type = obj->getType();
+	if (type==RESPAWN||
+		type==START ||
+		type==GOAL)
 	{
 		isGround = true;
 		jumpEnd();
@@ -159,19 +160,20 @@ void Player::collisionGround(const GameObject* obj)
 }
 const bool Player::collisionStar(const GameObject* obj)
 {
-	if (!obj->isSameType(STAR))
+	GAMEOBJ_TYPE type = obj->getType();
+	if (type != STAR&& type!=BREAKSTAR)
 	{
 		return false;
 	}
 	const Star* s = dynamic_cast<const Star*>(obj);
-	s->ride(&position,&viewSize);
+	s->ride(&position, &viewSize);
 	s->pickUp(&velocity);
 	jumpEnd();
 	return true;
 }
 void Player::collisionRespawn(const GameObject* obj)
 {
-	if (!obj->isSameType(RESPAWN))
+	if (obj->getType()!=RESPAWN)
 	{
 		return;
 	}

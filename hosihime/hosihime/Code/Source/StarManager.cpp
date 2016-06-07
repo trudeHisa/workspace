@@ -13,6 +13,8 @@
 
 #include "StarDataStream.h"
 
+#include "BreakStar.h"
+
 #include "STARTYPE.h"
 StarManger::StarManger(Scroll& _scroll)
 :scroll(_scroll)
@@ -71,12 +73,14 @@ void StarManger::createData()
 	for each (std::vector<std::string> param in data)
 	{
 		GSvector2 pos(stof(param[2]), stof(param[3]));
+		MyRectangle rect = createRect(param);
+		GSvector2 viewSize = rect.getSize();
 		switch (stoi(param[0]))
 		{
 		case DEF:			
-			stars.emplace_back(new Star(param[1], pos, createRect(param), StarMode_Ptr(createMove(param))));
+			stars.emplace_back(new Star(param[1], pos,viewSize,rect,StarMode_Ptr(createMove(param))));
 			break;
-		case HIBI:
+		case BREAK:
 
 			break;
 		}
@@ -86,7 +90,8 @@ void StarManger::createData()
 //ファイルを読み込んで型を生成
 void StarManger::createStarProt()
 {
-	createData();
+	//createData();
+	stars.emplace_back(new BreakStar("starb.bmp",GSvector2(100,300),GSvector2(64,64),MyRectangle(0,0,64,64),60,StarMode_Ptr(new Star_circle(10))));
 }
 
 //原型コンテナの中で画面内に入っている星をピックアップして格納
@@ -101,7 +106,7 @@ void StarManger::addInScreenStars()
 
 void StarManger::updata()
 {
-	starResporn();
+	//starResporn();
 	remove();
 }
 

@@ -2,8 +2,8 @@
 #include "Calculate.h"
 
 Star::Star(const std::string& textrue, const GSvector2& position,
-	const MyRectangle& rect,StarMode_Ptr move)
-	:GameObject(textrue,position,rect.getSize(),rect, STAR), 
+	const GSvector2& viewSize,const MyRectangle& rect,StarMode_Ptr move)
+	:GameObject(textrue, position, viewSize, rect, STAR),
 	move(move), 
 	startPosi(position),
 	angle(0)
@@ -61,7 +61,7 @@ void Star::draw(const Renderer& renderer, const Scroll& scroll)
 }
 void Star::collision(const GameObject* obj)
 {
-	if ( obj->isSameType(PLANET))
+	if ( obj->getType()==PLANET)
 	{
 		isDead = true;
 	}
@@ -78,11 +78,11 @@ void Star::pickUp(GSvector2* velocity)const
 }
 Star* Star::clone()
 {
-	return new Star(textrue, startPosi,rect, StarMode_Ptr(move->clone()));
+	return new Star(textrue, startPosi,viewSize,rect,StarMode_Ptr(move->clone()));
 }
 GameObject* Star::clone(const GSvector2& position)
 {
-	return new Star(textrue, position, rect, StarMode_Ptr(move->clone()));
+	return new Star(textrue, position, viewSize, rect, StarMode_Ptr(move->clone()));
 }
 const GSvector2& Star::getSPosi() const
 {

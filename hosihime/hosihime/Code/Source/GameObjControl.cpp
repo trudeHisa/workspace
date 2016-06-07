@@ -83,7 +83,7 @@ bool GameObjControl::isDeadPlayer()
 {
 	auto itr = std::find_if(objs.begin(), objs.end(), [](GameObj_Ptr obj)->bool
 	{
-		return obj->isSameType(PLAYER);
+		return obj->getType()==PLAYER;
 	});
 	if (itr == objs.end())
 	{

@@ -27,8 +27,8 @@ public:
 	const bool isCollision(const GameObject* obj)const;
 public:
 	const bool getIsDead()const;
-	//同じならtrue
-	const bool isSameType(GAMEOBJ_TYPE _type)const;
+	const GAMEOBJ_TYPE getType()const;
+	const GSvector2& getPosition()const;
 protected:	
 	std::string textrue;//テクスチャ名
 	GAMEOBJ_TYPE type;//オブジェクトのタイプ

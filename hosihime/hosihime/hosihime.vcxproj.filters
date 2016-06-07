@@ -40,26 +40,14 @@
     <Filter Include="ヘッダー ファイル\gameobject">
       <UniqueIdentifier>{1209c428-f830-440c-884b-377e6308602d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\gameobject\star">
-      <UniqueIdentifier>{e4fea392-358b-4adf-8d88-5b9ab4ce8de0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\gameobject">
       <UniqueIdentifier>{376e7bac-24b4-449d-b342-3d13458cad24}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\gameobject\star">
-      <UniqueIdentifier>{4f7c262d-56f6-4e5e-82f5-51f9c93ef732}</UniqueIdentifier>
     </Filter>
     <Filter Include="ヘッダー ファイル\util\device">
       <UniqueIdentifier>{c854592b-5495-4b02-96f8-d40e5225179b}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソース ファイル\util\device">
       <UniqueIdentifier>{75455e3e-482d-4b0d-b435-1827203e20cd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\gameobject\star\move">
-      <UniqueIdentifier>{b0b1b51f-2ea0-41f4-ba39-ba361e003dfc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\gameobject\star\move">
-      <UniqueIdentifier>{23c229f2-9d4a-4583-8601-d491ec4abd6f}</UniqueIdentifier>
     </Filter>
     <Filter Include="ヘッダー ファイル\gameobject\Factory">
       <UniqueIdentifier>{72a623f7-9941-4939-a4c6-65d740eed442}</UniqueIdentifier>
@@ -85,31 +73,43 @@
     <Filter Include="ヘッダー ファイル\gameobject\objects">
       <UniqueIdentifier>{b53c865a-2423-4d6c-b1b0-4e1fbfdd952e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\gameobject\objects\star">
+      <UniqueIdentifier>{e4fea392-358b-4adf-8d88-5b9ab4ce8de0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\gameobject\objects\star\move">
+      <UniqueIdentifier>{b0b1b51f-2ea0-41f4-ba39-ba361e003dfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\gameobject\objects\star">
+      <UniqueIdentifier>{4f7c262d-56f6-4e5e-82f5-51f9c93ef732}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\gameobject\objects\star\move">
+      <UniqueIdentifier>{23c229f2-9d4a-4583-8601-d491ec4abd6f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\Source\Star_wave.cpp">
-      <Filter>ソース ファイル\gameobject\star\move</Filter>
+      <Filter>ソース ファイル\gameobject\objects\star\move</Filter>
     </ClCompile>
     <ClCompile Include="Code\Source\Star_slashdown.cpp">
-      <Filter>ソース ファイル\gameobject\star\move</Filter>
+      <Filter>ソース ファイル\gameobject\objects\star\move</Filter>
     </ClCompile>
     <ClCompile Include="Code\Source\Star_pendulum.cpp">
-      <Filter>ソース ファイル\gameobject\star\move</Filter>
+      <Filter>ソース ファイル\gameobject\objects\star\move</Filter>
     </ClCompile>
     <ClCompile Include="Code\Source\Star_paradola.cpp">
-      <Filter>ソース ファイル\gameobject\star\move</Filter>
+      <Filter>ソース ファイル\gameobject\objects\star\move</Filter>
     </ClCompile>
     <ClCompile Include="Code\Source\Star_nomove.cpp">
-      <Filter>ソース ファイル\gameobject\star\move</Filter>
+      <Filter>ソース ファイル\gameobject\objects\star\move</Filter>
     </ClCompile>
     <ClCompile Include="Code\Source\Star_eight.cpp">
-      <Filter>ソース ファイル\gameobject\star\move</Filter>
+      <Filter>ソース ファイル\gameobject\objects\star\move</Filter>
     </ClCompile>
     <ClCompile Include="Code\Source\Star_cricle.cpp">
-      <Filter>ソース ファイル\gameobject\star\move</Filter>
+      <Filter>ソース ファイル\gameobject\objects\star\move</Filter>
     </ClCompile>
     <ClCompile Include="Code\Source\StarManager.cpp">
-      <Filter>ソース ファイル\gameobject\star</Filter>
+      <Filter>ソース ファイル\gameobject\objects\star</Filter>
     </ClCompile>
     <ClCompile Include="Code\Source\GameObjControl.cpp">
       <Filter>ソース ファイル\gameobject</Filter>
@@ -214,7 +214,10 @@
       <Filter>ソース ファイル\gameobject\objects</Filter>
     </ClCompile>
     <ClCompile Include="Code\Source\Star.cpp">
-      <Filter>ソース ファイル\gameobject\objects</Filter>
+      <Filter>ソース ファイル\gameobject\objects\star</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\BreakStar.cpp">
+      <Filter>ソース ファイル\gameobject\objects\star</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -225,37 +228,37 @@
       <Filter>ヘッダー ファイル\gameobject</Filter>
     </ClInclude>
     <ClInclude Include="Code\Include\StarManager.h">
-      <Filter>ヘッダー ファイル\gameobject\star</Filter>
+      <Filter>ヘッダー ファイル\gameobject\objects\star</Filter>
     </ClInclude>
     <ClInclude Include="Code\Include\StarMediator.h">
-      <Filter>ヘッダー ファイル\gameobject\star</Filter>
+      <Filter>ヘッダー ファイル\gameobject\objects\star</Filter>
     </ClInclude>
     <ClInclude Include="Code\Include\STARTYPE.h">
-      <Filter>ヘッダー ファイル\gameobject\star</Filter>
+      <Filter>ヘッダー ファイル\gameobject\objects\star</Filter>
     </ClInclude>
     <ClInclude Include="Code\Include\IStarMove.h">
-      <Filter>ヘッダー ファイル\gameobject\star\move</Filter>
+      <Filter>ヘッダー ファイル\gameobject\objects\star\move</Filter>
     </ClInclude>
     <ClInclude Include="Code\Include\Star_cricle.h">
-      <Filter>ヘッダー ファイル\gameobject\star\move</Filter>
+      <Filter>ヘッダー ファイル\gameobject\objects\star\move</Filter>
     </ClInclude>
     <ClInclude Include="Code\Include\Star_eight.h">
-      <Filter>ヘッダー ファイル\gameobject\star\move</Filter>
+      <Filter>ヘッダー ファイル\gameobject\objects\star\move</Filter>
     </ClInclude>
     <ClInclude Include="Code\Include\Star_nomove.h">
-      <Filter>ヘッダー ファイル\gameobject\star\move</Filter>
+      <Filter>ヘッダー ファイル\gameobject\objects\star\move</Filter>
     </ClInclude>
     <ClInclude Include="Code\Include\Star_parabola.h">
-      <Filter>ヘッダー ファイル\gameobject\star\move</Filter>
+      <Filter>ヘッダー ファイル\gameobject\objects\star\move</Filter>
     </ClInclude>
     <ClInclude Include="Code\Include\Star_pendulum.h">
-      <Filter>ヘッダー ファイル\gameobject\star\move</Filter>
+      <Filter>ヘッダー ファイル\gameobject\objects\star\move</Filter>
     </ClInclude>
     <ClInclude Include="Code\Include\Star_slashdown.h">
-      <Filter>ヘッダー ファイル\gameobject\star\move</Filter>
+      <Filter>ヘッダー ファイル\gameobject\objects\star\move</Filter>
     </ClInclude>
     <ClInclude Include="Code\Include\Star_wave.h">
-      <Filter>ヘッダー ファイル\gameobject\star\move</Filter>
+      <Filter>ヘッダー ファイル\gameobject\objects\star\move</Filter>
     </ClInclude>
     <ClInclude Include="Code\Include\Ending.h">
       <Filter>ヘッダー ファイル\scene</Filter>
@@ -372,7 +375,13 @@
       <Filter>ヘッダー ファイル\gameobject\objects</Filter>
     </ClInclude>
     <ClInclude Include="Code\Include\Star.h">
-      <Filter>ヘッダー ファイル\gameobject\objects</Filter>
+      <Filter>ヘッダー ファイル\gameobject\objects\star</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\BreakStar.h">
+      <Filter>ヘッダー ファイル\gameobject\objects\star</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\GameObject_Parameter.h">
+      <Filter>ヘッダー ファイル\gameobject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

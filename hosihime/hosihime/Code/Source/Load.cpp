@@ -55,7 +55,7 @@ void Load::loadTextrue()
 
 	//Œ»İg‚Á‚Ä‚È‚¢‰æ‘œ
 	renderer.LoadTextrue("title_logo.bmp");
-	renderer.LoadTextrue("starb.bmp");
+	renderer.LoadTextrue("starb.bmp",GS_TEXCOLOR_KEY_BLACK);
 	renderer.LoadTextrue("space3.bmp");
 	renderer.LoadTextrue("sasa.bmp");
 	renderer.LoadTextrue("shooting.bmp");

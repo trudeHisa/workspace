@@ -3,7 +3,7 @@
 
 enum STARCLASS
 {
-	DEF = 0, HIBI = 1
+	DEF = 0, BREAK= 1,BRUN=2
 };
 enum MOVETYPE
 {
