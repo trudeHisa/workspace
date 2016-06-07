@@ -69,7 +69,12 @@ void StarManger::createData()
 	std::vector<std::vector<std::string>>data;
 	data.clear();
 	stream.input(&data, "stardata\\stage.stardata");
-
+	/*
+	* STARCLASS, posx,poy,veiwsizex,veiwsizey,rectsizew,rectsizeh,
+ 	*  def: Imove
+	*  break: Imove,dura
+	*  brun: Imove,
+	*/
 	for each (std::vector<std::string> param in data)
 	{
 		GSvector2 pos(stof(param[2]), stof(param[3]));
@@ -78,10 +83,10 @@ void StarManger::createData()
 		switch (stoi(param[0]))
 		{
 		case DEF:			
-			stars.emplace_back(new Star(param[1], pos,viewSize,rect,StarMode_Ptr(createMove(param))));
+			stars.emplace_back(new Star("star.bmp", pos, viewSize, rect, StarMode_Ptr(createMove(param))));
 			break;
 		case BREAK:
-
+			stars.emplace_back(new BreakStar("starb.bmp", pos, viewSize, rect, 60, StarMode_Ptr(createMove(param))));
 			break;
 		}
 	}
@@ -91,7 +96,9 @@ void StarManger::createData()
 void StarManger::createStarProt()
 {
 	//createData();
-	stars.emplace_back(new BreakStar("starb.bmp",GSvector2(100,300),GSvector2(64,64),MyRectangle(0,0,64,64),60,StarMode_Ptr(new Star_circle(10))));
+	stars.emplace_back(new BreakStar("starb.bmp",GSvector2(100,400),GSvector2(64,64),MyRectangle(0,0,64,64),
+		60, StarMode_Ptr(new Star_circle(10))));
+	
 }
 
 //原型コンテナの中で画面内に入っている星をピックアップして格納

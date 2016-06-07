@@ -23,7 +23,7 @@ public:
 	Star* clone();
 	GameObject* clone(const GSvector2& position);
 private:
-	float durability;
+	float durability;//‘Ï‹v«
 	float max_Durability;
 };
 #endif

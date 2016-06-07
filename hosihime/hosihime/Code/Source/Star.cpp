@@ -3,7 +3,7 @@
 
 Star::Star(const std::string& textrue, const GSvector2& position,
 	const GSvector2& viewSize,const MyRectangle& rect,StarMode_Ptr move)
-	:GameObject(textrue, position, viewSize, rect, STAR),
+	:GameObject(textrue, position, viewSize, rect,STAR),
 	move(move), 
 	startPosi(position),
 	angle(0)
