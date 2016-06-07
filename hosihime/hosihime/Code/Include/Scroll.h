@@ -29,15 +29,15 @@ public:
 	void start();
 	bool isStop();
 private:
-	void warp(GSvector2* pos,const GSvector2& velocity);
+	void st_Wrap(GSvector2* st);
+	void backGroundScroll(const GSvector2& speed);
 private:
 	SCROLL_MODE mode;
 	bool isStart;
 	//l,t,r,b
 	GSrect s;// x
 	GSrect t;// y
-	float scroll_ts;
-	float scroll_tt;
+	GSvector2 scroll_st;//uv
 	MyRectangle windowSize;
 	GSvector2 movingAmount;//‚Ç‚ê‚¾‚¯Scroll‚µ‚½‚©
 };

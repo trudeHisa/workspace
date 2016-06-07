@@ -18,8 +18,6 @@ void Scroll::updata()
 void Scroll::draw(const Renderer& renderer)
 {
 	renderer.DrawTextrueScroll("space.bmp", s, t);
-	//	renderer.DrawTextrue("space.bmp", &position1);
-	//renderer.DrawTextrue("space.bmp", &position2);
 }
 //ウィンドウの中にあるか
 const bool Scroll::isInsideWindow(const GSvector2& pos, const GSvector2& size)const
@@ -27,13 +25,28 @@ const bool Scroll::isInsideWindow(const GSvector2& pos, const GSvector2& size)co
 	MyRectangle rect(pos, size);
 	return rect.intersects(&windowSize);
 }
-void Scroll::warp(GSvector2* pos, const GSvector2& velocity)
+void Scroll::st_Wrap(GSvector2* st)
 {
 	Calculate<float>calc;
-	float width = windowSize.getWidth();
-	float height = windowSize.getHeight();
-	pos->x = calc.wrap(pos->x - velocity.x, -width, width);
-	pos->y = calc.wrap(pos->y - velocity.y, -height, height);
+	st->x = calc.wrap(st->x, -1.0f, 1.0f);
+	st->y = calc.wrap(st->y, -1.0f, 1.0f);
+}
+void Scroll::backGroundScroll(const GSvector2& speed)
+{
+	scroll_st += speed;
+	st_Wrap(&scroll_st);
+	// 横 	
+	//scroll_st.x = calc.wrap(scroll_ts + speed.x, -1.0f, 1.0f);
+	s.left = 1.0f + scroll_st.x;
+	s.top = 1.0f + scroll_st.x;
+	s.right = scroll_st.x;
+	s.bottom = scroll_st.x;
+	// 縦
+	//scroll_tt = calc.wrap(scroll_tt -speed.y , -1.0f, 1.0f);
+	t.left = scroll_st.y;
+	t.top = 1.0f + scroll_st.y;
+	t.right = 1.0f + scroll_st.y;
+	t.bottom = scroll_st.y;
 }
 //Scroll処理
 void Scroll::moving(const GSvector2&  position, const GSvector2& offset)
@@ -44,29 +57,15 @@ void Scroll::moving(const GSvector2&  position, const GSvector2& offset)
 	lerp *= mode;
 	//差分確保
 	GSvector2 margin = movingAmount - lerp;
+	//移動量加算
 	movingAmount = lerp;
-
-	//背景スクロール
-	//l,t,r,b
-	// 横 
-	float speed = 1.f;
-	scroll_ts -= margin.x/windowSize.getWidth();
-	if (scroll_ts <= -1.0f) scroll_ts += 1.0f;
-	else if (1.0f <= scroll_ts) scroll_ts -= 1.0f;
-	s.left = 1.0f + scroll_ts;
-	s.top = 1.0f + scroll_ts;
-	s.right = scroll_ts;
-	s.bottom = scroll_ts;
-	// 縦
-	scroll_tt -= margin.y / windowSize.getHeight();
-	if (scroll_tt <= -1.0f) scroll_tt += 1.0f;
-	else if (1.0f <= scroll_tt) scroll_tt -= 1.0f;
-	t.left = scroll_tt;
-	t.top = 1.0f + scroll_tt;
-	t.right = 1.0f + scroll_tt;
-	t.bottom = scroll_tt;
-	/*warp(&position1, -margin);
-	warp(&position2, -margin);*/
+	/**
+	*差分をテクスチャサイズ(WindowSize)に変換
+	*/
+	margin /= windowSize.getSize();
+	//上下speed反転
+	margin.y *= -1.0f;
+	backGroundScroll(margin);
 }
 const GSvector2& Scroll::getMovingAmount()const
 {
