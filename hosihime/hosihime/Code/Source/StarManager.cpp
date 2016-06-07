@@ -100,10 +100,10 @@ void StarManger::createData()
 void StarManger::createStarProt()
 {
 	//createData();
-	stars.emplace_back(new BreakStar("starb.bmp",GSvector2(100,400),GSvector2(64,64),MyRectangle(0,0,64,64),
+	stars.emplace_back(new BreakStar("starb.bmp",GSvector2(100,300),GSvector2(64,64),MyRectangle(0,0,64,64),
 		60, StarMode_Ptr(new Star_circle(10))));
-	stars.emplace_back(new BurnStar("star.bmp", GSvector2(100,300), GSvector2(64, 64), MyRectangle(0, 0, 64, 64),
-		StarMode_Ptr(new Star_circle(10))));
+	/*stars.emplace_back(new BurnStar("star.bmp", GSvector2(100,300), GSvector2(64, 64), MyRectangle(0, 0, 64, 64),
+		StarMode_Ptr(new Star_circle(10))));*/
 	
 }
 

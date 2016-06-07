@@ -1,11 +1,12 @@
 #include "BreakStar.h"
 
 BreakStar::BreakStar(const std::string& textrue, const GSvector2& position,
-	const GSvector2& viewSize,const MyRectangle& rect,
+	const GSvector2& viewSize, const MyRectangle& rect,
 	float max_Durability, StarMode_Ptr move)
 	:GameObject(textrue, position, viewSize, rect, BREAKSTAR),
-	Star(textrue, position, viewSize, rect,move),
-	durability(max_Durability), max_Durability(max_Durability)
+	Star(textrue, position, viewSize, rect, move),
+	durability(max_Durability), max_Durability(max_Durability),
+	isBreakStart(false)
 {
 }
 
@@ -18,26 +19,32 @@ void BreakStar::initialize()
 	GameObject::initialize();
 	Star::initialize();
 	durability = max_Durability;
+	isBreakStart = false;
 }
 void BreakStar::updata()
 {
 	Star::updata();
+	if (!isBreakStart)
+	{
+		return;
+	}
+	durability -= gsFrameTimerGetTime();
+	if (durability <= 0)
+	{
+		isDead = true;
+	}
 }
 void BreakStar::collision(const GameObject* obj)
 {
 	Star::collision(obj);
-	if (obj->getType()==PLAYER)
+	if (obj->getType() == PLAYER)
 	{
-		durability -= gsFrameTimerGetTime();
-		if (durability <= 0)
-		{
-			isDead = true;
-		}
+		isBreakStart = true;
 	}
 }
 void BreakStar::draw(const Renderer& renderer, const Scroll& scroll)
 {
-	Star::draw(renderer,scroll);
+	Star::draw(renderer, scroll);
 }
 Star* BreakStar::clone()
 {
