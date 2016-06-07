@@ -4,6 +4,7 @@
 #include "GameObject.h"
 
 #include "IStarMove.h"
+#include "Animation.h"
 class Star :virtual public GameObject
 {
 public:
@@ -25,6 +26,9 @@ private:
 	void rotate();
 	void blurdraw(const Renderer& renderer, const GSvector2& position, const GSvector2& center);
 protected:
+	Animation animation;
+	AnimationTimer animTimer;
+	int activeAnimKey;
 	StarMode_Ptr move;
 	float angle;//rad
 	GSvector2 startPosi;

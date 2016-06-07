@@ -36,7 +36,6 @@ bool Load::IsEnd()
 {
 	return isEnd;
 }
-
 void Load::loadTextrue()
 {
 	renderer.LoadTextrue("anim.bmp");

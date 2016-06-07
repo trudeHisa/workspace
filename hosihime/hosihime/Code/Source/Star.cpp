@@ -1,12 +1,12 @@
 #include "Star.h"
 #include "Calculate.h"
 
+//star_yellow.bmp
 Star::Star(const std::string& textrue, const GSvector2& position,
 	const GSvector2& viewSize,const MyRectangle& rect,StarMode_Ptr move)
 	:GameObject(textrue, position, viewSize, rect,STAR),
-	move(move), 
-	startPosi(position),
-	angle(0)
+	move(move),startPosi(position),angle(0),
+	animTimer(6),animation(animTimer),activeAnimKey(1)//5,4:64:64
 {
 }
 Star::~Star()
@@ -17,9 +17,23 @@ void Star::initialize()
 	velocity = GSvector2(0, 0);
 	isDead = false;
 	angle = 0;
+	//animTimer.initialize();
+	//for (int i = 1; i <5; i++)
+	//{
+	//	animation.addCell(std::to_string(i),i, 5, viewSize.x, viewSize.y);
+	//}	
+	//activeAnimKey = 1;
 }
 void Star::updata()
 {
+	//animTimer.updata();
+	//if (animTimer.isZero())
+	//{
+	//	Calculate<int>calc;
+	//	activeAnimKey=calc.wrap(activeAnimKey+1,1, 4);
+	//}
+	//animation.updata(std::to_string(activeAnimKey));
+
 	velocity = move->moving();
 	rotate();
 
@@ -54,6 +68,7 @@ void Star::draw(const Renderer& renderer, const Scroll& scroll)
 	GSvector2 center(viewSize);
 	center /= 2;
 	pos += center;
+	//animation.draw(renderer,textrue,&pos);
 	renderer.AdditionBlend();
 	blurdraw(renderer,pos,center);
 	renderer.InitBlendFunc();

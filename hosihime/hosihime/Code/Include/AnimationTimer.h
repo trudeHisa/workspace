@@ -9,13 +9,13 @@ public:
 	void initialize();
 	void updata();
 	void reset();
-	bool isStop();
-	bool isZero();
+	const bool isStop()const;
+	const bool isZero()const;
 	void stop();
 	void start();
 private:
-	int startTime;
-	int time;
+	float startTime;
+	float time;
 	bool isStart;
 };
 #endif

@@ -1,5 +1,6 @@
 #include "AnimationTimer.h"
 #include <algorithm>
+#include <gslib.h>
 AnimationTimer::AnimationTimer(float time)
 {
 	setStarTimer(time);
@@ -12,7 +13,7 @@ AnimationTimer::~AnimationTimer()
 
 void AnimationTimer::setStarTimer(float time)
 {
-	startTime = (int)(60 * time);
+	startTime =time;
 }
 void AnimationTimer::initialize()
 {
@@ -22,17 +23,18 @@ void AnimationTimer::initialize()
 void AnimationTimer::updata()
 {
 	if (isStop()){ return; }
-	time = std::max(time - 1, 0);
+	float add = 1.0f * gsFrameTimerGetTime();
+	time = std::fmax(time -add, 0);
 }
 void AnimationTimer::reset()
 {
 	time = startTime;
 }
-bool AnimationTimer::isStop()
+const bool AnimationTimer::isStop()const
 {
 	return !isStart;
 }
-bool AnimationTimer::isZero()
+const bool AnimationTimer::isZero()const
 {
 	return time <= 0;
 }
