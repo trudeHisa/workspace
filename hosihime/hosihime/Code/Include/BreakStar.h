@@ -24,6 +24,6 @@ public:
 	GameObject* clone(const GSvector2& position);
 private:
 	float durability;//‘Ï‹v«
-	float max_Durability;
+	const float max_Durability;
 };
 #endif
