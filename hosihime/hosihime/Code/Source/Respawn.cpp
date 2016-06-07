@@ -13,7 +13,7 @@ void Respawn::updata()
 void Respawn::collision(const GameObject* obj)
 {
 }
-void Respawn::setRespawn(float* posx)
+void Respawn::setRespawn(float* posx)const
 {
 	*posx= position.x;
 }

@@ -73,9 +73,7 @@ void StarManger::createData()
 		GSvector2 pos(stof(param[2]), stof(param[3]));
 		switch (stoi(param[0]))
 		{
-			
-		case DEF:
-			
+		case DEF:			
 			stars.emplace_back(new Star(param[1], pos, createRect(param), StarMode_Ptr(createMove(param))));
 			break;
 		case HIBI:

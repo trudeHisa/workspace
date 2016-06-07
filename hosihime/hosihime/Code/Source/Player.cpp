@@ -163,7 +163,7 @@ const bool Player::collisionStar(const GameObject* obj)
 	{
 		return false;
 	}
-	Star* s = (Star*)obj;
+	const Star* s = dynamic_cast<const Star*>(obj);
 	s->ride(&position,&viewSize);
 	s->pickUp(&velocity);
 	jumpEnd();
@@ -175,7 +175,7 @@ void Player::collisionRespawn(const GameObject* obj)
 	{
 		return;
 	}
-	Respawn* respawn = (Respawn*)obj;
+	const Respawn* respawn =dynamic_cast<const Respawn*>(obj);
 	respawn->setRespawn(&respawnPos.x);
 }
 GameObject* Player::clone(const GSvector2& position)
