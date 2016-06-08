@@ -75,7 +75,7 @@ Star* StarManger::createStar(const std::vector<std::string>& param)
 	case BREAK:		
 		return new BreakStar("starb.bmp", pos, viewSize, rect, move,stof(param[lastParamIndex]));
 	case BRUN:
-		return new BurnStar("star.bmp", pos, viewSize, rect, move);
+		return new BurnStar("starbrun.bmp", pos, viewSize, rect, move);
 	}
 	return NULL;
 }

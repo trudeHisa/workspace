@@ -38,6 +38,7 @@ bool Load::IsEnd()
 }
 void Load::loadTextrue()
 {
+	renderer.LoadTextrue("starbrun.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("anim.bmp");
 	renderer.LoadTextrue("orihime.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("orihime.bmp", GS_TEXCOLOR_KEY_AUTO);
