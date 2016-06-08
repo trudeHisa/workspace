@@ -10,6 +10,7 @@ public:
 	~Star_eight();
 	GSvector2 moving();
 	IStarMove* clone();
+	int length();
 private:
 	float rot;
 	float spd;

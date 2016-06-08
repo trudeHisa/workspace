@@ -11,12 +11,14 @@
 #include "Device.h"
 #include "Renderer.h"
 #include "TimeScore.h"
+
 SceneManager sceneManager;
 Device device;
 Renderer renderer;
 TimeScore score;
 void gameInit(void)
 {	
+	
 	sceneManager.Add(Scene::MODE_LOAD, new Load(device,renderer));
 	sceneManager.Add(Scene::MODE_TITLE, new Title(device));
 	sceneManager.Add(Scene::MODE_MENU,new Menu(device));

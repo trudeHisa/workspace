@@ -8,12 +8,12 @@
 #define _BREAKSTAR_H_
 
 #include "Star.h"
-class BreakStar:public Star
+class BreakStar :public Star
 {
 public:
 	BreakStar(const std::string& textrue, const GSvector2& position,
-		const GSvector2& viewSize,const MyRectangle& rect,
-		float max_Durability, StarMode_Ptr move);
+		const GSvector2& viewSize, const MyRectangle& rect,
+		StarMove_Ptr move, float max_Durability);
 	~BreakStar();
 	void initialize();
 	void updata();

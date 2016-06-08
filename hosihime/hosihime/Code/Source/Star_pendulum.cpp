@@ -27,6 +27,11 @@ GSvector2 Star_pendulum::moving()
 	return velocity;
 }
 
+int Star_pendulum::length()
+{
+	return 2;
+}
+
 IStarMove* Star_pendulum::clone()
 {
 	return new Star_pendulum(*this);

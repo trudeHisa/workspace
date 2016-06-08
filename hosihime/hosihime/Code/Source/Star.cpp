@@ -3,7 +3,7 @@
 
 //star_yellow.bmp
 Star::Star(const std::string& textrue, const GSvector2& position,
-	const GSvector2& viewSize,const MyRectangle& rect,StarMode_Ptr move)
+	const GSvector2& viewSize,const MyRectangle& rect,StarMove_Ptr move)
 	:GameObject(textrue, position, viewSize, rect,STAR),
 	move(move),startPosi(position),angle(0)
 	//,animTimer(6),animation(animTimer),activeAnimKey(1)//5,4:64:64
@@ -93,11 +93,11 @@ void Star::pickUp(GSvector2* velocity)const
 }
 Star* Star::clone()
 {
-	return new Star(textrue, startPosi,viewSize,rect,StarMode_Ptr(move->clone()));
+	return new Star(textrue, startPosi, viewSize, rect, StarMove_Ptr(move->clone()));
 }
 GameObject* Star::clone(const GSvector2& position)
 {
-	return new Star(textrue, position, viewSize, rect, StarMode_Ptr(move->clone()));
+	return new Star(textrue, position, viewSize, rect, StarMove_Ptr(move->clone()));
 }
 const GSvector2& Star::getSPosi() const
 {

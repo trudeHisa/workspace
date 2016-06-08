@@ -10,6 +10,7 @@ public:
 	~Star_slashdown();
 	 GSvector2 moving();
 	 IStarMove* clone();
+	 int length();
 private:
 	GSvector2 velocity;
 };

@@ -9,6 +9,7 @@ public:
 	~Star_nomove();
 	GSvector2 moving();
 	IStarMove* clone();
+	int length();
 private:
 
 };

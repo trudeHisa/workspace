@@ -10,6 +10,7 @@ public:
 	~Star_paradola();
 	GSvector2 moving();
 	IStarMove* clone();
+	int length();
 private:
 	float rot;
 	float spd;

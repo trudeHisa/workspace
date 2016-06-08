@@ -18,7 +18,7 @@
 
 #include "STARTYPE.h"
 StarManger::StarManger(Scroll& _scroll)
-:scroll(_scroll)
+	:scroll(_scroll)
 {
 }
 StarManger::~StarManger()
@@ -29,41 +29,57 @@ void StarManger::initialize(StarMediator* _mediator)
 	stars.clear();
 	mediator = _mediator;
 }
-IStarMove* StarManger::createMove(std::vector<std::string>& param)
+IStarMove* StarManger::createMove(const std::vector<std::string>& param)
 {
-	switch (stoi(param[6]))
+	int type = stoi(param[9]);
+	switch (type)
 	{
 	case CRICLE:
-		return new Star_circle(stof(param[7]));
-		break;
+		return new Star_circle(stof(param[10]));
 	case EIGHT:
-		return new Star_eight(stof(param[7]), stof(param[8]));
-		break;
+		return new Star_eight(stof(param[10]), stof(param[11]));
 	case PARABOLA:
-		return new Star_paradola(stof(param[7]));
-		break;
+		return new Star_paradola(stof(param[10]));
 	case PENDULAM:
-		return new Star_pendulum(stof(param[7]), stof(param[8]));
-		break;
+		return new Star_pendulum(stof(param[10]), stof(param[11]));
 	case SLASHDOWN:
-		return new Star_slashdown(GSvector2(stof(param[7]), stof(param[8])));
-		break;
+		return new Star_slashdown(GSvector2(stof(param[10]), stof(param[11])));
 	case WAVE:
-		return new Star_wave(GSvector2(stof(param[7]), stof(param[8])), stof(param[9]));
-		break;
+		return new Star_wave(GSvector2(stof(param[10]), stof(param[11])), stof(param[12]));
 	case NOMOVE:
 		return new Star_nomove();
-		break;
 	default:
 		return NULL;
-		break;
 	}
 }
-MyRectangle StarManger::createRect(std::vector<std::string>& param)
+MyRectangle StarManger::createRect(const std::vector<std::string>& param)
 {
-	GSvector2 size(stof(param[4]),stof(param[5]));
-	return MyRectangle(GSvector2(0, 0), size);
+	GSvector2 pos(stof(param[5]), stof(param[6]));
+	GSvector2 size(stof(param[7]), stof(param[8]));
+	return MyRectangle(pos, size);
 }
+
+Star* StarManger::createStar(const std::vector<std::string>& param)
+{
+	GSvector2 pos(stof(param[1]), stof(param[2]));
+	GSvector2 viewSize(stof(param[3]), stof(param[4]));
+	MyRectangle rect = createRect(param);
+
+	StarMove_Ptr move = StarMove_Ptr(createMove(param));
+	int lastParamIndex = 9 + move->length();
+	int type = stoi(param[0]);
+	switch (type)
+	{
+	case DEF:
+		return new Star("star.bmp", pos, viewSize, rect, move);
+	case BREAK:		
+		return new BreakStar("starb.bmp", pos, viewSize, rect, move,stof(param[lastParamIndex]));
+	case BRUN:
+		return new BurnStar("star.bmp", pos, viewSize, rect, move);
+	}
+	return NULL;
+}
+
 void StarManger::createData()
 {
 	StarDataStream stream;
@@ -72,27 +88,13 @@ void StarManger::createData()
 	stream.input(&data, "stardata\\stage.stardata");
 	/*
 	* STARCLASS, posx,poy,veiwsizex,veiwsizey,rectsizew,rectsizeh,
- 	*  def: Imove
+	*  def: Imove
 	*  break: Imove,dura
 	*  brun: Imove,
 	*/
 	for each (std::vector<std::string> param in data)
 	{
-		GSvector2 pos(stof(param[2]), stof(param[3]));
-		MyRectangle rect = createRect(param);
-		GSvector2 viewSize = rect.getSize();
-		switch (stoi(param[0]))
-		{
-		case DEF:			
-			stars.emplace_back(new Star("star.bmp", pos, viewSize, rect, StarMode_Ptr(createMove(param))));
-			break;
-		case BREAK:
-			stars.emplace_back(new BreakStar("starb.bmp", pos, viewSize, rect, 60, StarMode_Ptr(createMove(param))));
-			break;
-		case BRUN:
-			stars.emplace_back(new BurnStar("star.bmp", pos, viewSize, rect, StarMode_Ptr(createMove(param))));
-			break;
-		}
+		stars.emplace_back(Star_Ptr(createStar(param)));
 	}
 }
 //スター生成
@@ -100,11 +102,6 @@ void StarManger::createData()
 void StarManger::createStarProt()
 {
 	createData();
-	/*stars.emplace_back(new BreakStar("starb.bmp",GSvector2(100,300),GSvector2(64,64),MyRectangle(0,0,64,64),
-		60, StarMode_Ptr(new Star_circle(10))));
-	stars.emplace_back(new BurnStar("star.bmp", GSvector2(100,300), GSvector2(64, 64), MyRectangle(0, 0, 64, 64),
-		StarMode_Ptr(new Star_circle(10))));*/
-	
 }
 
 //原型コンテナの中で画面内に入っている星をピックアップして格納

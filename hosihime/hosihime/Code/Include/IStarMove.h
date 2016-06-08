@@ -8,6 +8,7 @@ class IStarMove
 public:
 	virtual GSvector2 moving() = 0;
 	virtual IStarMove* clone() = 0;
+	virtual int length() = 0;
 };
-typedef std::shared_ptr<IStarMove>StarMode_Ptr;
+typedef std::shared_ptr<IStarMove>StarMove_Ptr;
 #endif

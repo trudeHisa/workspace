@@ -2,7 +2,7 @@
 
 BreakStar::BreakStar(const std::string& textrue, const GSvector2& position,
 	const GSvector2& viewSize, const MyRectangle& rect,
-	float max_Durability, StarMode_Ptr move)
+	StarMove_Ptr move, float max_Durability)
 	:GameObject(textrue, position, viewSize, rect, BREAKSTAR),
 	Star(textrue, position, viewSize, rect, move),
 	durability(max_Durability), max_Durability(max_Durability),
@@ -48,9 +48,9 @@ void BreakStar::draw(const Renderer& renderer, const Scroll& scroll)
 }
 Star* BreakStar::clone()
 {
-	return new BreakStar(textrue, startPosi, viewSize, rect, max_Durability, StarMode_Ptr(move->clone()));
+	return new BreakStar(textrue, startPosi, viewSize, rect, StarMove_Ptr(move->clone()), max_Durability);
 }
 GameObject* BreakStar::clone(const GSvector2& position)
 {
-	return new BreakStar(textrue, position, viewSize, rect, max_Durability, StarMode_Ptr(move->clone()));
+	return new BreakStar(textrue, position, viewSize, rect, StarMove_Ptr(move->clone()), max_Durability);
 }

@@ -9,7 +9,7 @@ class Star :virtual public GameObject
 {
 public:
 	Star(const std::string& textrue, const GSvector2& position,
-		const GSvector2& viewSize, const MyRectangle& rect,StarMode_Ptr move);
+		const GSvector2& viewSize, const MyRectangle& rect,StarMove_Ptr move);
 	virtual ~Star();
 	virtual void initialize();
 	virtual void updata();
@@ -29,7 +29,7 @@ protected:
 	//Animation animation;
 	//AnimationTimer animTimer;
 	//int activeAnimKey;
-	StarMode_Ptr move;
+	StarMove_Ptr move;
 	float angle;//rad
 	GSvector2 startPosi;
 };

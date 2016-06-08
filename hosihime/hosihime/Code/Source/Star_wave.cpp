@@ -21,7 +21,10 @@ GSvector2 Star_wave::moving()
 	velocity.y = cos(rot * PAI / 120) * sindw;
 	return velocity;
 }
-
+int Star_wave::length()
+{
+	return 3;
+}
 IStarMove* Star_wave::clone()
 {
 	return new Star_wave(*this);

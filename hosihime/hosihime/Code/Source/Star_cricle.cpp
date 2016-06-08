@@ -26,6 +26,11 @@ GSvector2 Star_circle::moving()
 	return velocity;
 }
 
+int Star_circle::length()
+{
+	return 1;
+}
+
 IStarMove* Star_circle::clone()
 {
 	return new Star_circle(*this);

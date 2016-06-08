@@ -28,8 +28,9 @@ private:
 	void findDeads(std::vector<Star_Ptr>* deads);
 	void createData();
 
-	IStarMove* createMove(std::vector<std::string>& param);
-	MyRectangle createRect(std::vector<std::string>& param);
+	Star* createStar(const std::vector<std::string>& param);
+	IStarMove* createMove(const std::vector<std::string>& param);
+	MyRectangle createRect(const  std::vector<std::string>& param);
 private:
 	Scroll& scroll;
 	StarMediator* mediator;
