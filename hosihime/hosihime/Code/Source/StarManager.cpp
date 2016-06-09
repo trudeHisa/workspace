@@ -1,7 +1,7 @@
 #include "StarManager.h"
 #include <algorithm>
 
-#include "StarMediator.h"
+#include "IMediator.h"
 
 #include "Star_cricle.h"
 #include "Star_eight.h"
@@ -17,17 +17,17 @@
 #include "BurnStar.h"
 
 #include "STARTYPE.h"
-StarManger::StarManger(Scroll& _scroll)
-	:scroll(_scroll)
+
+StarManger::StarManger(Scroll& _scroll, IMediator& mediator)
+	:scroll(_scroll), mediator(mediator)
 {
 }
 StarManger::~StarManger()
 {
 }
-void StarManger::initialize(StarMediator* _mediator)
+void StarManger::initialize()
 {
 	stars.clear();
-	mediator = _mediator;
 }
 IStarMove* StarManger::createMove(const std::vector<std::string>& param)
 {
@@ -111,6 +111,7 @@ void StarManger::addInScreenStars()
 	{
 		//if (scroll.isInsideWindow(star->getSPosi(), GSvector2(64,64)))
 		inScreens.emplace_back(star->clone());
+		mediator.add(inScreens.back());
 	}
 }
 
@@ -156,7 +157,7 @@ void StarManger::starResporn()
 	for each (Star_Ptr star in deads)
 	{
 		inScreens.emplace_back(star->clone());
-		mediator->reqestClone(inScreens.back());
+		mediator.add(inScreens.back());
 	}
 }
 void StarManger::remove()

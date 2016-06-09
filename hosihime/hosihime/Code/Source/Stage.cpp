@@ -7,8 +7,9 @@
 #define  BLOCKSIZE 64.f
 Stage::Stage(const std::string& csvname, Device& device)
 	:scroll(WINDOW_WIDTH, WINDOW_HEIGHT), timer(60,60)
-	, starManager(scroll), device(device),
-	factory(std::shared_ptr<Factory>(new GameObjectFactory(scroll, device)))
+	,starManager(scroll,control), device(device),
+	factory(std::shared_ptr<Factory>(new GameObjectFactory(scroll, device))),
+	navigation("nav.bmp",control)
 {
 	CSVStream stream;
 	stream.input(&mapdata, csvname.c_str());
@@ -22,16 +23,18 @@ void Stage::initialize()
 	//device.getSound().PlaySE("GameMode_1.wav");
 	timer.initialize();
 	control.inisialize();
-	starManager.initialize(&control);
+	starManager.initialize();
 	scroll.initialize();
 	mapCreate();
 	Stars_IsInScreen();
 	isEnd = false;
+	navigation.initialize();
 }
 void Stage::updata()
 {
 	starManager.updata();
 	control.updata();
+	navigation.updata();
 	timer.update();
 	if (timer.isEnd() || control.isDeadPlayer())
 	{		
@@ -45,6 +48,7 @@ void Stage::draw(const Renderer& renderer)
 	control.draw(renderer,scroll);
 	int t = timer.getTime()/FRAMETIME;
 	renderer.DrawString(std::to_string(t), &GSvector2(50, 50), 50);
+	navigation.draw(renderer,scroll);
 }
 void Stage::finish()
 {
@@ -88,6 +92,4 @@ void Stage::Stars_IsInScreen()
 {
 	//âÊñ ì‡Ç…ì¸Ç¡ÇƒÇÈêØÇå©ÇÈ
 	starManager.addInScreenStars();
-	//objcontrolÇ…í«â¡
-	control.add_Star(starManager.getInScreenStars());
 }

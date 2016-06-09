@@ -222,6 +222,9 @@
     <ClCompile Include="Code\Source\BurnStar.cpp">
       <Filter>ソース ファイル\gameobject\objects\star</Filter>
     </ClCompile>
+    <ClCompile Include="Code\Source\NavigationUI.cpp">
+      <Filter>ソース ファイル\gameobject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Include\GAMEOBJ_TYPE.h">
@@ -231,9 +234,6 @@
       <Filter>ヘッダー ファイル\gameobject</Filter>
     </ClInclude>
     <ClInclude Include="Code\Include\StarManager.h">
-      <Filter>ヘッダー ファイル\gameobject\objects\star</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Include\StarMediator.h">
       <Filter>ヘッダー ファイル\gameobject\objects\star</Filter>
     </ClInclude>
     <ClInclude Include="Code\Include\STARTYPE.h">
@@ -385,6 +385,12 @@
     </ClInclude>
     <ClInclude Include="Code\Include\BurnStar.h">
       <Filter>ヘッダー ファイル\gameobject\objects\star</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\IMediator.h">
+      <Filter>ヘッダー ファイル\gameobject\objects\star</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\NavigationUI.h">
+      <Filter>ヘッダー ファイル\gameobject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

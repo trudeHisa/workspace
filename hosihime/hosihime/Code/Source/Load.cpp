@@ -1,7 +1,7 @@
 #include "Load.h"
 #include "Device.h"
 #include "Renderer.h"
-Load::Load(Device& device,Renderer& renderer)
+Load::Load(Device& device, Renderer& renderer)
 	:device(device), renderer(renderer)
 {
 	renderer.LoadTextrue("load.bmp");
@@ -38,11 +38,13 @@ bool Load::IsEnd()
 }
 void Load::loadTextrue()
 {
+
+	renderer.LoadTextrue("nav.bmp");
 	renderer.LoadTextrue("starbrun.bmp", GS_TEXCOLOR_KEY_AUTO);
+
 	renderer.LoadTextrue("anim.bmp");
 	renderer.LoadTextrue("orihime.bmp", GS_TEXCOLOR_KEY_AUTO);
-	renderer.LoadTextrue("orihime.bmp", GS_TEXCOLOR_KEY_AUTO);
-	renderer.LoadTextrue("star.bmp",GS_TEXCOLOR_KEY_AUTO);
+	renderer.LoadTextrue("star.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("player.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("start.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("goal.bmp", GS_TEXCOLOR_KEY_AUTO);
@@ -55,7 +57,7 @@ void Load::loadTextrue()
 
 	//åªç›égÇ¡ÇƒÇ»Ç¢âÊëú
 	renderer.LoadTextrue("title_logo.bmp");
-	renderer.LoadTextrue("starb.bmp",GS_TEXCOLOR_KEY_BLACK);
+	renderer.LoadTextrue("starb.bmp", GS_TEXCOLOR_KEY_BLACK);
 	renderer.LoadTextrue("space3.bmp");
 	renderer.LoadTextrue("sasa.bmp");
 	renderer.LoadTextrue("shooting.bmp");

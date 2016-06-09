@@ -18,7 +18,14 @@ void GameObjControl::updata()
 		obj->updata();
 	}
 	allCollision();
-//	remove();
+}
+void GameObjControl::drawOderSort()
+{
+	std::sort(objs.begin(), objs.end(),
+		[](const GameObj_Ptr& obj1, const GameObj_Ptr& obj2)
+	{
+		return obj1->getType() < obj2->getType();
+	});
 }
 void GameObjControl::allCollision()
 {
@@ -56,34 +63,24 @@ void GameObjControl::inisialize()
 {
 	objs.clear(); 
 }
-void GameObjControl::add(GameObj_Ptr object)
-{
-	object->initialize();
-	objs.emplace_back(object);
-}
-
-
-//‰æ–Ê“à‚É“ü‚Á‚Ä‚¢‚é¯‚ðobjControl‚É“n‚·
-void GameObjControl::add_Star(Stars_inScreen& stars)
-{
-	for each(Star_Ptr star in stars)
-	{
-		add((GameObj_Ptr)star);
-	}
-}
 
 void GameObjControl::draw(const Renderer& renderer, const Scroll& scroll)
-{
+{	
+	//drawOderSort();
 	for each (GameObj_Ptr obj in objs)
 	{
 		obj->draw(renderer, scroll);
 	}
 }
+void GameObjControl::finish()
+{
+
+}
 bool GameObjControl::isDeadPlayer()
 {
 	auto itr = std::find_if(objs.begin(), objs.end(), [](GameObj_Ptr obj)->bool
 	{
-		return obj->getType()==PLAYER;
+		return obj->getType() == PLAYER;
 	});
 	if (itr == objs.end())
 	{
@@ -91,14 +88,34 @@ bool GameObjControl::isDeadPlayer()
 	}
 	return false;
 }
-void GameObjControl::finish()
-{
 
+
+void GameObjControl::add(GameObj_Ptr obj)
+{
+	obj->initialize();
+	objs.emplace_back(obj);
 }
-
-void GameObjControl::reqestClone(Star_Ptr starclone)
+GameObj_Ptr GameObjControl::get(GAMEOBJ_TYPE type)
 {
-	//‰ŠúˆÊ’u‚ª‰æ–Ê“à‚È‚ç
-	//if ()
-	add((GameObj_Ptr)starclone);
+	GameObjs::iterator itr = 
+		std::find_if(objs.begin(), objs.end(), [&](GameObj_Ptr obj)->bool
+	{
+		return obj->getType() ==type;
+	});
+	if (itr == objs.end())
+	{
+		return NULL;
+	}
+	return *itr;
+}
+void GameObjControl::gets(std::vector<GameObj_Ptr>* out, GAMEOBJ_TYPE type)
+{
+	int size = out->size();
+	for each (GameObj_Ptr obj in objs)
+	{
+		if (obj->getType() == type)
+		{
+			out->emplace_back(obj);
+		}
+	}
 }

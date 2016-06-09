@@ -45,9 +45,14 @@ const GSvector2& GameObject::getPosition()const
 {
 	return position;
 }
+const MyRectangle& GameObject::getRect()const
+{
+	return rect;
+}
 const bool GameObject::isCollision(const GameObject* obj)const
 {
 	MyRectangle myrect(position+rect.getPosition(),rect.getSize());
 	MyRectangle otrect(obj->position + obj->rect.getPosition(), obj->rect.getSize());
 	return myrect.intersects(&otrect);
 }
+

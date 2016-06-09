@@ -10,6 +10,8 @@
 #include "Timer.h"
 #include "TimeScore.h"
 #include "GameObjectFactory.h"
+
+#include "NavigationUI.h"
 #include<memory>
 class Device;
 class Stage
@@ -37,5 +39,6 @@ private:
 	Timer timer;
 	Device& device;
 	std::shared_ptr<Factory> factory;
+	NavigationUI navigation;
 };
 #endif

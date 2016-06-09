@@ -1,6 +1,7 @@
 #ifndef _FACTORY_H_
 #define _FACTORY_H_
 #include "GameObje_Include.h"
+
 class Factory
 {
 public:

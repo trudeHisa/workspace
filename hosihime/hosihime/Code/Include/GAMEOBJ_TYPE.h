@@ -5,8 +5,7 @@ GAMEOBJ_TYPE.h
 #define _GAMEOBJ_TYPE_H_
 enum GAMEOBJ_TYPE
 {
-	SPACE = 0,
-	PLAYER = 100,
+	SPACE = 0,	
 
 	STAR = 10,
 	BREAKSTAR=11,
@@ -18,7 +17,11 @@ enum GAMEOBJ_TYPE
 	PLANET = 21,
 	MAGPIE=22,
 	START =30, 
-	GOAL =40
+	GOAL =40,
+
+	UI=50,
+
+	PLAYER = 100
 };
 
 #endif

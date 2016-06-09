@@ -12,12 +12,13 @@ class IStarMove;
 
 typedef std::vector<Star_Ptr> starsContainer;
 typedef std::vector<Star_Ptr> Stars_inScreen;
+class IMediator;
 class StarManger
 {
 public:
-	StarManger(Scroll& _scroll);
+	StarManger(Scroll& _scroll,IMediator& mediator);
 	~StarManger();
-	void initialize(StarMediator* mediator);
+	void initialize();
 	void createStarProt();
 	void addInScreenStars();
 	Stars_inScreen& getInScreenStars();
@@ -33,7 +34,7 @@ private:
 	MyRectangle createRect(const  std::vector<std::string>& param);
 private:
 	Scroll& scroll;
-	StarMediator* mediator;
+	IMediator& mediator;
 	starsContainer stars;//¯‚ÌŒ´Œ^‚ğŠi”[‚·‚é”z—ñ instance
 	Stars_inScreen inScreens;//‰æ–Ê“à‚Ì™‚ğŠi”[‚·‚é”z—ñ point
 };

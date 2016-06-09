@@ -30,6 +30,7 @@ public:
 	const bool getIsDead()const;
 	const GAMEOBJ_TYPE getType()const;
 	const GSvector2& getPosition()const;
+	const MyRectangle& getRect()const;
 protected:	
 	std::string textrue;//テクスチャ名
 	GAMEOBJ_TYPE type;//オブジェクトのタイプ
@@ -39,4 +40,5 @@ protected:
 	bool isDead;
 	GSvector2 velocity;//毎フレームごとの速度
 };
+
 #endif
