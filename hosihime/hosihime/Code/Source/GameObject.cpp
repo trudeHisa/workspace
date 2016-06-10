@@ -25,7 +25,6 @@ void GameObject::draw(const Renderer& renderer, const Scroll& scroll)
 		return;
 	}
 	renderer.DrawTextrue(textrue, &pos);
-	renderer.DrawString("X:" + std::to_string(position.x) + ",Y:" + std::to_string(position.y), &pos, 20);
 }
 void GameObject::initialize()
 {

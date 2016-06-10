@@ -6,7 +6,7 @@ class IMediator;
 class NavigationUI:public GameObject
 {
 public:
-	NavigationUI(const std::string& textrue,IMediator& mediator);
+	NavigationUI(const std::string& textrue, IMediator& mediator, const Scroll& scroll);
 	~NavigationUI();
 	void initialize();
 	void updata();
@@ -15,15 +15,18 @@ public:
 	GameObject* clone(const GSvector2& position) ;
 private:
 	void remove();
-	void viewClmp(const GSvector2& position);
+	void between_Player_Goal(std::vector<GameObj_Ptr>* out);
+	//targetの位置とサイズを返す
+	const MyRectangle targetRect(GameObj_Ptr min);
+	const GSvector2 viewClmp(const GSvector2& position);
 private:
 	IMediator& mediator;
 	std::vector<GameObj_Ptr>respawns;
-	//GameObj_Ptr goal;
 	GSvector2 position;
+	bool isDraw;
+	float angle;
+	const Scroll& scroll;
 
-
-	GSvector2 debPos;
-
+	MyRectangle debrect;
 };
 #endif

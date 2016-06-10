@@ -2,10 +2,11 @@
 #include "IMediator.h"
 #include <algorithm>
 #include "Calculate.h"
-NavigationUI::NavigationUI(const std::string& textrue, IMediator& mediator)
+NavigationUI::NavigationUI(const std::string& textrue, IMediator& mediator,const Scroll& scroll)
 	:GameObject(textrue, GSvector2(0, 0),
 	 GSvector2(64,64), MyRectangle(0, 0, 0, 0), UI),
-	 mediator(mediator), respawns(), debPos(0,0)//, goal(0
+	 mediator(mediator),scroll(scroll), respawns(),
+	 isDraw(true), angle(0), debrect(0,0,0,0)
 {
 }
 
@@ -18,36 +19,79 @@ void NavigationUI::initialize()
 	GameObject::initialize();
 	respawns.clear();
 	mediator.gets(&respawns, RESPAWN);
-	
+	isDraw=true;
+	angle = 0;
 }
 void NavigationUI::updata()
 {
 	//remove();
+	std::vector<GameObj_Ptr>between;
+	between.clear();
+	between_Player_Goal(&between);
 	GSvector2 playerPos = mediator.get(PLAYER)->getPosition();
-	auto min = std::min_element(respawns.begin(), respawns.end(),
+
+	auto min = std::min_element(between.begin(), between.end(),
 		[&](GameObj_Ptr obj1, GameObj_Ptr obj2)
 	{
 		return  obj1->getPosition().distance(playerPos) < obj2->getPosition().distance(playerPos);
 	});
-	GSvector2 pos = mediator.get(GOAL)->getPosition();
-	if (min != respawns.end())
+	GameObj_Ptr minptr = 0;
+	if (min != between.end())
 	{
-		pos = (*min)->getPosition();
+		minptr = *min;
 	}
-	debPos = pos;
-	position = pos;
-	//viewClmp(pos);
+	MyRectangle target = targetRect(minptr);
+	position = target.getPosition();
+	GSvector2 targetViewPos = position - scroll.getMovingAmount();
+	isDraw = !scroll.isInsideWindow(targetViewPos, target.getSize());
+	
+	GSvector2 v = playerPos - target.getPosition();
+	angle=v.degree(playerPos);
 }
-void NavigationUI::viewClmp(const GSvector2& position)
+void NavigationUI::between_Player_Goal(std::vector<GameObj_Ptr>* out)
 {
+	GSvector2 playerPos = mediator.get(PLAYER)->getPosition();
+	GSvector2 size = playerPos - mediator.get(GOAL)->getPosition();
+
+	MyRectangle playerForGoal(playerPos, size);
+	debrect = playerForGoal;
+	for each (GameObj_Ptr obj in respawns)
+	{
+		MyRectangle rect(obj->getPosition(), obj->getRect().getSize());
+		if (rect.intersects(&playerForGoal))
+		{
+			out->emplace_back(obj);
+		}
+	}
+}
+const MyRectangle NavigationUI::targetRect(GameObj_Ptr min)
+{
+	GameObj_Ptr goal = mediator.get(GOAL);
+	GSvector2 targetPos = goal->getPosition();
+	GSvector2 targetSize = goal->getRect().getSize();
+	textrue = "nav1.bmp";
+	if (min !=0)
+	{
+		targetPos =min->getPosition();
+		targetSize =min->getRect().getSize();
+		textrue = "nav2.bmp";
+	}
+	return MyRectangle(targetPos,targetSize);
+}
+const GSvector2 NavigationUI::viewClmp(const GSvector2& position)
+{
+	GSvector2 ansPos(0, 0);
 	Calculate<float>calc;
-	this->position.x = calc.clamp(position.x, 0, WINDOW_WIDTH - viewSize.x);
-	this->position.y = calc.clamp(position.y, 0, WINDOW_HEIGHT - viewSize.y);
+	GSvector2 halfSize = viewSize;
+	halfSize /= 2;
+	ansPos.x = calc.clamp(position.x, 0 + halfSize.x, WINDOW_WIDTH - halfSize.x);
+	ansPos.y = calc.clamp(position.y, 0 + halfSize.y, WINDOW_HEIGHT - halfSize.y);
+	return ansPos;
 }
 void NavigationUI::remove()
 {
 	GSvector2 playerPos = mediator.get(PLAYER)->getPosition();
-	GSvector2 size = mediator.get(GOAL)->getPosition() - playerPos;
+	GSvector2 size = playerPos- mediator.get(GOAL)->getPosition();
 	MyRectangle playerForGoal(playerPos,size);
 
 	auto itrNewEnd = std::remove_if(respawns.begin(), respawns.end(), [&](GameObj_Ptr obj)->bool
@@ -59,24 +103,25 @@ void NavigationUI::remove()
 }
 void NavigationUI::draw(const Renderer& renderer, const Scroll& scroll)
 {
-	
-	for (int i = 0; i <respawns.size(); i++)
-	{
-		renderer.DrawString("X:" + std::to_string(respawns[i]->getPosition().x) + ",Y:" + std::to_string(respawns[i]->getPosition().y), &GSvector2(100, i * 30), 20);
-	}
-	renderer.DrawString("X:" + std::to_string(debPos.x) + ",Y:" + std::to_string(debPos.y), &GSvector2(300, 100), 20);
-	
 	GSvector2 pos = position - scroll.getMovingAmount();
-	
-	Calculate<float>calc;
-	pos.x = calc.clamp(pos.x, 0, WINDOW_WIDTH - viewSize.x);
-	pos.y = calc.clamp(pos.y, 0, WINDOW_HEIGHT - viewSize.y);
+	if (!isDraw)
+	{
+		return;
+	}
+	renderer.DrawString(
+		"x:" + std::to_string(debrect.getPosition().x) +
+		",y:" +std::to_string(debrect.getPosition().y)
+		,&GSvector2(10,10),20);
 
-	renderer.DrawTextrue(textrue, &pos);
-
-	renderer.DrawString("X:" + std::to_string(position.x) + ",Y:" + std::to_string(position.y), &position, 20);
+	renderer.DrawString(
+		"w:" + std::to_string(debrect.getSize().x) + 
+		",h:" + std::to_string(debrect.getSize().y),
+		&GSvector2(10,30), 20);
+	GSvector2 center=viewSize;
+	center /= 2;	
+	renderer.DrawTextrue(textrue, &viewClmp(pos), NULL,&center, NULL, angle, NULL);
 }
 void NavigationUI::collision(const GameObject* obj){}
 GameObject* NavigationUI::clone(const GSvector2& position){
-	return new NavigationUI(textrue,mediator);
+	return new NavigationUI(textrue,mediator,scroll);
 }

@@ -25,6 +25,7 @@ public:
 private:
 	void drawOderSort();
 	void allCollision();
+	const bool isCollision(GameObj_Ptr obj1, GameObj_Ptr obj2);
 	void collision(GameObj_Ptr obj1);
 	void remove();
 private:

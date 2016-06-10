@@ -9,7 +9,7 @@ Stage::Stage(const std::string& csvname, Device& device)
 	:scroll(WINDOW_WIDTH, WINDOW_HEIGHT), timer(60,60),
 	control(),starManager(scroll,control), device(device),
 	factory(std::shared_ptr<Factory>(new GameObjectFactory(scroll, device))),
-	navigation("nav.bmp",control)
+	navigation("nav1.bmp", control, scroll)
 {
 	CSVStream stream;
 	stream.input(&mapdata, csvname.c_str());

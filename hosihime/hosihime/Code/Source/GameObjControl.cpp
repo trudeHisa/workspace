@@ -34,27 +34,32 @@ void GameObjControl::allCollision()
 		collision(obj);
 	}
 }
+const bool GameObjControl::isCollision(GameObj_Ptr obj1, GameObj_Ptr obj2)
+{
+	if (obj1 == obj2)
+	{
+		return true;
+	}
+	if (obj1->isCollision(obj2.get()))
+	{
+		obj1->collision(obj2.get());
+		obj2->collision(obj1.get());
+		return false;
+	}
+	return true;
+}
 void GameObjControl::collision(GameObj_Ptr obj1)
 {
 	bool all_Noncollision = std::all_of(objs.begin(), objs.end(),
 		[&](GameObj_Ptr obj2)
-	{
-		if (obj1 == obj2)
-		{
-			return true;
-		}
-		if (obj1->isCollision(obj2.get()))
-		{
-			obj1->collision(obj2.get());
-			obj2->collision(obj1.get());
-			return false;
-		}
-		return true;
+	{		
+		return isCollision(obj1, obj2);
 	});
-	if (all_Noncollision)
+	if (!all_Noncollision)
 	{
-		obj1->nonCollision();
+		return;
 	}
+	obj1->nonCollision();
 }
 void GameObjControl::remove()
 {
