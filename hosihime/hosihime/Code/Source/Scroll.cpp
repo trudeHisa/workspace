@@ -1,8 +1,9 @@
 #include "Scroll.h"
 #include "Calculate.h"
 
-Scroll::Scroll(float widht, float height)
+Scroll::Scroll(float widht, float height,const GSvector2& maxMapSize)
 	:windowSize(0, 0, widht, height),
+	maxMapsize(maxMapSize),
 	s(0, 0, 1, 1), t(0, 1, 1, 0)
 {
 }
@@ -11,9 +12,6 @@ void Scroll::initialize()
 	movingAmount = GSvector2(0, 0);
 	isStart = true;
 	mode = MODE_OMNIDIRECTIONAL;
-}
-void Scroll::updata()
-{
 }
 void Scroll::draw(const Renderer& renderer)
 {
@@ -54,11 +52,18 @@ void Scroll::moving(const GSvector2&  position, const GSvector2& offset)
 	if (isStop()){ return; }
 	float alpha = gsFrameTimerGetTime()*0.1f;
 	GSvector2 lerp = movingAmount.lerp(position + offset, alpha);
+
+	//マップのサイズにクランプ
+	GSvector2 msize = maxMapsize - windowSize.getSize();
+	Calculate<int>calc;
+ 	lerp=calc.clamp(lerp,GSvector2(0,0),msize);
+
 	lerp *= mode;
 	//差分確保
 	GSvector2 margin = movingAmount - lerp;
 	//移動量加算
 	movingAmount = lerp;
+
 	/**
 	*差分をテクスチャサイズ(WindowSize)に変換
 	*/

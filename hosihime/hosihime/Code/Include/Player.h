@@ -6,7 +6,6 @@
 #include "Animation.h"
 #include "Star.h"
 class Device;
-#define GSfloat gravity 3;
 class Player :public GameObject
 {
 public:

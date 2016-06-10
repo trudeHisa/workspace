@@ -5,14 +5,15 @@
 #include "GAMEOBJ_TYPE.h"
 #include "Player.h"
 #include "NavigationUI.h"
-#define  BLOCKSIZE 64.f
+
 typedef std::shared_ptr<Factory> ObjFactory;
 
 Stage::Stage(const int& stageNo, Device& device)
-	:scroll(WINDOW_WIDTH, WINDOW_HEIGHT), device(device),
+	:scroll(WINDOW_WIDTH, WINDOW_HEIGHT, mapSize), device(device),
 	timer(60, 60), control(), starManager(scroll, control),
 	factory(ObjFactory(new GameObjectFactory(scroll, device))),
-	navigation("nav1.bmp", control,scroll)
+	navigation("nav1.bmp", control, scroll), mapSize(0,0),
+	BLOCKSIZE(64.0f)
 {
 	CSVStream stream;
 	stageNames[0] = "mapdata\\\\testmap.csv";
@@ -38,6 +39,7 @@ void Stage::initialize()
 	isEnd = false;
 	navigation.initialize();
 	flag = CLEARFLAG::PLAYING;
+	mapSize = GSvector2(mapdata.getSize1(),mapdata.getSize0())*BLOCKSIZE;
 }
 void Stage::updata()
 {
@@ -71,6 +73,8 @@ void Stage::draw(const Renderer& renderer)
 	int t = timer.getTime() / FRAMETIME;
 	renderer.DrawString(std::to_string(t), &GSvector2(50, 50), 50);
 	navigation.draw(renderer,scroll);
+
+	renderer.DrawString("W:" + std::to_string(mapSize.x) + ",H:" + std::to_string(mapSize.y), &GSvector2(100, 100), 20);
 }
 void Stage::finish()
 {

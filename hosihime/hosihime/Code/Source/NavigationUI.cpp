@@ -82,14 +82,12 @@ const MyRectangle NavigationUI::targetRect(GameObj_Ptr min)
 	return MyRectangle(targetPos,targetSize);
 }
 const GSvector2 NavigationUI::viewClmp(const GSvector2& position)
-{
-	GSvector2 ansPos(0, 0);
-	Calculate<float>calc;
+{	
 	GSvector2 halfSize = viewSize;
 	halfSize /= 2;
-	ansPos.x = calc.clamp(position.x, 0 + halfSize.x, WINDOW_WIDTH - halfSize.x);
-	ansPos.y = calc.clamp(position.y, 0 + halfSize.y, WINDOW_HEIGHT - halfSize.y);
-	return ansPos;
+	GSvector2 windowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+	Calculate<float>calc;
+	return calc.clamp(position,halfSize,windowSize+halfSize);
 }
 void NavigationUI::remove()
 {

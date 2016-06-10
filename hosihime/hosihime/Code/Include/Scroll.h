@@ -12,9 +12,8 @@ typedef GSvector2 SCROLL_MODE;
 class Scroll
 {
 public:
-	Scroll(float widht,float height);
+	Scroll(float widht, float height, const GSvector2& maxMapSize);
 	void initialize();
-	void updata();
 	void draw(const Renderer& renderer);
 	//Scrollèàóù
 	void moving(const GSvector2& position, const GSvector2& offset=GSvector2(0,0));
@@ -34,11 +33,12 @@ private:
 private:
 	SCROLL_MODE mode;
 	bool isStart;
-	//l,t,r,b
+
 	GSrect s;// x
 	GSrect t;// y
 	GSvector2 scroll_st;//uv
 	MyRectangle windowSize;
 	GSvector2 movingAmount;//Ç«ÇÍÇæÇØScrollÇµÇΩÇ©
+	const GSvector2& maxMapsize;
 };
 #endif

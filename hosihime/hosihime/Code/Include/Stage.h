@@ -44,5 +44,8 @@ private:
 	std::shared_ptr<Factory> factory;
 	std::string stageNames[3];
 	NavigationUI navigation;
+	GSvector2 mapSize;
+	
+	const float BLOCKSIZE;
 };
 #endif

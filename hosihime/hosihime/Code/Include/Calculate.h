@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <algorithm>
+#include <gslib.h>
 #define PI 3.14159265
 template<class T>
 class Calculate
@@ -24,6 +25,14 @@ public:
 	{
 		T rad=deg*(PI/180.0f);
 		return rad;
+	}
+	//Vector‚ÌƒNƒ‰ƒ“ƒv
+	GSvector2 clamp(const GSvector2& value, const GSvector2& low, const GSvector2& hight)
+	{
+		GSvector2 res(0,0);
+		gsVector2Maximize(&res, &value, &low);
+		gsVector2Minimize(&res, &value, &hight);
+		return res;
 	}
 };
 #endif
