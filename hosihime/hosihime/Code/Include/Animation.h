@@ -12,7 +12,7 @@ public:
 	~Animation();
 	void addCell(const std::string& initial,int line,int peace,int width,int heigth);
 	void updata(const std::string& initial);
-	void draw(Renderer& renderer, const std::string& name,const GSvector2* position);
+	void draw(const Renderer& renderer, const std::string& name,const GSvector2* position);
 private:
 	const std::string createCellKey(const std::string& initial, int no)const;
 private:

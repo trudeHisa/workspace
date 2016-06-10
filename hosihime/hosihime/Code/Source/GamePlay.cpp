@@ -20,8 +20,6 @@ void GamePlay::Init()
 	stageName = "";
 	mode = Mode(new PlayMode_Select(device, stageName));
 	mode->initialize();
-	/*anim.addCell("D", 1, 3, 64, 64);
-	anim.addCell("A", 2, 3, 64, 64);*/
 }
 void GamePlay::Update()
 {
@@ -55,7 +53,9 @@ void GamePlay::modeEnd()
 void GamePlay::Draw(const Renderer& renderer)
 {
 	mode->draw(renderer);
+
 	//anim.draw(renderer, "anim.bmp", &GSvector2(50, 50));
+
 }
 void GamePlay::Finish()
 {

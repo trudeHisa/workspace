@@ -14,8 +14,8 @@ public:
 	void stop();
 	void start();
 private:
-	int startTime;
-	int time;
+	float startTime;
+	float time;
 	bool isStart;
 };
 #endif

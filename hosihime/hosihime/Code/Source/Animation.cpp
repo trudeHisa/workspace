@@ -7,7 +7,7 @@ Animation::Animation(AnimationTimer* timer)
 
 Animation::~Animation()
 {
-	delete timer;
+	//delete timer;
 	timer = 0;
 	for (auto itr = cells.begin(); itr != cells.end(); ++itr)
 	{
@@ -46,7 +46,7 @@ void Animation::updata(const std::string& initial)
 		currentCell = createCellKey(initial, cellno);
 	}
 }
-void Animation::draw(Renderer& renderer, const std::string& name, const GSvector2* position)
+void Animation::draw(const Renderer& renderer, const std::string& name, const GSvector2* position)
 {
 	renderer.DrawTextrue(name, position, cells[currentCell]);
 }
