@@ -15,7 +15,10 @@ public:
 	GameObject* clone(const GSvector2& position) ;
 private:
 	void remove();
+	void viewClmp(const GSvector2& position);
+	bool isPositionInScreen(const GSvector2& pos);
 private:
+	bool isDraw;
 	IMediator& mediator;
 	std::vector<GameObj_Ptr>respawns;
 	GameObj_Ptr goal;

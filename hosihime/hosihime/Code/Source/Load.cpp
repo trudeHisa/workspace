@@ -48,6 +48,7 @@ void Load::loadTextrue()
 	renderer.LoadTextrue("player.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("start.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("goal.bmp", GS_TEXCOLOR_KEY_AUTO);
+	renderer.LoadTextrue("rock.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("rock2_2.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("planet.bmp", GS_TEXCOLOR_KEY_WHITE);
 	renderer.LoadTextrue("space.bmp");

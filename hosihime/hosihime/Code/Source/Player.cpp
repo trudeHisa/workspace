@@ -1,6 +1,6 @@
 #include "Player.h"
 #include "Device.h"
-#include "Star.h"
+
 #include "Calculate.h"
 #include "Respawn.h"
 
@@ -8,10 +8,11 @@ Player::Player(const std::string& textrue, const GSvector2& position,
 	const GSvector2& viewSize, const MyRectangle& rect,
 	Scroll* scroll, Device& device)
 	:GameObject(textrue,position,viewSize,rect,PLAYER),
+	rideStarPointerNum(0),
 	GRAVITY(10), VERTICAL(5),
 	JUMPMAXPOW(-15),JUMPSPEED(0.1),
 	JUMPVERTICAL(10),
-	SCROLLOFFSET(GSvector2(-150, -450)),
+	SCROLLOFFSET(GSvector2(-WINDOW_WIDTH/2+viewSize.x, -(WINDOW_HEIGHT/2)-viewSize.y)),
 	scroll(scroll), isJump(false),
 	jumpPower(0),
 	speed(VERTICAL),
@@ -29,6 +30,7 @@ void Player::initialize()
 	jumpEnd();
 	speed = VERTICAL;
 	jumpPower = 0;
+	rideStarPointerNum = 0;
 }
 void Player::jumpEnd()
 {
@@ -38,10 +40,10 @@ void Player::jumpEnd()
 void Player::updata()
 {
 	moving();
-	if (respawn())
+	/*if (respawn())
 	{
 		return;
-	}
+	}*/
 	scroll->moving(position, SCROLLOFFSET);
 	position += velocity*gsFrameTimerGetTime();
 }
@@ -110,6 +112,8 @@ void Player::jump()
 	speed = JUMPVERTICAL;
 	velocity.y = jumpPower;
 	jumpPower += GRAVITY*gsFrameTimerGetTime()*JUMPSPEED;
+	Calculate<float>calc;
+	jumpPower = calc.clamp(jumpPower, JUMPMAXPOW, -JUMPMAXPOW);
 }
 void Player::moveHorizontal()
 {
@@ -130,14 +134,15 @@ const bool Player::respawn()
 	velocity = GSvector2(0, 0);
 	jumpPower = 0;
 	return true;
+	return false;
 }
 //Õ“Ë
 void Player::collision(const GameObject* obj)
 {
-	isRide = collisionStar(obj);
-	collisionRespawn(obj);
+	//collisionStar(obj);
+	//collisionRespawn(obj);
 	collisionGround(obj);
-	if (obj->getType() == GOAL || obj->getType() == BURNSTAR)
+	if (obj->getType() == BURNSTAR)
 	{
 		isDead = true;
 	}
@@ -167,11 +172,23 @@ const bool Player::collisionStar(const GameObject* obj)
 	{
 		return false;
 	}
-	const Star* s = dynamic_cast<const Star*>(obj);
-	s->ride(&position, &viewSize);
-	s->pickUp(&velocity);
-	jumpEnd();
-	return true;
+	//“–‚½‚Á‚Ä
+	if (rideStarPointerNum != 0)
+	{
+
+	}
+	//unsigned int pointerNum =(unsigned int)obj;
+	//if (rideStarPointerNum == 0 || rideStarPointerNum == pointerNum)
+	//{
+	//	rideStarPointerNum = pointerNum;
+
+		const Star* s = dynamic_cast<const Star*>(obj);	
+		s->ride(&position, &viewSize);
+		s->pickUp(&velocity);
+		jumpEnd();
+		return true;
+	//}
+	//return false;
 }
 void Player::collisionRespawn(const GameObject* obj)
 {

@@ -33,7 +33,10 @@ void GameObjControl::allCollision()
 	{
 		for each (GameObj_Ptr obj2 in objs)
 		{
-			collision(obj1, obj2);
+			if (obj1 != obj2)
+			{
+				collision(obj1, obj2);
+			}
 		}
 	}
 }

@@ -38,11 +38,7 @@ void Star::updata()
 	rotate();
 
 	position += velocity*gsFrameTimerGetTime();
-	if (position.y >WINDOW_HEIGHT + viewSize.y * 2
-		|| position.y< -viewSize.y * 2)
-	{
-		isDead = true;
-	}
+
 }
 void Star::blurdraw(const Renderer& renderer, const GSvector2& position, const GSvector2& center)
 {
@@ -73,6 +69,7 @@ void Star::draw(const Renderer& renderer, const Scroll& scroll)
 	blurdraw(renderer,pos,center);
 	renderer.InitBlendFunc();
 	renderer.DrawTextrue(textrue, &pos,NULL,&center,&GSvector2(1,1),angle,NULL);
+	
 }
 void Star::collision(const GameObject* obj)
 {

@@ -117,7 +117,7 @@ void StarManger::addInScreenStars()
 
 void StarManger::updata()
 {
-	starResporn();
+	//starResporn();
 	remove();
 }
 
