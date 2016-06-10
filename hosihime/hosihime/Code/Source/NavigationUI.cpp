@@ -24,6 +24,9 @@ void NavigationUI::initialize()
 }
 void NavigationUI::updata()
 {
+	/**
+	*ゴールとプレイヤーの間にあるリスポーンの割り出しができていない
+	*/
 	//remove();
 	std::vector<GameObj_Ptr>between;
 	between.clear();
