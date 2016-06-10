@@ -22,7 +22,9 @@ private:
 	void createStage();
 private:
 	std::string stageName;
+	int stageNo;
 	bool isEnd;
+	bool isLastStage;
 	Mode mode;
 	TimeScore& score;
 	Device& device;

@@ -4,10 +4,10 @@
 #include "StarManager.h"
 #include "IMediator.h"
 #include <vector>
-
 #include "GameObje_Include.h"
 typedef std::vector<GameObj_Ptr> GameObjs;
 class Player;
+class Timer;
 class GameObjControl :public IMediator
 {
 public:
@@ -18,6 +18,7 @@ public:
 	void draw(const Renderer& renderer, const Scroll& scroll);
 	void finish();
 	bool isDeadPlayer();
+	bool StageClear(GAMEOBJ_TYPE _type);
 public:
 	void add(GameObj_Ptr obj);
 	GameObj_Ptr get(GAMEOBJ_TYPE type);

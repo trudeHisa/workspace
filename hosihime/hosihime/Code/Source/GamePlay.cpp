@@ -5,9 +5,9 @@
 #include "PlayMode_Select.h"
 
 GamePlay::GamePlay(Device& device, TimeScore& score)
-	: device(device), stageName(""),
-	mode(0),
-	score(score)
+: device(device), stageName(""), stageNo(0),
+mode(0),
+score(score)
 {
 }
 GamePlay::~GamePlay()
@@ -18,10 +18,8 @@ void GamePlay::Init()
 	//device.getSound().StopSE("Opening.wav");
 	isEnd = false;
 	stageName = "";
-	mode = Mode(new PlayMode_Select(device, stageName));
+	mode = Mode(new PlayMode_Select(device, stageNo));
 	mode->initialize();
-	/*anim.addCell("D", 1, 3, 64, 64);
-	anim.addCell("A", 2, 3, 64, 64);*/
 }
 void GamePlay::Update()
 {
@@ -35,7 +33,7 @@ void GamePlay::Update()
 void GamePlay::createStage()
 {
 	device.getSound().PlaySE("decision.wav");
-	mode = Mode(new PlayMode_Play(device, stageName));
+	mode = Mode(new PlayMode_Play(device, stageNo, score));
 	mode->initialize();
 }
 void GamePlay::modeEnd()
@@ -45,8 +43,10 @@ void GamePlay::modeEnd()
 		return;
 	}
 	mode->finish();
+
 	if (mode->getMode() == SELECT)
 	{
+		isLastStage = mode->isLastStage();//最終ステージかどうか判別
 		createStage();
 		return;
 	}
@@ -55,15 +55,18 @@ void GamePlay::modeEnd()
 void GamePlay::Draw(const Renderer& renderer)
 {
 	mode->draw(renderer);
-	//anim.draw(renderer, "anim.bmp", &GSvector2(50, 50));
 }
 void GamePlay::Finish()
 {
-	mode->finish();
 }
 Scene GamePlay::Next()
 {
-	return MODE_ENDING;
+	if (mode->getFlag() == CLEARFLAG::CLEAR)
+	{
+		return isLastStage ? MODE_ENDING : MODE_RESULT;
+	}
+	return MODE_GAMEOVER;
+
 }
 bool GamePlay::IsEnd()
 {

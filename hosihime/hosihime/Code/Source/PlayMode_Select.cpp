@@ -1,7 +1,7 @@
 #include "PlayMode_Select.h"
 
-PlayMode_Select::PlayMode_Select(Device& device, std::string& stageName)
-	:stageselect(device, stageName)
+PlayMode_Select::PlayMode_Select(Device& device, int& stageNo)
+	:stageselect(device, stageNo)
 {
 }
 void PlayMode_Select::initialize()
@@ -24,7 +24,17 @@ const bool PlayMode_Select::isEnd()const
 {
 	return stageselect.isEnd();
 }
+const CLEARFLAG PlayMode_Select::getFlag()const
+{
+	return CLEARFLAG::GAMEOVER;
+}
+
 const PLAYMODE PlayMode_Select::getMode()const
 {
 	return PLAYMODE::SELECT;
+}
+
+const bool PlayMode_Select::isLastStage()const
+{
+	return stageselect.isLastStage();
 }

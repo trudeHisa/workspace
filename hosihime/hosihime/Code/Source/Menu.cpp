@@ -1,6 +1,7 @@
 #include "Menu.h"
 #include "Calculate.h"
 #include "Device.h"
+#include "CSVStream.h"
 Menu::Menu(Device& device)
 	:device(device), index(0)
 {
@@ -60,11 +61,17 @@ Scene Menu::Next()
 	{
 		//ゲームプレイへ
 		MODE_GAMEPLAY,
-		//そうさせつめいへ(今はエンディングへ飛ぶ)
-		MODE_ENDING,
-		//せいさくしゃ一覧へ（今はエンディングへ飛ぶ）
-		MODE_ENDING,
+		//そうさせつめいへ(今はタイトルへ飛ぶ)
+		MODE_TITLE,
+		//せいさくしゃ一覧へ（今はタイトルへ飛ぶ）
+		MODE_TITLE,
 	};
+	if (index==2)
+	{
+		CSVStream stream;
+		int re=0;
+		stream.output(re,"savedate\\\\savedate.txt");
+	}
 	return scenes[index];
 }
 bool Menu::IsEnd()

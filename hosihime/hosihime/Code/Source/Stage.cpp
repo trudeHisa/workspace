@@ -3,16 +3,22 @@
 #include "Device.h"
 #include "CSVStream.h"
 #include "GAMEOBJ_TYPE.h"
-
+#include "Player.h"
 #define  BLOCKSIZE 64.f
-Stage::Stage(const std::string& csvname, Device& device)
-	:scroll(WINDOW_WIDTH, WINDOW_HEIGHT), timer(60,60),
-	control(),starManager(scroll,control), device(device),
-	factory(std::shared_ptr<Factory>(new GameObjectFactory(scroll, device))),
+typedef std::shared_ptr<Factory> ObjFactory;
+
+Stage::Stage(const int& stageNo, Device& device)
+	:scroll(WINDOW_WIDTH, WINDOW_HEIGHT), device(device),
+	timer(60, 60), control(), starManager(scroll, control),
+	factory(ObjFactory(new GameObjectFactory(scroll, device)))
 	navigation("nav1.bmp", control, scroll)
 {
 	CSVStream stream;
-	stream.input(&mapdata, csvname.c_str());
+	stageNames[0] = "mapdata\\\\testmap.csv";
+	stageNames[1] = "mapdata\\\\testmap.csv";
+	stageNames[2] = "mapdata\\\\testmap.csv";
+	//std::string name = "mapdata\\\\testmap" + std::to_string(stageNo) + ".csv";
+	stream.input(&mapdata, stageNames[stageNo].c_str());
 }
 Stage::~Stage()
 {
@@ -30,6 +36,7 @@ void Stage::initialize()
 	
 	isEnd = false;
 	navigation.initialize();
+	flag = CLEARFLAG::PLAYING;
 }
 void Stage::updata()
 {
@@ -37,17 +44,24 @@ void Stage::updata()
 	control.updata();
 	navigation.updata();
 	timer.update();
-	if (timer.isEnd() || control.isDeadPlayer())
+	if (timer.isEnd())
+	{
+		flag = CLEARFLAG::GAMEOVER;
+		isEnd = true;
+	}
+
+	if (control.StageClear(PLAYER))
 	{		
 		timer.stop();
-		isEnd = true;
+		flag = CLEARFLAG::CLEAR;
+		if (control.isDeadPlayer())isEnd = true;
 	}
 }
 void Stage::draw(const Renderer& renderer)
 {
 	scroll.draw(renderer);
-	control.draw(renderer,scroll);
-	int t = timer.getTime()/FRAMETIME;
+	control.draw(renderer, scroll);
+	int t = timer.getTime() / FRAMETIME;
 	renderer.DrawString(std::to_string(t), &GSvector2(50, 50), 50);
 	navigation.draw(renderer,scroll);
 }
@@ -66,6 +80,11 @@ const bool Stage::getIsEnd()const
 	return isEnd;
 }
 
+const CLEARFLAG Stage::getFlag() const
+{
+	return flag;
+}
+
 void Stage::objCreate(int x, int y)
 {
 	int data = mapdata(y, x);
@@ -78,9 +97,9 @@ void Stage::objCreate(int x, int y)
 }
 void Stage::mapCreate()
 {
-	for (int y = 0; y < mapdata.getSize0(); y++)
+	for (int y = 0,size=mapdata.getSize0(); y <size; ++y)
 	{
-		for (int x = 0; x < mapdata.getSize1(); x++)
+		for (int x = 0, size1 = mapdata.getSize1(); x < size1; ++x)
 		{
 			objCreate(x, y);
 		}

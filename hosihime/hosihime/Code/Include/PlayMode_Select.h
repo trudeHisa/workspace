@@ -11,13 +11,15 @@
 class PlayMode_Select :public IPlayMode
 {
 public:
-	PlayMode_Select(Device& device, std::string& stageName);
+	PlayMode_Select(Device& device,int& stageNo);
 	void initialize();
 	void updata();
 	void draw(const Renderer& renderer);
 	void finish();
 	const bool isEnd()const;
 	const PLAYMODE getMode()const;
+	const CLEARFLAG getFlag()const;
+	const bool isLastStage()const;
 private:
 	StageSelect stageselect;
 };

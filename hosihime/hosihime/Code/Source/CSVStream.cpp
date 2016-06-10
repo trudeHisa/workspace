@@ -13,9 +13,9 @@ CSVStream::CSVStream()
 void CSVStream::output(Array2D<int>* out, const char* name)const
 {
 	std::ofstream ofs(name);
-	for (int y = 0; y <out->getSize0(); y++)
+	for (int y = 0; y < out->getSize0(); y++)
 	{
-		for (int x = 0; x <out->getSize1(); x++)
+		for (int x = 0; x < out->getSize1(); x++)
 		{
 			ofs << (*out)(y, x) << ',';
 		}
@@ -23,6 +23,18 @@ void CSVStream::output(Array2D<int>* out, const char* name)const
 	}
 	ofs.close();
 }
+
+
+void CSVStream::output(int& out, const char* name)const
+{
+	std::ofstream ofs(name);
+
+	ofs << (out);
+	ofs << std::endl;
+
+	ofs.close();
+}
+
 void CSVStream::input(Array2D<int>* input, const char* name)const
 {
 	std::ifstream ifs(name);
@@ -53,6 +65,25 @@ void CSVStream::input(Array2D<int>* input, const char* name)const
 		for (int x = 0; x < width; x++)
 		{
 			(*input)(y, x) = values[y*width + x];
+		}
+	}
+}
+void CSVStream::input(int& input, const char* name)const
+{
+	std::ifstream ifs(name);
+	if (!ifs)
+	{
+		return;
+	}
+	std::string str;
+	while (std::getline(ifs, str))
+	{
+		std::string token;
+		std::istringstream stream(str);
+		while (std::getline(stream,token))
+		{
+			int temp = std::stoi(token);//”’l‚É•ÏŠ·
+			input = temp;
 		}
 	}
 }

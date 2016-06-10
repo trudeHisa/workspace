@@ -60,3 +60,7 @@ void GameObject::nonCollision()
 {
 
 }
+void GameObject::nonCollision()
+{
+
+}

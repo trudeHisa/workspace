@@ -31,6 +31,7 @@ void Player::initialize()
 	speed = VERTICAL;
 	jumpPower = 0;
 	rideStarPointerNum = 0;
+	isClear = false;
 }
 void Player::jumpEnd()
 {
@@ -45,6 +46,7 @@ void Player::updata()
 		return;
 	}*/
 	scroll->moving(position, SCROLLOFFSET);
+	endMove();
 	position += velocity*gsFrameTimerGetTime();
 }
 void Player::gravity()
@@ -123,6 +125,20 @@ void Player::moveHorizontal()
 	//}
 	velocity.x = device.getInput().getVelocity().x * speed;
 }
+
+void Player::endMove()
+{
+	if (!isClear) return;
+
+	velocity.x = 2.0f;
+	if (isGround == false) isDead = true;
+}
+
+bool Player::getIsClear()
+{
+	return isClear;
+}
+
 //
 const bool Player::respawn()
 {
@@ -134,7 +150,6 @@ const bool Player::respawn()
 	velocity = GSvector2(0, 0);
 	jumpPower = 0;
 	return true;
-	return false;
 }
 //Õ“Ë
 void Player::collision(const GameObject* obj)
@@ -157,9 +172,9 @@ void Player::collisionGround(const GameObject* obj)
 		isGround = true;
 		jumpEnd();
 		/*const Sound& sound = device.getSound();
-		if (!sound.IsPlaySE("Landing.wav")&&velocity.x!=0)
-		{
-		   sound.PlaySE("Landing.wav");
+			if (!sound.IsPlaySE("Landing.wav")&&velocity.x!=0)
+			{
+			sound.PlaySE("Landing.wav");
 		}*/
 		return;
 	}
@@ -169,7 +184,7 @@ void Player::collisionStar(const GameObject* obj)
 {
 	GAMEOBJ_TYPE type = obj->getType();
 	if (type != STAR&& type!=BREAKSTAR)
-	{
+{
 		return;
 	}
 	//
@@ -188,8 +203,8 @@ void Player::collisionStar(const GameObject* obj)
 	{
 		const Star* s = dynamic_cast<const Star*>(obj);
 		s->ride(&position, &viewSize);
-		s->pickUp(&velocity);
-		jumpEnd();
+	s->pickUp(&velocity);
+	jumpEnd();
 		return;
 	}
 

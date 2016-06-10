@@ -392,5 +392,11 @@
     <ClInclude Include="Code\Include\NavigationUI.h">
       <Filter>ヘッダー ファイル\gameobject</Filter>
     </ClInclude>
+    <ClInclude Include="Code\Include\Result.h">
+      <Filter>ヘッダー ファイル\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\GameOver.h">
+      <Filter>ヘッダー ファイル\scene</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

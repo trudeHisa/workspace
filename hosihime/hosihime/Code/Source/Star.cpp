@@ -1,7 +1,6 @@
 #include "Star.h"
 #include "Calculate.h"
 
-//star_yellow.bmp
 Star::Star(const std::string& textrue, const GSvector2& position,
 	const GSvector2& viewSize,const MyRectangle& rect,StarMove_Ptr move,float helth)
 	:GameObject(textrue, position, viewSize, rect,STAR),

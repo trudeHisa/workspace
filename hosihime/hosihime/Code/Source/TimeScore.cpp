@@ -12,7 +12,7 @@ void TimeScore::init()
 }
 void TimeScore::setScore(Timer& timer)
 {
-	score=(timer.getDefTime()*FRAMETIME)-timer.getTime();
+	score =static_cast<int>((timer.getDefTime()*FRAMETIME)-timer.getTime());
 }
 const int TimeScore::getScore() const 
 {

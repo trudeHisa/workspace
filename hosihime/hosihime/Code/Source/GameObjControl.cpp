@@ -1,7 +1,7 @@
 #include "GameObjControl.h"
 #include "Player.h"
 #include <algorithm>
-
+#include "Timer.h"
 GameObjControl::GameObjControl()
 {
 
@@ -35,11 +35,11 @@ void GameObjControl::allCollision()
 	}
 }
 const bool GameObjControl::isCollision(GameObj_Ptr obj1, GameObj_Ptr obj2)
-{
+		{
 	if (obj1 == obj2)
 	{
 		return true;
-	}
+		}
 	if (obj1->isCollision(obj2.get()))
 	{
 		obj1->collision(obj2.get());
@@ -52,12 +52,12 @@ void GameObjControl::collision(GameObj_Ptr obj1)
 {
 	bool all_Noncollision = std::all_of(objs.begin(), objs.end(),
 		[&](GameObj_Ptr obj2)
-	{		
+{
 		return isCollision(obj1, obj2);
 	});
 	if (!all_Noncollision)
 	{
-		return;
+			return true;
 	}
 	obj1->nonCollision();
 }
@@ -76,7 +76,7 @@ void GameObjControl::remove()
 }
 void GameObjControl::inisialize()
 {
-	objs.clear();
+	objs.clear(); 
 }
 
 void GameObjControl::draw(const Renderer& renderer, const Scroll& scroll)
@@ -100,9 +100,27 @@ bool GameObjControl::isDeadPlayer()
 	if (itr == objs.end())
 	{
 		return true;
+
 	}
 	return false;
 }
+
+
+bool GameObjControl::StageClear(GAMEOBJ_TYPE _type)
+{
+	auto itr = std::find_if(objs.begin(), objs.end(), [](GameObj_Ptr obj)->bool
+	{
+		return obj->isSameType(PLAYER);
+	});
+	if (itr == objs.end())
+	{
+		return true;
+	}
+	GameObj_Ptr g = *itr;
+	return static_cast<Player*>(g.get())->getIsClear();
+}
+
+void GameObjControl::finish()
 
 
 void GameObjControl::add(GameObj_Ptr obj)
@@ -118,7 +136,7 @@ GameObj_Ptr GameObjControl::get(GAMEOBJ_TYPE type)
 		return obj->getType() == type;
 	});
 	if (itr == objs.end())
-	{
+{
 		return NULL;
 	}
 	return *itr;
@@ -129,7 +147,7 @@ void GameObjControl::gets(std::vector<GameObj_Ptr>* out, GAMEOBJ_TYPE type)
 	for each (GameObj_Ptr obj in objs)
 	{
 		if (obj->getType() == type)
-		{
+{
 			out->emplace_back(obj);
 		}
 	}

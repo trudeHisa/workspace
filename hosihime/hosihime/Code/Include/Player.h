@@ -14,15 +14,17 @@ public:
 		Scroll* scroll, Device& device);
 	virtual ~Player();
 	void updata();
-	void initialize();
+    void initialize();
 	void collision(const GameObject* obj);
-	void nonCollision();
 	GameObject* clone(const GSvector2& position);
+	void endMove();
+	bool getIsClear();
+	void nonCollision();
 private:
 	void moving();
 	void gravity();
 	void moveHorizontal();
-	void rideUpDown();
+	void rideUpDown();	
 	//jump
 	void jumpStart();
 	void jump();
@@ -39,6 +41,8 @@ private:
 
 	bool isJump;
 	float speed;
+	bool isClear;
+
 	GSvector2 respawnPos;
 	Scroll* scroll;
 	Device& device;
