@@ -9,7 +9,8 @@ class Star :virtual public GameObject
 {
 public:
 	Star(const std::string& textrue, const GSvector2& position,
-		const GSvector2& viewSize, const MyRectangle& rect,StarMove_Ptr move);
+		const GSvector2& viewSize, const MyRectangle& rect,StarMove_Ptr move
+		, float helth);
 	virtual ~Star();
 	virtual void initialize();
 	virtual void updata();
@@ -26,6 +27,7 @@ private:
 	void rotate();
 	void blurdraw(const Renderer& renderer, const GSvector2& position, const GSvector2& center);
 protected:
+	float helth;
 	//Animation animation;
 	//AnimationTimer animTimer;
 	//int activeAnimKey;

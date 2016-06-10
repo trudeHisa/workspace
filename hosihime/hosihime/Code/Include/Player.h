@@ -16,6 +16,7 @@ public:
 	void updata();
 	void initialize();
 	void collision(const GameObject* obj);
+	void nonCollision();
 	GameObject* clone(const GSvector2& position);
 private:
 	void moving();
@@ -30,14 +31,13 @@ private:
 	const bool respawn();
 	//collision
 	void collisionGround(const GameObject* obj);
-	const bool collisionStar(const GameObject* obj);
+	void collisionStar(const GameObject* obj);
 	void collisionRespawn(const GameObject* obj);
 private:
 	bool isGround;
 	float jumpPower;
 
 	bool isJump;
-	bool isRide;
 	float speed;
 	GSvector2 respawnPos;
 	Scroll* scroll;

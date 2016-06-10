@@ -66,16 +66,19 @@ Star* StarManger::createStar(const std::vector<std::string>& param)
 	MyRectangle rect = createRect(param);
 
 	StarMove_Ptr move = StarMove_Ptr(createMove(param));
-	int lastParamIndex = 9 + move->length();
+	//nonmove
+	int lastParamIndex = 9 + move->length()+1;
+
 	int type = stoi(param[0]);
+	int dorh = stof(param[lastParamIndex]);
 	switch (type)
 	{
 	case DEF:
-		return new Star("star.bmp", pos, viewSize, rect, move);
+		return new Star("star.bmp", pos, viewSize, rect, move, dorh);
 	case BREAK:		
-		return new BreakStar("starb.bmp", pos, viewSize, rect, move,stof(param[lastParamIndex]));
+		return new BreakStar("starb.bmp", pos, viewSize, rect, move, dorh);
 	case BRUN:
-		return new BurnStar("starbrun.bmp", pos, viewSize, rect, move);
+		return new BurnStar("starbrun.bmp", pos, viewSize, rect, move, dorh);
 	}
 	return NULL;
 }
@@ -117,7 +120,7 @@ void StarManger::addInScreenStars()
 
 void StarManger::updata()
 {
-	//starResporn();
+	starResporn();
 	remove();
 }
 

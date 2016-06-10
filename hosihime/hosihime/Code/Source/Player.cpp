@@ -66,7 +66,7 @@ void Player::moving()
 }
 void Player::rideUpDown()
 {
-	if (!isRide)
+	if (rideStarPointerNum==0)
 	{
 		return;
 	}
@@ -87,7 +87,7 @@ void Player::rideUpDown()
 }
 void Player::jumpStart()
 {
-	if (!isGround&&!isRide)
+	if (!isGround&&rideStarPointerNum == 0)
 	{
 		return;
 	}
@@ -139,8 +139,8 @@ const bool Player::respawn()
 //Õ“Ë
 void Player::collision(const GameObject* obj)
 {
-	//collisionStar(obj);
-	//collisionRespawn(obj);
+	collisionStar(obj);
+	collisionRespawn(obj);
 	collisionGround(obj);
 	if (obj->getType() == BURNSTAR)
 	{
@@ -165,30 +165,34 @@ void Player::collisionGround(const GameObject* obj)
 	}
 	isGround = false;
 }
-const bool Player::collisionStar(const GameObject* obj)
+void Player::collisionStar(const GameObject* obj)
 {
 	GAMEOBJ_TYPE type = obj->getType();
 	if (type != STAR&& type!=BREAKSTAR)
 	{
-		return false;
+		return;
 	}
-	//“–‚½‚Á‚Ä
-	if (rideStarPointerNum != 0)
+	//
+	if (rideStarPointerNum == 0)
 	{
-
-	}
-	//unsigned int pointerNum =(unsigned int)obj;
-	//if (rideStarPointerNum == 0 || rideStarPointerNum == pointerNum)
-	//{
-	//	rideStarPointerNum = pointerNum;
-
-		const Star* s = dynamic_cast<const Star*>(obj);	
+		unsigned int pointerNum = (unsigned int)obj;
+		rideStarPointerNum = pointerNum;
+		const Star* s = dynamic_cast<const Star*>(obj);
 		s->ride(&position, &viewSize);
 		s->pickUp(&velocity);
 		jumpEnd();
-		return true;
-	//}
-	//return false;
+		return;
+	}
+	unsigned int pointerNum = (unsigned int)obj;
+	if (rideStarPointerNum == pointerNum)
+	{
+		const Star* s = dynamic_cast<const Star*>(obj);
+		s->ride(&position, &viewSize);
+		s->pickUp(&velocity);
+		jumpEnd();
+		return;
+	}
+
 }
 void Player::collisionRespawn(const GameObject* obj)
 {
@@ -199,6 +203,12 @@ void Player::collisionRespawn(const GameObject* obj)
 	const Respawn* respawn =dynamic_cast<const Respawn*>(obj);
 	respawn->setRespawn(&respawnPos.x);
 }
+void Player::nonCollision()
+{
+	rideStarPointerNum = 0;
+	isGround = false;
+}
+
 GameObject* Player::clone(const GSvector2& position)
 {
 	return new Player(textrue,position,viewSize,rect,scroll,device);

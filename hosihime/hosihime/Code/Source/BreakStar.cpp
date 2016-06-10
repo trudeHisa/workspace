@@ -4,7 +4,7 @@ BreakStar::BreakStar(const std::string& textrue, const GSvector2& position,
 	const GSvector2& viewSize, const MyRectangle& rect,
 	StarMove_Ptr move, float max_Durability)
 	:GameObject(textrue, position, viewSize, rect, BREAKSTAR),
-	Star(textrue, position, viewSize, rect, move),
+	Star(textrue, position, viewSize, rect, move,max_Durability),
 	durability(max_Durability), max_Durability(max_Durability),
 	isBreakStart(false)
 {

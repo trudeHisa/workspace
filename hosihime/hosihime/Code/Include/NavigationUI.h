@@ -16,12 +16,14 @@ public:
 private:
 	void remove();
 	void viewClmp(const GSvector2& position);
-	bool isPositionInScreen(const GSvector2& pos);
 private:
-	bool isDraw;
 	IMediator& mediator;
 	std::vector<GameObj_Ptr>respawns;
-	GameObj_Ptr goal;
+	//GameObj_Ptr goal;
 	GSvector2 position;
+
+
+	GSvector2 debPos;
+
 };
 #endif

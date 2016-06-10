@@ -3,9 +3,9 @@
 
 //star_yellow.bmp
 Star::Star(const std::string& textrue, const GSvector2& position,
-	const GSvector2& viewSize,const MyRectangle& rect,StarMove_Ptr move)
+	const GSvector2& viewSize,const MyRectangle& rect,StarMove_Ptr move,float helth)
 	:GameObject(textrue, position, viewSize, rect,STAR),
-	move(move),startPosi(position),angle(0)
+	move(move), startPosi(position), angle(0), helth(helth)
 	//,animTimer(6),animation(animTimer),activeAnimKey(1)//5,4:64:64
 {
 }
@@ -39,6 +39,13 @@ void Star::updata()
 
 	position += velocity*gsFrameTimerGetTime();
 
+	//éOïΩï˚ÇÃíËóù
+	if (helth - std::hypotf(
+		fabs(position.x - startPosi.x),
+		fabs(position.y - startPosi.y)) < 0)
+	{
+		isDead = true;
+	}
 }
 void Star::blurdraw(const Renderer& renderer, const GSvector2& position, const GSvector2& center)
 {
@@ -69,7 +76,6 @@ void Star::draw(const Renderer& renderer, const Scroll& scroll)
 	blurdraw(renderer,pos,center);
 	renderer.InitBlendFunc();
 	renderer.DrawTextrue(textrue, &pos,NULL,&center,&GSvector2(1,1),angle,NULL);
-	
 }
 void Star::collision(const GameObject* obj)
 {
@@ -90,11 +96,11 @@ void Star::pickUp(GSvector2* velocity)const
 }
 Star* Star::clone()
 {
-	return new Star(textrue, startPosi, viewSize, rect, StarMove_Ptr(move->clone()));
+	return new Star(textrue, startPosi, viewSize, rect, StarMove_Ptr(move->clone()),helth);
 }
 GameObject* Star::clone(const GSvector2& position)
 {
-	return new Star(textrue, position, viewSize, rect, StarMove_Ptr(move->clone()));
+	return new Star(textrue, position, viewSize, rect, StarMove_Ptr(move->clone()),helth);
 }
 const GSvector2& Star::getSPosi() const
 {

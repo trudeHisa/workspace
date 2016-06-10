@@ -19,11 +19,13 @@ void GameObject::draw(const Renderer& renderer, const Scroll& scroll)
 {
 	GSvector2 pos = position;
 	pos-= scroll.getMovingAmount();
+	
 	if (!scroll.isInsideWindow(pos, viewSize))
 	{
 		return;
 	}
 	renderer.DrawTextrue(textrue, &pos);
+	renderer.DrawString("X:" + std::to_string(position.x) + ",Y:" + std::to_string(position.y), &pos, 20);
 }
 void GameObject::initialize()
 {
@@ -55,4 +57,7 @@ const bool GameObject::isCollision(const GameObject* obj)const
 	MyRectangle otrect(obj->position + obj->rect.getPosition(), obj->rect.getSize());
 	return myrect.intersects(&otrect);
 }
+void GameObject::nonCollision()
+{
 
+}

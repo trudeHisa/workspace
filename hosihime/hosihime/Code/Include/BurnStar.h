@@ -12,7 +12,7 @@ class BurnStar :public Star
 {
 public:
 	BurnStar(const std::string& textrue, const GSvector2& position,
-		const GSvector2& viewSize, const MyRectangle& rect, StarMove_Ptr move);
+		const GSvector2& viewSize, const MyRectangle& rect, StarMove_Ptr move, float helth);
 	~BurnStar();
 	void initialize();
 	void updata();

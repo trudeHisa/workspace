@@ -29,25 +29,32 @@ void GameObjControl::drawOderSort()
 }
 void GameObjControl::allCollision()
 {
-	for each (GameObj_Ptr obj1 in objs)
+	for each (GameObj_Ptr obj in objs)
 	{
-		for each (GameObj_Ptr obj2 in objs)
-		{
-			if (obj1 != obj2)
-			{
-				collision(obj1, obj2);
-			}
-		}
+		collision(obj);
 	}
 }
-void GameObjControl::collision(GameObj_Ptr obj1, GameObj_Ptr obj2)
+void GameObjControl::collision(GameObj_Ptr obj1)
 {
-	if (!obj1->isCollision(obj2.get()))
+	bool all_Noncollision = std::all_of(objs.begin(), objs.end(),
+		[&](GameObj_Ptr obj2)
 	{
-		return;
+		if (obj1 == obj2)
+		{
+			return true;
+		}
+		if (obj1->isCollision(obj2.get()))
+		{
+			obj1->collision(obj2.get());
+			obj2->collision(obj1.get());
+			return false;
+		}
+		return true;
+	});
+	if (all_Noncollision)
+	{
+		obj1->nonCollision();
 	}
-	obj1->collision(obj2.get());
-	obj2->collision(obj1.get());
 }
 void GameObjControl::remove()
 {
@@ -64,11 +71,11 @@ void GameObjControl::remove()
 }
 void GameObjControl::inisialize()
 {
-	objs.clear(); 
+	objs.clear();
 }
 
 void GameObjControl::draw(const Renderer& renderer, const Scroll& scroll)
-{	
+{
 	//drawOderSort();
 	for each (GameObj_Ptr obj in objs)
 	{
@@ -100,10 +107,10 @@ void GameObjControl::add(GameObj_Ptr obj)
 }
 GameObj_Ptr GameObjControl::get(GAMEOBJ_TYPE type)
 {
-	GameObjs::iterator itr = 
+	GameObjs::iterator itr =
 		std::find_if(objs.begin(), objs.end(), [&](GameObj_Ptr obj)->bool
 	{
-		return obj->getType() ==type;
+		return obj->getType() == type;
 	});
 	if (itr == objs.end())
 	{

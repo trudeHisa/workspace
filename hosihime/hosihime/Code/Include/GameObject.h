@@ -22,6 +22,8 @@ public:
 	virtual void initialize();
 	virtual void finish();
 	virtual void collision(const GameObject* obj) = 0;
+	//全てのオブジェクトと当たっていないときに呼び出される
+	virtual void nonCollision();
 
 	virtual GameObject* clone(const GSvector2& position)=0;
 	//オブジェクトと当たっているか？
