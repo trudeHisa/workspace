@@ -41,6 +41,8 @@ void Stage::initialize()
 }
 void Stage::updata()
 {
+	// ğŒo‚µ‚Ä‚à‚Á‚Æ‚«‚ê‚¢‚É
+
 	starManager.updata();
 	control.updata();
 	

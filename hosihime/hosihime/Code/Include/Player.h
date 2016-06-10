@@ -31,6 +31,9 @@ private:
 	void jumpEnd();
 
 	const bool respawn();
+
+	const bool isRide()const;
+	void statRide(const GameObject* obj);
 	//collision
 	void collisionGround(const GameObject* obj);
 	void collisionStar(const GameObject* obj);

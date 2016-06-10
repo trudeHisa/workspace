@@ -43,13 +43,15 @@ void GamePlay::modeEnd()
 		return;
 	}
 	mode->finish();
-
+	
+	//mode内でセレクトしたい
 	if (mode->getMode() == SELECT)
 	{
 		isLastStage = mode->isLastStage();//最終ステージかどうか判別
 		createStage();
 		return;
 	}
+
 	isEnd = true;
 }
 void GamePlay::Draw(const Renderer& renderer)
