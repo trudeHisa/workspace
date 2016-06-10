@@ -2,6 +2,7 @@
 #define _ENDING_H_
 #include "IScene.h"
 #include "TimeScore.h"
+#include "GamePlay.h"
 class Device;
 class Ending :public IScene
 {
@@ -18,5 +19,7 @@ private:
 	bool isEnd;
 	Device& device;
 	TimeScore& score;
+	GSvector2 playerPosi;
+	GSvector2 vel;
 };
 #endif

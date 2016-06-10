@@ -91,6 +91,7 @@ bool GameObjControl::isDeadPlayer()
 	}
 	return false;
 }
+
 void GameObjControl::finish()
 {
 

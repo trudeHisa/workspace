@@ -5,10 +5,12 @@
 #include "GAMEOBJ_TYPE.h"
 
 #define  BLOCKSIZE 64.f
+typedef std::shared_ptr<Factory> ObjFactory;
+
 Stage::Stage(const std::string& csvname, Device& device)
 	:scroll(WINDOW_WIDTH, WINDOW_HEIGHT), timer(60,60)
 	, starManager(scroll), device(device),
-	factory(std::shared_ptr<Factory>(new GameObjectFactory(scroll, device)))
+	factory(ObjFactory(new GameObjectFactory(scroll, device)))
 {
 	CSVStream stream;
 	stream.input(&mapdata, csvname.c_str());
@@ -27,15 +29,23 @@ void Stage::initialize()
 	mapCreate();
 	Stars_IsInScreen();
 	isEnd = false;
+	flag = CLEARFLAG::PLAYING;
 }
 void Stage::updata()
 {
 	starManager.updata();
 	control.updata();
 	timer.update();
-	if (timer.isEnd() || control.isDeadPlayer())
-	{		
+	if (timer.isEnd())
+	{
+		flag = CLEARFLAG::GAMEOVER;
+		isEnd=true;
+	}
+
+	if (control.isDeadPlayer())
+	{
 		timer.stop();
+		flag = CLEARFLAG::CLEAR;
 		isEnd = true;
 	}
 }
@@ -59,6 +69,11 @@ void Stage::saveScore(TimeScore& score)
 const bool Stage::getIsEnd()const
 {
 	return isEnd;
+}
+
+const CLEARFLAG Stage::getFlag() const
+{
+	return flag;
 }
 
 void Stage::objCreate(int x, int y)

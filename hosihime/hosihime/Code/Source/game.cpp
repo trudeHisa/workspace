@@ -7,10 +7,12 @@
 #include "Menu.h"
 #include "GamePlay.h"
 #include "Ending.h"
-
+#include "../Include/Result.h"
 #include "Device.h"
 #include "Renderer.h"
 #include "TimeScore.h"
+#include "../Include/GameOver.h"
+
 SceneManager sceneManager;
 Device device;
 Renderer renderer;
@@ -21,7 +23,11 @@ void gameInit(void)
 	sceneManager.Add(Scene::MODE_TITLE, new Title(device));
 	sceneManager.Add(Scene::MODE_MENU,new Menu(device));
 	sceneManager.Add(Scene::MODE_GAMEPLAY, new GamePlay(device,score));
+
 	sceneManager.Add(Scene::MODE_ENDING, new Ending(device,score));
+	sceneManager.Add(Scene::MODE_RESULT, new Result(device, score));
+	sceneManager.Add(Scene::MODE_GAMEOVER, new GameOver(device));
+
 	sceneManager.Change(Scene::MODE_LOAD);
 }
 void gameMain(void)

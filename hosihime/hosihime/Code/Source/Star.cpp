@@ -7,8 +7,7 @@ Star::Star(const std::string& textrue, const MyRectangle& rect,IStarMove* move)
 	move(move), 
 	startPosi(rect.getPosition()),
 	angle(0)
-{
-}
+{}
 Star::~Star()
 {
 	delete move;

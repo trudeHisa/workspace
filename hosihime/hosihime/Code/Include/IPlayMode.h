@@ -7,6 +7,7 @@
 #ifndef _IPLAYMODE_H_
 #define _IPLAYMODE_H_
 #include "Renderer.h"
+#include "../Include/CLEARFLAG.h"
 enum PLAYMODE
 {
 	SELECT,PLAY
@@ -19,7 +20,9 @@ public:
 	virtual void draw(const Renderer& renderer) = 0;
 	virtual void finish() = 0;
 	virtual const bool isEnd()const = 0;
+	virtual const bool isLastStage()const=0;
 	virtual const PLAYMODE getMode()const = 0;
+	virtual const CLEARFLAG getFlag()const = 0;
 };
 
 #endif

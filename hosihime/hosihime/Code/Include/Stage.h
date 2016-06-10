@@ -4,7 +4,7 @@
 #include "Renderer.h"
 #include "GameObjControl.h"
 #include "StarManager.h"
-
+#include "../Include/CLEARFLAG.h"
 #include "Scroll.h"
 #include "Array2D.h"
 #include "Timer.h"
@@ -12,6 +12,8 @@
 #include "GameObjectFactory.h"
 #include<memory>
 class Device;
+
+
 class Stage
 {
 public:
@@ -22,6 +24,7 @@ public:
 	void draw(const Renderer& renderer);
 	void finish();
 	const bool getIsEnd()const;
+	const CLEARFLAG getFlag() const;
 	void saveScore(TimeScore& score);
 private:
 	void mapCreate();
@@ -30,6 +33,7 @@ private:
 private:
 	int BLOCKSIZE = 64;
 	bool isEnd;
+	CLEARFLAG flag;
 	Array2D<int> mapdata;	
 	GameObjControl control;
 	StarManger starManager;

@@ -11,13 +11,14 @@ public:
 	void draw(const Renderer& renderer);
 	void finish();
 	const bool isEnd()const;
+	const bool isLastStage()const;
 private:
 	const std::string selectStageName()const;
 	void select();
 private:
 	std::string& stageName;
 	bool isend;
-	int active;
+	int activeNo;
 	Device& device;
 };
 #endif

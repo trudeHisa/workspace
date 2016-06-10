@@ -60,10 +60,10 @@ Scene Menu::Next()
 	{
 		//ゲームプレイへ
 		MODE_GAMEPLAY,
-		//そうさせつめいへ(今はエンディングへ飛ぶ)
-		MODE_ENDING,
-		//せいさくしゃ一覧へ（今はエンディングへ飛ぶ）
-		MODE_ENDING,
+		//そうさせつめいへ(今はタイトルへ飛ぶ)
+		MODE_TITLE,
+		//せいさくしゃ一覧へ（今はタイトルへ飛ぶ）
+		MODE_TITLE,
 	};
 	return scenes[index];
 }

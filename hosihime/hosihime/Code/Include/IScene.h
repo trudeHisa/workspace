@@ -7,7 +7,9 @@ enum Scene
 	MODE_TITLE,
 	MODE_GAMEPLAY,
 	MODE_ENDING,
-	MODE_MENU
+	MODE_MENU,
+	MODE_RESULT,
+	MODE_GAMEOVER
 };
 __interface IScene
 {

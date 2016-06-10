@@ -23,6 +23,7 @@ private:
 private:
 	std::string stageName;
 	bool isEnd;
+	bool isLastStage;
 	Mode mode;
 	TimeScore& score;
 	Device& device;

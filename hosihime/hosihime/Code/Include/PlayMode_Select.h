@@ -18,6 +18,8 @@ public:
 	void finish();
 	const bool isEnd()const;
 	const PLAYMODE getMode()const;
+	const CLEARFLAG getFlag()const;
+	const bool isLastStage()const;
 private:
 	StageSelect stageselect;
 };

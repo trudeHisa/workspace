@@ -15,6 +15,7 @@ public:
     void initialize();
 	void collision(const GameObject* obj);
 	GameObject* clone(const GSvector2& position);
+	void endMove();
 private:
 	void moving();
 	void gravity();
@@ -37,10 +38,10 @@ private:
 	bool isJump;
 	bool isRide;
 	float speed;
+	bool isClear;
+
 	GSvector2 respawnPos;
-
 	Scroll* scroll;
-
 	Device& device;
 };
 #endif

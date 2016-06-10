@@ -8,12 +8,12 @@
 #define JUMPSPEED 0.1
 
 Player::Player(const std::string& textrue, const MyRectangle& rect, Scroll* scroll, Device& device)
-	:GameObject(textrue, rect, PLAYER),
-	scroll(scroll), isJump(false),
-	jumpPower(0),
-	speed(6),
-	respawnPos(rect.getPosition()),
-	device(device)
+:GameObject(textrue, rect, PLAYER),
+scroll(scroll), isJump(false),
+jumpPower(0),
+speed(6),
+respawnPos(rect.getPosition()),
+device(device)
 {
 }
 Player::~Player()
@@ -26,6 +26,7 @@ void Player::initialize()
 	jumpEnd();
 	speed = 6;
 	jumpPower = 0;
+	isClear = false;
 }
 void Player::jumpEnd()
 {
@@ -34,12 +35,15 @@ void Player::jumpEnd()
 }
 void Player::updata()
 {
+
 	moving();
 	if (respawn())
 	{
 		return;
 	}
-	scroll->moving(rect.getPosition(), -GSvector2(100,100));
+	scroll->moving(rect.getPosition(), -GSvector2(100, 100));
+
+	endMove();
 	rect.translate(velocity*gsFrameTimerGetTime());
 }
 void Player::gravity()
@@ -110,6 +114,15 @@ void Player::moveHorizontal()
 	//}
 	velocity.x = device.getInput().getVelocity().x * speed;
 }
+
+void Player::endMove()
+{
+	if (!isClear) return;
+
+	velocity.x = 2.0f;
+	if (isGround == false) isDead = true;
+}
+
 //
 const  bool Player::respawn()
 {
@@ -128,7 +141,7 @@ void Player::collision(const GameObject* obj)
 	isRide = collisionStar(obj);
 	collisionRespawn(obj);
 	collisionGround(obj);
-	if (obj->isSameType(GOAL)) isDead = true;
+	if (obj->isSameType(GOAL)) isClear = true;
 }
 void Player::collisionGround(const GameObject* obj)
 {
@@ -160,6 +173,7 @@ const bool Player::collisionStar(const GameObject* obj)
 	s->pickUp(&velocity);
 	jumpEnd();
 	return true;
+
 }
 void Player::collisionRespawn(const GameObject* obj)
 {
@@ -172,5 +186,5 @@ void Player::collisionRespawn(const GameObject* obj)
 }
 GameObject* Player::clone(const GSvector2& position)
 {
-	return new Player(textrue, MyRectangle(position, rect.getSize()),scroll,device);
+	return new Player(textrue, MyRectangle(position, rect.getSize()), scroll, device);
 }
