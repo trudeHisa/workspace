@@ -29,23 +29,23 @@ void StarManger::initialize()
 {
 	stars.clear();
 }
-IStarMove* StarManger::createMove(const std::vector<std::string>& param)
+IStarMove* StarManger::createMove(const std::vector<std::string>& param,float index)
 {
-	int type = stoi(param[9]);
+	int type = stoi(param[index]);
 	switch (type)
 	{
 	case CRICLE:
-		return new Star_circle(stof(param[10]));
+		return new Star_circle(stof(param[index+1]));
 	case EIGHT:
-		return new Star_eight(stof(param[10]), stof(param[11]));
+		return new Star_eight(stof(param[index + 1]), stof(param[index + 2]));
 	case PARABOLA:
-		return new Star_paradola(stof(param[10]));
+		return new Star_paradola(stof(param[index + 1]));
 	case PENDULAM:
-		return new Star_pendulum(stof(param[10]), stof(param[11]));
+		return new Star_pendulum(stof(param[index + 1]), stof(param[index + 2]));
 	case SLASHDOWN:
-		return new Star_slashdown(GSvector2(stof(param[10]), stof(param[11])));
+		return new Star_slashdown(GSvector2(stof(param[index + 1]), stof(param[index + 2])));
 	case WAVE:
-		return new Star_wave(GSvector2(stof(param[10]), stof(param[11])), stof(param[12]));
+		return new Star_wave(GSvector2(stof(param[index + 1]), stof(param[index + 2])), stof(param[index + 3]));
 	case NOMOVE:
 		return new Star_nomove();
 	default:
@@ -64,21 +64,19 @@ Star* StarManger::createStar(const std::vector<std::string>& param)
 	GSvector2 pos(stof(param[1]), stof(param[2]));
 	GSvector2 viewSize(stof(param[3]), stof(param[4]));
 	MyRectangle rect = createRect(param);
-
-	StarMove_Ptr move = StarMove_Ptr(createMove(param));
+	float maxhelf = stof(param[9]);
+	StarMove_Ptr move = StarMove_Ptr(createMove(param,10));
 	//nonmove
-	int lastParamIndex = 9 + move->length()+1;
+	int lastParamIndex = 11 + move->length();
 
-	int type = stoi(param[0]);
-	int dorh = stof(param[lastParamIndex]);
-	switch (type)
+	switch (stoi(param[0]))
 	{
 	case DEF:
-		return new Star("star.bmp", pos, viewSize, rect, move, dorh);
+		return new Star("star.bmp", pos, viewSize, rect, maxhelf, move);
 	case BREAK:		
-		return new BreakStar("starb.bmp", pos, viewSize, rect, move, dorh);
+		return new BreakStar("starb.bmp", pos, viewSize, rect, maxhelf, move, stof(param[lastParamIndex]));
 	case BRUN:
-		return new BurnStar("starbrun.bmp", pos, viewSize, rect, move, dorh);
+		return new BurnStar("starbrun.bmp", pos, viewSize, rect, maxhelf, move);
 	}
 	return NULL;
 }

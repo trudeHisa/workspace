@@ -30,7 +30,7 @@ private:
 	void createData();
 
 	Star* createStar(const std::vector<std::string>& param);
-	IStarMove* createMove(const std::vector<std::string>& param);
+	IStarMove* createMove(const std::vector<std::string>& param, float index);
 	MyRectangle createRect(const  std::vector<std::string>& param);
 private:
 	Scroll& scroll;

@@ -16,7 +16,7 @@ GSvector2 Star_nomove::moving()
 //**óvíçà”
 int Star_nomove::length()
 {
-	return 1;
+	return 0;
 }
 
 IStarMove* Star_nomove::clone()

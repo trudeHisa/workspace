@@ -8,7 +8,9 @@
 Player::Player(const std::string& textrue, const GSvector2& position,
 	const GSvector2& viewSize, const MyRectangle& rect,
 	Scroll* scroll, Device& device)
+
 	:GameObject(textrue, position, viewSize, rect, PLAYER),
+
 	GRAVITY(10), VERTICAL(5),
 	JUMPMAXPOW(-15), JUMPSPEED(0.1),
 	JUMPVERTICAL(10),
