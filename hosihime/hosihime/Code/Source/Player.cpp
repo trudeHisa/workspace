@@ -156,6 +156,7 @@ void Player::collision(const GameObject* obj)
 	collisionStar(obj);
 	collisionRespawn(obj);
 	collisionGround(obj);
+	if (obj->getType() == GOAL) isClear = true;
 	if (obj->getType() == BURNSTAR)
 	{
 		isDead = true;

@@ -66,7 +66,6 @@ Scene GamePlay::Next()
 		return isLastStage ? MODE_ENDING : MODE_RESULT;
 	}
 	return MODE_GAMEOVER;
-
 }
 bool GamePlay::IsEnd()
 {

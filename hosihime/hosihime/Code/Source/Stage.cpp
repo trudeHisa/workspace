@@ -43,7 +43,7 @@ void Stage::updata()
 {
 	starManager.updata();
 	control.updata();
-	navigation.updata();
+	
 	timer.update();
 	if (timer.isEnd())
 	{
@@ -51,11 +51,15 @@ void Stage::updata()
 		isEnd = true;
 	}
 
-	if (control.StageClear(PLAYER))
+	if (control.StageClear())
 	{		
 		timer.stop();
 		flag = CLEARFLAG::CLEAR;
 		if (control.isDeadPlayer())isEnd = true;
+	}
+	else
+	{
+		navigation.updata();
 	}
 }
 void Stage::draw(const Renderer& renderer)

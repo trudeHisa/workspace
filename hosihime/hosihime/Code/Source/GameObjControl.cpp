@@ -104,8 +104,7 @@ bool GameObjControl::isDeadPlayer()
 	return false;
 }
 
-
-bool GameObjControl::StageClear(GAMEOBJ_TYPE _type)
+bool GameObjControl::StageClear()
 {
 	auto itr = std::find_if(objs.begin(), objs.end(), [](GameObj_Ptr obj)->bool
 	{
