@@ -45,12 +45,24 @@ private:
 	void changeAnimation(int dir);
 	const std::string getDirKey(int dir);
 private:
-	bool isGround;
+	
 	float jumpPower;
+	float speed;
 
 	bool isJump;
-	float speed;
+	bool isGround;
 	bool isClear;
+	/**
+	*リスポン中か？
+	*プレイヤーが画面外だとリスポンするため
+	*画面外にリスポンし続ける
+	*取りあえず回避するための変数
+	*
+	*********************
+	**要リファクタリング*
+	*********************
+	*/
+	bool isRespawn;
 
 	GSvector2 respawnPos;
 	Scroll* scroll;

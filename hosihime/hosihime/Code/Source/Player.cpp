@@ -9,16 +9,18 @@ Player::Player(const std::string& textrue, const GSvector2& position,
 	const GSvector2& viewSize, const MyRectangle& rect,
 	Scroll* scroll, Device& device)
 	:GameObject(textrue, position, viewSize, rect, PLAYER),
-	rideStarPointerNum(0),
 	GRAVITY(10), VERTICAL(5),
 	JUMPMAXPOW(-15), JUMPSPEED(0.1),
 	JUMPVERTICAL(10),
 	SCROLLOFFSET(GSvector2(-WINDOW_WIDTH / 2 + viewSize.x, -(WINDOW_HEIGHT / 2) - viewSize.y)),
-	scroll(scroll), isJump(false),
-	jumpPower(0),
-	speed(VERTICAL),
+
+	device(device), scroll(scroll),
 	respawnPos(position),
-	device(device),
+	rideStarPointerNum(0), jumpPower(0),
+	speed(VERTICAL), 
+	isJump(false), isRespawn(true),
+	isGround(false), isClear(false),
+
 	animation(animeTimer),
 	animeTimer(60.f),
 	currentDirAnimeKey("R")
@@ -35,6 +37,9 @@ void Player::initialize()
 	speed = VERTICAL;
 	jumpPower = 0;
 
+	isGround = false;
+	isClear = false;
+
 	currentDirAnimeKey = "R";
 	animeTimer.initialize();
 	animeTimer.setStarTimer(60.f);
@@ -42,6 +47,8 @@ void Player::initialize()
 	animation.addCell("R", 2, 3, 64, 64);//移動右
 	animation.addCell("JL", 3, 3, 64, 64);//ジャンプ左
 	animation.addCell("JR", 4, 3, 64, 64);//ジャンプ右
+
+	isRespawn = true;
 }
 void Player::jumpEnd()
 {
@@ -51,14 +58,14 @@ void Player::jumpEnd()
 void Player::updata()
 {
 	moving();
-	/*if (respawn())
+	if (respawn())
 	{
 		return;
-	}*/
+	}
 	scroll->moving(position, SCROLLOFFSET);
 	endMove();
 	position += velocity*gsFrameTimerGetTime();
-	}
+}
 void Player::gravity()
 {
 	if (isGround)
@@ -151,16 +158,31 @@ bool Player::getIsClear()
 	return isClear;
 }
 
-//
+//画面ないに映っていなかったらリスポン
 const bool Player::respawn()
 {
-	if (position.y <= WINDOW_HEIGHT + viewSize.y)
+	//view座標に変換
+	GSvector2 pos = position - scroll->getMovingAmount();
+	//画面内か？
+	if (scroll->isInsideWindow(pos, viewSize))
+	{
+		/*
+		取りあえず
+		*/
+		isRespawn = false;
+		return false;
+	}
+
+	if (isRespawn)
 	{
 		return false;
 	}
+
 	position = respawnPos;
 	velocity = GSvector2(0, 0);
 	jumpPower = 0;
+
+	isRespawn = true;
 	return true;
 }
 
@@ -182,7 +204,7 @@ void Player::collision(const GameObject* obj)
 	if (obj->getType() == BURNSTAR)
 	{
 		isDead = true;
-}
+	}
 }
 void Player::collisionGround(const GameObject* obj)
 {
@@ -193,6 +215,7 @@ void Player::collisionGround(const GameObject* obj)
 	{
 		isGround = true;
 		jumpEnd();
+
 		/*const Sound& sound = device.getSound();
 			if (!sound.IsPlaySE("Landing.wav")&&velocity.x!=0)
 			{
@@ -217,14 +240,14 @@ void Player::collisionStar(const GameObject* obj)
 	//
 	unsigned int pointerNum = (unsigned int)obj;
 	if (!isRide())
-{
-		rideStarPointerNum = pointerNum;		
+	{
+		rideStarPointerNum = pointerNum;
 		statRide(obj);
 		return;
 	}
 	if (rideStarPointerNum != pointerNum)
 	{
-		return;	
+		return;
 	}
 	statRide(obj);
 }
@@ -235,7 +258,7 @@ void Player::collisionRespawn(const GameObject* obj)
 		return;
 	}
 	const Respawn* respawn = dynamic_cast<const Respawn*>(obj);
-	respawn->setRespawn(&respawnPos.x);
+	respawn->setRespawn(&respawnPos);
 }
 void Player::nonCollision()
 {
@@ -250,7 +273,7 @@ GameObject* Player::clone(const GSvector2& position)
 
 void Player::draw(const Renderer& renderer, const Scroll& scroll)
 {
-	GSvector2 pos =position;
+	GSvector2 pos = position;
 	pos -= scroll.getMovingAmount();
 	if (!scroll.isInsideWindow(pos, viewSize))
 	{
@@ -265,7 +288,7 @@ const std::string Player::getDirKey(int dir)
 	{
 		return "R";
 	}
-	if (dir<0)
+	if (dir < 0)
 	{
 		return "L";
 	}

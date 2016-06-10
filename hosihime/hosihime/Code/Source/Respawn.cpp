@@ -13,9 +13,10 @@ void Respawn::updata()
 void Respawn::collision(const GameObject* obj)
 {
 }
-void Respawn::setRespawn(float* posx)const
+void Respawn::setRespawn(GSvector2* pos)const
 {
-	*posx= position.x;
+	pos->x = position.x;
+	pos->y = position.y - 5 * 64;
 }
 GameObject* Respawn::clone(const GSvector2& position)
 {
