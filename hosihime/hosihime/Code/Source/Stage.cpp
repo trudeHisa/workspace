@@ -4,14 +4,15 @@
 #include "CSVStream.h"
 #include "GAMEOBJ_TYPE.h"
 #include "Player.h"
+#include "NavigationUI.h"
 #define  BLOCKSIZE 64.f
 typedef std::shared_ptr<Factory> ObjFactory;
 
 Stage::Stage(const int& stageNo, Device& device)
 	:scroll(WINDOW_WIDTH, WINDOW_HEIGHT), device(device),
 	timer(60, 60), control(), starManager(scroll, control),
-	factory(ObjFactory(new GameObjectFactory(scroll, device)))
-	navigation("nav1.bmp", control, scroll)
+	factory(ObjFactory(new GameObjectFactory(scroll, device))),
+	navigation("nav1.bmp", control,scroll)
 {
 	CSVStream stream;
 	stageNames[0] = "mapdata\\\\testmap.csv";

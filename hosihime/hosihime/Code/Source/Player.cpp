@@ -129,7 +129,6 @@ void Player::moveHorizontal()
 void Player::endMove()
 {
 	if (!isClear) return;
-
 	velocity.x = 2.0f;
 	if (isGround == false) isDead = true;
 }
@@ -176,9 +175,7 @@ void Player::collisionGround(const GameObject* obj)
 			{
 			sound.PlaySE("Landing.wav");
 		}*/
-		return;
 	}
-	isGround = false;
 }
 void Player::collisionStar(const GameObject* obj)
 {
