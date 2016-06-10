@@ -25,7 +25,8 @@ public:
 private:
 	void moving();
 	void gravity();
-	void moveHorizontal();
+	//Œü‚«‚ð•Ô‚·
+	const float moveHorizontal();
 	void rideUpDown();	
 	//jump
 	void jumpStart();
@@ -42,7 +43,8 @@ private:
 	void collisionRespawn(const GameObject* obj);
 
 	//anim
-	void animation();
+	void changeAnimation(int dir);
+	const std::string getDirKey(int dir);
 private:
 	bool isGround;
 	float jumpPower;
@@ -65,9 +67,10 @@ private:
 	const float JUMPVERTICAL;
 	const GSvector2 SCROLLOFFSET;
 
-	float changedir;
-	float lr;
-	Animation anim;
-	AnimationTimer animetimer;
+	//int direction;
+	std::string currentDirAnimeKey;
+	//float lr;
+	Animation animation;
+	AnimationTimer animeTimer;
 };
 #endif

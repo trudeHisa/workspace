@@ -40,8 +40,17 @@ void Animation::updata(const std::string& initial)
 		currentCell = createCellKey(initial, cellno);
 	}
 }
-void Animation::draw(Renderer& renderer, const std::string& name, const GSvector2* position)
+void Animation::draw(const  Renderer& renderer, const std::string& name, const GSvector2* position)
 {
+	float l = cells[currentCell].left;
+	float t = cells[currentCell].top;
+	float r = cells[currentCell].right;
+	float b = cells[currentCell].bottom;
+	renderer.DrawString("l:"+std::to_string(l),&GSvector2(300,10),20);
+	renderer.DrawString("t:" + std::to_string(t), &GSvector2(300, 30), 20);
+	renderer.DrawString("r:" + std::to_string(r), &GSvector2(300, 50), 20);
+	renderer.DrawString("b:" + std::to_string(b), &GSvector2(300, 70), 20);
+
 	renderer.DrawTextrue(name, position, &cells[currentCell]);
 }
 const std::string Animation::createCellKey(const std::string& initial, int no)const

@@ -2,8 +2,9 @@
 #define _ANIMATION_H_
 #include "game.h"
 #include <string>
-#include "Renderer.h"
 #include <map>
+
+#include "Renderer.h"
 #include "AnimationTimer.h"
 class Animation
 {

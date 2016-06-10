@@ -19,15 +19,14 @@ Player::Player(const std::string& textrue, const GSvector2& position,
 	speed(VERTICAL),
 	respawnPos(position),
 	device(device),
-
-	anim(&animetimer),
-	animetimer(60.f)
+	animation(animeTimer),
+	animeTimer(60.f),
+	currentDirAnimeKey("R")
 {
 }
 Player::~Player()
 {
 	scroll = NULL;
-	animetimer = NULL;
 }
 void Player::initialize()
 {
@@ -36,14 +35,13 @@ void Player::initialize()
 	speed = VERTICAL;
 	jumpPower = 0;
 
-	animetimer.initialize();
-	animetimer.setStarTimer(60.f);
-	anim.addCell("L", 1, 3, 64, 64);//移動左
-	anim.addCell("R", 2, 3, 64, 64);//移動右
-	anim.addCell("JL", 3, 3, 64, 64);//ジャンプ左
-	anim.addCell("JR", 4, 3, 64, 64);//ジャンプ右
-	/*anim.addCell("D", 5, 3, 64, 64);
-	anim.addCell("A", 6, 3, 64, 64);*/
+	currentDirAnimeKey = "R";
+	animeTimer.initialize();
+	animeTimer.setStarTimer(60.f);
+	animation.addCell("L", 1, 3, 64, 64);//移動左
+	animation.addCell("R", 2, 3, 64, 64);//移動右
+	animation.addCell("JL", 3, 3, 64, 64);//ジャンプ左
+	animation.addCell("JR", 4, 3, 64, 64);//ジャンプ右
 }
 void Player::jumpEnd()
 {
@@ -75,9 +73,9 @@ void Player::moving()
 	gravity();
 	jumpStart();
 	rideUpDown();
-	moveHorizontal();
 	jump();
-	animation();
+
+	changeAnimation(moveHorizontal());
 }
 void Player::rideUpDown()
 {
@@ -130,14 +128,15 @@ void Player::jump()
 	Calculate<float>calc;
 	jumpPower = calc.clamp(jumpPower, JUMPMAXPOW, -JUMPMAXPOW);
 }
-void Player::moveHorizontal()
+const float Player::moveHorizontal()
 {
 	//if (!isGround && !isJump)
 	//{
 	//	return;
 	//}
-	changedir = device.getInput().getVelocity().x;
-	velocity.x = changedir* speed;
+	float direction = device.getInput().getVelocity().x;
+	velocity.x = direction* speed;
+	return direction;
 }
 
 void Player::endMove()
@@ -251,68 +250,93 @@ GameObject* Player::clone(const GSvector2& position)
 
 void Player::draw(const Renderer& renderer, const Scroll& scroll)
 {
-	GSvector2 pos = rect.getPosition();
+	GSvector2 pos =position;
 	pos -= scroll.getMovingAmount();
-	if (!scroll.isInsideWindow(pos, rect.getSize()))
+	if (!scroll.isInsideWindow(pos, viewSize))
 	{
 		return;
 	}
-	//renderer.DrawTextrue("orihime.bmp", &pos);
-	anim.draw(renderer, "orihime.bmp", &pos);
+	animation.draw(renderer, "orihime.bmp", &pos);
 }
 
-void Player::animation()
+const std::string Player::getDirKey(int dir)
 {
-	
-	//migi
-	if (changedir > 0)
+	if (dir > 0)
 	{
-		lr = 2;
-		anim.updata("R");
-		if (!isGround)
-		{
-			anim.updata("JR");
-			lr = 1;
-		}
+		return "R";
 	}
-	else if (changedir >= 0 && isGround && lr == 1)
+	if (dir<0)
 	{
-		anim.updata("R");
-		lr = 0;
+		return "L";
 	}
-	
-	//hidari
-	if (changedir < 0)
-	{
-		lr = -2;
-		anim.updata("L");
-		if (!isGround)
-		{
-			anim.updata("JL");
-			lr = -1;
-		}
-	}
-	else if (changedir <= 0 && isGround && lr == -1)
-	{
-		anim.updata("L");
-		lr = 0;
-	}
-
-	//changedir が　0 のとき
-	if (!isGround && lr == 2)
-	{
-		anim.updata("JR");
-	}
-	else if (!isGround && lr == -2)
-	{
-		anim.updata("JL");
-	}
-	else if (isGround && lr > 0)
-	{
-		anim.updata("R");
-	}
-	else if (isGround && lr < 0)
-	{
-		anim.updata("L");
-	}
+	return currentDirAnimeKey;
 }
+
+void Player::changeAnimation(int dir)
+{
+	currentDirAnimeKey = getDirKey(dir);
+	std::string stateKey = "";
+	if (isJump)
+	{
+		stateKey = "J";
+	}
+	if (isRide())
+	{
+
+	}
+	animation.updata(stateKey + currentDirAnimeKey);
+}
+//void Player::animation()
+//{	
+//	//migi
+//	if (changedir > 0)
+//	{
+//		lr = 2;
+//		animation.updata("R");
+//		if (!isGround)
+//		{
+//			animation.updata("JR");
+//			lr = 1;
+//		}
+//	}
+//	else if (changedir >= 0 && isGround && lr == 1)
+//	{
+//		animation.updata("R");
+//		lr = 0;
+//	}
+//	
+//	//hidari
+//	if (changedir < 0)
+//	{
+//		lr = -2;
+//		animation.updata("L");
+//		if (!isGround)
+//		{
+//			animation.updata("JL");
+//			lr = -1;
+//		}
+//	}
+//	else if (changedir <= 0 && isGround && lr == -1)
+//	{
+//		animation.updata("L");
+//		lr = 0;
+//	}
+//
+//	//changedir が　0 のとき
+//	if (!isGround && lr == 2)
+//	{
+//		animation.updata("JR");
+//	}
+//	else if (!isGround && lr == -2)
+//	{
+//		animation.updata("JL");
+//	}
+//	else if (isGround && lr > 0)
+//	{
+//		animation.updata("R");
+//	}
+//	else if (isGround && lr < 0)
+//	{
+//		animation.updata("L");
+//	}
+//}
