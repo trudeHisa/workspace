@@ -6,8 +6,8 @@
 
 GamePlay::GamePlay(Device& device, TimeScore& score)
 : device(device), stageName(""), stageNo(0),
-mode(0),
-score(score)
+	mode(0),
+	score(score)
 {
 }
 GamePlay::~GamePlay()
@@ -57,6 +57,7 @@ void GamePlay::modeEnd()
 void GamePlay::Draw(const Renderer& renderer)
 {
 	mode->draw(renderer);
+
 }
 void GamePlay::Finish()
 {

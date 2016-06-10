@@ -18,12 +18,16 @@ Player::Player(const std::string& textrue, const GSvector2& position,
 	jumpPower(0),
 	speed(VERTICAL),
 	respawnPos(position),
-	device(device)
+	device(device),
+
+	anim(&animetimer),
+	animetimer(60.f)
 {
 }
 Player::~Player()
 {
 	scroll = NULL;
+	animetimer = NULL;
 }
 void Player::initialize()
 {
@@ -31,8 +35,15 @@ void Player::initialize()
 	jumpEnd();
 	speed = VERTICAL;
 	jumpPower = 0;
-	rideStarPointerNum = 0;
-	isClear = false;
+
+	animetimer.initialize();
+	animetimer.setStarTimer(60.f);
+	anim.addCell("L", 1, 3, 64, 64);//移動左
+	anim.addCell("R", 2, 3, 64, 64);//移動右
+	anim.addCell("JL", 3, 3, 64, 64);//ジャンプ左
+	anim.addCell("JR", 4, 3, 64, 64);//ジャンプ右
+	/*anim.addCell("D", 5, 3, 64, 64);
+	anim.addCell("A", 6, 3, 64, 64);*/
 }
 void Player::jumpEnd()
 {
@@ -44,12 +55,12 @@ void Player::updata()
 	moving();
 	/*if (respawn())
 	{
-	return;
+		return;
 	}*/
 	scroll->moving(position, SCROLLOFFSET);
 	endMove();
 	position += velocity*gsFrameTimerGetTime();
-}
+	}
 void Player::gravity()
 {
 	if (isGround)
@@ -66,6 +77,7 @@ void Player::moving()
 	rideUpDown();
 	moveHorizontal();
 	jump();
+	animation();
 }
 void Player::rideUpDown()
 {
@@ -124,7 +136,8 @@ void Player::moveHorizontal()
 	//{
 	//	return;
 	//}
-	velocity.x = device.getInput().getVelocity().x * speed;
+	changedir = device.getInput().getVelocity().x;
+	velocity.x = changedir* speed;
 }
 
 void Player::endMove()
@@ -170,7 +183,7 @@ void Player::collision(const GameObject* obj)
 	if (obj->getType() == BURNSTAR)
 	{
 		isDead = true;
-	}
+}
 }
 void Player::collisionGround(const GameObject* obj)
 {
@@ -205,7 +218,7 @@ void Player::collisionStar(const GameObject* obj)
 	//
 	unsigned int pointerNum = (unsigned int)obj;
 	if (!isRide())
-	{		
+{
 		rideStarPointerNum = pointerNum;		
 		statRide(obj);
 		return;
@@ -234,4 +247,72 @@ void Player::nonCollision()
 GameObject* Player::clone(const GSvector2& position)
 {
 	return new Player(textrue, position, viewSize, rect, scroll, device);
+}
+
+void Player::draw(const Renderer& renderer, const Scroll& scroll)
+{
+	GSvector2 pos = rect.getPosition();
+	pos -= scroll.getMovingAmount();
+	if (!scroll.isInsideWindow(pos, rect.getSize()))
+	{
+		return;
+	}
+	//renderer.DrawTextrue("orihime.bmp", &pos);
+	anim.draw(renderer, "orihime.bmp", &pos);
+}
+
+void Player::animation()
+{
+	
+	//migi
+	if (changedir > 0)
+	{
+		lr = 2;
+		anim.updata("R");
+		if (!isGround)
+		{
+			anim.updata("JR");
+			lr = 1;
+		}
+	}
+	else if (changedir >= 0 && isGround && lr == 1)
+	{
+		anim.updata("R");
+		lr = 0;
+	}
+	
+	//hidari
+	if (changedir < 0)
+	{
+		lr = -2;
+		anim.updata("L");
+		if (!isGround)
+		{
+			anim.updata("JL");
+			lr = -1;
+		}
+	}
+	else if (changedir <= 0 && isGround && lr == -1)
+	{
+		anim.updata("L");
+		lr = 0;
+	}
+
+	//changedir が　0 のとき
+	if (!isGround && lr == 2)
+	{
+		anim.updata("JR");
+	}
+	else if (!isGround && lr == -2)
+	{
+		anim.updata("JL");
+	}
+	else if (isGround && lr > 0)
+	{
+		anim.updata("R");
+	}
+	else if (isGround && lr < 0)
+	{
+		anim.updata("L");
+	}
 }

@@ -40,7 +40,7 @@ void Animation::updata(const std::string& initial)
 		currentCell = createCellKey(initial, cellno);
 	}
 }
-void Animation::draw(const Renderer& renderer, const std::string& name, const GSvector2* position)
+void Animation::draw(Renderer& renderer, const std::string& name, const GSvector2* position)
 {
 	renderer.DrawTextrue(name, position, &cells[currentCell]);
 }
