@@ -17,7 +17,7 @@ class Device;
 class Stage
 {
 public:
-	Stage(const std::string& csvname, Device& device);
+	Stage(const int& stageNo, Device& device);
 	~Stage();
 	void updata();
 	void initialize();
@@ -31,7 +31,6 @@ private:
 	void objCreate(int x, int y);
 	void Stars_IsInScreen();
 private:
-	int BLOCKSIZE = 64;
 	bool isEnd;
 	CLEARFLAG flag;
 	Array2D<int> mapdata;	
@@ -41,5 +40,6 @@ private:
 	Timer timer;
 	Device& device;
 	std::shared_ptr<Factory> factory;
+	std::string stageNames[3];
 };
 #endif

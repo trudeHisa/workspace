@@ -21,6 +21,7 @@ public:
 	virtual void initialize();
 	virtual void finish();
 	virtual void collision(const GameObject* obj) = 0;
+	virtual void nonCollision();
 
 	virtual GameObject* clone(const GSvector2& position)=0;
 	//オブジェクトと当たっているか？

@@ -17,6 +17,7 @@ public:
 	GameObject* clone(const GSvector2& position);
 	void endMove();
 	bool getIsClear();
+	void nonCollision();
 private:
 	void moving();
 	void gravity();

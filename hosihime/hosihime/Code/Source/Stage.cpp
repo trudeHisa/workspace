@@ -7,13 +7,17 @@
 #define  BLOCKSIZE 64.f
 typedef std::shared_ptr<Factory> ObjFactory;
 
-Stage::Stage(const std::string& csvname, Device& device)
+Stage::Stage(const int& stageNo, Device& device)
 :scroll(WINDOW_WIDTH, WINDOW_HEIGHT), timer(60, 60)
 , starManager(scroll), device(device),
 factory(ObjFactory(new GameObjectFactory(scroll, device)))
 {
 	CSVStream stream;
-	stream.input(&mapdata, csvname.c_str());
+	stageNames[0] = "mapdata\\\\testmap.csv";
+	stageNames[1] = "mapdata\\\\testmap.csv";
+	stageNames[2] = "mapdata\\\\testmap.csv";
+	//std::string name = "mapdata\\\\testmap" + std::to_string(stageNo) + ".csv";
+	stream.input(&mapdata, stageNames[stageNo].c_str());
 }
 Stage::~Stage()
 {
@@ -48,7 +52,6 @@ void Stage::updata()
 		flag = CLEARFLAG::CLEAR;
 		if (control.isDeadPlayer())isEnd = true;
 	}
-
 }
 void Stage::draw(const Renderer& renderer)
 {

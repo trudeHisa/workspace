@@ -1,7 +1,7 @@
 #include "PlayMode_Select.h"
 
-PlayMode_Select::PlayMode_Select(Device& device, std::string& stageName)
-	:stageselect(device, stageName)
+PlayMode_Select::PlayMode_Select(Device& device, int& stageNo)
+	:stageselect(device, stageNo)
 {
 }
 void PlayMode_Select::initialize()

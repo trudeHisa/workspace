@@ -5,7 +5,7 @@ class Device;
 class StageSelect
 {
 public:
-	StageSelect(Device& device,std::string& stageName);
+	StageSelect(Device& device,int& stageNo);
 	void initialize();
 	void updata();
 	void draw(const Renderer& renderer);
@@ -16,9 +16,10 @@ private:
 	const std::string selectStageName()const;
 	void select();
 private:
-	std::string& stageName;
+	int& stageNo;
 	bool isend;
 	int activeNo;
 	Device& device;
+	int activeStageLength;
 };
 #endif

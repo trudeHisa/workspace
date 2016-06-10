@@ -24,7 +24,7 @@ public:
 	bool StageClear(GAMEOBJ_TYPE _type);
 private:
 	void allCollision();
-	void collision(GameObj_Ptr obj1, GameObj_Ptr obj2);
+	void collision(GameObj_Ptr obj1);//, GameObj_Ptr obj2);
 	void remove();
 private:
 	GameObjs objs;

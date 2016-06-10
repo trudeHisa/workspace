@@ -35,7 +35,6 @@ void Player::jumpEnd()
 }
 void Player::updata()
 {
-
 	moving();
 	if (respawn())
 	{
@@ -140,6 +139,11 @@ const  bool Player::respawn()
 	jumpPower = 0;
 	return true;
 }
+void Player::nonCollision()
+{
+	isGround = false;
+}
+
 //Õ“Ë
 void Player::collision(const GameObject* obj)
 {
@@ -178,7 +182,6 @@ const bool Player::collisionStar(const GameObject* obj)
 	s->pickUp(&velocity);
 	jumpEnd();
 	return true;
-
 }
 void Player::collisionRespawn(const GameObject* obj)
 {

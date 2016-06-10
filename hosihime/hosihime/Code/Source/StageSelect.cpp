@@ -2,9 +2,10 @@
 #include "Stage.h"
 #include "Calculate.h"
 #include "Device.h"
+#include "../Include/CSVStream.h"
 #define STAGELENGTH 3
-StageSelect::StageSelect(Device& device, std::string& stageName)
-	:device(device), isend(false), stageName(stageName), activeNo(0)
+StageSelect::StageSelect(Device& device, int& stageNo)
+:device(device), isend(false), stageNo(stageNo), activeNo(0)
 {
 
 }
@@ -13,14 +14,20 @@ void StageSelect::initialize()
 	activeNo = 0;
 	isend = false;
 	//device.getSound().PlaySE("Map.wav");
+	//‚b‚r‚u‚©‚çƒXƒe[ƒW‚ÌU—ªó‹µ‚ğ“Ç‚İ‚İ
+	//stageLength=“Ç‚İ‚İ
+	CSVStream stream;
+	stream.input(activeStageLength, "savedate\\\\savedate.txt");
 }
 void StageSelect::updata()
 {
 	select();
 	if (device.getInput().getActionTrigger())
 	{
-		stageName = selectStageName();
+		if (activeNo <= activeStageLength){
+		stageNo = activeNo;
 		isend = true;
+	}
 	}
 }
 const bool StageSelect::isEnd()const
@@ -54,13 +61,13 @@ const std::string StageSelect::selectStageName()const
 	return "mapdata\\\\" + datanames[activeNo];
 }
 
-void StageSelect::draw(const Renderer& renderer) 
+void StageSelect::draw(const Renderer& renderer)
 {
 	GSvector2 poss[STAGELENGTH] =
 	{
 		GSvector2(190, 570),
 		GSvector2(1035, 375),
-		GSvector2(300,135)
+		GSvector2(300, 135)
 	};
 	renderer.DrawTextrue("stageselect.bmp", &GSvector2(0, 0));
 	renderer.DrawTextrue("activeselect.bmp", &poss[activeNo], &GScolor(1, 1, 1, 0.5f));
@@ -71,5 +78,5 @@ void StageSelect::finish()
 }
 const bool StageSelect::isLastStage()const
 {
-	return activeNo == STAGELENGTH-1;
+	return activeNo == STAGELENGTH - 1;
 }

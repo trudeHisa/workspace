@@ -7,7 +7,7 @@
 #ifndef _IPLAYMODE_H_
 #define _IPLAYMODE_H_
 #include "Renderer.h"
-#include "../Include/CLEARFLAG.h"
+#include "CLEARFLAG.h"
 enum PLAYMODE
 {
 	SELECT,PLAY

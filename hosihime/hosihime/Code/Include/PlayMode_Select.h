@@ -11,7 +11,7 @@
 class PlayMode_Select :public IPlayMode
 {
 public:
-	PlayMode_Select(Device& device, std::string& stageName);
+	PlayMode_Select(Device& device,int& stageNo);
 	void initialize();
 	void updata();
 	void draw(const Renderer& renderer);

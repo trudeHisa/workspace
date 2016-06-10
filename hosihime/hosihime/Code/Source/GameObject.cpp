@@ -41,3 +41,7 @@ const bool GameObject::isCollision(const GameObject* obj)const
 {
 	return rect.intersects(&obj->rect);
 }
+void GameObject::nonCollision()
+{
+
+}

@@ -12,7 +12,7 @@ class TimeScore;
 class PlayMode_Play:public IPlayMode
 {
 public:
-	PlayMode_Play(Device& device, std::string& stageName,TimeScore& score);
+	PlayMode_Play(Device& device, int& no,TimeScore& score);
 	void initialize();
 	void updata();
 	void draw(const Renderer& renderer);
@@ -24,5 +24,6 @@ public:
 private:
 	TimeScore& score;
 	Stage stage;
+	int stageNo;
 };
 #endif
