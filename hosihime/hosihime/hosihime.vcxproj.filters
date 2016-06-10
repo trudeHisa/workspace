@@ -210,6 +210,12 @@
     <ClCompile Include="Code\Source\Collision.cpp">
       <Filter>ソース ファイル\util\shape</Filter>
     </ClCompile>
+    <ClCompile Include="Code\Source\Result.cpp">
+      <Filter>ソース ファイル\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\GameOver.cpp">
+      <Filter>ソース ファイル\scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Include\GAMEOBJ_TYPE.h">
@@ -364,6 +370,12 @@
     </ClInclude>
     <ClInclude Include="Code\Include\Segment.h">
       <Filter>ヘッダー ファイル\util\shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\Result.h">
+      <Filter>ヘッダー ファイル\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\GameOver.h">
+      <Filter>ヘッダー ファイル\scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
