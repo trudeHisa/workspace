@@ -21,6 +21,7 @@ public:
 	void add_Star(Stars_inScreen& stars);
 	void reqestClone(Star_Ptr starclone);
 	bool isDeadPlayer();
+	bool StageClear(GAMEOBJ_TYPE _type);
 private:
 	void allCollision();
 	void collision(GameObj_Ptr obj1, GameObj_Ptr obj2);

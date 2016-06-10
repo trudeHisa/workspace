@@ -7,11 +7,11 @@
 #include "Menu.h"
 #include "GamePlay.h"
 #include "Ending.h"
-#include "../Include/Result.h"
+#include "Result.h"
 #include "Device.h"
 #include "Renderer.h"
 #include "TimeScore.h"
-#include "../Include/GameOver.h"
+#include "GameOver.h"
 
 SceneManager sceneManager;
 Device device;

@@ -1,7 +1,7 @@
 #include "GameObjControl.h"
 #include "Player.h"
 #include <algorithm>
-#include "../Include/Timer.h"
+#include "Timer.h"
 GameObjControl::GameObjControl()
 {
 
@@ -91,6 +91,21 @@ bool GameObjControl::isDeadPlayer()
 
 	}
 	return false;
+}
+
+
+bool GameObjControl::StageClear(GAMEOBJ_TYPE _type)
+{
+	auto itr = std::find_if(objs.begin(), objs.end(), [](GameObj_Ptr obj)->bool
+	{
+		return obj->isSameType(PLAYER);
+	});
+	if (itr == objs.end())
+	{
+		return true;
+	}
+	GameObj_Ptr g = *itr;
+	return static_cast<Player*>(g.get())->getIsClear();
 }
 
 void GameObjControl::finish()

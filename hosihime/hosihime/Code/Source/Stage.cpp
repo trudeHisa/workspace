@@ -3,14 +3,14 @@
 #include "Device.h"
 #include "CSVStream.h"
 #include "GAMEOBJ_TYPE.h"
-
+#include "Player.h"
 #define  BLOCKSIZE 64.f
 typedef std::shared_ptr<Factory> ObjFactory;
 
 Stage::Stage(const std::string& csvname, Device& device)
-	:scroll(WINDOW_WIDTH, WINDOW_HEIGHT), timer(60,60)
-	, starManager(scroll), device(device),
-	factory(ObjFactory(new GameObjectFactory(scroll, device)))
+:scroll(WINDOW_WIDTH, WINDOW_HEIGHT), timer(60, 60)
+, starManager(scroll), device(device),
+factory(ObjFactory(new GameObjectFactory(scroll, device)))
 {
 	CSVStream stream;
 	stream.input(&mapdata, csvname.c_str());
@@ -39,21 +39,22 @@ void Stage::updata()
 	if (timer.isEnd())
 	{
 		flag = CLEARFLAG::GAMEOVER;
-		isEnd=true;
+		isEnd = true;
 	}
 
-	if (control.isDeadPlayer())
+	if (control.StageClear(PLAYER))
 	{
 		timer.stop();
 		flag = CLEARFLAG::CLEAR;
-		isEnd = true;
+		if (control.isDeadPlayer())isEnd = true;
 	}
+
 }
 void Stage::draw(const Renderer& renderer)
 {
 	scroll.draw(renderer);
-	control.draw(renderer,scroll);
-	int t = timer.getTime()/FRAMETIME;
+	control.draw(renderer, scroll);
+	int t = timer.getTime() / FRAMETIME;
 	renderer.DrawString(std::to_string(t), &GSvector2(50, 50), 50);
 }
 void Stage::finish()
@@ -82,15 +83,15 @@ void Stage::objCreate(int x, int y)
 	if (0 == data)
 	{
 		return;
-	}	
+	}
 	GSvector2 pos = GSvector2(x * BLOCKSIZE, y* BLOCKSIZE);
-	control.add(factory->create(static_cast<GAMEOBJ_TYPE>(data), pos));	
+	control.add(factory->create(static_cast<GAMEOBJ_TYPE>(data), pos));
 }
 void Stage::mapCreate()
 {
-	for (int y = 0; y < mapdata.getSize0(); y++)
+	for (int y = 0,size=mapdata.getSize0(); y <size; ++y)
 	{
-		for (int x = 0; x < mapdata.getSize1(); x++)
+		for (int x = 0, size1 = mapdata.getSize1(); x < size1; ++x)
 		{
 			objCreate(x, y);
 		}
