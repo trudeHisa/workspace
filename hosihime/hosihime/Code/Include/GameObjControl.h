@@ -4,10 +4,10 @@
 #include "StarManager.h"
 #include "StarMediator.h"
 #include <vector>
-
 #include "GameObje_Include.h"
 typedef std::vector<GameObj_Ptr> GameObjs;
 class Player;
+class Timer;
 class GameObjControl :public StarMediator
 {
 public:

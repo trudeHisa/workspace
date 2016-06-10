@@ -2,6 +2,7 @@
 GameObject.cpp
 */
 #include "GameObject.h"
+#include "../Include/Player.h"
 GameObject::GameObject(const std::string& textrue,
 	const MyRectangle& rect,const GAMEOBJ_TYPE type)
 	:textrue(textrue),rect(rect), type(type)

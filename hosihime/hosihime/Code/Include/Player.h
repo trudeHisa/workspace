@@ -16,6 +16,7 @@ public:
 	void collision(const GameObject* obj);
 	GameObject* clone(const GSvector2& position);
 	void endMove();
+	bool getIsClear();
 private:
 	void moving();
 	void gravity();

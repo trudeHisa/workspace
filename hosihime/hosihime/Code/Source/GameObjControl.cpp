@@ -1,7 +1,7 @@
 #include "GameObjControl.h"
 #include "Player.h"
 #include <algorithm>
-
+#include "../Include/Timer.h"
 GameObjControl::GameObjControl()
 {
 
@@ -88,13 +88,14 @@ bool GameObjControl::isDeadPlayer()
 	if (itr == objs.end())
 	{
 		return true;
+
 	}
 	return false;
 }
 
 void GameObjControl::finish()
 {
-
+	
 }
 
 void GameObjControl::reqestClone(Star_Ptr starclone)

@@ -123,6 +123,11 @@ void Player::endMove()
 	if (isGround == false) isDead = true;
 }
 
+bool Player::getIsClear()
+{
+	return isClear;
+}
+
 //
 const  bool Player::respawn()
 {
