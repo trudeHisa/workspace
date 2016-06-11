@@ -51,6 +51,8 @@ void Player::initialize()
 	animation.addCell("JR", 4, 3, 64, 64);//ƒWƒƒƒ“ƒv‰E
 
 	isRespawn = true;
+
+	scroll->initialize(position+SCROLLOFFSET);
 }
 void Player::jumpEnd()
 {
@@ -275,14 +277,11 @@ GameObject* Player::clone(const GSvector2& position)
 
 void Player::draw(const Renderer& renderer, const Scroll& scroll)
 {
-	GSvector2 pos = position;
-	pos -= scroll.getMovingAmount();
-
-	renderer.DrawString(std::to_string(rideStarPointerNum), &pos, 20);
-	if (!scroll.isInsideWindow(pos, viewSize))
+	if (!isInScreen(scroll))
 	{
 		return;
 	}
+	GSvector2 pos = position - scroll.getMovingAmount();
 	animation.draw(renderer, "orihime.bmp", &pos);
 }
 

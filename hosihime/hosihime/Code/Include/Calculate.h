@@ -26,6 +26,11 @@ public:
 		T rad = deg*(PI / 180.0f);
 		return rad;
 	}
+	T radToDeg(T rad)
+	{
+		return rad * 180.0f / PI;
+	}
+
 	const GSvector2 wrap(const GSvector2& value, const GSvector2& low, const GSvector2& hight)
 	{
 		GSvector2 res(0, 0);
@@ -39,7 +44,7 @@ public:
 	{
 		GSvector2 res(0, 0);
 		gsVector2Maximize(&res, &value, &low);
-		gsVector2Minimize(&res, &value, &hight);
+		gsVector2Minimize(&res, &res, &hight);
 		return res;
 	}
 };

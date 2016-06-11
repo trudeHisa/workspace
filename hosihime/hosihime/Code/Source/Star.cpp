@@ -47,13 +47,11 @@ void Star::blurdraw(const Renderer& renderer, const GSvector2& position, const G
 }
 void Star::draw(const Renderer& renderer, const Scroll& scroll)
 {
-	GSvector2 pos = position;
-	pos -= scroll.getMovingAmount();
-
-	if (!scroll.isInsideWindow(pos, viewSize))
+	if (!isInScreen(scroll))
 	{
 		return;
 	}
+	GSvector2 pos = position - scroll.getMovingAmount();
 	GSvector2 center(viewSize);
 	center /= 2;
 	pos += center;

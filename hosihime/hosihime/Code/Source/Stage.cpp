@@ -32,7 +32,7 @@ void Stage::initialize()
 	timer.initialize();
 	control.inisialize();
 	starManager.initialize();
-	scroll.initialize();
+	scroll.initialize(GSvector2(0,0));
 	mapCreate();
 	Stars_IsInScreen();
 	
@@ -73,8 +73,6 @@ void Stage::draw(const Renderer& renderer)
 	int t = timer.getTime() / FRAMETIME;
 	renderer.DrawString(std::to_string(t), &GSvector2(50, 50), 50);
 	navigation.draw(renderer,scroll);
-
-	renderer.DrawString("W:" + std::to_string(mapSize.x) + ",H:" + std::to_string(mapSize.y), &GSvector2(100, 100), 20);
 }
 void Stage::finish()
 {

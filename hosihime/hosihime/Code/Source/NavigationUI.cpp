@@ -5,8 +5,8 @@
 NavigationUI::NavigationUI(const std::string& textrue, IMediator& mediator, const Scroll& scroll)
 	:GameObject(textrue, GSvector2(0, 0),
 	GSvector2(64, 64), MyRectangle(0, 0, 0, 0), UI),
-	mediator(mediator), scroll(scroll), respawns(),
-	isDraw(true), angle(0), debrect(0, 0, 0, 0)
+	mediator(mediator), scroll(scroll), priority(),
+	isDraw(true), angle(0)
 {
 }
 
@@ -17,90 +17,110 @@ NavigationUI::~NavigationUI()
 void NavigationUI::initialize()
 {
 	GameObject::initialize();
-	respawns.clear();
+	priority.clear();
+
+	//リスポンをゲット
+	std::vector<GameObj_Ptr>respawns;
 	mediator.gets(&respawns, RESPAWN);
+
+	/**
+	*スタート地点との距離でソート
+	*近い順
+	*/
+	GSvector2 startPos = mediator.get(START)->getPosition();
+
+	std::sort(respawns.begin(), respawns.end(),
+		[&](GameObj_Ptr obj1, GameObj_Ptr obj2)
+	{
+		return  obj1->getPosition().distance(startPos) < obj2->getPosition().distance(startPos);
+	});
+
+	//近いリスポンから順に優先度iで登録
+	for (unsigned int i = 0; i < respawns.size(); i++)
+	{
+		priority.insert(std::pair<GameObj_Ptr, int>(respawns[i], i));
+	}
+
 	isDraw = true;
 	angle = 0;
 }
 void NavigationUI::updata()
 {
-	/**
-	*ゴールとプレイヤーの間にあるリスポーンの割り出しができていない
-	*/
-	/*std::vector<GameObj_Ptr>between;
-	between.clear();
-	between_Player_Goal(&between);*/
+	GameObj_Ptr target = nearTarget(priorityHigh_Respawn());
+
+	targetInScreen(target);
+	GSvector2 targetCenterPos = target->getPosition() + (target->getViewSize()*0.5f);
+	GSvector2 targetViewPos = targetCenterPos - scroll.getMovingAmount();
 
 	/*
-	*プレイヤーと一番近いリスポーンの特定
+	targetの位置を画面内にクランプして
+	描画位置に位置を代入
 	*/
-	GSvector2 playerPos = mediator.get(PLAYER)->getPosition();
-	auto min = std::min_element(respawns.begin(),respawns.end(), //between.begin(), between.end(),
-		[&](GameObj_Ptr obj1, GameObj_Ptr obj2)
-	{
-		return  obj1->getPosition().distance(playerPos) < obj2->getPosition().distance(playerPos);
-	});
-	GameObj_Ptr minptr = 0;
-	if (min !=respawns.end()) // between.end())
-	{
-		minptr = *min;
-	}
-
-	MyRectangle target = targetRect(minptr);
-
-	/*
-	*targetをview座標に変換
-	*targetが画面に映っていたらナビを表示しない
-	*/
-	position = target.getPosition();
-	GSvector2 targetViewPos = position - scroll.getMovingAmount();
-//	isDraw = !scroll.isInsideWindow(targetViewPos, target.getSize());
+	position = viewClmp(targetViewPos);
 
 	/*
 	*回転角度
 	*/
-	GSvector2 pos = position - scroll.getMovingAmount();
-	GSvector2 v =pos - target.getPosition();
-	angle = v.degree(pos);
-}
-void NavigationUI::between_Player_Goal(std::vector<GameObj_Ptr>* out)
-{
-	GSvector2 playerPos = mediator.get(PLAYER)->getPosition();
-	GSvector2 size = playerPos - mediator.get(GOAL)->getPosition();
+	GSvector2 v =targetViewPos- (position + (viewSize*0.5f));
+	Calculate<float>calc;
+	angle = calc.radToDeg(std::atan2(v.y, v.x));
 
-	MyRectangle playerForGoal(playerPos, size);
-	debrect = playerForGoal;
-	for each (GameObj_Ptr obj in respawns)
+
+	if (target->getType() == RESPAWN)
 	{
-		MyRectangle rect(obj->getPosition(), obj->getRect().getSize());
-		if (rect.intersects(&playerForGoal))
-		{
-			out->emplace_back(obj);
-		}
+		textrue = "nav2.bmp";
+		return;
 	}
-}
-
-const MyRectangle NavigationUI::targetRect(GameObj_Ptr min)
-{
-	GameObj_Ptr goal = mediator.get(GOAL);
-	MyRectangle target(goal->getPosition(), goal->getRect().getSize());
 	textrue = "nav1.bmp";
-	if (min == 0)
-	{
-		return target;
-	}
-	GSvector2 playerPos = mediator.get(PLAYER)->getPosition();
-	if (target.getPosition().distance(playerPos) < min->getPosition().distance(playerPos))
-	{
-		return target;
-	}
-	textrue = "nav2.bmp";
-	return MyRectangle(min->getPosition(), min->getRect().getSize());
 }
-const GSvector2 NavigationUI::viewClmp(const GSvector2& position)
+const GameObj_Ptr NavigationUI::priorityHigh_Respawn()const
+{
+	auto min = std::min_element(priority.begin(), priority.end(),
+		[](std::pair<GameObj_Ptr, int> value1, std::pair<GameObj_Ptr, int> value2)
+	{
+		return  value1.second < value2.second;
+	});
+	return min->first;
+}
+
+void NavigationUI::targetInScreen(const GameObj_Ptr target)
+{
+	if (!target->isInScreen(scroll))
+	{
+		//画面外
+		isDraw = true;
+		return;
+	}
+	//画面内
+	isDraw = false;
+	if (target->getType() != RESPAWN)
+	{
+		return;
+	}
+	/**
+	*ターゲットがリスポンなら優先度を下げる
+	*(値を上げる)
+	*/
+	priority.at(target) += priority.size();
+}
+
+const GameObj_Ptr NavigationUI::nearTarget(const GameObj_Ptr& min)const
+{
+	const GameObj_Ptr& goal = mediator.get(GOAL);
+	GSvector2 goalPos = goal->getPosition();
+
+	GSvector2 playerPos = mediator.get(PLAYER)->getPosition();
+	if (goalPos.distance(playerPos) < min->getPosition().distance(playerPos))
+	{
+		return goal;
+	}
+	return min;
+}
+
+const GSvector2 NavigationUI::viewClmp(const GSvector2& position)const
 {
 	GSvector2 halfSize = viewSize;
-	//halfSize /= 2;
+	halfSize /= 2;
 	GSvector2 windowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 	Calculate<float>calc;
 	return calc.clamp(position, halfSize, windowSize - halfSize);
@@ -108,26 +128,16 @@ const GSvector2 NavigationUI::viewClmp(const GSvector2& position)
 
 void NavigationUI::draw(const Renderer& renderer, const Scroll& scroll)
 {
-	GSvector2 pos = position - scroll.getMovingAmount();
 	if (!isDraw)
 	{
 		return;
 	}
-	renderer.DrawString(
-		"x:" + std::to_string(debrect.getPosition().x) +
-		",y:" + std::to_string(debrect.getPosition().y)
-		, &GSvector2(10, 10), 20);
-
-	renderer.DrawString(
-		"w:" + std::to_string(debrect.getSize().x) +
-		",h:" + std::to_string(debrect.getSize().y),
-		&GSvector2(10, 30), 20);
 	GSvector2 center = viewSize;
-	//center /= 2;
-
-	renderer.DrawTextrue(textrue, &viewClmp(pos), NULL, &center, NULL, angle, NULL);
+	center /= 2;
+	renderer.DrawTextrue(textrue, &position, NULL, &center, NULL, angle, NULL);
 }
 void NavigationUI::collision(const GameObject* obj){}
-GameObject* NavigationUI::clone(const GSvector2& position){
+GameObject* NavigationUI::clone(const GSvector2& position)
+{
 	return new NavigationUI(textrue, mediator, scroll);
 }

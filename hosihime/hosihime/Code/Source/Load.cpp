@@ -39,8 +39,8 @@ bool Load::IsEnd()
 void Load::loadTextrue()
 {
 
-	renderer.LoadTextrue("nav1.bmp");
-	renderer.LoadTextrue("nav2.bmp");
+	renderer.LoadTextrue("nav1.bmp", GS_TEXCOLOR_KEY_WHITE);
+	renderer.LoadTextrue("nav2.bmp", GS_TEXCOLOR_KEY_WHITE);
 	renderer.LoadTextrue("starbrun.bmp", GS_TEXCOLOR_KEY_AUTO);
 
 	renderer.LoadTextrue("anim.bmp");

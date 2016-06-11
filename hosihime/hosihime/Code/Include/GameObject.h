@@ -28,10 +28,16 @@ public:
 	virtual GameObject* clone(const GSvector2& position)=0;
 	//オブジェクトと当たっているか？
 	const bool isCollision(const GameObject* obj)const;
+
+	const bool isInScreen(const Scroll& scroll)const;
 public:
+	/*
+	減らしたい
+	*/
 	const bool getIsDead()const;
 	const GAMEOBJ_TYPE getType()const;
 	const GSvector2& getPosition()const;
+	const GSvector2& getViewSize()const;
 	const MyRectangle& getRect()const;
 protected:	
 	std::string textrue;//テクスチャ名
@@ -42,5 +48,4 @@ protected:
 	bool isDead;
 	GSvector2 velocity;//毎フレームごとの速度
 };
-
 #endif

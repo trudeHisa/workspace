@@ -17,13 +17,11 @@ GameObject::~GameObject()
 }
 void GameObject::draw(const Renderer& renderer, const Scroll& scroll)
 {
-	GSvector2 pos = position;
-	pos-= scroll.getMovingAmount();
-	
-	if (!scroll.isInsideWindow(pos, viewSize))
+	if (!isInScreen(scroll))
 	{
 		return;
 	}
+	GSvector2 pos = position - scroll.getMovingAmount();
 	renderer.DrawTextrue(textrue, &pos);
 }
 void GameObject::initialize()
@@ -33,6 +31,16 @@ void GameObject::initialize()
 }
 void GameObject::finish()
 {
+}
+const bool GameObject::isInScreen(const Scroll& scroll)const
+{
+	GSvector2 viewPos = position -scroll.getMovingAmount();
+	return scroll.isInsideWindow(viewPos, viewSize);
+}
+
+const GSvector2& GameObject::getViewSize()const
+{
+	return viewSize;
 }
 const bool GameObject::getIsDead()const
 {

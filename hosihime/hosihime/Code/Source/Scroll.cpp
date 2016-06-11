@@ -7,9 +7,9 @@ Scroll::Scroll(float widht, float height,const GSvector2& maxMapSize)
 	s(0, 0, 1, 1), t(0, 1, 1, 0)
 {
 }
-void Scroll::initialize()
+void Scroll::initialize(const GSvector2& moving)
 {
-	movingAmount = GSvector2(0, 0);
+	movingAmount = moving;
 	isStart = true;
 	mode = MODE_OMNIDIRECTIONAL;
 }

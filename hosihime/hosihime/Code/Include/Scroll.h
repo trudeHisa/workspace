@@ -13,7 +13,10 @@ class Scroll
 {
 public:
 	Scroll(float widht, float height, const GSvector2& maxMapSize);
-	void initialize();
+	/*
+	*movingAmount‚Ì’l‚ğ“ü‚ê‚é
+	*/
+	void initialize(const GSvector2& moving);
 	void draw(const Renderer& renderer);
 	//Scrollˆ—
 	void moving(const GSvector2& position, const GSvector2& offset=GSvector2(0,0));
