@@ -40,11 +40,13 @@ void Stage::initialize()
 	navigation.initialize();
 	flag = CLEARFLAG::PLAYING;
 	mapSize = GSvector2(mapdata.getSize1(),mapdata.getSize0())*BLOCKSIZE;
+
+	fade.initialize();
 }
 void Stage::updata()
 {
 	// èåèèoÇµÇƒÇ‡Ç¡Ç∆Ç´ÇÍÇ¢Ç…
-
+	fade.updata();
 	starManager.updata();
 	control.updata();
 	
@@ -59,7 +61,15 @@ void Stage::updata()
 	{		
 		timer.stop();
 		flag = CLEARFLAG::CLEAR;
-		if (control.isDeadPlayer())isEnd = true;
+		if (!fade.getIsStart())
+		{
+			fade.start(GScolor(0, 0, 0, 0), GScolor(0,0,0, 1), 4);
+		}
+		
+		if (fade.getIsEnd())
+		{
+			if (control.isDeadPlayer())isEnd = true;
+		}		
 	}
 	else
 	{
@@ -73,6 +83,7 @@ void Stage::draw(const Renderer& renderer)
 	int t = timer.getTime() / FRAMETIME;
 	renderer.DrawString(std::to_string(t), &GSvector2(50, 50), 50);
 	navigation.draw(renderer,scroll);
+	fade.draw(renderer);
 }
 void Stage::finish()
 {

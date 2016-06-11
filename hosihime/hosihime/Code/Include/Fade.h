@@ -13,13 +13,15 @@ public:
 	void start(const GScolor& startColor, const GScolor& endColor, float time/*second*/);
 
 	void stop();
-	const bool isEnd()const;
+	/*startÇµÇƒÇÈÇ©ÅH*/
+	const bool getIsStart()const;
+	const bool getIsEnd()const;
 	//void setMode(FadeMode mode)
 	void draw(const Renderer& renderer);
 private:
-	bool isend;
+	bool isEnd;
 	bool isStart;
-	float time; 
+	float time; /*delta*/
 	float currentTime;
 	GScolor startColor;
 	GScolor endColor;

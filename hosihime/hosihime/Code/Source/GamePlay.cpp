@@ -23,7 +23,6 @@ void GamePlay::Init()
 }
 void GamePlay::Update()
 {
-	fade.updata();
 	mode->updata();
 	if (device.getInput().getDebugResetTrigger())
 	{

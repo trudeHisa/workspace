@@ -1,7 +1,7 @@
 #include "Fade.h"
 
 Fade::Fade()
-	:isStart(false), isend(false),
+	:isStart(false), isEnd(false),
 	time(0), currentTime(0),
 	startColor(0, 0, 0, 0),
 	endColor(0, 0, 0, 0)
@@ -15,7 +15,7 @@ Fade::~Fade()
 void Fade::initialize()
 {
 	isStart = false;
-	isend = false;
+	isEnd = false;
 	time = 0; //delta
 	currentTime = 0;
 	startColor = GScolor(0, 0, 0, 0);
@@ -34,7 +34,7 @@ void Fade::updata()
 		return;
 	}
 	currentColor = endColor;
-	isend = true;
+	isEnd = true;
 }
 void Fade::start(const GScolor& startColor, const GScolor& endColor, float time/*second*/)
 {
@@ -43,16 +43,22 @@ void Fade::start(const GScolor& startColor, const GScolor& endColor, float time/
 	this->endColor = endColor;
 	this->time = time*60.0f;
 	currentTime = 0;
-	isend =false;
+	isEnd =false;
 }
 
 void Fade::stop()
 {
 	isStart = false;
 }
-const bool Fade::isEnd()const
+
+const bool Fade::getIsStart()const
 {
-	return isend;
+	return isStart;
+}
+
+const bool Fade::getIsEnd()const
+{
+	return isEnd;
 }
 /*void setMode(FadeMode mode)
 {

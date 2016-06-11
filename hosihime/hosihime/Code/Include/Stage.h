@@ -1,20 +1,20 @@
 #ifndef _STAGE_H_
 #define _STAGE_H_
 
+#include<memory>
+
 #include "Renderer.h"
 #include "GameObjControl.h"
 #include "StarManager.h"
-#include "../Include/CLEARFLAG.h"
+#include "CLEARFLAG.h"
 #include "Scroll.h"
 #include "Array2D.h"
 #include "Timer.h"
 #include "TimeScore.h"
 #include "GameObjectFactory.h"
-
 #include "NavigationUI.h"
-#include<memory>
+#include "Fade.h"
 class Device;
-
 
 class Stage
 {
@@ -45,7 +45,8 @@ private:
 	std::string stageNames[3];
 	NavigationUI navigation;
 	GSvector2 mapSize;
-	
+	Fade fade;
+
 	const float BLOCKSIZE;
 };
 #endif
