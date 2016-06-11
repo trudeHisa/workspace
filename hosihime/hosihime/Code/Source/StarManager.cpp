@@ -64,6 +64,14 @@ Star* StarManger::createStar(const std::vector<std::string>& param)
 	GSvector2 pos(stof(param[1]), stof(param[2]));
 	GSvector2 viewSize(stof(param[3]), stof(param[4]));
 	MyRectangle rect = createRect(param);
+
+	/*
+	*星の生成位置との距離を測り
+	*helf以上になったら消えるようになっている
+	*
+	*星のピックアップ処理は
+	*　生成位置とプレイヤーの距離とhelfを比べたら良いかも!?
+	*/
 	float maxhelf = stof(param[9]);
 	StarMove_Ptr move = StarMove_Ptr(createMove(param,10));
 	//nonmove

@@ -24,6 +24,10 @@ public:
 	GameObj_Ptr get(GAMEOBJ_TYPE type);
 	void gets(std::vector<GameObj_Ptr>* out, GAMEOBJ_TYPE type);
 private:
+	/**
+	*描画順ソート
+	*Enumの数値でソートしている
+	*/
 	void drawOderSort();
 	void allCollision();
 	const bool isCollision(GameObj_Ptr obj1, GameObj_Ptr obj2);
