@@ -23,13 +23,21 @@ public:
 	}
 	T degTorad(T deg)
 	{
-		T rad=deg*(PI/180.0f);
+		T rad = deg*(PI / 180.0f);
 		return rad;
 	}
-	//Vectorのクランプ
-	GSvector2 clamp(const GSvector2& value, const GSvector2& low, const GSvector2& hight)
+	const GSvector2 wrap(const GSvector2& value, const GSvector2& low, const GSvector2& hight)
 	{
-		GSvector2 res(0,0);
+		GSvector2 res(0, 0);
+		res.x = wrap(value.x, low.x, hight.x);
+		res.y = wrap(value.y, low.y, hight.y);
+		return res;
+	}
+
+	//Vectorのクランプ
+	const GSvector2 clamp(const GSvector2& value, const GSvector2& low, const GSvector2& hight)
+	{
+		GSvector2 res(0, 0);
 		gsVector2Maximize(&res, &value, &low);
 		gsVector2Minimize(&res, &value, &hight);
 		return res;

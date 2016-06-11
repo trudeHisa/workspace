@@ -14,10 +14,17 @@ public:
 	void collision(const GameObject* obj);
 	GameObject* clone(const GSvector2& position) ;
 private:
-	void remove();
+
 	void between_Player_Goal(std::vector<GameObj_Ptr>* out);
-	//targetの位置とサイズを返す
+	/*
+	*一番近いリスポーンの位置とサイズ
+	*リスポンがない場合またはゴールがいちばん近い場合は
+	*ゴールの位置とサイズ
+	*/
 	const MyRectangle targetRect(GameObj_Ptr min);
+	/*
+	*画面内に収まるように
+	*/
 	const GSvector2 viewClmp(const GSvector2& position);
 private:
 	IMediator& mediator;

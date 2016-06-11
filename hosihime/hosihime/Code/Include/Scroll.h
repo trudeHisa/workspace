@@ -28,7 +28,6 @@ public:
 	void start();
 	bool isStop();
 private:
-	void st_Wrap(GSvector2* st);
 	void backGroundScroll(const GSvector2& speed);
 private:
 	SCROLL_MODE mode;

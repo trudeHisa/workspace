@@ -88,7 +88,7 @@ void Player::moving()
 }
 void Player::rideUpDown()
 {
-	if (!isRide())
+	if (rideStarPointerNum == 0)
 	{
 		return;
 	}
@@ -192,10 +192,10 @@ const bool Player::respawn()
 *èÊÇ¡ÇƒÇ¢ÇΩÇÁtrue
 *0ÇÃéûÇÕèÊÇ¡ÇƒÇ¢Ç»Ç¢
 */
-const bool Player::isRide()const
-{
-	return rideStarPointerNum != 0;
-}
+//const bool Player::isRide()const
+//{
+//	return rideStarPointerNum != 0;
+//}
 //è’ìÀ
 void Player::collision(const GameObject* obj)
 {
@@ -241,9 +241,9 @@ void Player::collisionStar(const GameObject* obj)
 	}
 	//
 	unsigned int pointerNum = (unsigned int)obj;
-	if (!isRide())
+	if (rideStarPointerNum == 0)
 	{
-		rideStarPointerNum = pointerNum;
+ 		rideStarPointerNum = pointerNum;
 		statRide(obj);
 		return;
 	}
@@ -277,6 +277,8 @@ void Player::draw(const Renderer& renderer, const Scroll& scroll)
 {
 	GSvector2 pos = position;
 	pos -= scroll.getMovingAmount();
+
+	renderer.DrawString(std::to_string(rideStarPointerNum), &pos, 20);
 	if (!scroll.isInsideWindow(pos, viewSize))
 	{
 		return;
@@ -305,10 +307,10 @@ void Player::changeAnimation(int dir)
 	{
 		stateKey = "J";
 	}
-	if (isRide())
-	{
+	//if (isRide())
+	//{
 
-	}
+	//}
 	animation.updata(stateKey + currentDirAnimeKey);
 }
 //void Player::animation()

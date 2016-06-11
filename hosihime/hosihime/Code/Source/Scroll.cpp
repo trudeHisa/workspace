@@ -23,24 +23,20 @@ const bool Scroll::isInsideWindow(const GSvector2& pos, const GSvector2& size)co
 	MyRectangle rect(pos, size);
 	return rect.intersects(&windowSize);
 }
-void Scroll::st_Wrap(GSvector2* st)
-{
-	Calculate<float>calc;
-	st->x = calc.wrap(st->x, -1.0f, 1.0f);
-	st->y = calc.wrap(st->y, -1.0f, 1.0f);
-}
 void Scroll::backGroundScroll(const GSvector2& speed)
 {
 	scroll_st += speed;
-	st_Wrap(&scroll_st);
+
+	Calculate<float>calc;
+	GSvector2 oneVec(1.0f, 1.0f);
+	scroll_st = calc.wrap(scroll_st, oneVec*-1.0f, oneVec);
+
 	// 横 	
-	//scroll_st.x = calc.wrap(scroll_ts + speed.x, -1.0f, 1.0f);
 	s.left = 1.0f + scroll_st.x;
 	s.top = 1.0f + scroll_st.x;
 	s.right = scroll_st.x;
 	s.bottom = scroll_st.x;
 	// 縦
-	//scroll_tt = calc.wrap(scroll_tt -speed.y , -1.0f, 1.0f);
 	t.left = scroll_st.y;
 	t.top = 1.0f + scroll_st.y;
 	t.right = 1.0f + scroll_st.y;
@@ -65,7 +61,7 @@ void Scroll::moving(const GSvector2&  position, const GSvector2& offset)
 	movingAmount = lerp;
 
 	/**
-	*差分をテクスチャサイズ(WindowSize)に変換
+	*差分をテクスチャサイズに変換
 	*/
 	margin /= windowSize.getSize();
 	//上下speed反転
