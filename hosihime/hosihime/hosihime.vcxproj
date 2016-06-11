@@ -20,6 +20,7 @@
     <ClCompile Include="Code\Source\CSVStream.cpp" />
     <ClCompile Include="Code\Source\Device.cpp" />
     <ClCompile Include="Code\Source\Ending.cpp" />
+    <ClCompile Include="Code\Source\Fade.cpp" />
     <ClCompile Include="Code\Source\game.cpp" />
     <ClCompile Include="Code\Source\GameObjControl.cpp" />
     <ClCompile Include="Code\Source\GameObject.cpp" />
@@ -73,6 +74,7 @@
     <ClInclude Include="Code\Include\Device.h" />
     <ClInclude Include="Code\Include\Ending.h" />
     <ClInclude Include="Code\Include\Factory.h" />
+    <ClInclude Include="Code\Include\Fade.h" />
     <ClInclude Include="Code\Include\game.h" />
     <ClInclude Include="Code\Include\GameObjControl.h" />
     <ClInclude Include="Code\Include\GameObject.h" />

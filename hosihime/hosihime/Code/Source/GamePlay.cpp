@@ -5,7 +5,7 @@
 #include "PlayMode_Select.h"
 
 GamePlay::GamePlay(Device& device, TimeScore& score)
-: device(device), stageName(""), stageNo(0),
+	: device(device), stageName(""), stageNo(0),
 	mode(0),
 	score(score)
 {
@@ -23,6 +23,7 @@ void GamePlay::Init()
 }
 void GamePlay::Update()
 {
+	fade.updata();
 	mode->updata();
 	if (device.getInput().getDebugResetTrigger())
 	{
@@ -43,7 +44,7 @@ void GamePlay::modeEnd()
 		return;
 	}
 	mode->finish();
-	
+
 	//mode“à‚ÅƒZƒŒƒNƒg‚µ‚½‚¢
 	if (mode->getMode() == SELECT)
 	{
@@ -57,7 +58,6 @@ void GamePlay::modeEnd()
 void GamePlay::Draw(const Renderer& renderer)
 {
 	mode->draw(renderer);
-
 }
 void GamePlay::Finish()
 {

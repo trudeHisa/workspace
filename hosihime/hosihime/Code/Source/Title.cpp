@@ -12,12 +12,14 @@ Title::~Title()
 }
 void Title::Init()
 {
+
 //	device.getSound().StopSE("Ending.wav");
 	//device.getSound().PlaySE("Opening.wav");
 	isEnd = false;	
 }
 void Title::Update()
 {
+	
 	isEnd =device.getInput().getActionTrigger();
 }
 void Title::Draw(const Renderer& renderer)
@@ -25,6 +27,7 @@ void Title::Draw(const Renderer& renderer)
 	renderer.DrawTextrue("title.bmp", &GSvector2(0, 0));
 	renderer.DrawTextrue("titletext.bmp", &GSvector2(200, 120));
 	renderer.DrawTextrue("spacetext.bmp", &GSvector2(480, 540));
+
 }
 void Title::Finish()
 {

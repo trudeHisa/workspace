@@ -1,6 +1,7 @@
 #ifndef _TITLE_H_
 #define _TITLE_H_
 #include "IScene.h"
+
 class Device;
 class Title :public IScene
 {
@@ -14,6 +15,7 @@ public:
 	Scene Next();
 	bool IsEnd();
 private:
+	
 	Device& device;
 	bool isEnd;
 	int index;//‘I‘ğˆŠÇ—

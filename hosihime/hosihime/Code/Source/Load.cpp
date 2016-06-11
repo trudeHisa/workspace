@@ -13,6 +13,7 @@ Load::~Load()
 void Load::Init()
 {
 	isEnd = false;
+	
 }
 void Load::Update()
 {

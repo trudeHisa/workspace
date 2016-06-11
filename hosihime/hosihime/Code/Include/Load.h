@@ -1,6 +1,9 @@
 #ifndef _LOAD_H_
 #define _LOAD_H_
 #include "IScene.h"
+
+#include <thread>
+
 class Device;
 class Renderer;
 class Load :public IScene

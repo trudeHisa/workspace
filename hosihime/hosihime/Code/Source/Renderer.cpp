@@ -15,6 +15,35 @@ void Renderer::Release()
 	}
 	container.clear();
 }
+void Renderer::DrawFillRectangle(
+	const GSrect*    pSrcRect,
+	const GSvector2* pCenter,
+	const GSvector2* pScaling,
+	GSfloat          fRotation,
+	const GSvector2* pTranslation,
+	const GScolor*    pColor
+	) const
+{
+	disables();
+	GScolor CurrentColor;
+	glGetFloatv(GL_CURRENT_COLOR, (GLfloat*)&CurrentColor);
+
+	draw2DSetting();
+	setParameter(pCenter, pScaling, fRotation, pTranslation, pColor);
+
+	GSvector2 texSize = getTexSize(pSrcRect,0,0);
+	GSrect uv(0,0,1,1);
+
+	drawQuad(uv,texSize);
+
+	glPopMatrix();
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+	glColor4fv((GLfloat*)&CurrentColor);
+	glPopAttrib();
+}
+
 void Renderer::DrawSprite2D(
 	GSuint           uTextureID,
 	const GSrect*    pSrcRect,
@@ -135,7 +164,6 @@ void Renderer::drawQuad(const GSrect& rTexCoord,const GSvector2& size)const
 	glVertex2f(size.x, 0);
 	glEnd();
 }
-
 void Renderer::DrawTextrue(const std::string& name, const GSvector2* _position)const
 {
 	DrawSprite2D(container.at(name), NULL, NULL, NULL, NULL, _position, &GScolor(1, 1, 1, 1));
@@ -223,4 +251,23 @@ void Renderer::drawQuadScroll(const GSrect& s, const GSrect& t, const GSvector2&
 	glTexCoord2f(s.bottom, t.bottom);
 	glVertex2f(size.x, 0);
 	glEnd();
+}
+void Renderer::DrawFillRect(const GSvector2* _position, const GSrect* _rect, const GScolor* _color)const
+{
+	DrawFillRectangle(_rect, NULL, NULL, NULL, _position, _color);
+}
+void Renderer::DrawFillRect(const GSvector2* _position, const GSrect* _rect, const GSvector2* _scaling, const GScolor* _color)const
+{
+	DrawFillRectangle(_rect, NULL, _scaling, NULL, _position, _color);
+}
+void Renderer::DrawFillRect(
+	const GSvector2* _position,
+	const GSrect*    _rect,
+	const GSvector2* _center,
+	const GSvector2* _scaling,
+	GSfloat          _rotation,
+	const GScolor*    _color
+	)const
+{
+	DrawFillRectangle(_rect, _center, _scaling, _rotation, _position, _color);
 }

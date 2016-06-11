@@ -12,6 +12,21 @@ public:
 		const GSenum colorKeyMode = GS_TEXCOLOR_KEY_DISABLE,
 		const std::string& ps = "Textrue\\\\");
 	void Release();
+
+	/*
+	*テクスチャなし
+	*/
+	void DrawFillRect(const GSvector2* _position, const GSrect* _rect, const GScolor* _color)const;
+	void DrawFillRect(const GSvector2* _position, const GSrect* _rect, const GSvector2* _scaling, const GScolor* _color)const;
+	void DrawFillRect(
+		const GSvector2* _position,
+		const GSrect*    _rect,
+		const GSvector2* _center,
+		const GSvector2* _scaling,
+		GSfloat          _rotation,
+		const GScolor*    _color
+		)const;
+
 	void DrawTextrue(const std::string& name, const GSvector2* _position)const;
 	void DrawTextrue(const std::string& name, const GSvector2* _position, const GSrect* _rect)const;
 	void DrawTextrue(const std::string& name, const GSvector2* _position, const GScolor* _color)const;
@@ -54,6 +69,14 @@ private:
 	const GSrect getTexCoord(const GSrect* rect, GLsizei sTexWidth, GLsizei sTexHeight)const;
 	const GSvector2 getTexSize(const GSrect* rect, GLsizei sTexWidth, GLsizei sTexHeight)const;
 	void drawQuad(const GSrect& rTexCoord,const GSvector2& size)const;
+	void DrawFillRectangle(
+		const GSrect*    pSrcRect,
+		const GSvector2* pCenter,
+		const GSvector2* pScaling,
+		GSfloat          fRotation,
+		const GSvector2* pTranslation,
+		const GScolor*    pColor
+		) const;
 	void DrawSprite2D(
 		GSuint           uTextureID,
 		const GSrect*    pSrcRect,

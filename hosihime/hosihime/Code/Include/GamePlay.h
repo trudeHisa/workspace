@@ -6,6 +6,7 @@
 #include <memory>
 class Device;
 typedef std::shared_ptr<IPlayMode> Mode;
+
 class GamePlay :public IScene
 {
 public:
