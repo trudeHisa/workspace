@@ -5,7 +5,6 @@ Star::Star(const std::string& textrue, const GSvector2& position,
 	const GSvector2& viewSize, const MyRectangle& rect, float helth, StarMove_Ptr move)
 	:GameObject(textrue, position, viewSize, rect,STAR),
 	move(move), startPosi(position), angle(0), helth(helth)
-	//,animTimer(6),animation(animTimer),activeAnimKey(1)//5,4:64:64
 {
 }
 Star::~Star()
@@ -16,32 +15,19 @@ void Star::initialize()
 	velocity = GSvector2(0, 0);
 	isDead = false;
 	angle = 0;
-	//animTimer.initialize();
-	//for (int i = 1; i <5; i++)
-	//{
-	//	animation.addCell(std::to_string(i),i, 5, viewSize.x, viewSize.y);
-	//}	
-	//activeAnimKey = 1;
 }
 void Star::updata()
 {
-	//animTimer.updata();
-	//if (animTimer.isZero())
-	//{
-	//	Calculate<int>calc;
-	//	activeAnimKey=calc.wrap(activeAnimKey+1,1, 4);
-	//}
-	//animation.updata(std::to_string(activeAnimKey));
-
 	velocity = move->moving();
 	rotate();
 
 	position += velocity*gsFrameTimerGetTime();
 
 	//éOïΩï˚ÇÃíËóù
-	if (helth - std::hypotf(
+	/*if (helth - std::hypotf(
 		fabs(position.x - startPosi.x),
-		fabs(position.y - startPosi.y)) < 0)
+		fabs(position.y - startPosi.y)) < 0)*/
+	if (helth<position.distance(startPosi))
 	{
 		isDead = true;
 	}

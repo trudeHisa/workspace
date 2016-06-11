@@ -72,7 +72,8 @@ Star* StarManger::createStar(const std::vector<std::string>& param)
 	*星のピックアップ処理は
 	*　生成位置とプレイヤーの距離とhelfを比べたら良いかも!?
 	*/
-	float maxhelf = stof(param[9]);
+	float maxhelth = stof(param[9]);
+
 	StarMove_Ptr move = StarMove_Ptr(createMove(param,10));
 	//nonmove
 	int lastParamIndex = 11 + move->length();
@@ -80,11 +81,11 @@ Star* StarManger::createStar(const std::vector<std::string>& param)
 	switch (stoi(param[0]))
 	{
 	case DEF:
-		return new Star("star.bmp", pos, viewSize, rect, maxhelf, move);
+		return new Star("star.bmp", pos, viewSize, rect, maxhelth, move);
 	case BREAK:		
-		return new BreakStar("starb.bmp", pos, viewSize, rect, maxhelf, move, stof(param[lastParamIndex]));
+		return new BreakStar("starb.bmp", pos, viewSize, rect, maxhelth, move, stof(param[lastParamIndex]));
 	case BRUN:
-		return new BurnStar("starbrun.bmp", pos, viewSize, rect, maxhelf, move);
+		return new BurnStar("starbrun.bmp", pos, viewSize, rect, maxhelth, move);
 	}
 	return NULL;
 }

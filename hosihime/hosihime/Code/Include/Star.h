@@ -28,9 +28,7 @@ private:
 	void blurdraw(const Renderer& renderer, const GSvector2& position, const GSvector2& center);
 protected:
 	float helth;
-	//Animation animation;
-	//AnimationTimer animTimer;
-	//int activeAnimKey;
+
 	StarMove_Ptr move;
 	float angle;//rad
 	GSvector2 startPosi;
