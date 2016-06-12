@@ -85,6 +85,18 @@
     <Filter Include="ソース ファイル\gameobject\objects\star\move">
       <UniqueIdentifier>{23c229f2-9d4a-4583-8601-d491ec4abd6f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\effect">
+      <UniqueIdentifier>{67605f51-5a53-40a0-aa67-e4743dfe8fb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\effect">
+      <UniqueIdentifier>{2c3c2074-48aa-4d7e-a5db-aca3a3a39ddd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\effect\particle">
+      <UniqueIdentifier>{23dd2980-2f73-4475-9f6b-2e10e5993eda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\effect\particle">
+      <UniqueIdentifier>{48dda766-ee32-4615-b8d3-57891d8dc8ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\Source\Star_wave.cpp">
@@ -233,6 +245,21 @@
     </ClCompile>
     <ClCompile Include="Code\Source\Fade.cpp">
       <Filter>ソース ファイル\util</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\EffectController.cpp">
+      <Filter>ソース ファイル\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\EffectFactory.cpp">
+      <Filter>ソース ファイル\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\CircleParticle.cpp">
+      <Filter>ソース ファイル\effect\particle</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\CircleParticleController.cpp">
+      <Filter>ソース ファイル\effect\particle</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\CircleEffect.cpp">
+      <Filter>ソース ファイル\effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -395,9 +422,6 @@
     <ClInclude Include="Code\Include\BurnStar.h">
       <Filter>ヘッダー ファイル\gameobject\objects\star</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Include\IMediator.h">
-      <Filter>ヘッダー ファイル\gameobject\objects\star</Filter>
-    </ClInclude>
     <ClInclude Include="Code\Include\NavigationUI.h">
       <Filter>ヘッダー ファイル\gameobject</Filter>
     </ClInclude>
@@ -409,6 +433,36 @@
     </ClInclude>
     <ClInclude Include="Code\Include\Fade.h">
       <Filter>ヘッダー ファイル\util</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\IParticle.h">
+      <Filter>ヘッダー ファイル\effect\particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\IParticleController.h">
+      <Filter>ヘッダー ファイル\effect\particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\IEffect.h">
+      <Filter>ヘッダー ファイル\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\IMediator.h">
+      <Filter>ヘッダー ファイル\gameobject\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\IEffectMediator.h">
+      <Filter>ヘッダー ファイル\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\EffectController.h">
+      <Filter>ヘッダー ファイル\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\EffectFactory.h">
+      <Filter>ヘッダー ファイル\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\CircleParticle.h">
+      <Filter>ヘッダー ファイル\effect\particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\CircleParticleController.h">
+      <Filter>ヘッダー ファイル\effect\particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\CircleEffect.h">
+      <Filter>ヘッダー ファイル\effect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -15,7 +15,7 @@
 #include "NavigationUI.h"
 #include "Fade.h"
 class Device;
-
+typedef std::shared_ptr<Factory<GameObj_Ptr,GAMEOBJ_TYPE>> ObjFactory;
 class Stage
 {
 public:
@@ -41,7 +41,7 @@ private:
 	Scroll scroll;
 	Timer timer;
 	Device& device;
-	std::shared_ptr<Factory> factory;
+	ObjFactory factory;
 	std::string stageNames[3];
 	NavigationUI navigation;
 	GSvector2 mapSize;

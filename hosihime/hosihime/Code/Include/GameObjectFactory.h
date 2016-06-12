@@ -9,8 +9,9 @@
 #include <map>
 #include "GAMEOBJ_TYPE.h"
 #include "Factory.h"
+#include "GameObje_Include.h"
 class Device;
-class GameObjectFactory :public Factory
+class GameObjectFactory :public Factory<GameObj_Ptr,GAMEOBJ_TYPE>
 {
 public:
 	GameObjectFactory(Scroll& scroll, Device& device);
@@ -22,7 +23,7 @@ public:
 	/**
 	*@fn container‚É“o˜^‚³‚ê‚Ä‚¢‚éGameobject‚ÌƒNƒ[ƒ“‚ğ”CˆÓ‚ÌˆÊ’u‚Å¶¬
 	*/
-	GameObj_Ptr createGameObject(GAMEOBJ_TYPE type, const GSvector2& position);
+	const GameObj_Ptr create(GAMEOBJ_TYPE type, const GSvector2& position)const;
 private:
 	std::map<GAMEOBJ_TYPE, GameObj_Ptr>container;
 	Scroll& scroll;

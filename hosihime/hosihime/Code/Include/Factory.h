@@ -1,16 +1,17 @@
 #ifndef _FACTORY_H_
 #define _FACTORY_H_
-#include "GameObje_Include.h"
+#include <GSvector2.h>
 
+template<class T,class K>
+/*
+* <T,K>
+* ’l‚ÆKey
+*/
 class Factory
 {
 public:
-	GameObj_Ptr create(GAMEOBJ_TYPE type, const GSvector2& position)
-	{
-		return createGameObject(type,position);
-	}
+	virtual ~Factory(){}
+	virtual const T create(K key, const GSvector2& position)const = 0;
 	virtual void addContainer() = 0;
-private:
-	virtual GameObj_Ptr createGameObject(GAMEOBJ_TYPE type, const GSvector2& position)=0;
 };
 #endif

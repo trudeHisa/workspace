@@ -16,9 +16,14 @@
     <ClCompile Include="Code\Source\BreakStar.cpp" />
     <ClCompile Include="Code\Source\BurnStar.cpp" />
     <ClCompile Include="Code\Source\Circle.cpp" />
+    <ClCompile Include="Code\Source\CircleEffect.cpp" />
+    <ClCompile Include="Code\Source\CircleParticle.cpp" />
+    <ClCompile Include="Code\Source\CircleParticleController.cpp" />
     <ClCompile Include="Code\Source\Collision.cpp" />
     <ClCompile Include="Code\Source\CSVStream.cpp" />
     <ClCompile Include="Code\Source\Device.cpp" />
+    <ClCompile Include="Code\Source\EffectController.cpp" />
+    <ClCompile Include="Code\Source\EffectFactory.cpp" />
     <ClCompile Include="Code\Source\Ending.cpp" />
     <ClCompile Include="Code\Source\Fade.cpp" />
     <ClCompile Include="Code\Source\game.cpp" />
@@ -69,9 +74,14 @@
     <ClInclude Include="Code\Include\BurnStar.h" />
     <ClInclude Include="Code\Include\Calculate.h" />
     <ClInclude Include="Code\Include\Circle.h" />
+    <ClInclude Include="Code\Include\CircleEffect.h" />
+    <ClInclude Include="Code\Include\CircleParticle.h" />
+    <ClInclude Include="Code\Include\CircleParticleController.h" />
     <ClInclude Include="Code\Include\Collision.h" />
     <ClInclude Include="Code\Include\CSVStream.h" />
     <ClInclude Include="Code\Include\Device.h" />
+    <ClInclude Include="Code\Include\EffectController.h" />
+    <ClInclude Include="Code\Include\EffectFactory.h" />
     <ClInclude Include="Code\Include\Ending.h" />
     <ClInclude Include="Code\Include\Factory.h" />
     <ClInclude Include="Code\Include\Fade.h" />
@@ -83,6 +93,8 @@
     <ClInclude Include="Code\Include\GAMEOBJ_TYPE.h" />
     <ClInclude Include="Code\Include\GameOver.h" />
     <ClInclude Include="Code\Include\GamePlay.h" />
+    <ClInclude Include="Code\Include\IEffect.h" />
+    <ClInclude Include="Code\Include\IEffectMediator.h" />
     <ClInclude Include="Code\Include\ImMovable.h" />
     <ClInclude Include="Code\Include\Input.h" />
     <ClInclude Include="Code\Include\IPlayMode.h" />
@@ -92,6 +104,8 @@
     <ClInclude Include="Code\Include\Menu.h" />
     <ClInclude Include="Code\Include\MyRectangle.h" />
     <ClInclude Include="Code\Include\NavigationUI.h" />
+    <ClInclude Include="Code\Include\IParticle.h" />
+    <ClInclude Include="Code\Include\IParticleController.h" />
     <ClInclude Include="Code\Include\Player.h" />
     <ClInclude Include="Code\Include\PlayMode_Play.h" />
     <ClInclude Include="Code\Include\PlayMode_Select.h" />

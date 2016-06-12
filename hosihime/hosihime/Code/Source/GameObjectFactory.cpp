@@ -41,7 +41,7 @@ void GameObjectFactory::addContainer()
 		container.insert(std::pair<GAMEOBJ_TYPE, GameObj_Ptr>(types[i], obj));
 	}
 }
-GameObj_Ptr GameObjectFactory::createGameObject(GAMEOBJ_TYPE type, const GSvector2& position)
+const GameObj_Ptr GameObjectFactory::create(GAMEOBJ_TYPE type, const GSvector2& position)const
 {
 	return GameObj_Ptr(container.at(type)->clone(position));
 }

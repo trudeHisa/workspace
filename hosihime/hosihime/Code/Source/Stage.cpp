@@ -6,8 +6,6 @@
 #include "Player.h"
 #include "NavigationUI.h"
 
-typedef std::shared_ptr<Factory> ObjFactory;
-
 Stage::Stage(const int& stageNo, Device& device)
 	:scroll(WINDOW_WIDTH, WINDOW_HEIGHT, mapSize), device(device),
 	timer(60, 60), control(), starManager(scroll, control),

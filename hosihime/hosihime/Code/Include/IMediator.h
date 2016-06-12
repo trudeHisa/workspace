@@ -5,7 +5,7 @@
 class IMediator
 {
 public:
-	~IMediator(){}
+	virtual ~IMediator(){}
 	virtual void add(GameObj_Ptr obj) = 0;
 	/**
 	*’P”­getter
