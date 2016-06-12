@@ -13,11 +13,11 @@ void EffectController::initialize()
 {
 	effects.clear();
 }
-void EffectController::updata()
+void EffectController::update()
 {
 	for each (Effect_Ptr e in effects)
 	{
-		e->updata();
+		e->update();
 	}
 	remove();
 }

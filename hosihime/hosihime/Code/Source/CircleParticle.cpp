@@ -2,10 +2,11 @@
 
 CircleParticle::CircleParticle(
 	const std::string& textrue,const GSvector2& center,
-	float speed, float angle, float maxDistance)
+	float speed, float angle, float alphaSpeed)
 	:textrue(textrue),center(center), speed(speed), angle(angle),
-	maxDistance(maxDistance), position(center), alpha(1), isDead(false)
+	position(center), alpha(1), isDead(false), alphaSpeed(alphaSpeed)
 {
+	initialize();
 }
 
 CircleParticle::~CircleParticle()
@@ -17,20 +18,20 @@ void CircleParticle::initialize()
 	position = center;
 	isDead = false;
 }
-void CircleParticle::updata()
+void CircleParticle::update()
 {
 	GSvector2 v;
 	gsVector2FromDirection(&v, angle);
 	position += v*speed*gsFrameTimerGetTime();
 
-	isDead=center.distance(position) >= maxDistance;
+	isDead= alpha<=0;
 
-	alpha -=0.01f*gsFrameTimerGetTime();
+	alpha -= alphaSpeed*gsFrameTimerGetTime();
 }
 
 void CircleParticle::draw(const Renderer& renderer)
 {
-	renderer.DrawTextrue(textrue, &position,&GScolor(1,1,1,alpha));
+	renderer.DrawTextrue(textrue, &position, NULL,&GSvector2(4,4),NULL, alpha * 180, &GScolor(1, 1, 1, alpha));
 }
 
 const bool CircleParticle::getIsDead()const

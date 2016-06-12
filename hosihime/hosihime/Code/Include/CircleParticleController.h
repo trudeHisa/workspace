@@ -10,7 +10,7 @@ public:
 	CircleParticleController(const GSvector2& center);
 	~CircleParticleController();
 	void initialize();
-	void updata();
+	void update();
 	void draw(const Renderer& renderer);
 	void finish();
 	//void setMode();
@@ -21,6 +21,11 @@ private:
 
 private:	
 	std::vector<Particle_Ptr>particles;
-	const GSvector2& center;
+	GSvector2 center;
+	/*
+	*参照にすることで参照先の位置に追従出来る
+	*ただ一時変数などを参照すると危険
+	*/
+	//const GSvector2& center;
 };
 #endif

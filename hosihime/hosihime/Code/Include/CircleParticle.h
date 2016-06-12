@@ -6,10 +6,10 @@ class CircleParticle :public IParticle
 public:
 	CircleParticle(
 		const std::string& textrue,const GSvector2& center,
-		float speed,float angle,float maxDistance);
+		float speed, float angle, float alphaSpeed);
 	~CircleParticle();
 	void initialize();
-	void updata();
+	void update();
 	void draw(const Renderer& renderer);
 	const bool getIsDead()const;
 private:
@@ -19,7 +19,7 @@ private:
 	float alpha;
 	bool isDead;
 	const float angle;//deg
-	const float maxDistance;
-	const GSvector2& center;
+	GSvector2 center;
+	const float alphaSpeed;
 };
 #endif

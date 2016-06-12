@@ -1,5 +1,4 @@
 #include "CircleEffect.h"
-
 CircleEffect::CircleEffect()
 	:circle(GSvector2(0,0))
 {
@@ -7,7 +6,7 @@ CircleEffect::CircleEffect()
 }
 
 CircleEffect::CircleEffect(const GSvector2& position)
-	:circle(position)
+	: circle(position)
 {
 }
 
@@ -19,9 +18,9 @@ void CircleEffect::initialize()
 {
 	circle.initialize();
 }
-void CircleEffect::updata()
+void CircleEffect::update()
 {
-	circle.updata();
+	circle.update();
 }
 void CircleEffect::draw(const Renderer& renderer)
 {

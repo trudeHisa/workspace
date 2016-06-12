@@ -5,13 +5,15 @@
 #include "GAMEOBJ_TYPE.h"
 #include "Player.h"
 #include "NavigationUI.h"
-
+#include "EffectFactory.h"
 Stage::Stage(const int& stageNo, Device& device)
 	:scroll(WINDOW_WIDTH, WINDOW_HEIGHT, mapSize), device(device),
 	timer(60, 60), control(), starManager(scroll, control),
 	factory(ObjFactory(new GameObjectFactory(scroll, device))),
-	navigation("nav1.bmp", control, scroll), mapSize(0,0),
-	BLOCKSIZE(64.0f)
+	navigation("nav1.bmp", control, scroll), mapSize(0, 0),
+	BLOCKSIZE(64.0f),
+	effectFactory(),
+	effectController(effectFactory)
 {
 	CSVStream stream;
 	stageNames[0] = "mapdata\\\\testmap.csv";
@@ -26,6 +28,8 @@ Stage::~Stage()
 void Stage::initialize()
 {
 	factory->addContainer();
+	effectFactory.addContainer();
+
 	//device.getSound().PlaySE("GameMode_1.wav");
 	timer.initialize();
 	control.inisialize();
@@ -40,6 +44,14 @@ void Stage::initialize()
 	mapSize = GSvector2(mapdata.getSize1(),mapdata.getSize0())*BLOCKSIZE;
 
 	fade.initialize();
+
+	effectController.initialize();
+
+	for (int i = 0; i <10; i++)
+	{
+		effectController.add("CircleEffect", GSvector2(5 * 64 + (i * 64), 3 * 64));
+	}
+	
 }
 void Stage::updata()
 {
@@ -47,7 +59,9 @@ void Stage::updata()
 	fade.updata();
 	starManager.updata();
 	control.updata();
-	
+
+	effectController.update();
+
 	timer.update();
 	if (timer.isEnd())
 	{
@@ -80,6 +94,9 @@ void Stage::draw(const Renderer& renderer)
 	control.draw(renderer, scroll);
 	int t = timer.getTime() / FRAMETIME;
 	renderer.DrawString(std::to_string(t), &GSvector2(50, 50), 50);
+	
+	effectController.draw(renderer);
+
 	navigation.draw(renderer,scroll);
 	fade.draw(renderer);
 }

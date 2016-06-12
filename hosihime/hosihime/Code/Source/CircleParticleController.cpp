@@ -14,21 +14,23 @@ void CircleParticleController::initialize()
 	particles.clear();
 	createParticle();
 }
-void CircleParticleController::updata()
+void CircleParticleController::update()
 {
+	createParticle();	
 	for each (Particle_Ptr p in particles)
 	{
-		p->updata();
+		p->update();
 	}
-	createParticle();
 	remove();
 }
 void CircleParticleController::draw(const Renderer& renderer)
 {
+	renderer.AdditionBlend();
 	for each (Particle_Ptr p in particles)
 	{
 		p->draw(renderer);
 	}
+	renderer.InitBlendFunc();
 }
 
 void CircleParticleController::createParticle()
@@ -37,9 +39,9 @@ void CircleParticleController::createParticle()
 	{
 		return;
 	}
-	for (int i = 0; i <360; i++)
+	for (int i = 0; i <60; i++)
 	{
-		particles.emplace_back(Particle_Ptr(new CircleParticle("circleParticle",center,5,i*rand(),10)));
+		particles.emplace_back(Particle_Ptr(new CircleParticle("circleParticle.bmp", center, 1, i*rand(), 0.02f)));
 	}
 }
 void CircleParticleController::remove()

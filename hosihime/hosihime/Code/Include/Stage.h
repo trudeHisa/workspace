@@ -14,6 +14,9 @@
 #include "GameObjectFactory.h"
 #include "NavigationUI.h"
 #include "Fade.h"
+
+#include "EffectController.h"
+
 class Device;
 typedef std::shared_ptr<Factory<GameObj_Ptr,GAMEOBJ_TYPE>> ObjFactory;
 class Stage
@@ -46,6 +49,9 @@ private:
 	NavigationUI navigation;
 	GSvector2 mapSize;
 	Fade fade;
+
+	EffectFactory effectFactory;
+	EffectController effectController;
 
 	const float BLOCKSIZE;
 };

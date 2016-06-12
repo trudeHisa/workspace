@@ -27,7 +27,7 @@ class IParticleController
 public:
 	virtual ~IParticleController(){}
 	virtual void initialize()=0;
-	virtual void updata() = 0;
+	virtual void update() = 0;
 	virtual void draw(const Renderer& renderer) = 0;
 	virtual void finish() = 0;
 	//virtual void setMode() = 0;

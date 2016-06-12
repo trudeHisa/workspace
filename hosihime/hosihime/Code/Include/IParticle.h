@@ -13,7 +13,7 @@ class IParticle
 public:
 	virtual ~IParticle(){}
 	virtual void initialize()=0;
-	virtual void updata() = 0;
+	virtual void update() = 0;
 	virtual void draw(const Renderer& renderer)=0;
 	virtual const bool getIsDead()const = 0;
 };
