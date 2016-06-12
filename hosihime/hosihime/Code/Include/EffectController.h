@@ -5,13 +5,22 @@
 #include "IEffectMediator.h"
 #include "IEffect.h"
 #include "Factory.h"
-#include "EffectFactory.h"
+
+/*
+*Effectを管理するクラス
+*
+*Effect関係で最大クラス
+*addでFactoryからCloneを受け取る
+*
+*
+*/
+
 typedef std::shared_ptr<IEffect>Effect_Ptr;
-//typedef std::shared_ptr<Factory<Effect_Ptr, const std::string>> EffectsFactory;
+typedef std::shared_ptr<Factory<Effect_Ptr, const std::string&>> EffectsFactory;
 class EffectController:public IEffectMediator
 {
 public:
-	EffectController(const EffectFactory& factory);
+	EffectController(const EffectsFactory& factory);
 	~EffectController();
 	void initialize();
 	void update();
@@ -22,6 +31,6 @@ private:
 	void remove();
 private:
 	std::vector<Effect_Ptr>effects;
-	const EffectFactory& factory;
+	EffectsFactory factory;
 };
 #endif

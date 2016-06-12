@@ -19,6 +19,7 @@
 
 class Device;
 typedef std::shared_ptr<Factory<GameObj_Ptr,GAMEOBJ_TYPE>> ObjFactory;
+
 class Stage
 {
 public:
@@ -50,7 +51,7 @@ private:
 	GSvector2 mapSize;
 	Fade fade;
 
-	EffectFactory effectFactory;
+	EffectsFactory effectFactory;
 	EffectController effectController;
 
 	const float BLOCKSIZE;

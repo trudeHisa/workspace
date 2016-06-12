@@ -12,7 +12,7 @@ Stage::Stage(const int& stageNo, Device& device)
 	factory(ObjFactory(new GameObjectFactory(scroll, device))),
 	navigation("nav1.bmp", control, scroll), mapSize(0, 0),
 	BLOCKSIZE(64.0f),
-	effectFactory(),
+	effectFactory(EffectsFactory(new EffectFactory())),
 	effectController(effectFactory)
 {
 	CSVStream stream;
@@ -28,7 +28,7 @@ Stage::~Stage()
 void Stage::initialize()
 {
 	factory->addContainer();
-	effectFactory.addContainer();
+	effectFactory->addContainer();
 
 	//device.getSound().PlaySE("GameMode_1.wav");
 	timer.initialize();

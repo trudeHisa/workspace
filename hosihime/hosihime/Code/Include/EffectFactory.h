@@ -7,6 +7,10 @@
 #include "Factory.h"
 #include "IEffect.h"
 typedef std::shared_ptr<IEffect>Effect_Ptr;
+/*
+*Effectクラスの原型を生成しCloneを排出するクラス
+*keyはストリング
+*/
 class EffectFactory :public Factory<Effect_Ptr, const std::string&>
 {
 public:

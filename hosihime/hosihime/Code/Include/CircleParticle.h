@@ -1,6 +1,12 @@
 #ifndef _CIRCLEPARTICLE_H_
 #define _CIRCLEPARTICLE_H_
 #include "IParticle.h"
+/*
+*Alpha値が0になったら消える
+* 円粒子クラス
+*
+*Effect関係の最小クラス
+*/
 class CircleParticle :public IParticle
 {
 public:

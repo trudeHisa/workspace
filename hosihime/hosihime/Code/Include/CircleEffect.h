@@ -3,6 +3,16 @@
 #include"IEffect.h"
 #include"CircleParticleController.h"
 
+/*
+*複数のParticleControllerを管理するクラス
+*(今回は一つ複数場合はvectorで管理)
+*
+*ParticleControllerを組み合わせたりして
+*Effectにする
+*
+*このEffectクラスをEffectFactoryに登録する
+*
+*/
 class CircleEffect :public IEffect
 {
 public:

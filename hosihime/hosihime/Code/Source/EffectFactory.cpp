@@ -1,6 +1,7 @@
 #include "EffectFactory.h"
 #include "CircleEffect.h"
 EffectFactory::EffectFactory()
+	:container()
 {
 }
 

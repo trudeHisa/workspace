@@ -4,6 +4,16 @@
 #include "IParticleController.h"
 #include"CircleParticle.h"
 #include <vector>
+/*
+*Particleを管理するクラス
+*
+*Particleの追加と削除
+*
+*更新や削除が被ると思うから
+*抽象クラス変えてもいいかも
+*
+*ParticleControllerをEffectクラスで管理
+*/
 class CircleParticleController :public IParticleController
 {
 public:

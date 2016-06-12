@@ -1,6 +1,6 @@
 #include"EffectController.h"
 #include <algorithm>
-EffectController::EffectController(const EffectFactory& factory)
+EffectController::EffectController(const EffectsFactory& factory)
 	:factory(factory)
 {
 }
@@ -43,6 +43,6 @@ void EffectController::finish()
 }
 void EffectController::add(const std::string& name, const GSvector2& position)
 {
-	effects.emplace_back(factory.create(name,position));
+	effects.emplace_back(factory->create(name,position));
 	effects.back()->initialize();
 }
