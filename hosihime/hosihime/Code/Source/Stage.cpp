@@ -47,7 +47,7 @@ void Stage::initialize()
 
 	effectController.initialize();
 
-	for (int i = 0; i <10; i++)
+	for (int i = 0; i <5; i++)
 	{
 		effectController.add("CircleEffect", GSvector2(5 * 64 + (i * 64), 3 * 64));
 	}

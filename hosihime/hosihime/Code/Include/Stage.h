@@ -16,7 +16,6 @@
 #include "Fade.h"
 
 #include "EffectController.h"
-
 class Device;
 typedef std::shared_ptr<Factory<GameObj_Ptr,GAMEOBJ_TYPE>> ObjFactory;
 

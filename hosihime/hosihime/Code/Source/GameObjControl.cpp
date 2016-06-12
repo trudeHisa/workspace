@@ -10,6 +10,12 @@ GameObjControl::~GameObjControl()
 {
 
 }
+
+void GameObjControl::inisialize()
+{
+	objs.clear();
+}
+
 void GameObjControl::updata()
 {
 	remove();
@@ -74,11 +80,6 @@ void GameObjControl::remove()
 	});
 	objs.erase(itrNewEnd, objs.end());
 }
-void GameObjControl::inisialize()
-{
-	objs.clear();
-}
-
 void GameObjControl::draw(const Renderer& renderer, const Scroll& scroll)
 {
 	//drawOderSort();
