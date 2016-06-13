@@ -18,6 +18,7 @@ public:
 	virtual void draw(const Renderer& renderer, const Scroll& scroll);
 
 	const GSvector2& getSPosi() const;
+	const float getHelth()const;
 public:
 	void ride(GSvector2* position, const GSvector2* size)const;
 	void pickUp(GSvector2* velocity)const;

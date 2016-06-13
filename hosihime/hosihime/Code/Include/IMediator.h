@@ -1,7 +1,7 @@
 #ifndef _IMEDIATOR_H_
 #define _IMEDIATOR_H_
 #include "GameObje_Include.h"
-
+#include <vector>
 class IMediator
 {
 public:
