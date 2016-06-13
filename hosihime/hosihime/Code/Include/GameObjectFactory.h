@@ -10,11 +10,14 @@
 #include "GAMEOBJ_TYPE.h"
 #include "Factory.h"
 #include "GameObje_Include.h"
+#include "IEffectMediator.h"
+#include "IMediator.h"
 class Device;
 class GameObjectFactory :public Factory<GameObj_Ptr,GAMEOBJ_TYPE>
 {
 public:
-	GameObjectFactory(Scroll& scroll, Device& device);
+	GameObjectFactory(Scroll& scroll, Device& device,
+		IMediator* objMediator,IEffectMediator* effectMediator);
 	~GameObjectFactory();
 	/**
 	*@fn container‚ÉGameobject‚ð“o˜^
@@ -28,6 +31,8 @@ private:
 	std::map<GAMEOBJ_TYPE, GameObj_Ptr>container;
 	Scroll& scroll;
 	Device& device;
+	IMediator* objMediator;
+	IEffectMediator* effectMediator;
 };
 
 #endif

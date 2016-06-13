@@ -3,7 +3,7 @@
 
 #include "Calculate.h"
 #include "Respawn.h"
-
+#include "Magpie.h"
 //stateƒpƒ^[ƒ“
 Player::Player(const std::string& textrue, const GSvector2& position,
 	const GSvector2& viewSize, const MyRectangle& rect,
@@ -205,6 +205,13 @@ const bool Player::isRide()const
 //Õ“Ë
 void Player::collision(const GameObject* obj)
 {
+	if (obj->getType() == MAGPIE)
+	{
+		const Magpie* magpie = dynamic_cast<const Magpie*>(obj);
+		magpie->ride(&position,&viewSize);
+		return;
+	}
+
 	collisionStar(obj);
 	collisionRespawn(obj);
 	collisionGround(obj);

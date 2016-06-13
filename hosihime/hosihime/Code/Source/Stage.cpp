@@ -7,13 +7,14 @@
 #include "NavigationUI.h"
 #include "EffectFactory.h"
 Stage::Stage(const int& stageNo, Device& device)
-	:scroll(WINDOW_WIDTH, WINDOW_HEIGHT, mapSize), device(device),
-	timer(60, 60), control(), starManager(scroll, control),
-	factory(ObjFactory(new GameObjectFactory(scroll, device))),
-	navigation("nav1.bmp", control, scroll), mapSize(0, 0),
-	BLOCKSIZE(64.0f),
+	:scroll(WINDOW_WIDTH, WINDOW_HEIGHT, mapSize),
+	device(device),timer(60, 60),BLOCKSIZE(64.0f),	
+	control(),
 	effectFactory(EffectsFactory(new EffectFactory())),
-	effectController(effectFactory)
+	effectController(effectFactory),
+	navigation("nav1.bmp", control, scroll), mapSize(0, 0),
+	factory(ObjFactory(new GameObjectFactory(scroll, device,&control,&effectController))),
+	starManager(scroll, control)
 {
 	CSVStream stream;
 	stageNames[0] = "mapdata\\\\testmap.csv";
@@ -99,6 +100,10 @@ void Stage::draw(const Renderer& renderer)
 
 	navigation.draw(renderer,scroll);
 	fade.draw(renderer);
+
+	GSvector2 s= control.get(MAGPIE_ENDSPOT)->getPosition();
+	renderer.DrawString("X:" + std::to_string(s.x) + ",Y:" + std::to_string(s.y), &GSvector2(100,100),20);
+
 }
 void Stage::finish()
 {

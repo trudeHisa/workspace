@@ -13,7 +13,7 @@ Load::~Load()
 void Load::Init()
 {
 	isEnd = false;
-	
+
 }
 void Load::Update()
 {
@@ -38,7 +38,10 @@ bool Load::IsEnd()
 	return isEnd;
 }
 void Load::loadTextrue()
-{	
+{
+	renderer.LoadTextrue("magpie.bmp", GS_TEXCOLOR_KEY_AUTO);
+	renderer.LoadTextrue("magpieEnd.bmp", GS_TEXCOLOR_KEY_AUTO);
+
 	renderer.LoadTextrue("circleParticle.bmp", GS_TEXCOLOR_KEY_WHITE);
 	renderer.LoadTextrue("nav1.bmp", GS_TEXCOLOR_KEY_WHITE);
 	renderer.LoadTextrue("nav2.bmp", GS_TEXCOLOR_KEY_WHITE);

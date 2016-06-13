@@ -13,9 +13,13 @@ enum GAMEOBJ_TYPE
 	
 	RESPAWN = 20,
 	PLANET = 21,
+
 	MAGPIE=22,
+	MAGPIE_ENDSPOT=23,
+
 	START =30, 
 	GOAL =40,
+
 
 	UI=50,
 

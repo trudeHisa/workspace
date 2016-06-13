@@ -35,6 +35,7 @@
     <ClCompile Include="Code\Source\ImMovable.cpp" />
     <ClCompile Include="Code\Source\Input.cpp" />
     <ClCompile Include="Code\Source\Load.cpp" />
+    <ClCompile Include="Code\Source\Magpie.cpp" />
     <ClCompile Include="Code\Source\main.cpp" />
     <ClCompile Include="Code\Source\Menu.cpp" />
     <ClCompile Include="Code\Source\MyRectangle.cpp" />
@@ -101,6 +102,7 @@
     <ClInclude Include="Code\Include\IScene.h" />
     <ClInclude Include="Code\Include\IStarMove.h" />
     <ClInclude Include="Code\Include\Load.h" />
+    <ClInclude Include="Code\Include\Magpie.h" />
     <ClInclude Include="Code\Include\Menu.h" />
     <ClInclude Include="Code\Include\MyRectangle.h" />
     <ClInclude Include="Code\Include\NavigationUI.h" />
