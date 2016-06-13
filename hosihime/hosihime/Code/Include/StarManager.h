@@ -7,11 +7,12 @@ class StarMediator;
 class IStarMove;
 #include "MyRectangle.h"
 #include "Scroll.h"
-
 #include "GameObje_Include.h"
-
+#include "StarFactory.h"
 typedef std::vector<Star_Ptr> starsContainer;
 typedef std::vector<Star_Ptr> Stars_inScreen;
+typedef std::shared_ptr<StarFactory> Fact_Ptr;
+typedef std::vector<Fact_Ptr> Factorys;
 class IMediator;
 class StarManger
 {
@@ -35,6 +36,7 @@ private:
 private:
 	Scroll& scroll;
 	IMediator& mediator;
+	Factorys factory;
 	starsContainer stars;//¯‚ÌŒ´Œ^‚ğŠi”[‚·‚é”z—ñ instance
 	Stars_inScreen inScreens;//‰æ–Ê“à‚Ì™‚ğŠi”[‚·‚é”z—ñ point
 };
