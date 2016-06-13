@@ -11,13 +11,13 @@ CircleParticleController::~CircleParticleController()
 
 void CircleParticleController::initialize()
 {
-	particles.clear();
+	Circleparticles.clear();
 	createParticle();
 }
 void CircleParticleController::update()
 {
 	createParticle();	
-	for each (Particle_Ptr p in particles)
+	for each (Particle_Ptr p in Circleparticles)
 	{
 		p->update();
 	}
@@ -26,7 +26,7 @@ void CircleParticleController::update()
 void CircleParticleController::draw(const Renderer& renderer)
 {
 	renderer.AdditionBlend();
-	for each (Particle_Ptr p in particles)
+	for each (Particle_Ptr p in Circleparticles)
 	{
 		p->draw(renderer);
 	}
@@ -35,22 +35,22 @@ void CircleParticleController::draw(const Renderer& renderer)
 
 void CircleParticleController::createParticle()
 {
-	if (particles.size() != 0)
+	if (Circleparticles.size() != 0)
 	{
 		return;
 	}
 	for (int i = 0; i <60; i++)
 	{
-		particles.emplace_back(Particle_Ptr(new CircleParticle("circleParticle.bmp", center, 1, i*rand(), 0.02f)));
+		Circleparticles.emplace_back(Particle_Ptr(new CircleParticle("circleParticle.bmp", center, 1, i*rand(), 0.02f)));
 	}
 }
 void CircleParticleController::remove()
 {
-	auto itrNewEnd = std::remove_if(particles.begin(), particles.end(), [](Particle_Ptr p)->bool
+	auto itrNewEnd = std::remove_if(Circleparticles.begin(), Circleparticles.end(), [](Particle_Ptr p)->bool
 	{
 		return p->getIsDead();
 	});
-	particles.erase(itrNewEnd, particles.end());
+	Circleparticles.erase(itrNewEnd, Circleparticles.end());
 }
 
 void CircleParticleController::finish()

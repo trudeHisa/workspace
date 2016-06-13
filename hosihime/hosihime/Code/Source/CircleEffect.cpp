@@ -20,11 +20,11 @@ void CircleEffect::initialize()
 }
 void CircleEffect::update()
 {
-	circle.update();
+	//circle.update();
 }
 void CircleEffect::draw(const Renderer& renderer)
 {
-	circle.draw(renderer);
+	//circle.draw(renderer);
 }
 void CircleEffect::finish()
 {
