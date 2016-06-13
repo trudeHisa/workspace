@@ -7,7 +7,7 @@
 //stateƒpƒ^[ƒ“
 Player::Player(const std::string& textrue, const GSvector2& position,
 	const GSvector2& viewSize, const MyRectangle& rect,
-	Scroll* scroll, Device& device)
+	Scroll* scroll, Device& device, IEffectMediator* effectMediator)
 
 	:GameObject(textrue, position, viewSize, rect, PLAYER),
 
@@ -25,7 +25,8 @@ Player::Player(const std::string& textrue, const GSvector2& position,
 
 	animation(animeTimer),
 	animeTimer(60.f),
-	currentDirAnimeKey("R")
+	currentDirAnimeKey("R"),
+	effectMediator(effectMediator)
 {
 }
 Player::~Player()
@@ -127,9 +128,10 @@ void Player::jumpStart()
 	{
 		return;
 	}
+	scroll->getMovingAmount();
+	//effectMediator->add( " ",position-scroll->getMovingAmount());
 	isJump = true;
-	jumpPower = JUMPMAXPOW;
-}
+	jumpPower = JUMPMAXPOW;}
 void Player::jump()
 {
 	if (!isJump)
@@ -276,7 +278,7 @@ void Player::nonCollision()
 
 GameObject* Player::clone(const GSvector2& position)
 {
-	return new Player(textrue, position, viewSize, rect, scroll, device);
+	return new Player(textrue, position, viewSize, rect, scroll, device,effectMediator);
 }
 
 void Player::draw(const Renderer& renderer, const Scroll& scroll)

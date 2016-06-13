@@ -9,11 +9,12 @@
 Stage::Stage(const int& stageNo, Device& device)
 	:scroll(WINDOW_WIDTH, WINDOW_HEIGHT, mapSize), device(device),
 	timer(60, 60), control(), starManager(scroll, control),
-	factory(ObjFactory(new GameObjectFactory(scroll, device))),
-	navigation("nav1.bmp", control, scroll), mapSize(0, 0),
-	BLOCKSIZE(64.0f),
 	effectFactory(EffectsFactory(new EffectFactory())),
-	effectController(effectFactory)
+	effectController(effectFactory),
+	factory(ObjFactory(new GameObjectFactory(scroll, device,&effectController))),
+	navigation("nav1.bmp", control, scroll), mapSize(0, 0),
+	BLOCKSIZE(64.0f)
+	
 {
 	CSVStream stream;
 	stageNames[0] = "mapdata\\\\testmap.csv";
