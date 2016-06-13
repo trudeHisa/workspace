@@ -31,10 +31,10 @@ void Renderer::DrawFillRectangle(
 	draw2DSetting();
 	setParameter(pCenter, pScaling, fRotation, pTranslation, pColor);
 
-	GSvector2 texSize = getTexSize(pSrcRect,0,0);
-	GSrect uv(0,0,1,1);
+	GSvector2 texSize = getTexSize(pSrcRect, 0, 0);
+	GSrect uv(0, 0, 1, 1);
 
-	drawQuad(uv,texSize);
+	drawQuad(uv, texSize);
 
 	glPopMatrix();
 	glMatrixMode(GL_PROJECTION);
@@ -60,17 +60,17 @@ void Renderer::DrawSprite2D(
 	gsBindTexture(uTextureID);
 
 	draw2DSetting();
-	setParameter(pCenter,pScaling,fRotation,pTranslation,pColor);
+	setParameter(pCenter, pScaling, fRotation, pTranslation, pColor);
 
 	GLsizei sTexWidth;
 	GLsizei sTexHeight;
 	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &sTexWidth);
 	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &sTexHeight);
 
-	GSrect rTexCoord = getTexCoord(pSrcRect,sTexWidth,sTexHeight);
+	GSrect rTexCoord = getTexCoord(pSrcRect, sTexWidth, sTexHeight);
 	GSvector2 texSize = getTexSize(pSrcRect, sTexWidth, sTexHeight);
 
-	drawQuad(rTexCoord,texSize);
+	drawQuad(rTexCoord, texSize);
 
 	glPopMatrix();
 	glMatrixMode(GL_PROJECTION);
@@ -151,7 +151,7 @@ const GSvector2 Renderer::getTexSize(const GSrect* rect, GLsizei sTexWidth, GLsi
 	size.y = (GSfloat)sTexHeight;
 	return size;
 }
-void Renderer::drawQuad(const GSrect& rTexCoord,const GSvector2& size)const
+void Renderer::drawQuad(const GSrect& rTexCoord, const GSvector2& size)const
 {
 	glBegin(GL_QUADS);
 	glTexCoord2f(rTexCoord.left, rTexCoord.top);
@@ -215,7 +215,7 @@ void Renderer::AdditionBlend()const
 };
 void Renderer::DrawTextrueScroll(const std::string& name, const GSrect& s, const GSrect& t)const
 {
-	DrawSprite2DScroll(container.at(name),s,t);
+	DrawSprite2DScroll(container.at(name), s, t);
 }
 void Renderer::DrawSprite2DScroll(GSuint uTextureID, const GSrect& s, const GSrect& t) const
 {
@@ -230,7 +230,7 @@ void Renderer::DrawSprite2DScroll(GSuint uTextureID, const GSrect& s, const GSre
 	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &sTexHeight);
 	GSvector2 texSize = getTexSize(0, sTexWidth, sTexHeight);
 
-	drawQuadScroll(s,t, texSize);
+	drawQuadScroll(s, t, texSize);
 
 	glPopMatrix();
 	glMatrixMode(GL_PROJECTION);
@@ -271,24 +271,21 @@ void Renderer::DrawFillRect(
 {
 	DrawFillRectangle(_rect, _center, _scaling, _rotation, _position, _color);
 }
-void Renderer::DrawBlur(
+
+void Renderer::DrawBlurTextrue(
 	const std::string& name,
 	const GSvector2& _position,
-	const GSvector2& _velocity,
 	const GSvector2* _center,
-	GSfloat          _rotation,
+	const GSvector2& velocity,
+	float angle,
 	unsigned int maxSheet
 	)const
 {
-	float addRot = gsFrameTimerGetTime()*_velocity.length();
-	float prevang = 0;
 	float alpha = 0;
-	GSvector2 prevpos(0, 0);
-	for (int i = maxSheet; i>0; i--)
+	for (int i = maxSheet; i > 0; i--)
 	{
-		prevpos=_position - _velocity *i*0.8f;
-		prevang= _rotation - addRot*i;
+		GSvector2 prevpos = _position - velocity*i;
 		alpha = (maxSheet - i)*0.05f;
-		DrawSprite2D(container.at(name), NULL, _center, NULL, prevang,&prevpos,&GScolor(1, 1, 1, alpha));
+		DrawSprite2D(container.at(name), NULL,_center, NULL, angle, &prevpos, &GScolor(1, 1, 1, alpha));
 	}
 }

@@ -3,7 +3,7 @@
 
 Star::Star(const std::string& textrue, const GSvector2& position,
 	const GSvector2& viewSize, const MyRectangle& rect, float helth, StarMove_Ptr move)
-	:GameObject(textrue, position, viewSize, rect,STAR),
+	:GameObject(textrue, position, viewSize, rect, STAR),
 	move(move), startPosi(position), angle(0), helth(helth)
 {
 }
@@ -42,23 +42,23 @@ void Star::draw(const Renderer& renderer, const Scroll& scroll)
 	GSvector2 center(viewSize);
 	center /= 2;
 	pos += center;
-	//animation.draw(renderer,textrue,&pos);
+
 	renderer.AdditionBlend();
-	renderer.DrawBlur(textrue, pos,velocity,&center,angle,7);
+	renderer.DrawBlurTextrue(textrue,pos,&center,velocity,angle,7);
 	renderer.InitBlendFunc();
-	renderer.DrawTextrue(textrue, &pos,NULL,&center,&GSvector2(1,1),angle,NULL);
+	renderer.DrawTextrue(textrue, &pos, NULL, &center, &GSvector2(1, 1), angle, NULL);
 }
 void Star::collision(const GameObject* obj)
 {
-	if ( obj->getType()==PLANET)
+	if (obj->getType() == PLANET)
 	{
 		isDead = true;
 	}
 }
-void Star::ride(GSvector2* position,const GSvector2* size)const
+void Star::ride(GSvector2* position, const GSvector2* size)const
 {
 	GSvector2 pos(this->position);
-	pos.y -=size->y;
+	pos.y -= size->y;
 	*position = pos;
 }
 void Star::pickUp(GSvector2* velocity)const
@@ -82,5 +82,5 @@ void Star::rotate()
 	Calculate<float>calc;
 	//velocity‚Ì’·‚³‚Å‰ñ“]‘¬“x‚ðŒˆ‚ß‚é
 	float add = gsFrameTimerGetTime()*velocity.length();
-	angle = calc.wrap(angle +add, 0, 360);
+	angle = calc.wrap(angle + add, 0, 360);
 }
