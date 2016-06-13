@@ -21,7 +21,7 @@ Player::Player(const std::string& textrue, const GSvector2& position,
 	rideStarPointerNum(0), jumpPower(0),
 	speed(VERTICAL), 
 	isJump(false), isRespawn(true),
-	isGround(false), isClear(false),
+	isGround(false), isClear(false), 
 
 	animation(animeTimer),
 	animeTimer(60.f),
@@ -49,6 +49,8 @@ void Player::initialize()
 	animation.addCell("R", 2, 3, 64, 64);//移動右
 	animation.addCell("JL", 3, 3, 64, 64);//ジャンプ左
 	animation.addCell("JR", 4, 3, 64, 64);//ジャンプ右
+	animation.addCell("SR", 5, 3, 64, 64);//星乗り右
+	animation.addCell("SL", 6, 3, 64, 64);//星乗り左
 
 	isRespawn = true;
 
@@ -96,6 +98,7 @@ void Player::rideUpDown()
 	}
 	if (device.getInput().getDownTrigger())
 	{
+		
 		velocity = GSvector2(0, 0);
 		/*
 		*64は星のサイズ
@@ -105,6 +108,7 @@ void Player::rideUpDown()
 	}
 	if (device.getInput().getUpTrigger())
 	{
+
 		isJump = true;
 		jumpPower = JUMPMAXPOW;
 	}
@@ -194,10 +198,10 @@ const bool Player::respawn()
 *乗っていたらtrue
 *0の時は乗っていない
 */
-//const bool Player::isRide()const
-//{
-//	return rideStarPointerNum != 0;
-//}
+const bool Player::isRide()const
+{
+	return rideStarPointerNum != 0;
+}
 //衝突
 void Player::collision(const GameObject* obj)
 {
@@ -306,10 +310,10 @@ void Player::changeAnimation(int dir)
 	{
 		stateKey = "J";
 	}
-	//if (isRide())
-	//{
-
-	//}
+	if (isRide())
+	{
+		stateKey = "S";
+	}
 	animation.updata(stateKey + currentDirAnimeKey);
 }
 //void Player::animation()

@@ -56,6 +56,14 @@ public:
 	void InitBlendFunc()const;
 	void AdditionBlend()const;
 	void DrawTextrueScroll(const std::string& name, const GSrect& s, const GSrect& t)const;
+	void DrawBlurTextrue(
+		const std::string& name, 
+		const GSvector2& _position, 
+		const GSvector2* _center,
+		const GSvector2& velocity,
+		float angle,
+		unsigned int maxSheet
+		)const;
 private:	
 	//2d•`‰æ
 	void disables()const;
