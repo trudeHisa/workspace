@@ -13,6 +13,15 @@ public:
 		const std::string& ps = "Textrue\\\\");
 	void Release();
 
+	void DrawBlur(
+		const std::string& name,
+		const GSvector2& _position,
+		const GSvector2& _velocity,
+		const GSvector2* _center,
+		GSfloat          _rotation,
+		unsigned int maxSheet
+		)const;
+
 	/*
 	*テクスチャなし
 	*/

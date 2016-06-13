@@ -25,7 +25,6 @@ public:
 	GameObject* clone(const GSvector2& position);
 private:
 	void rotate();
-	void blurdraw(const Renderer& renderer, const GSvector2& position, const GSvector2& center);
 protected:
 	float helth;
 

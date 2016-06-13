@@ -32,19 +32,6 @@ void Star::updata()
 		isDead = true;
 	}
 }
-void Star::blurdraw(const Renderer& renderer, const GSvector2& position, const GSvector2& center)
-{
-	GSvector2 vel = velocity;
-	float addRot = gsFrameTimerGetTime()*velocity.length();
-	int max =7;
-	for (int i = max; i>0; i--)
-	{
-		GSvector2 prevpos = position - vel*i*0.8f;
-		float prevang = angle - addRot*i;
-		float alpha = (max - i)*0.05f;
-		renderer.DrawTextrue(textrue, &prevpos, NULL, &center, &GSvector2(1, 1), prevang, &GScolor(1, 1, 1, alpha));
-	}
-}
 void Star::draw(const Renderer& renderer, const Scroll& scroll)
 {
 	if (!isInScreen(scroll))
@@ -57,7 +44,7 @@ void Star::draw(const Renderer& renderer, const Scroll& scroll)
 	pos += center;
 	//animation.draw(renderer,textrue,&pos);
 	renderer.AdditionBlend();
-	blurdraw(renderer,pos,center);
+	renderer.DrawBlur(textrue, pos,velocity,&center,angle,7);
 	renderer.InitBlendFunc();
 	renderer.DrawTextrue(textrue, &pos,NULL,&center,&GSvector2(1,1),angle,NULL);
 }

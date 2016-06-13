@@ -271,3 +271,24 @@ void Renderer::DrawFillRect(
 {
 	DrawFillRectangle(_rect, _center, _scaling, _rotation, _position, _color);
 }
+void Renderer::DrawBlur(
+	const std::string& name,
+	const GSvector2& _position,
+	const GSvector2& _velocity,
+	const GSvector2* _center,
+	GSfloat          _rotation,
+	unsigned int maxSheet
+	)const
+{
+	float addRot = gsFrameTimerGetTime()*_velocity.length();
+	float prevang = 0;
+	float alpha = 0;
+	GSvector2 prevpos(0, 0);
+	for (int i = maxSheet; i>0; i--)
+	{
+		prevpos=_position - _velocity *i*0.8f;
+		prevang= _rotation - addRot*i;
+		alpha = (maxSheet - i)*0.05f;
+		DrawSprite2D(container.at(name), NULL, _center, NULL, prevang,&prevpos,&GScolor(1, 1, 1, alpha));
+	}
+}
