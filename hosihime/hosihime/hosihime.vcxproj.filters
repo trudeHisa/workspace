@@ -261,6 +261,9 @@
     <ClCompile Include="Code\Source\EffectFactory.cpp">
       <Filter>ソース ファイル\Factory</Filter>
     </ClCompile>
+    <ClCompile Include="Code\Source\StarFactory.cpp">
+      <Filter>ソース ファイル\Factory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Include\GAMEOBJ_TYPE.h">
@@ -462,6 +465,9 @@
       <Filter>ヘッダー ファイル\effect</Filter>
     </ClInclude>
     <ClInclude Include="Code\Include\EffectFactory.h">
+      <Filter>ヘッダー ファイル\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\StarFactory.h">
       <Filter>ヘッダー ファイル\Factory</Filter>
     </ClInclude>
   </ItemGroup>
