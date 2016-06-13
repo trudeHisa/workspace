@@ -88,7 +88,7 @@ void GameObjControl::remove()
 }
 void GameObjControl::draw(const Renderer& renderer, const Scroll& scroll)
 {
-	drawOderSort();
+	//drawOderSort();
 	for each (GameObj_Ptr obj in objs)
 	{
 		obj->draw(renderer, scroll);
