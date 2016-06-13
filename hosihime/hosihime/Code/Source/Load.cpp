@@ -57,6 +57,7 @@ void Load::loadTextrue()
 	renderer.LoadTextrue("space2.bmp");
 	renderer.LoadTextrue("title.bmp");
 	renderer.LoadTextrue("ending.bmp");
+	renderer.LoadTextrue("starparticle.bmp");
 
 	//Œ»İg‚Á‚Ä‚È‚¢‰æ‘œ
 	renderer.LoadTextrue("title_logo.bmp");

@@ -1,5 +1,6 @@
 #include "EffectFactory.h"
 #include "CircleEffect.h"
+#include "StarEffect.h"
 EffectFactory::EffectFactory()
 	:container()
 {
@@ -15,4 +16,5 @@ const Effect_Ptr EffectFactory::create(const std::string& key, const GSvector2& 
 void EffectFactory::addContainer()
 {
 	container.insert(std::pair<const std::string, Effect_Ptr >("CircleEffect", Effect_Ptr(new CircleEffect())));
+	container.insert(std::pair<const std::string, Effect_Ptr >("StarEffect", Effect_Ptr(new StarEffect())));
 }
