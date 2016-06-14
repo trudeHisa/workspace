@@ -218,7 +218,7 @@ void Player::collision(const GameObject* obj)
 	if (obj->getType() == GOAL) isClear = true;
 	if (obj->getType() == BURNSTAR)
 	{
-		isDead = true;
+	//	isDead = true;
 	}
 }
 void Player::collisionGround(const GameObject* obj)

@@ -3,7 +3,7 @@
 #include "GameObject.h"
 
 #include "IMediator.h"
-
+#include "Timer.h"
 class Magpie:public GameObject
 {
 public:
@@ -17,8 +17,14 @@ public:
 	GameObject* clone(const GSvector2& position);
 	void ride(GSvector2* position, const GSvector2* size)const;
 private:
-	bool isMove;
+	enum State
+	{
+		STANDBY, TAKEIN,SENDON
+	};
+	State state;
+	Timer timer;
 	IMediator* objMediator;
+	float angle;
 };
 
 #endif
