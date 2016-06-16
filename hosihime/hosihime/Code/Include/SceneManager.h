@@ -2,19 +2,20 @@
 #define _SCENEMANAGER_H_
 #include "IScene.h"
 #include <map>
-typedef std::map<Scene, IScene*> Scenes;
-typedef Scenes::iterator ScenesIter;
+#include <memory>
+typedef std::shared_ptr<IScene>Scene_Ptr;
+typedef std::map<Scene, Scene_Ptr> Scenes;
 class SceneManager
 {
 public:
 	SceneManager();
-	void Add(Scene name,IScene* scene);
+	void Add(Scene name, Scene_Ptr scene);
 	void Change(Scene name);
 	void Update();
 	void Draw(const Renderer& renderer);
 	void Finish();
 private:
 	Scenes scenes;
-	IScene* currentScene;
+	Scene_Ptr currentScene;
 };
 #endif

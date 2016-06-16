@@ -55,16 +55,6 @@ void Star::collision(const GameObject* obj)
 		isDead = true;
 	}
 }
-void Star::ride(GSvector2* position, const GSvector2* size)const
-{
-	GSvector2 pos(this->position);
-	pos.y -= size->y;
-	*position = pos;
-}
-void Star::pickUp(GSvector2* velocity)const
-{
-	*velocity = this->velocity;
-}
 Star* Star::clone()
 {
 	return new Star(textrue, startPosi, viewSize, rect, helth, StarMove_Ptr(move->clone()));

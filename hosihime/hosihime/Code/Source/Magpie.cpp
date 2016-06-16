@@ -64,18 +64,6 @@ void Magpie::collision(const GameObject* obj)
 		state = TAKEIN;
 	}
 }
-
-void Magpie::ride(GSvector2* position, const GSvector2* size)const
-{
-	if (state != TAKEIN)
-	{
-		return;
-	}
-	GSvector2 pos(this->position);
-	pos.y -= size->y;
-	*position = pos;
-}
-
 GameObject* Magpie::clone(const GSvector2& position)
 {
 	return new Magpie(textrue, position, viewSize, rect,objMediator);

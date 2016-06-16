@@ -207,8 +207,8 @@ void Player::collision(const GameObject* obj)
 {
 	if (obj->getType() == MAGPIE)
 	{
-		const Magpie* magpie = dynamic_cast<const Magpie*>(obj);
-		magpie->ride(&position,&viewSize);
+		ride(obj);
+		jumpEnd();
 		return;
 	}
 
@@ -238,11 +238,16 @@ void Player::collisionGround(const GameObject* obj)
 			}*/
 	}
 }
-void Player::statRide(const GameObject* obj)
+
+void Player::ride(const GameObject* obj)
 {
-	const Star* star = dynamic_cast<const Star*>(obj);
-	star->ride(&position, &viewSize);
-	star->pickUp(&velocity);
+	position = obj->getPosition();
+	position.y -= obj->getViewSize().y;
+}
+
+void Player::starRide(const GameObject* obj)
+{
+	ride(obj);
 	jumpEnd();
 }
 void Player::collisionStar(const GameObject* obj)
@@ -257,14 +262,14 @@ void Player::collisionStar(const GameObject* obj)
 	if (rideStarPointerNum == 0)
 	{
  		rideStarPointerNum = pointerNum;
-		statRide(obj);
+		starRide(obj);
 		return;
 	}
 	if (rideStarPointerNum != pointerNum)
 	{
 		return;
 	}
-	statRide(obj);
+	starRide(obj);
 }
 void Player::collisionRespawn(const GameObject* obj)
 {

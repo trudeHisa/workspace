@@ -19,8 +19,6 @@ public:
 
 	const GSvector2& getSPosi() const;
 public:
-	void ride(GSvector2* position, const GSvector2* size)const;
-	void pickUp(GSvector2* velocity)const;
 	virtual Star* clone();
 	GameObject* clone(const GSvector2& position);
 private:

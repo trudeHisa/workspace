@@ -34,8 +34,10 @@ private:
 
 	const bool respawn();
 
+	void ride(const GameObject* obj);
+
 	const bool isRide()const;
-	void statRide(const GameObject* obj);
+	void starRide(const GameObject* obj);
 	//collision
 	void collisionGround(const GameObject* obj);
 	void collisionStar(const GameObject* obj);

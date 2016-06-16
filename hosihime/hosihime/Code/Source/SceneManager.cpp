@@ -1,6 +1,6 @@
 #include"SceneManager.h"
 SceneManager::SceneManager(){}
-void SceneManager::Add(Scene name,IScene* scene)
+void SceneManager::Add(Scene name,Scene_Ptr scene)
 {
 	scenes[name] = scene;
 }
@@ -24,8 +24,5 @@ void SceneManager::Draw(const Renderer& renderer)
 }
 void SceneManager::Finish()
 {
-	for (ScenesIter i = scenes.begin(); i != scenes.end(); i++)
-	{
-		delete i->second;
-	}
+
 }

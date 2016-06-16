@@ -19,14 +19,14 @@ Renderer renderer;
 TimeScore score;
 void gameInit(void)
 {	
-	sceneManager.Add(Scene::MODE_LOAD, new Load(device,renderer));
-	sceneManager.Add(Scene::MODE_TITLE, new Title(device));
-	sceneManager.Add(Scene::MODE_MENU,new Menu(device));
-	sceneManager.Add(Scene::MODE_GAMEPLAY, new GamePlay(device,score));
+	sceneManager.Add(Scene::MODE_LOAD, Scene_Ptr( new Load(device, renderer)));
+	sceneManager.Add(Scene::MODE_TITLE, Scene_Ptr(new Title(device)));
+	sceneManager.Add(Scene::MODE_MENU, Scene_Ptr(new Menu(device)));
+	sceneManager.Add(Scene::MODE_GAMEPLAY, Scene_Ptr(new GamePlay(device, score)));
 
-	sceneManager.Add(Scene::MODE_ENDING, new Ending(device,score));
-	sceneManager.Add(Scene::MODE_RESULT, new Result(device, score));
-	sceneManager.Add(Scene::MODE_GAMEOVER, new GameOver(device));
+	sceneManager.Add(Scene::MODE_ENDING, Scene_Ptr(new Ending(device, score)));
+	sceneManager.Add(Scene::MODE_RESULT, Scene_Ptr(new Result(device, score)));
+	sceneManager.Add(Scene::MODE_GAMEOVER, Scene_Ptr(new GameOver(device)));
 
 	sceneManager.Change(Scene::MODE_LOAD);
 }
