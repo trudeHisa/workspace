@@ -11,10 +11,16 @@ public:
 	~StarFactory();
 	void update();
 	bool isStart();
+	
 private:
 	void create();
+	void breakStart();
+	void breakCreate();
 private:
-	Star* star;
+	Star* prot;//Œ´Œ^
+	Star_Ptr star;//’¼‘O‚É¶¬‚µ‚½¯(‰ó‚ê‚é¯—p)
+	float breakTime;
+	bool isbreakStart;
 	IMediator& mediator;
 	Timer timer;
 };

@@ -95,7 +95,7 @@ void StarManger::createData()
 	StarDataStream stream;
 	std::vector<std::vector<std::string>>data;
 	data.clear();
-	stream.input(&data, "stardata\\stage.stardata");
+	stream.input(&data, "stardata\\stage000.stardata");
 	/*
 	* STARCLASS, posx,poy,veiwsizex,veiwsizey,rectsizew,rectsizeh,
 	*  def: Imove
@@ -104,7 +104,7 @@ void StarManger::createData()
 	*/
 	for each (std::vector<std::string> param in data)
 	{
-		factory.emplace_back(Fact_Ptr(new StarFactory(createStar(param), 2.0f, mediator)));
+		factory.emplace_back(Fact_Ptr(new StarFactory(createStar(param), 3.0f, mediator)));
 		//stars.emplace_back(Star_Ptr(createStar(param)));
 	}
 }

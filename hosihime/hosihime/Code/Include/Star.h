@@ -19,6 +19,7 @@ public:
 
 	const GSvector2& getSPosi() const;
 	const float getHelth()const;
+	const IStarMove* getMove();
 public:
 	void ride(GSvector2* position, const GSvector2* size)const;
 	void pickUp(GSvector2* velocity)const;
