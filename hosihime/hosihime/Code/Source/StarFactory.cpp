@@ -44,7 +44,6 @@ bool StarFactory::isStart()
 }
 void StarFactory::create()
 {
-	star = nullptr;
 	star = static_cast<Star_Ptr>(prot->clone());
 	mediator.add(star);
 }
