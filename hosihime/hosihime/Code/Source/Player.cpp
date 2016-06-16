@@ -129,7 +129,7 @@ void Player::jumpStart()
 		return;
 	}
 	scroll->getMovingAmount();
-	//effectMediator->add( " ",position-scroll->getMovingAmount());
+	//effectMediator->add( "",position-scroll->getMovingAmount());
 	isJump = true;
 	jumpPower = JUMPMAXPOW;}
 void Player::jump()
