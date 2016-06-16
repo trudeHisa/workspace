@@ -7,8 +7,8 @@
 
 #include "Device.h"
 #include "Scroll.h"
-GameObjectFactory::GameObjectFactory(Scroll& scroll, Device& device)
-	:scroll(scroll), device(device), container()
+GameObjectFactory::GameObjectFactory(Scroll& scroll, Device& device,IEffectMediator* effectMediator)
+:scroll(scroll), device(device), container(), effectMediator(effectMediator)
 {
 }
 
@@ -22,7 +22,8 @@ void GameObjectFactory::addContainer()
 	GameObject* objs[length] = 
 	{
 		new Respawn("rock.bmp", zero, GSvector2(158, 100), MyRectangle(GSvector2(23, 16), GSvector2(113, 28))),
-		new Player("player.bmp", zero,GSvector2(64,64),MyRectangle(GSvector2(20,50), GSvector2(30,14)), &scroll, device),
+		new Player("player.bmp", zero,GSvector2(64,64),MyRectangle(GSvector2(20,50), GSvector2(30,14))
+		, &scroll, device,effectMediator),
 		new ImMovable("rock2_2.bmp", zero, GSvector2(117, 79), MyRectangle(zero, GSvector2(117, 79) ), PLANET),
 		new ImMovable("start.bmp", zero, GSvector2(200,126), MyRectangle(GSvector2(40, 20), GSvector2(128, 20)), START),
 		new ImMovable("goal.bmp", zero, GSvector2(317,200), MyRectangle(GSvector2(50, 40), GSvector2(226, 26)), GOAL)

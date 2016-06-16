@@ -5,13 +5,14 @@
 #include "Timer.h"
 #include "Animation.h"
 #include "Star.h"
+#include "IEffectMediator.h"
 class Device;
 class Player :public GameObject
 {
 public:
 	Player(const std::string& textrue, const GSvector2& position,
 		const GSvector2& viewSize, const MyRectangle& rect,
-		Scroll* scroll, Device& device);
+		Scroll* scroll, Device& device,IEffectMediator* effectMediator);
 	virtual ~Player();
 	void updata();
     void initialize();
@@ -83,5 +84,7 @@ private:
 	//float lr;
 	Animation animation;
 	AnimationTimer animeTimer;
+
+	IEffectMediator* effectMediator;
 };
 #endif
