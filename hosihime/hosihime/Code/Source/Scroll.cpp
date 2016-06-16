@@ -68,10 +68,16 @@ void Scroll::moving(const GSvector2&  position, const GSvector2& offset)
 	margin.y *= -1.0f;
 	backGroundScroll(margin);
 }
-const GSvector2& Scroll::getMovingAmount()const
+//const GSvector2& Scroll::getMovingAmount()const
+//{
+//	return movingAmount;
+//}
+
+const GSvector2 Scroll::transformViewPosition(const GSvector2& position)const
 {
-	return movingAmount;
+	return position - movingAmount;
 }
+
 void Scroll::setMode(SCROLL_MODE _mode)
 {
 	mode = _mode;

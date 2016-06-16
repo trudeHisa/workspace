@@ -37,7 +37,6 @@ private:
 	void ride(const GameObject* obj);
 
 	const bool isRide()const;
-	void starRide(const GameObject* obj);
 	//collision
 	void collisionGround(const GameObject* obj);
 	void collisionStar(const GameObject* obj);
@@ -51,6 +50,7 @@ private:
 	float jumpPower;
 	float speed;
 
+	bool isMagpieRide;
 	bool isJump;
 	bool isGround;
 	bool isClear;

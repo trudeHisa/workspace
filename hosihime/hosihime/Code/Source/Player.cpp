@@ -22,6 +22,7 @@ Player::Player(const std::string& textrue, const GSvector2& position,
 	speed(VERTICAL), 
 	isJump(false), isRespawn(true),
 	isGround(false), isClear(false), 
+	isMagpieRide(false),
 
 	animation(animeTimer),
 	animeTimer(60.f),
@@ -41,6 +42,7 @@ void Player::initialize()
 
 	isGround = false;
 	isClear = false;
+	isMagpieRide=false;
 
 	currentDirAnimeKey = "R";
 	animeTimer.initialize();
@@ -108,7 +110,6 @@ void Player::rideUpDown()
 	}
 	if (device.getInput().getUpTrigger())
 	{
-
 		isJump = true;
 		jumpPower = JUMPMAXPOW;
 	}
@@ -145,10 +146,6 @@ void Player::jump()
 }
 const float Player::moveHorizontal()
 {
-	//if (!isGround && !isJump)
-	//{
-	//	return;
-	//}
 	float direction = device.getInput().getVelocity().x;
 	velocity.x = direction* speed;
 	return direction;
@@ -169,10 +166,8 @@ bool Player::getIsClear()
 //画面ないに映っていなかったらリスポン
 const bool Player::respawn()
 {
-	//view座標に変換
-	GSvector2 pos = position - scroll->getMovingAmount();
 	//画面内か？
-	if (scroll->isInsideWindow(pos, viewSize))
+	if (scroll->isInsideWindow(scroll->transformViewPosition(position), viewSize))
 	{
 		/*
 		取りあえず
@@ -189,8 +184,8 @@ const bool Player::respawn()
 	position = respawnPos;
 	velocity = GSvector2(0, 0);
 	jumpPower = 0;
-
 	isRespawn = true;
+
 	return true;
 }
 
@@ -207,18 +202,32 @@ void Player::collision(const GameObject* obj)
 {
 	if (obj->getType() == MAGPIE)
 	{
-		ride(obj);
-		jumpEnd();
+		const Magpie* mag = dynamic_cast<const Magpie*>(obj);
+		if (mag->isRide())
+		{
+			ride(obj);
+			isMagpieRide = true;
+			jumpEnd();
+		}	
+		else
+		{
+ 			isMagpieRide = false;
+		}
+	}
+	if (isMagpieRide)
+	{
 		return;
 	}
-
 	collisionStar(obj);
 	collisionRespawn(obj);
 	collisionGround(obj);
 	if (obj->getType() == GOAL) isClear = true;
 	if (obj->getType() == BURNSTAR)
 	{
-	//	isDead = true;
+		position = respawnPos;
+		velocity = GSvector2(0, 0);
+		jumpPower = 0;
+		isRespawn = true;
 	}
 }
 void Player::collisionGround(const GameObject* obj)
@@ -226,7 +235,8 @@ void Player::collisionGround(const GameObject* obj)
 	GAMEOBJ_TYPE type = obj->getType();
 	if (type == RESPAWN ||
 		type == START ||
-		type == GOAL)
+		type == GOAL||
+		type==MAGPIE_ENDSPOT)
 	{
 		isGround = true;
 		jumpEnd();
@@ -242,14 +252,9 @@ void Player::collisionGround(const GameObject* obj)
 void Player::ride(const GameObject* obj)
 {
 	position = obj->getPosition();
-	position.y -= obj->getViewSize().y;
+	position.y -= (viewSize.y+1);
 }
 
-void Player::starRide(const GameObject* obj)
-{
-	ride(obj);
-	jumpEnd();
-}
 void Player::collisionStar(const GameObject* obj)
 {
 	GAMEOBJ_TYPE type = obj->getType();
@@ -262,14 +267,16 @@ void Player::collisionStar(const GameObject* obj)
 	if (rideStarPointerNum == 0)
 	{
  		rideStarPointerNum = pointerNum;
-		starRide(obj);
+		ride(obj);
+		jumpEnd();
 		return;
 	}
 	if (rideStarPointerNum != pointerNum)
 	{
 		return;
 	}
-	starRide(obj);
+	ride(obj);
+	jumpEnd();
 }
 void Player::collisionRespawn(const GameObject* obj)
 {
@@ -284,6 +291,7 @@ void Player::nonCollision()
 {
 	rideStarPointerNum = 0;
 	isGround = false;
+	isMagpieRide = false;
 }
 
 GameObject* Player::clone(const GSvector2& position)
@@ -297,8 +305,7 @@ void Player::draw(const Renderer& renderer, const Scroll& scroll)
 	{
 		return;
 	}
-	GSvector2 pos = position - scroll.getMovingAmount();
-	animation.draw(renderer, "orihime.bmp", &pos);
+	animation.draw(renderer, "orihime.bmp", &scroll.transformViewPosition(position));
 }
 
 const std::string Player::getDirKey(int dir)
@@ -328,57 +335,3 @@ void Player::changeAnimation(int dir)
 	}
 	animation.updata(stateKey + currentDirAnimeKey);
 }
-//void Player::animation()
-//{	
-//	//migi
-//	if (changedir > 0)
-//	{
-//		lr = 2;
-//		animation.updata("R");
-//		if (!isGround)
-//		{
-//			animation.updata("JR");
-//			lr = 1;
-//		}
-//	}
-//	else if (changedir >= 0 && isGround && lr == 1)
-//	{
-//		animation.updata("R");
-//		lr = 0;
-//	}
-//	
-//	//hidari
-//	if (changedir < 0)
-//	{
-//		lr = -2;
-//		animation.updata("L");
-//		if (!isGround)
-//		{
-//			animation.updata("JL");
-//			lr = -1;
-//		}
-//	}
-//	else if (changedir <= 0 && isGround && lr == -1)
-//	{
-//		animation.updata("L");
-//		lr = 0;
-//	}
-//
-//	//changedir が　0 のとき
-//	if (!isGround && lr == 2)
-//	{
-//		animation.updata("JR");
-//	}
-//	else if (!isGround && lr == -2)
-//	{
-//		animation.updata("JL");
-//	}
-//	else if (isGround && lr > 0)
-//	{
-//		animation.updata("R");
-//	}
-//	else if (isGround && lr < 0)
-//	{
-//		animation.updata("L");
-//	}
-//}

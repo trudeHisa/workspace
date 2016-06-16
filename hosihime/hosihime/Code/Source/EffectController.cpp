@@ -21,12 +21,13 @@ void EffectController::update()
 	}
 	remove();
 }
-void EffectController::draw(const Renderer& renderer)
+void EffectController::draw(const Renderer& renderer, const Scroll& scroll)
 {
 	for each (Effect_Ptr e in effects)
 	{
-		e->draw(renderer);
+		e->draw(renderer,scroll);
 	}
+	renderer.DrawString(std::to_string(effects.size()), &GSvector2(100, 100), 20);
 }
 void EffectController::remove()
 {

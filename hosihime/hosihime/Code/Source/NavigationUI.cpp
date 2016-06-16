@@ -50,7 +50,7 @@ void NavigationUI::updata()
 
 	targetInScreen(target);
 	GSvector2 targetCenterPos = target->getPosition() + (target->getViewSize()*0.5f);
-	GSvector2 targetViewPos = targetCenterPos - scroll.getMovingAmount();
+	GSvector2 targetViewPos =scroll.transformViewPosition(targetCenterPos);
 
 	/*
 	target‚ÌˆÊ’u‚ð‰æ–Ê“à‚ÉƒNƒ‰ƒ“ƒv‚µ‚Ä

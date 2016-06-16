@@ -22,7 +22,11 @@ public:
 	void moving(const GSvector2& position, const GSvector2& offset=GSvector2(0,0));
 	//ウィンドウの中にあるか
 	const bool isInsideWindow(const GSvector2& pos, const GSvector2& size)const;
-	const GSvector2& getMovingAmount()const;
+	//const GSvector2& getMovingAmount()const;
+	/*
+	view座標に変換
+	*/
+	const GSvector2 transformViewPosition(const GSvector2& position)const;
 
 	void setMode(SCROLL_MODE _mode);
 	const SCROLL_MODE& getMode()const;

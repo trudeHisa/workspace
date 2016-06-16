@@ -48,10 +48,7 @@ void Stage::initialize()
 
 	effectController.initialize();
 
-	for (int i = 0; i <5; i++)
-	{
-		effectController.add("CircleEffect", GSvector2(5 * 64 + (i * 64), 3 * 64));
-	}
+	effectController.add("FireworkEffect", control.get(PLAYER)->getPosition());
 	
 }
 void Stage::updata()
@@ -96,14 +93,10 @@ void Stage::draw(const Renderer& renderer)
 	int t = timer.getTime() / FRAMETIME;
 	renderer.DrawString(std::to_string(t), &GSvector2(50, 50), 50);
 	
-	effectController.draw(renderer);
+	effectController.draw(renderer,scroll);
 
 	navigation.draw(renderer,scroll);
 	fade.draw(renderer);
-
-	GSvector2 s= control.get(MAGPIE_ENDSPOT)->getPosition();
-	renderer.DrawString("X:" + std::to_string(s.x) + ",Y:" + std::to_string(s.y), &GSvector2(100,100),20);
-
 }
 void Stage::finish()
 {

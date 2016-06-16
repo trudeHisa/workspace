@@ -24,7 +24,7 @@ public:
 	~EffectController();
 	void initialize();
 	void update();
-	void draw(const Renderer& renderer);
+	void draw(const Renderer& renderer, const Scroll& scroll);
 	void finish();
 	void add(const std::string& name, const GSvector2& position);
 private:

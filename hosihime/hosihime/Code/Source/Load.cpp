@@ -39,6 +39,7 @@ bool Load::IsEnd()
 }
 void Load::loadTextrue()
 {
+	renderer.LoadTextrue("fireworkParticle.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("magpie.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("magpieEnd.bmp", GS_TEXCOLOR_KEY_AUTO);
 

@@ -22,9 +22,9 @@ void CircleEffect::update()
 {
 	circle.update();
 }
-void CircleEffect::draw(const Renderer& renderer)
+void CircleEffect::draw(const Renderer& renderer, const Scroll& scroll)
 {
-	circle.draw(renderer);
+	circle.draw(renderer,scroll);
 }
 void CircleEffect::finish()
 {

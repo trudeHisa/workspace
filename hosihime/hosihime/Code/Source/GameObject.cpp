@@ -21,8 +21,7 @@ void GameObject::draw(const Renderer& renderer, const Scroll& scroll)
 	{
 		return;
 	}
-	GSvector2 pos = position - scroll.getMovingAmount();
-	renderer.DrawTextrue(textrue, &pos);
+	renderer.DrawTextrue(textrue, &scroll.transformViewPosition(position));
 }
 void GameObject::initialize()
 {
@@ -34,8 +33,7 @@ void GameObject::finish()
 }
 const bool GameObject::isInScreen(const Scroll& scroll)const
 {
-	GSvector2 viewPos = position -scroll.getMovingAmount();
-	return scroll.isInsideWindow(viewPos, viewSize);
+	return scroll.isInsideWindow(scroll.transformViewPosition(position), viewSize);
 }
 
 const GSvector2& GameObject::getViewSize()const

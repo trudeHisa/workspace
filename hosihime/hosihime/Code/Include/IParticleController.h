@@ -28,7 +28,7 @@ public:
 	virtual ~IParticleController(){}
 	virtual void initialize()=0;
 	virtual void update() = 0;
-	virtual void draw(const Renderer& renderer) = 0;
+	virtual void draw(const Renderer& renderer, const Scroll& scroll) = 0;
 	virtual void finish() = 0;
 	//virtual void setMode() = 0;
 	const virtual bool getIsEnd()const = 0;

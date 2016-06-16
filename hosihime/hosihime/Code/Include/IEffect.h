@@ -17,7 +17,7 @@ public:
 	virtual ~IEffect(){}
 	virtual void initialize() = 0;
 	virtual void update() = 0;
-	virtual void draw(const Renderer& renderer) = 0;
+	virtual void draw(const Renderer& renderer, const Scroll& scroll) = 0;
 	virtual void finish() = 0;
 	virtual const bool getIsEnd()const =0;
 	virtual IEffect* clone(const GSvector2& position) = 0;

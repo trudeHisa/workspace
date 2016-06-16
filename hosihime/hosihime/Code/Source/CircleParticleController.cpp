@@ -23,12 +23,12 @@ void CircleParticleController::update()
 	}
 	remove();
 }
-void CircleParticleController::draw(const Renderer& renderer)
+void CircleParticleController::draw(const Renderer& renderer, const Scroll& scroll)
 {
 	renderer.AdditionBlend();
 	for each (Particle_Ptr p in particles)
 	{
-		p->draw(renderer);
+		p->draw(renderer,scroll);
 	}
 	renderer.InitBlendFunc();
 }
