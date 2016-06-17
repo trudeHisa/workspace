@@ -57,7 +57,7 @@ void StarParticleController::createParticle()
 
 	for (int i = 0; i <10; i++)
 	{
-		Starparticles.emplace_back(Particle_Ptr(new StarParticle("starparticle.bmp", i*90, 1.0f, center)));
+		Starparticles.emplace_back(Particle_Ptr(new StarParticle("starparticle.bmp", i*60, 1.0f, center)));
 	}
 }
 void StarParticleController::remove()
