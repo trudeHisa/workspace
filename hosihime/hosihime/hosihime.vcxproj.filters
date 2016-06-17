@@ -479,6 +479,9 @@
     <ClInclude Include="Code\Include\EffectFactory.h">
       <Filter>ヘッダー ファイル\Factory</Filter>
     </ClInclude>
+    <ClInclude Include="Code\Include\StarFactory.h">
+      <Filter>ヘッダー ファイル\Factory</Filter>
+    </ClInclude>
     <ClInclude Include="Code\Include\Magpie.h">
       <Filter>ヘッダー ファイル\gameobject\objects</Filter>
     </ClInclude>
@@ -490,9 +493,6 @@
     </ClInclude>
     <ClInclude Include="Code\Include\FireworkEffect.h">
       <Filter>ヘッダー ファイル\effect</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Include\StarFactory.h">
-      <Filter>ヘッダー ファイル\Factory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
