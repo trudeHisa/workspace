@@ -8,7 +8,6 @@ StarFactory::StarFactory(Star* prot, float time, IMediator& mediator)
 :prot(prot), timer(time, time), mediator(mediator)
 {
 	create();
-	breakTime = time * 60;
 }
 StarFactory::~StarFactory()
 {
@@ -50,10 +49,10 @@ void StarFactory::create()
 //âÛÇÍÇÈêØÇÃçƒê∂ê¨
 void StarFactory::breakCreate()
 {
-	if (breakTime < 0){
+	if (timer.isEnd()){
 		create();
 		isbreakStart = false;
-		breakTime = timer.getDefTime() * 60;
+		timer.initialize();
 	}
 }
 void StarFactory::breakStart()
@@ -62,7 +61,7 @@ void StarFactory::breakStart()
 
 	if (isbreakStart)
 	{
-		breakTime -= gsFrameTimerGetTime();
+		timer.update();
 	}
 
 	breakCreate();

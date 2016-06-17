@@ -19,7 +19,6 @@ private:
 private:
 	Star* prot;//Œ´Œ^
 	Star_Ptr star;//’¼‘O‚É¶¬‚µ‚½¯(‰ó‚ê‚é¯—p)
-	float breakTime;
 	bool isbreakStart;
 	IMediator& mediator;
 	Timer timer;
