@@ -1,5 +1,7 @@
 #pragma once
 #include "IParticle.h"
+#include "Calculate.h"
+
 class StarParticle:public IParticle
 {
 public:
