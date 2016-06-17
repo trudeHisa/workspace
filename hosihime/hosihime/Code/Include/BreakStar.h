@@ -23,6 +23,9 @@ public:
 
 	Star* clone();
 	GameObject* clone(const GSvector2& position);
+	const float getD()const{
+		return durability;
+	}
 private:
 	bool isBreakStart;
 	float durability;//‘Ï‹v«

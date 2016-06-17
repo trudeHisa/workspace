@@ -36,7 +36,7 @@ void Stage::initialize()
 	scroll.initialize(GSvector2(0, 0));
 	mapCreate();
 	Stars_IsInScreen();
-
+	
 	isEnd = false;
 	navigation.initialize();
 	flag = CLEARFLAG::PLAYING;
@@ -47,7 +47,7 @@ void Stage::initialize()
 	effectController.initialize();
 
 	//effectController.add("FireworkEffect", control.get(PLAYER)->getPosition());
-
+	
 }
 void Stage::updata()
 {
@@ -66,18 +66,18 @@ void Stage::updata()
 	}
 
 	if (control.StageClear())
-	{
+	{		
 		timer.stop();
 		flag = CLEARFLAG::CLEAR;
 		if (!fade.getIsStart())
 		{
 			fade.start(GScolor(0, 0, 0, 0), GScolor(0, 0, 0, 1), 4);
 		}
-
+		
 		if (fade.getIsEnd())
 		{
 			if (control.isDeadPlayer())isEnd = true;
-		}
+		}		
 	}
 	else
 	{
@@ -90,7 +90,7 @@ void Stage::draw(const Renderer& renderer)
 	control.draw(renderer, scroll);
 	int t = timer.getTime() / FRAMETIME;
 	renderer.DrawString(std::to_string(t), &GSvector2(50, 50), 50);
-
+	
 	effectController.draw(renderer, scroll);
 
 	navigation.draw(renderer, scroll);
@@ -122,9 +122,9 @@ void Stage::objCreate(int x, int y)
 	if (0 == data)
 	{
 		return;
-	}
+	}	
 	GSvector2 pos = GSvector2(x * BLOCKSIZE, y* BLOCKSIZE);
-	control.add(factory->create(static_cast<GAMEOBJ_TYPE>(data), pos));
+	control.add(factory->create(static_cast<GAMEOBJ_TYPE>(data), pos));	
 }
 void Stage::mapCreate()
 {

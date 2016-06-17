@@ -6,5 +6,4 @@
 #include <memory>
 typedef std::shared_ptr<GameObject> GameObj_Ptr;
 typedef std::shared_ptr<Star> Star_Ptr;
-
 #endif

@@ -19,6 +19,8 @@ public:
 	virtual void draw(const Renderer& renderer, const Scroll& scroll);
 
 	const GSvector2& getSPosi() const;
+	const float getHelth()const;
+	const IStarMove* getMove();
 public:
 	virtual Star* clone();
 	GameObject* clone(const GSvector2& position);

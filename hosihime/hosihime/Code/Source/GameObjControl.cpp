@@ -27,7 +27,9 @@ void GameObjControl::updata()
 }
 void GameObjControl::drawOderSort()
 {
-	std::sort(objs.begin(), objs.end(),
+	std::vector<GameObj_Ptr>::iterator s = objs.begin();
+	std::vector<GameObj_Ptr>::iterator end = objs.end();
+	std::sort(s, end,
 		[](const GameObj_Ptr& obj1, const GameObj_Ptr& obj2)
 	{
 		return obj1->getType() < obj2->getType();
@@ -56,7 +58,9 @@ const bool GameObjControl::isCollision(GameObj_Ptr obj1, GameObj_Ptr obj2)
 }
 void GameObjControl::collision(GameObj_Ptr obj1)
 {
-	bool all_Noncollision = std::all_of(objs.begin(), objs.end(),
+	std::vector<GameObj_Ptr>::iterator s = objs.begin();
+	std::vector<GameObj_Ptr>::iterator end = objs.end();
+	bool all_Noncollision = std::all_of(s, end,
 		[&](GameObj_Ptr obj2)
 	{
 		return isCollision(obj1, obj2);
@@ -69,7 +73,9 @@ void GameObjControl::collision(GameObj_Ptr obj1)
 }
 void GameObjControl::remove()
 {
-	auto itrNewEnd = std::remove_if(objs.begin(), objs.end(), [](GameObj_Ptr obj)->bool
+	std::vector<GameObj_Ptr>::iterator s = objs.begin();
+	std::vector<GameObj_Ptr>::iterator end = objs.end();
+	auto itrNewEnd = std::remove_if(s, end, [](GameObj_Ptr obj)->bool
 	{
 		if (!obj->getIsDead())
 		{
@@ -94,7 +100,9 @@ void GameObjControl::finish()
 }
 bool GameObjControl::isDeadPlayer()
 {
-	auto itr = std::find_if(objs.begin(), objs.end(), [](GameObj_Ptr obj)->bool
+	std::vector<GameObj_Ptr>::iterator s = objs.begin();
+	std::vector<GameObj_Ptr>::iterator end = objs.end();
+ 	auto itr = std::find_if(s, end, [](GameObj_Ptr obj)->bool
 	{
 		return obj->getType() == PLAYER;
 	});
@@ -107,7 +115,9 @@ bool GameObjControl::isDeadPlayer()
 
 bool GameObjControl::StageClear()
 {
-	auto itr = std::find_if(objs.begin(), objs.end(), [](GameObj_Ptr obj)->bool
+	std::vector<GameObj_Ptr>::iterator s = objs.begin();
+	std::vector<GameObj_Ptr>::iterator end = objs.end();
+	auto itr = std::find_if(s, end, [](GameObj_Ptr obj)->bool
 	{
 		return obj->getType()== PLAYER;
 	});
@@ -125,8 +135,10 @@ void GameObjControl::add(GameObj_Ptr obj)
 }
 GameObj_Ptr GameObjControl::get(GAMEOBJ_TYPE type)
 {
+	std::vector<GameObj_Ptr>::iterator s = objs.begin();
+	std::vector<GameObj_Ptr>::iterator end = objs.end();
 	GameObjs::iterator itr =
-		std::find_if(objs.begin(), objs.end(), [&](GameObj_Ptr obj)->bool
+		std::find_if(s, end, [&](GameObj_Ptr obj)->bool
 	{
 		return obj->getType() == type;
 	});

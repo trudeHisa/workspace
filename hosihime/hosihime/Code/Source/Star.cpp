@@ -74,6 +74,15 @@ const GSvector2& Star::getSPosi() const
 {
 	return startPosi;
 }
+const float Star::getHelth()const
+{
+	return helth;
+}
+
+const IStarMove* Star::getMove()
+{
+	return move.get();
+}
 void Star::rotate()
 {
 	Calculate<float>calc;

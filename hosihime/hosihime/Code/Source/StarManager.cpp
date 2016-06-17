@@ -104,7 +104,8 @@ void StarManger::createData()
 	*/
 	for each (std::vector<std::string> param in data)
 	{
-		stars.emplace_back(Star_Ptr(createStar(param)));
+		factory.emplace_back(Fact_Ptr(new StarFactory(createStar(param), 3.0f, mediator)));
+		//stars.emplace_back(Star_Ptr(createStar(param)));
 	}
 }
 //ƒXƒ^[¶¬
@@ -127,8 +128,12 @@ void StarManger::addInScreenStars()
 
 void StarManger::updata()
 {
-	starResporn();
+	//starResporn();
 	remove();
+	for each(Fact_Ptr sf in factory)
+	{
+		sf->update();
+	}
 }
 
 void StarManger::findDeads(std::vector<Star_Ptr>* deads)
