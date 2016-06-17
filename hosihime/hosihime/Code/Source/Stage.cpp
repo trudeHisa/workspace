@@ -9,7 +9,7 @@
 Stage::Stage(const int& stageNo, Device& device)
 :stageNo(stageNo),
 scroll(WINDOW_WIDTH, WINDOW_HEIGHT, mapSize,stageNo),
-device(device), timer(60, 60), BLOCKSIZE(64.0f),
+device(device), timer(0,0), BLOCKSIZE(64.0f),
 control(),
 effectFactory(EffectsFactory(new EffectFactory())),
 effectController(effectFactory),
@@ -44,8 +44,6 @@ void Stage::initialize()
 	fade.initialize();
 
 	effectController.initialize();	
-	
-
 }
 void Stage::updata()
 {
@@ -57,11 +55,11 @@ void Stage::updata()
 	effectController.update();
 
 	timer.update();
-	if (timer.isEnd())
+	/*if (timer.isEnd())
 	{
 		flag = CLEARFLAG::GAMEOVER;
 		isEnd = true;
-	}
+	}*/
 
 	if (control.StageClear())
 	{	
