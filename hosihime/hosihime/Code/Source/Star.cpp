@@ -81,7 +81,7 @@ void Star::draw(const Renderer& renderer, const Scroll& scroll)
 	float red, green, blue,alpha;//星の色、透過変数
 	//点滅処理
 	//星が移動距離の半分進むと色変えと点滅処理をする
-	if (starHelth < helth / 2)
+	if (starHelth < helth / 4)
 	{
 		blinkerTime += gsFrameTimerGetTime();
 		red = 1.0f;
