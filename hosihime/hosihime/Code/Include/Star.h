@@ -28,6 +28,9 @@ private:
 	void blurdraw(const Renderer& renderer, const GSvector2& position, const GSvector2& center);
 protected:
 	float helth;
+	float starHelth;//¯‚Ìc‚è‘Ì—Í‚İ‚½‚¢‚È‚à‚Ì
+	float blinkerTime;//“_–ÅŠÖŒW‚Ì•Ï”
+	bool starAlpha;//¯‚Ìalpha•Ï”
 	//Animation animation;
 	//AnimationTimer animTimer;
 	//int activeAnimKey;
