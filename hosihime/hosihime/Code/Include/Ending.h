@@ -3,6 +3,7 @@
 #include "IScene.h"
 #include "TimeScore.h"
 #include "GamePlay.h"
+#include "Fade.h"
 class Device;
 class Ending :public IScene
 {
@@ -21,5 +22,6 @@ private:
 	TimeScore& score;
 	GSvector2 playerPosi;
 	GSvector2 vel;
+	Fade fade;
 };
 #endif
