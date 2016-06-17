@@ -19,6 +19,8 @@ public:
 	Scene Next();
 	bool IsEnd();
 private:
+	Timer timer;
+	float alpha;
 	float rogoAlpha;
 	
 	Device& device;

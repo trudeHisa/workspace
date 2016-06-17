@@ -11,7 +11,7 @@ class Star :virtual public GameObject
 public:
 	Star(const std::string& textrue, const GSvector2& position,
 		const GSvector2& viewSize, const MyRectangle& rect,
-		float helth, StarMove_Ptr move,IEffectMediator* effectMediator);
+		float helth, StarMove_Ptr move, IEffectMediator* effectMediator);
 	virtual ~Star();
 	virtual void initialize();
 	virtual void updata();
@@ -20,7 +20,7 @@ public:
 
 	const GSvector2& getSPosi() const;
 	const float getHelth()const;
-	const IStarMove* getMove();
+	IStarMove* getMove();
 public:
 	virtual Star* clone();
 	GameObject* clone(const GSvector2& position);
@@ -28,7 +28,12 @@ private:
 	void rotate();
 protected:
 	float helth;
-
+	float starHelth;//¯‚Ìc‚è‘Ì—Í‚İ‚½‚¢‚È‚à‚Ì
+	float blinkerTime;//“_–ÅŠÖŒW‚Ì•Ï”
+	bool starAlpha;//¯‚Ìalpha•Ï”
+	//Animation animation;
+	//AnimationTimer animTimer;
+	//int activeAnimKey;
 	StarMove_Ptr move;
 	float angle;//rad
 	GSvector2 startPosi;

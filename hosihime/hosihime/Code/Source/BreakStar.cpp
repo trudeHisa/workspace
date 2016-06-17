@@ -20,6 +20,8 @@ void BreakStar::initialize()
 	Star::initialize();
 	durability = max_Durability;
 	isBreakStart = false;
+	blinkerTime = 0;
+	blinker = false;
 }
 void BreakStar::updata()
 {
@@ -33,6 +35,15 @@ void BreakStar::updata()
 	{
 		isDead = true;
 	}
+	if (durability < max_Durability / 2)
+	{
+		//¯‚ğ“_–Å‚³‚¹‚é
+		blinkerTime += gsFrameTimerGetTime();
+		if (blinkerTime > 0.1f)
+		{
+			blinker = !blinker;//bool’l‚ÌØ‚è‘Ö‚¦
+		}
+	}
 }
 void BreakStar::collision(const GameObject* obj)
 {
@@ -44,7 +55,12 @@ void BreakStar::collision(const GameObject* obj)
 }
 void BreakStar::draw(const Renderer& renderer, const Scroll& scroll)
 {
-	Star::draw(renderer, scroll);
+	//¯‚Ì•\¦
+	if (blinker)
+	{
+		Star::draw(renderer, scroll);
+	}
+	//Star::draw(renderer, scroll);
 }
 Star* BreakStar::clone()
 {

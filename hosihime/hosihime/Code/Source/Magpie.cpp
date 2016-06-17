@@ -5,7 +5,7 @@ Magpie::Magpie(const std::string& textrue, const GSvector2& position,
 	const GSvector2& viewSize, const MyRectangle& rect, IMediator* objMediator)
 	:GameObject(textrue, position, viewSize, rect, MAGPIE),
 	objMediator(objMediator), state(STANDBY), timer(1, 1),
-	angle(0), speed(5)
+	angle(0), speed(5), anim(animTimer), animTimer(30.0f)
 {
 }
 
@@ -16,6 +16,13 @@ Magpie::~Magpie()
 void Magpie::initialize()
 {
 	GameObject::initialize();
+	
+	animTimer.initialize();
+	animTimer.setStarTimer(60.0f);
+	anim.addCell("Right", 1, 3, 128, 128);
+	anim.addCell("Left", 2, 3, 128, 128);
+	dir = "Right";
+	anim.updata(dir);
 	state=STANDBY;
 	angle = 0;
 	speed = 5;
@@ -24,6 +31,7 @@ void Magpie::initialize()
 void Magpie::updata()
 {
 	Calculate<float> calc;	
+	 dir = velocity.x >= 0 ? "Right" : "left";
 	switch (state)
 	{
 	case Magpie::STANDBY:
@@ -33,6 +41,9 @@ void Magpie::updata()
 		break;
 	case Magpie::TAKEIN:
 		timer.update();
+		anim.updata(dir);
+		animTimer.updata();
+		
 		if (!timer.isEnd())
 		{
 			return;
@@ -70,6 +81,18 @@ void Magpie::collision(const GameObject* obj)
 		velocity.normalize();
 	}
 }
+
+void Magpie::setPlayerPosi(GSvector2* playerPosi)
+{
+	playerPosi->x = position.x + 32;
+	playerPosi->y = position.y + 32;
+}
+
+void Magpie::draw(const Renderer& renderer, const Scroll& scroll)
+{
+	anim.draw(renderer, "magpie.bmp", &scroll.transformViewPosition(position));
+}
+
 GameObject* Magpie::clone(const GSvector2& position)
 {
 	return new Magpie(textrue, position, viewSize, rect,objMediator);

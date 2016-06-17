@@ -254,6 +254,13 @@ void Player::collisionGround(const GameObject* obj)
 
 void Player::ride(const GameObject* obj)
 {
+	if (obj->getType() == MAGPIE)
+	{
+		position.x = obj->getPosition().x+32;
+		position.y = obj->getPosition().y -2;
+		return;
+	}
+
 	position = obj->getPosition();
 	position.y -= (viewSize.y + 1);
 }

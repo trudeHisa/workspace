@@ -14,8 +14,18 @@ StarFactory::~StarFactory()
 }
 void StarFactory::update()
 {
-	if (typeid(prot->getMove()) == typeid(Star_nomove)) return;//“®‚©‚È‚¢¯‚Í‚PŒÂ‚µ‚©¶¬‚µ‚È‚¢
-
+	//“®‚©‚È‚¢¯
+	if (dynamic_cast<Star_nomove*>(prot->getMove()) != NULL)
+	{
+		if (star->getIsDead()==false) return;
+		timer.update();
+		if (timer.isEnd())
+		{
+			create();
+			timer.initialize();
+		}
+	}
+		
 	if (isStart() == false)return;//’ÊíA‰ó‚ê‚é¯‹¤’Ê
 
 	//‰ó‚ê‚é¯

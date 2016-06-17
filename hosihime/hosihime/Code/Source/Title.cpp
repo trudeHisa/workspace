@@ -8,7 +8,7 @@ Title::Title(Device& device)
 :device(device), rogoAlpha(0),
 control(), spawnTimer(3, 3),
 effectFactory(EffectsFactory(new EffectFactory())),
-effectController(effectFactory)
+effectController(effectFactory),timer(1,1)
 {
 }
 Title::~Title()
@@ -21,9 +21,11 @@ void Title::Init()
 	effectController.initialize();
 	spawnTimer.initialize();
 	rogoAlpha = 0;
-	//	device.getSound().StopSE("Ending.wav");
+//	device.getSound().StopSE("Ending.wav");
 	//device.getSound().PlaySE("Opening.wav");
-	isEnd = false;
+	timer.initialize();
+	alpha = 255;
+	isEnd = false;	
 	srand((unsigned int)gsFrameTimerGetTime());
 
 	control.add(GameObj_Ptr(new Star("star.bmp", GSvector2(rand() % 5 * 30, 0),
@@ -53,6 +55,12 @@ void Title::Update()
 		isEnd = device.getInput().getActionTrigger();
 	}
 
+	timer.update();
+	if (timer.isEnd())
+	{
+		timer.initialize();
+		alpha = alpha == 255 ? 0 : 255;
+	}
 }
 void Title::Draw(const Renderer& renderer)
 {
@@ -61,7 +69,7 @@ void Title::Draw(const Renderer& renderer)
 	control.draw(renderer, scroll);
 	effectController.draw(renderer, scroll);
 	renderer.DrawTextrue("titletext.bmp", &GSvector2(200, 120), &GScolor(1, 1, 1, rogoAlpha));
-	renderer.DrawTextrue("spacetext.bmp", &GSvector2(480, 540));
+	renderer.DrawTextrue("spacetext.bmp", &GSvector2(480, 540), &GScolor(255, 255, 255, alpha));
 
 }
 void Title::Finish()

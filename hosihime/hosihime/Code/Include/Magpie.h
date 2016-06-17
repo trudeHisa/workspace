@@ -1,7 +1,8 @@
 #ifndef _MAGPIE_H_
 #define _MAGPIE_H_
 #include "GameObject.h"
-
+#include "AnimationTimer.h"
+#include "Animation.h"
 #include "IMediator.h"
 #include "Timer.h"
 class Magpie:public GameObject
@@ -14,9 +15,9 @@ public:
 	void initialize();
 	void updata();
 	void collision(const GameObject* obj);
-
+	void draw(const Renderer& renderer, const Scroll& scroll);
 	GameObject* clone(const GSvector2& position);
-
+	void setPlayerPosi(GSvector2* playerPosi);
 	/*
 	カササギが乗れる状況か？
 	*/
@@ -32,6 +33,9 @@ private:
 	IMediator* objMediator;
 	float angle;
 	GSvector2 targetPoint;
+	Animation anim;
+	AnimationTimer animTimer;
+	std::string dir;
 };
 
 #endif
