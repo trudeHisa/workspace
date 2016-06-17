@@ -9,7 +9,9 @@ StarParticle::StarParticle(const std::string& textrue,
 	Calculate<float> calc;
 	angle = calc.degTorad(angle);
 	velocity.x = -std::cos(angle);
-	velocity.y = -std::sin(angle);
+	//velocity.x = speed;
+	//velocity.y = -std::sin(angle);
+	velocity.y = speed;
 	velocity *= speed;
 }
 
@@ -24,10 +26,10 @@ void StarParticle::initialize()
 }
 void StarParticle::update()
 {
-	rotate += gsFrameTimerGetTime()*velocity.x*3.0f;
+	rotate += gsFrameTimerGetTime()*velocity.x*8.0f;
 	position += velocity*gsFrameTimerGetTime();
-	velocity.y += GRAVITY;
-	alpha -= gsFrameTimerGetTime()*0.02f;
+	//velocity.y += GRAVITY;
+	alpha -= gsFrameTimerGetTime()*0.04f;
 	isDead = alpha <= 0;
 }
 void StarParticle::draw(const Renderer& renderer)

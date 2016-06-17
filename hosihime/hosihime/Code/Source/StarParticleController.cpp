@@ -47,9 +47,9 @@ void StarParticleController::createParticle()
 	{
 		return;
 	}
-	for (int i = 0; i <60; i++)
+	for (int i = 0; i <40; i++)
 	{
-		Starparticles.emplace_back(Particle_Ptr(new StarParticle("starparticle.bmp", center, 1, i*rand(), 0.02f)));
+		Starparticles.emplace_back(Particle_Ptr(new StarParticle("starparticle.bmp", i*rand(), 1.5f, center)));
 	}
 }
 void StarParticleController::remove()
