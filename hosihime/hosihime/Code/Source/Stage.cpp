@@ -49,7 +49,7 @@ void Stage::initialize()
 
 	for (int i = 0; i <1; i++)
 	{
-		effectController.add("StarEffect", GSvector2(5 * 64 + (i * 64), 3 * 64));
+		effectController.add("LightEffect", GSvector2(5 * 64 + (i * 64), 3 * 64));
 	}
 	
 }

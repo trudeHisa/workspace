@@ -45,12 +45,13 @@ void Player::initialize()
 	currentDirAnimeKey = "R";
 	animeTimer.initialize();
 	animeTimer.setStarTimer(60.f);
-	animation.addCell("L", 1, 3, 64, 64);//移動左
-	animation.addCell("R", 2, 3, 64, 64);//移動右
-	animation.addCell("JL", 3, 3, 64, 64);//ジャンプ左
-	animation.addCell("JR", 4, 3, 64, 64);//ジャンプ右
-	animation.addCell("SR", 5, 3, 64, 64);//星乗り右
-	animation.addCell("SL", 6, 3, 64, 64);//星乗り左
+	animation.addCell("L", 1, 1, 64, 64);//移動左
+	animation.addCell("R", 2, 1, 64, 64);//移動右
+	animation.addCell("JL", 3, 1, 64, 64);//ジャンプ左
+	animation.addCell("JR", 4, 1, 64, 64);//ジャンプ右
+
+	animation.addCell("SR", 5, 1, 74, 112);//星乗り右
+	animation.addCell("SL", 6, 1, 74,112);//星乗り左
 
 	isRespawn = true;
 
@@ -71,6 +72,14 @@ void Player::updata()
 	scroll->moving(position, SCROLLOFFSET);
 	endMove();
 	position += velocity*gsFrameTimerGetTime();
+	if (isRide())
+	{
+		textrue = "starride.bmp";
+	}
+	else
+	{
+		textrue = "orihime.bmp";
+	}
 }
 void Player::gravity()
 {
@@ -286,7 +295,9 @@ void Player::draw(const Renderer& renderer, const Scroll& scroll)
 		return;
 	}
 	GSvector2 pos = position - scroll.getMovingAmount();
-	animation.draw(renderer, "orihime.bmp", &pos);
+	
+	animation.draw(renderer, textrue, &pos);
+	
 }
 
 const std::string Player::getDirKey(int dir)
