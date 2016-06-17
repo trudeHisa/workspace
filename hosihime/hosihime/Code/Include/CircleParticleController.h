@@ -30,7 +30,7 @@ private:
 	void remove();
 
 private:	
-	std::vector<Particle_Ptr>particles;
+	std::vector<Particle_Ptr>Circleparticles;
 	GSvector2 center;
 	/*
 	*参照にすることで参照先の位置に追従出来る

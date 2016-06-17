@@ -37,6 +37,9 @@
     <ClCompile Include="Code\Source\GamePlay.cpp" />
     <ClCompile Include="Code\Source\ImMovable.cpp" />
     <ClCompile Include="Code\Source\Input.cpp" />
+    <ClCompile Include="Code\Source\LightEffect.cpp" />
+    <ClCompile Include="Code\Source\LightParticle.cpp" />
+    <ClCompile Include="Code\Source\LightParticleController.cpp" />
     <ClCompile Include="Code\Source\Load.cpp" />
     <ClCompile Include="Code\Source\Magpie.cpp" />
     <ClCompile Include="Code\Source\main.cpp" />
@@ -58,8 +61,11 @@
     <ClCompile Include="Code\Source\StageSelect.cpp" />
     <ClCompile Include="Code\Source\Star.cpp" />
     <ClCompile Include="Code\Source\StarDataStream.cpp" />
+    <ClCompile Include="Code\Source\StarEffect.cpp" />
     <ClCompile Include="Code\Source\StarFactory.cpp" />
     <ClCompile Include="Code\Source\StarManager.cpp" />
+    <ClCompile Include="Code\Source\StarParticle.cpp" />
+    <ClCompile Include="Code\Source\StarParticleController.cpp" />
     <ClCompile Include="Code\Source\Star_cricle.cpp" />
     <ClCompile Include="Code\Source\Star_eight.cpp" />
     <ClCompile Include="Code\Source\Star_nomove.cpp" />
@@ -108,6 +114,9 @@
     <ClInclude Include="Code\Include\IPlayMode.h" />
     <ClInclude Include="Code\Include\IScene.h" />
     <ClInclude Include="Code\Include\IStarMove.h" />
+    <ClInclude Include="Code\Include\LightEffect.h" />
+    <ClInclude Include="Code\Include\LightParticle.h" />
+    <ClInclude Include="Code\Include\LightParticleController.h" />
     <ClInclude Include="Code\Include\Load.h" />
     <ClInclude Include="Code\Include\Magpie.h" />
     <ClInclude Include="Code\Include\Menu.h" />
@@ -130,9 +139,12 @@
     <ClInclude Include="Code\Include\StageSelect.h" />
     <ClInclude Include="Code\Include\Star.h" />
     <ClInclude Include="Code\Include\StarDataStream.h" />
+    <ClInclude Include="Code\Include\StarEffect.h" />
     <ClInclude Include="Code\Include\StarFactory.h" />
     <ClInclude Include="Code\Include\StarManager.h" />
     <ClInclude Include="Code\Include\IMediator.h" />
+    <ClInclude Include="Code\Include\StarParticle.h" />
+    <ClInclude Include="Code\Include\StarParticleController.h" />
     <ClInclude Include="Code\Include\STARTYPE.h" />
     <ClInclude Include="Code\Include\Star_cricle.h" />
     <ClInclude Include="Code\Include\Star_eight.h" />

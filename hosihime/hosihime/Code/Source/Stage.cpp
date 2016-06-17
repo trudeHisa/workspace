@@ -11,7 +11,7 @@ Stage::Stage(const int& stageNo, Device& device)
 scroll(WINDOW_WIDTH, WINDOW_HEIGHT, mapSize,stageNo),
 device(device), timer(60, 60), BLOCKSIZE(64.0f),
 control(),
-effectFactory(EffectsFactory(new EffectFactory())),
+	effectFactory(EffectsFactory(new EffectFactory())),
 effectController(effectFactory),
 navigation("nav1.bmp", control, scroll), mapSize(0, 0),
 factory(ObjFactory(new GameObjectFactory(scroll, device, &control, &effectController))),
@@ -44,7 +44,7 @@ void Stage::initialize()
 
 	fade.initialize();
 
-	effectController.initialize();	
+	effectController.initialize();
 }
 void Stage::updata()
 {
@@ -63,7 +63,7 @@ void Stage::updata()
 	}
 
 	if (control.StageClear())
-	{	
+	{		
 		timer.stop();
 		flag = CLEARFLAG::CLEAR;
 		if (!fade.getIsStart())
@@ -74,7 +74,7 @@ void Stage::updata()
 		if (fade.getIsEnd())
 		{
 			isEnd = true;
-		}
+		}		
 	}
 	else
 	{

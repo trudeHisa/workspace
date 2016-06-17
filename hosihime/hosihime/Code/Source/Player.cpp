@@ -19,9 +19,9 @@ Player::Player(const std::string& textrue, const GSvector2& position,
 	device(device), scroll(scroll),
 	respawnPos(position),
 	rideStarPointerNum(0), jumpPower(0),
-	speed(VERTICAL),
+	speed(VERTICAL), 
 	isJump(false), isRespawn(true),
-	isGround(false), isClear(false),
+	isGround(false), isClear(false), 
 	isMagpieRide(false),
 
 	animation(animeTimer),
@@ -48,12 +48,13 @@ void Player::initialize()
 	currentDirAnimeKey = "R";
 	animeTimer.initialize();
 	animeTimer.setStarTimer(60.f);
-	animation.addCell("L", 1, 3, 64, 64);//移動左
-	animation.addCell("R", 2, 3, 64, 64);//移動右
-	animation.addCell("JL", 3, 3, 64, 64);//ジャンプ左
-	animation.addCell("JR", 4, 3, 64, 64);//ジャンプ右
-	animation.addCell("SR", 5, 3, 64, 64);//星乗り右
-	animation.addCell("SL", 6, 3, 64, 64);//星乗り左
+	animation.addCell("L", 1, 1, 64, 64);//移動左
+	animation.addCell("R", 2, 1, 64, 64);//移動右
+	animation.addCell("JL", 3, 1, 64, 64);//ジャンプ左
+	animation.addCell("JR", 4, 1, 64, 64);//ジャンプ右
+
+	animation.addCell("SR", 5, 1, 74, 112);//星乗り右
+	animation.addCell("SL", 6, 1, 74,112);//星乗り左
 
 	isRespawn = true;
 
@@ -74,6 +75,14 @@ void Player::updata()
 	scroll->moving(position, SCROLLOFFSET);
 	endMove();
 	position += velocity*gsFrameTimerGetTime();
+	if (isRide())
+	{
+		textrue = "starride.bmp";
+	}
+	else
+	{
+		textrue = "orihime.bmp";
+}
 }
 void Player::gravity()
 {
@@ -101,7 +110,7 @@ void Player::rideUpDown()
 	}
 	if (device.getInput().getDownTrigger())
 	{
-
+		
 		velocity = GSvector2(0, 0);
 		/*
 		*64は星のサイズ
@@ -276,7 +285,7 @@ void Player::collisionStar(const GameObject* obj)
 	unsigned int pointerNum = (unsigned int)obj;
 	if (rideStarPointerNum == 0)
 	{
-		rideStarPointerNum = pointerNum;
+ 		rideStarPointerNum = pointerNum;
 		ride(obj);
 		jumpEnd();
 		return;
