@@ -56,7 +56,7 @@ void Star::draw(const Renderer& renderer, const Scroll& scroll)
 	pos += center;
 
 	renderer.AdditionBlend();
-	float red, green, blue,alpha;//星の色、透過変数
+	float red, green, blue, alpha;//星の色、透過変数
 	//点滅処理
 	//星が移動距離の半分進むと色変えと点滅処理をする
 	if (starHelth < helth / 4)
@@ -71,15 +71,15 @@ void Star::draw(const Renderer& renderer, const Scroll& scroll)
 		red = 1.0f;
 		green = 1.0f;
 		blue = 1.0f;
-		blurdraw(renderer, pos, center);
+		//blurdraw(renderer, pos, center);
 	}
 	//点滅
-	if(blinkerTime > 0.7f)
+	if (blinkerTime > 0.7f)
 	{
 		starAlpha = !starAlpha;
 		blinkerTime = 0.0f;
 	}
-	if(starAlpha)
+	if (starAlpha)
 	{
 		alpha = 0.5f;
 	}
@@ -88,19 +88,20 @@ void Star::draw(const Renderer& renderer, const Scroll& scroll)
 		alpha = 1.0f;
 	}
 	renderer.InitBlendFunc();
-	renderer.DrawTextrue(textrue, &pos,NULL,&center,&GSvector2(1,1),angle,&GScolor(red,green,blue,alpha));
+	renderer.DrawTextrue(textrue, &pos, NULL, &center, &GSvector2(1, 1), angle, &GScolor(red, green, blue, alpha));
 }
 void Star::collision(const GameObject* obj)
 {
 	GAMEOBJ_TYPE type = obj->getType();
+
 	if (type == STAR ||
 		type == BREAKSTAR ||
 		type == BURNSTAR ||
 		type == PLANET)
 	{
 		isDead = true;
-		effectMediator->add("FireworkEffect",position+(viewSize*0.5f));
-}
+		effectMediator->add("FireworkEffect", position + (viewSize*0.5f));
+	}
 }
 Star* Star::clone()
 {
@@ -118,8 +119,7 @@ const float Star::getHelth()const
 {
 	return helth;
 }
-
-const IStarMove* Star::getMove()
+IStarMove* Star::getMove()
 {
 	return move.get();
 }

@@ -21,7 +21,8 @@
 StarManger::StarManger(UINT no,Scroll& _scroll, IMediator& mediator, IEffectMediator& effectMediator)
 :scroll(_scroll), mediator(mediator), effectMediator(effectMediator)
 {
-	stagedate = "stardata\\stage" + std::to_string(no) + ".stardata";
+//	stagedate = "stardata\\stage" + std::to_string(no) + ".stardata";
+	stagedate = "stardata\\stage000.stardata";
 }
 StarManger::~StarManger()
 {
