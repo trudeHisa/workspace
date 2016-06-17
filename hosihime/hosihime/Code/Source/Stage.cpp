@@ -15,7 +15,7 @@ effectFactory(EffectsFactory(new EffectFactory())),
 effectController(effectFactory),
 navigation("nav1.bmp", control, scroll), mapSize(0, 0),
 factory(ObjFactory(new GameObjectFactory(scroll, device, &control, &effectController))),
-starManager(scroll, control, effectController)
+starManager(stageNo,scroll, control, effectController)
 {
 	CSVStream stream;
 	std::string name = "mapdata\\\\testmap" + std::to_string(stageNo) + ".csv";

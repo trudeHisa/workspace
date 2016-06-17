@@ -18,7 +18,7 @@ class IEffectMediator;
 class StarManger
 {
 public:
-	StarManger(Scroll& _scroll,IMediator& mediator,IEffectMediator& effectMediator);
+	StarManger(UINT stageNo,Scroll& _scroll,IMediator& mediator,IEffectMediator& effectMediator);
 	~StarManger();
 	void initialize();
 	void createStarProt();
@@ -35,6 +35,7 @@ private:
 	IStarMove* createMove(const std::vector<std::string>& param, float index);
 	MyRectangle createRect(const  std::vector<std::string>& param);
 private:
+	std::string stagedate;
 	Scroll& scroll;
 	IMediator& mediator;
 	Factorys factory;

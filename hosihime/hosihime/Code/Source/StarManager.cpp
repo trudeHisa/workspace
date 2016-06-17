@@ -18,9 +18,10 @@
 
 #include "STARTYPE.h"
 
-StarManger::StarManger(Scroll& _scroll, IMediator& mediator, IEffectMediator& effectMediator)
+StarManger::StarManger(UINT no,Scroll& _scroll, IMediator& mediator, IEffectMediator& effectMediator)
 :scroll(_scroll), mediator(mediator), effectMediator(effectMediator)
 {
+	stagedate = "stardata\\stage" + std::to_string(no) + ".stardata";
 }
 StarManger::~StarManger()
 {
@@ -95,7 +96,7 @@ void StarManger::createData()
 	StarDataStream stream;
 	std::vector<std::vector<std::string>>data;
 	data.clear();
-	stream.input(&data, "stardata\\stage0.stardata");
+	stream.input(&data, stagedate.c_str());
 	/*
 	* STARCLASS, posx,poy,veiwsizex,veiwsizey,rectsizew,rectsizeh,
 	*  def: Imove
