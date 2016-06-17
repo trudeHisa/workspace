@@ -5,8 +5,7 @@
 class StarParticle:public IParticle
 {
 public:
-	StarParticle(const std::string& textrue, const GSvector2& center,
-		float speed, float angle, float alphaSpeed);
+	StarParticle(const std::string& textrue, float angle, float speed, const GSvector2& position);
 	~StarParticle();
 	void initialize();
 	void update();

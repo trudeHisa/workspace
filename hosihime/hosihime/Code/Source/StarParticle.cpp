@@ -19,8 +19,8 @@ StarParticle::~StarParticle()
 }
 void StarParticle::initialize()
 {
-	position = center;
 	isDead = false;
+	alpha = 1.0f;
 }
 void StarParticle::update()
 {
