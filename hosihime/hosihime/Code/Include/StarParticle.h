@@ -20,5 +20,7 @@ private:
 	const float angle;
 	const float alphaSpeed;
 	GSvector2 center;
+	float a;
+	float b;
 };
 
