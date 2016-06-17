@@ -51,7 +51,6 @@ void Load::loadTextrue()
 	renderer.LoadTextrue("anim.bmp");
 	renderer.LoadTextrue("orihime.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("star.bmp", GS_TEXCOLOR_KEY_AUTO);
-	renderer.LoadTextrue("player.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("start.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("goal.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("rock.bmp", GS_TEXCOLOR_KEY_AUTO);
@@ -64,6 +63,9 @@ void Load::loadTextrue()
 
 	renderer.LoadTextrue("title.bmp");
 	renderer.LoadTextrue("ending.bmp");
+	renderer.LoadTextrue("starparticle.bmp");
+	renderer.LoadTextrue("lightParticle.bmp");
+	renderer.LoadTextrue("starride.bmp", GS_TEXCOLOR_KEY_AUTO);
 
 	//åªç›égÇ¡ÇƒÇ»Ç¢âÊëú
 	renderer.LoadTextrue("title_logo.bmp");
