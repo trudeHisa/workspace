@@ -19,11 +19,11 @@ private:
 	void remove();
 private:
 	std::vector<Particle_Ptr>Starparticles;
-	GSvector2 center;
+	//GSvector2 center;
 	/*
 	*参照にすることで参照先の位置に追従出来る
 	*ただ一時変数などを参照すると危険
 	*/
-	//const GSvector2& center;
+	const GSvector2& center;
 };
 
