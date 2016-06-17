@@ -1,12 +1,10 @@
 #include "StarParticle.h"
 
 
-StarParticle::StarParticle(
-	const std::string& textrue, const GSvector2& center,
-	float speed, float angle, float alphaSpeed)
-	:textrue(textrue), center(center), speed(speed), angle(angle),
-	position(center), alpha(1), isDead(false), alphaSpeed(alphaSpeed),
-	GRAVITY(0.1), rotate(rotate), veloctiy(veloctiy)
+StarParticle::StarParticle(const std::string& textrue,
+	float angle/*deg*/, float speed, const GSvector2& position)
+	: textrue(textrue), position(position), GRAVITY(0.1f),
+	rotate(0), velocity(0, 0), isDead(false), alpha(1.0f)
 {
 	Calculate<float> calc;
 	angle = calc.degTorad(angle);
@@ -26,14 +24,11 @@ void StarParticle::initialize()
 }
 void StarParticle::update()
 {
-	GSvector2 v;
-	gsVector2FromDirection(&v,angle);
-	position += v*speed*gsFrameTimerGetTime();
-	
-
+	rotate += gsFrameTimerGetTime()*velocity.x*3.0f;
+	position += velocity*gsFrameTimerGetTime();
+	velocity.y += GRAVITY;
+	alpha -= gsFrameTimerGetTime()*0.02f;
 	isDead = alpha <= 0;
-
-	alpha -= alphaSpeed*gsFrameTimerGetTime();
 }
 void StarParticle::draw(const Renderer& renderer)
 {

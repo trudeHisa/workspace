@@ -12,16 +12,12 @@ public:
 	const bool getIsDead()const;
 
 private:
-	float speed;
-	bool isDead;
-	GSvector2 position;
 	std::string textrue;
-	float alpha;
-	const float angle;
-	const float alphaSpeed;
-	GSvector2 center;
-	GSvector2 veloctiy;
 	float rotate;
+	float alpha;
+	bool isDead;
+	GSvector2 velocity;
+	GSvector2 position;
 	const float GRAVITY;
 };
 
