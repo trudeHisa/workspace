@@ -1,7 +1,7 @@
 #ifndef _TITLE_H_
 #define _TITLE_H_
 #include "IScene.h"
-
+#include "Timer.h"
 class Device;
 class Title :public IScene
 {
@@ -15,7 +15,8 @@ public:
 	Scene Next();
 	bool IsEnd();
 private:
-	
+	Timer timer;
+	float alpha;
 	Device& device;
 	bool isEnd;
 	int index;//‘I‘ğˆŠÇ—
