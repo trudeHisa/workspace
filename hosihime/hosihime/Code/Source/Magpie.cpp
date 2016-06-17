@@ -27,9 +27,9 @@ void Magpie::updata()
 	switch (state)
 	{
 	case Magpie::STANDBY:
-		angle += -0.07f;
+		angle += -0.1f;
 		angle = calc.wrap(angle, 0, 360);
-		velocity.y = std::sin(angle)*1.5f*gsFrameTimerGetTime();
+		velocity.y = std::sin(angle)*0.1f*gsFrameTimerGetTime();
 		break;
 	case Magpie::TAKEIN:
 		timer.update();

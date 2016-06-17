@@ -13,7 +13,8 @@ class BreakStar :public Star
 public:
 	BreakStar(const std::string& textrue, const GSvector2& position,
 		const GSvector2& viewSize, const MyRectangle& rect,
-		float helth,StarMove_Ptr move, float max_Durability);
+		float helth, StarMove_Ptr move, float max_Durability,
+		IEffectMediator* effectMediator);
 	~BreakStar();
 	void initialize();
 	void updata();

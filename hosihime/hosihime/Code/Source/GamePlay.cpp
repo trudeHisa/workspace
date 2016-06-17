@@ -5,7 +5,7 @@
 #include "PlayMode_Select.h"
 
 GamePlay::GamePlay(Device& device, TimeScore& score)
-	: device(device), stageName(""), stageNo(0),
+	: device(device), stageNo(0),
 	mode(0),
 	score(score)
 {
@@ -17,7 +17,6 @@ void GamePlay::Init()
 {
 	//device.getSound().StopSE("Opening.wav");
 	isEnd = false;
-	stageName = "";
 	mode = Mode(new PlayMode_Select(device, stageNo));
 	mode->initialize();
 }

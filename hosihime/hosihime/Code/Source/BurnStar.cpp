@@ -2,9 +2,9 @@
 
 BurnStar::BurnStar(const std::string& textrue, const GSvector2& position,
 	const GSvector2& viewSize, const MyRectangle& rect,
-	float helth, StarMove_Ptr move)
+	float helth, StarMove_Ptr move,IEffectMediator* effectMediator)
 	:GameObject(textrue, position, viewSize, rect, BURNSTAR),
-	Star(textrue, position, viewSize, rect, helth, move)
+	Star(textrue, position, viewSize, rect, helth, move,effectMediator)
 {
 }
 
@@ -31,9 +31,9 @@ void BurnStar::draw(const Renderer& renderer, const Scroll& scroll)
 
 Star* BurnStar::clone()
 {
-	return new BurnStar(textrue, startPosi, viewSize, rect, helth, StarMove_Ptr(move->clone()));
+	return new BurnStar(textrue, startPosi, viewSize, rect, helth, StarMove_Ptr(move->clone()), effectMediator);
 }
 GameObject* BurnStar::clone(const GSvector2& position)
 {
-	return new BurnStar(textrue, position, viewSize, rect, helth, StarMove_Ptr(move->clone()));
+	return new BurnStar(textrue, position, viewSize, rect, helth, StarMove_Ptr(move->clone()), effectMediator);
 }

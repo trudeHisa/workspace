@@ -57,15 +57,18 @@ void Load::loadTextrue()
 	renderer.LoadTextrue("rock.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("rock2_2.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("planet.bmp", GS_TEXCOLOR_KEY_WHITE);
-	renderer.LoadTextrue("space.bmp");
+
+	renderer.LoadTextrue("space0.bmp");
+	renderer.LoadTextrue("space1.bmp");
 	renderer.LoadTextrue("space2.bmp");
+
 	renderer.LoadTextrue("title.bmp");
 	renderer.LoadTextrue("ending.bmp");
 
 	//åªç›égÇ¡ÇƒÇ»Ç¢âÊëú
 	renderer.LoadTextrue("title_logo.bmp");
 	renderer.LoadTextrue("starb.bmp", GS_TEXCOLOR_KEY_BLACK);
-	renderer.LoadTextrue("space3.bmp");
+	
 	renderer.LoadTextrue("sasa.bmp");
 	renderer.LoadTextrue("shooting.bmp");
 	renderer.LoadTextrue("shooting2.bmp");
@@ -73,7 +76,7 @@ void Load::loadTextrue()
 	//Ç±Ç±Ç‹Ç≈
 
 	renderer.LoadTextrue("activeselect.bmp", GS_TEXCOLOR_KEY_AUTO);
-	renderer.LoadTextrue("stageselect.bmp");
+	renderer.LoadTextrue("mapselect.bmp");
 
 	renderer.LoadTextrue("titletext.bmp", GS_TEXCOLOR_KEY_WHITE);
 	renderer.LoadTextrue("spacetext.bmp", GS_TEXCOLOR_KEY_WHITE);

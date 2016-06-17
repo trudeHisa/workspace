@@ -13,7 +13,6 @@ public:
 	const bool isEnd()const;
 	const bool isLastStage()const;
 private:
-	const std::string selectStageName()const;
 	void select();
 private:
 	int& stageNo;

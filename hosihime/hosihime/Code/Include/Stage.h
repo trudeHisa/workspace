@@ -45,7 +45,6 @@ private:
 	Timer timer;
 	Device& device;
 	ObjFactory factory;
-	std::string stageNames[3];
 	NavigationUI navigation;
 	GSvector2 mapSize;
 	Fade fade;
@@ -54,5 +53,6 @@ private:
 	EffectController effectController;
 
 	const float BLOCKSIZE;
+	const unsigned int stageNo;
 };
 #endif

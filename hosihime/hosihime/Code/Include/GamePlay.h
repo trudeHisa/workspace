@@ -22,7 +22,6 @@ private:
 	void modeEnd();
 	void createStage();
 private:
-	std::string stageName;
 	int stageNo;
 	bool isEnd;
 	bool isLastStage;

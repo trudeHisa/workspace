@@ -7,21 +7,19 @@
 #include "NavigationUI.h"
 #include "EffectFactory.h"
 Stage::Stage(const int& stageNo, Device& device)
-	:scroll(WINDOW_WIDTH, WINDOW_HEIGHT, mapSize),
-	device(device),timer(60, 60),BLOCKSIZE(64.0f),	
-	control(),
-	effectFactory(EffectsFactory(new EffectFactory())),
-	effectController(effectFactory),
-	navigation("nav1.bmp", control, scroll), mapSize(0, 0),
-	factory(ObjFactory(new GameObjectFactory(scroll, device,&control,&effectController))),
-	starManager(scroll, control)
+:stageNo(stageNo),
+scroll(WINDOW_WIDTH, WINDOW_HEIGHT, mapSize,stageNo),
+device(device), timer(60, 60), BLOCKSIZE(64.0f),
+control(),
+effectFactory(EffectsFactory(new EffectFactory())),
+effectController(effectFactory),
+navigation("nav1.bmp", control, scroll), mapSize(0, 0),
+factory(ObjFactory(new GameObjectFactory(scroll, device, &control, &effectController))),
+starManager(scroll, control, effectController)
 {
 	CSVStream stream;
-	stageNames[0] = "mapdata\\\\testmap.csv";
-	stageNames[1] = "mapdata\\\\testmap.csv";
-	stageNames[2] = "mapdata\\\\testmap.csv";
-	//std::string name = "mapdata\\\\testmap" + std::to_string(stageNo) + ".csv";
-	stream.input(&mapdata, stageNames[stageNo].c_str());
+	std::string name = "mapdata\\\\testmap" + std::to_string(stageNo) + ".csv";
+	stream.input(&mapdata,name.c_str());
 }
 Stage::~Stage()
 {
@@ -35,21 +33,21 @@ void Stage::initialize()
 	timer.initialize();
 	control.inisialize();
 	starManager.initialize();
-	scroll.initialize(GSvector2(0,0));
+	scroll.initialize(GSvector2(0, 0));
 	mapCreate();
 	Stars_IsInScreen();
-	
+
 	isEnd = false;
 	navigation.initialize();
 	flag = CLEARFLAG::PLAYING;
-	mapSize = GSvector2(mapdata.getSize1(),mapdata.getSize0())*BLOCKSIZE;
+	mapSize = GSvector2(mapdata.getSize1(), mapdata.getSize0())*BLOCKSIZE;
 
 	fade.initialize();
 
 	effectController.initialize();
 
-	effectController.add("FireworkEffect", control.get(PLAYER)->getPosition());
-	
+	//effectController.add("FireworkEffect", control.get(PLAYER)->getPosition());
+
 }
 void Stage::updata()
 {
@@ -68,18 +66,18 @@ void Stage::updata()
 	}
 
 	if (control.StageClear())
-	{		
+	{
 		timer.stop();
 		flag = CLEARFLAG::CLEAR;
 		if (!fade.getIsStart())
 		{
-			fade.start(GScolor(0, 0, 0, 0), GScolor(0,0,0, 1), 4);
+			fade.start(GScolor(0, 0, 0, 0), GScolor(0, 0, 0, 1), 4);
 		}
-		
+
 		if (fade.getIsEnd())
 		{
 			if (control.isDeadPlayer())isEnd = true;
-		}		
+		}
 	}
 	else
 	{
@@ -92,10 +90,10 @@ void Stage::draw(const Renderer& renderer)
 	control.draw(renderer, scroll);
 	int t = timer.getTime() / FRAMETIME;
 	renderer.DrawString(std::to_string(t), &GSvector2(50, 50), 50);
-	
-	effectController.draw(renderer,scroll);
 
-	navigation.draw(renderer,scroll);
+	effectController.draw(renderer, scroll);
+
+	navigation.draw(renderer, scroll);
 	fade.draw(renderer);
 }
 void Stage::finish()
@@ -124,13 +122,13 @@ void Stage::objCreate(int x, int y)
 	if (0 == data)
 	{
 		return;
-	}	
+	}
 	GSvector2 pos = GSvector2(x * BLOCKSIZE, y* BLOCKSIZE);
-	control.add(factory->create(static_cast<GAMEOBJ_TYPE>(data), pos));	
+	control.add(factory->create(static_cast<GAMEOBJ_TYPE>(data), pos));
 }
 void Stage::mapCreate()
 {
-	for (int y = 0,size=mapdata.getSize0(); y <size; ++y)
+	for (int y = 0, size = mapdata.getSize0(); y < size; ++y)
 	{
 		for (int x = 0, size1 = mapdata.getSize1(); x < size1; ++x)
 		{

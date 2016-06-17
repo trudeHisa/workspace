@@ -1,10 +1,11 @@
 #include "Scroll.h"
 #include "Calculate.h"
 
-Scroll::Scroll(float widht, float height,const GSvector2& maxMapSize)
-	:windowSize(0, 0, widht, height),
-	maxMapsize(maxMapSize),
-	s(0, 0, 1, 1), t(0, 1, 1, 0)
+Scroll::Scroll(float widht, float height, const GSvector2& maxMapSize, unsigned int stageNo)
+:stageNo(stageNo),
+windowSize(0, 0, widht, height),
+maxMapsize(maxMapSize),
+s(0, 0, 1, 1), t(0, 1, 1, 0)
 {
 }
 void Scroll::initialize(const GSvector2& moving)
@@ -15,7 +16,7 @@ void Scroll::initialize(const GSvector2& moving)
 }
 void Scroll::draw(const Renderer& renderer)
 {
-	renderer.DrawTextrueScroll("space.bmp", s, t);
+	renderer.DrawTextrueScroll("space"+std::to_string(stageNo)+".bmp", s, t);
 }
 //ウィンドウの中にあるか
 const bool Scroll::isInsideWindow(const GSvector2& pos, const GSvector2& size)const
@@ -52,7 +53,7 @@ void Scroll::moving(const GSvector2&  position, const GSvector2& offset)
 	//マップのサイズにクランプ
 	GSvector2 msize = maxMapsize - windowSize.getSize();
 	Calculate<int>calc;
- 	lerp=calc.clamp(lerp,GSvector2(0,0),msize);
+	lerp = calc.clamp(lerp, GSvector2(0, 0), msize);
 
 	lerp *= mode;
 	//差分確保

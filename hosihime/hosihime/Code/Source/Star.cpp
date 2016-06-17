@@ -2,9 +2,11 @@
 #include "Calculate.h"
 
 Star::Star(const std::string& textrue, const GSvector2& position,
-	const GSvector2& viewSize, const MyRectangle& rect, float helth, StarMove_Ptr move)
+	const GSvector2& viewSize, const MyRectangle& rect, float helth,
+	StarMove_Ptr move, IEffectMediator* effectMediator)
 	:GameObject(textrue, position, viewSize, rect, STAR),
-	move(move), startPosi(position), angle(0), helth(helth)
+	move(move), startPosi(position), angle(0), helth(helth),
+	effectMediator(effectMediator)
 {
 }
 Star::~Star()
@@ -27,7 +29,7 @@ void Star::updata()
 	/*if (helth - std::hypotf(
 		fabs(position.x - startPosi.x),
 		fabs(position.y - startPosi.y)) < 0)*/
-	if (helth<position.distance(startPosi))
+	if (helth < position.distance(startPosi))
 	{
 		isDead = true;
 	}
@@ -44,24 +46,29 @@ void Star::draw(const Renderer& renderer, const Scroll& scroll)
 	pos += center;
 
 	renderer.AdditionBlend();
-	renderer.DrawBlurTextrue(textrue,pos,&center,velocity,angle,7);
+	renderer.DrawBlurTextrue(textrue, pos, &center, velocity, angle, 7);
 	renderer.InitBlendFunc();
 	renderer.DrawTextrue(textrue, &pos, NULL, &center, &GSvector2(1, 1), angle, NULL);
 }
 void Star::collision(const GameObject* obj)
 {
-	if (obj->getType() == PLANET)
+	GAMEOBJ_TYPE type = obj->getType();
+	if (type == STAR ||
+		type == BREAKSTAR ||
+		type == BURNSTAR ||
+		type == PLANET)
 	{
 		isDead = true;
+		effectMediator->add("FireworkEffect",position);
 	}
 }
 Star* Star::clone()
 {
-	return new Star(textrue, startPosi, viewSize, rect, helth, StarMove_Ptr(move->clone()));
+	return new Star(textrue, startPosi, viewSize, rect, helth, StarMove_Ptr(move->clone()), effectMediator);
 }
 GameObject* Star::clone(const GSvector2& position)
 {
-	return new Star(textrue, position, viewSize, rect, helth, StarMove_Ptr(move->clone()));
+	return new Star(textrue, position, viewSize, rect, helth, StarMove_Ptr(move->clone()), effectMediator);
 }
 const GSvector2& Star::getSPosi() const
 {

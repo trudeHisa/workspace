@@ -13,10 +13,11 @@ class IStarMove;
 typedef std::vector<Star_Ptr> starsContainer;
 typedef std::vector<Star_Ptr> Stars_inScreen;
 class IMediator;
+class IEffectMediator;
 class StarManger
 {
 public:
-	StarManger(Scroll& _scroll,IMediator& mediator);
+	StarManger(Scroll& _scroll,IMediator& mediator,IEffectMediator& effectMediator);
 	~StarManger();
 	void initialize();
 	void createStarProt();
@@ -35,6 +36,7 @@ private:
 private:
 	Scroll& scroll;
 	IMediator& mediator;
+	IEffectMediator& effectMediator;
 	starsContainer stars;//¯‚ÌŒ´Œ^‚ğŠi”[‚·‚é”z—ñ instance
 	Stars_inScreen inScreens;//‰æ–Ê“à‚Ì™‚ğŠi”[‚·‚é”z—ñ point
 };

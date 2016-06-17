@@ -24,10 +24,11 @@ void StageSelect::updata()
 	select();
 	if (device.getInput().getActionTrigger())
 	{
-		if (activeNo <= activeStageLength){
-		stageNo = activeNo;
-		isend = true;
-	}
+		if (activeNo <= activeStageLength)
+		{
+			stageNo = activeNo;
+			isend = true;
+		}
 	}
 }
 const bool StageSelect::isEnd()const
@@ -50,17 +51,6 @@ void StageSelect::select()
 	activeNo = calc.wrap(activeNo, 0, STAGELENGTH);
 }
 
-const std::string StageSelect::selectStageName()const
-{
-	std::string datanames[STAGELENGTH] =
-	{
-		"testmap.csv",
-		"testmap.csv",
-		"testmap.csv"
-	};
-	return "mapdata\\\\" + datanames[activeNo];
-}
-
 void StageSelect::draw(const Renderer& renderer)
 {
 	GSvector2 poss[STAGELENGTH] =
@@ -69,7 +59,7 @@ void StageSelect::draw(const Renderer& renderer)
 		GSvector2(1035, 375),
 		GSvector2(300, 135)
 	};
-	renderer.DrawTextrue("stageselect.bmp", &GSvector2(0, 0));
+	renderer.DrawTextrue("mapselect.bmp", &GSvector2(0, 0));
 	renderer.DrawTextrue("activeselect.bmp", &poss[activeNo], &GScolor(1, 1, 1, 0.5f));
 }
 void StageSelect::finish()

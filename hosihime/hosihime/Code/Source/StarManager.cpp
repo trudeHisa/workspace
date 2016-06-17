@@ -18,8 +18,8 @@
 
 #include "STARTYPE.h"
 
-StarManger::StarManger(Scroll& _scroll, IMediator& mediator)
-	:scroll(_scroll), mediator(mediator)
+StarManger::StarManger(Scroll& _scroll, IMediator& mediator, IEffectMediator& effectMediator)
+:scroll(_scroll), mediator(mediator), effectMediator(effectMediator)
 {
 }
 StarManger::~StarManger()
@@ -81,11 +81,11 @@ Star* StarManger::createStar(const std::vector<std::string>& param)
 	switch (stoi(param[0]))
 	{
 	case DEF:
-		return new Star("star.bmp", pos, viewSize, rect, maxhelth, move);
+		return new Star("star.bmp", pos, viewSize, rect, maxhelth, move,&effectMediator);
 	case BREAK:		
-		return new BreakStar("starb.bmp", pos, viewSize, rect, maxhelth, move, stof(param[lastParamIndex]));
+		return new BreakStar("starb.bmp", pos, viewSize, rect, maxhelth, move, stof(param[lastParamIndex]), &effectMediator);
 	case BRUN:
-		return new BurnStar("starbrun.bmp", pos, viewSize, rect, maxhelth, move);
+		return new BurnStar("starbrun.bmp", pos, viewSize, rect, maxhelth, move, &effectMediator);
 	}
 	return NULL;
 }
@@ -95,7 +95,7 @@ void StarManger::createData()
 	StarDataStream stream;
 	std::vector<std::vector<std::string>>data;
 	data.clear();
-	stream.input(&data, "stardata\\stage.stardata");
+	stream.input(&data, "stardata\\stage0.stardata");
 	/*
 	* STARCLASS, posx,poy,veiwsizex,veiwsizey,rectsizew,rectsizeh,
 	*  def: Imove
