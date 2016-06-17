@@ -4,7 +4,8 @@
 #include "Calculate.h"
 #include "Respawn.h"
 #include "Magpie.h"
-//stateƒpƒ^[ƒ“
+
+
 Player::Player(const std::string& textrue, const GSvector2& position,
 	const GSvector2& viewSize, const MyRectangle& rect,
 	Scroll* scroll, Device& device, IEffectMediator* effectMediator)
@@ -129,7 +130,7 @@ void Player::jumpStart()
 	{
 		return;
 	}
-	//effectMediator->add( "",position-scroll->getMovingAmount());
+	effectMediator->add( "StarEffect",position);
 	isJump = true;
 	jumpPower = JUMPMAXPOW;
 }

@@ -58,8 +58,11 @@
     <ClCompile Include="Code\Source\StageSelect.cpp" />
     <ClCompile Include="Code\Source\Star.cpp" />
     <ClCompile Include="Code\Source\StarDataStream.cpp" />
+    <ClCompile Include="Code\Source\StarEffect.cpp" />
     <ClCompile Include="Code\Source\StarFactory.cpp" />
     <ClCompile Include="Code\Source\StarManager.cpp" />
+    <ClCompile Include="Code\Source\StarParticle.cpp" />
+    <ClCompile Include="Code\Source\StarParticleController.cpp" />
     <ClCompile Include="Code\Source\Star_cricle.cpp" />
     <ClCompile Include="Code\Source\Star_eight.cpp" />
     <ClCompile Include="Code\Source\Star_nomove.cpp" />
@@ -130,9 +133,12 @@
     <ClInclude Include="Code\Include\StageSelect.h" />
     <ClInclude Include="Code\Include\Star.h" />
     <ClInclude Include="Code\Include\StarDataStream.h" />
+    <ClInclude Include="Code\Include\StarEffect.h" />
     <ClInclude Include="Code\Include\StarFactory.h" />
     <ClInclude Include="Code\Include\StarManager.h" />
     <ClInclude Include="Code\Include\IMediator.h" />
+    <ClInclude Include="Code\Include\StarParticle.h" />
+    <ClInclude Include="Code\Include\StarParticleController.h" />
     <ClInclude Include="Code\Include\STARTYPE.h" />
     <ClInclude Include="Code\Include\Star_cricle.h" />
     <ClInclude Include="Code\Include\Star_eight.h" />
