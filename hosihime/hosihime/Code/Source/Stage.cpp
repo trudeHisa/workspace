@@ -44,10 +44,7 @@ void Stage::initialize()
 
 	fade.initialize();
 
-	effectController.initialize();
-
-	//effectController.add("FireworkEffect", control.get(PLAYER)->getPosition());
-	
+	effectController.initialize();	
 }
 void Stage::updata()
 {

@@ -59,7 +59,7 @@ void Star::collision(const GameObject* obj)
 		type == PLANET)
 	{
 		isDead = true;
-		effectMediator->add("FireworkEffect",position);
+		effectMediator->add("FireworkEffect",position+(viewSize*0.5f));
 	}
 }
 Star* Star::clone()

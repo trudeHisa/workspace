@@ -27,7 +27,6 @@ void EffectController::draw(const Renderer& renderer, const Scroll& scroll)
 	{
 		e->draw(renderer,scroll);
 	}
-	renderer.DrawString(std::to_string(effects.size()), &GSvector2(100, 100), 20);
 }
 void EffectController::remove()
 {
