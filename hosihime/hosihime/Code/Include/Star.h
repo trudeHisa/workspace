@@ -28,7 +28,12 @@ private:
 	void rotate();
 protected:
 	float helth;
-
+	float starHelth;//¯‚Ìc‚è‘Ì—Í‚İ‚½‚¢‚È‚à‚Ì
+	float blinkerTime;//“_–ÅŠÖŒW‚Ì•Ï”
+	bool starAlpha;//¯‚Ìalpha•Ï”
+	//Animation animation;
+	//AnimationTimer animTimer;
+	//int activeAnimKey;
 	StarMove_Ptr move;
 	float angle;//rad
 	GSvector2 startPosi;

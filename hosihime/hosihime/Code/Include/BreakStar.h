@@ -30,5 +30,7 @@ private:
 	bool isBreakStart;
 	float durability;//耐久性
 	const float max_Durability;
+	float blinkerTime;//点滅間隔用変数
+	bool blinker;//点滅用変数
 };
 #endif
