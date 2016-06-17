@@ -37,6 +37,7 @@ void LightParticle::update()
 
 void LightParticle::draw(const Renderer& renderer, const Scroll& scroll)
 {
+	//ポジションを星の生成位置
 	renderer.DrawTextrue(textrue, &position, NULL, &GSvector2(4, 4), NULL, alpha * 180, &GScolor(1, 1, 1, alpha));
 }
 
