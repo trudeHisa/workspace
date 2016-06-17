@@ -20,7 +20,8 @@ private:
 	const float angle;
 	const float alphaSpeed;
 	GSvector2 center;
-	float a;
-	float b;
+	GSvector2 veloctiy;
+	float rotate;
+	const float GRAVITY;
 };
 

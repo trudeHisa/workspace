@@ -5,9 +5,14 @@ StarParticle::StarParticle(
 	const std::string& textrue, const GSvector2& center,
 	float speed, float angle, float alphaSpeed)
 	:textrue(textrue), center(center), speed(speed), angle(angle),
-	position(center), alpha(1), isDead(false), alphaSpeed(alphaSpeed)
+	position(center), alpha(1), isDead(false), alphaSpeed(alphaSpeed),
+	GRAVITY(0.1), rotate(rotate), veloctiy(veloctiy)
 {
-	initialize();
+	Calculate<float> calc;
+	angle = calc.degTorad(angle);
+	velocity.x = -std::cos(angle);
+	velocity.y = -std::sin(angle);
+	velocity *= speed;
 }
 
 
