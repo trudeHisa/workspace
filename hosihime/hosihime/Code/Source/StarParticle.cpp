@@ -8,10 +8,10 @@ StarParticle::StarParticle(const std::string& textrue,
 {
 	Calculate<float> calc;
 	angle = calc.degTorad(angle);
-	velocity.x = -std::cos(angle);
+	velocity.x = std::cos(angle);
 	//velocity.x = speed;
-	//velocity.y = -std::sin(angle);
-	velocity.y = speed;
+	velocity.y = -std::sin(angle);
+	//velocity.y = speed;
 	velocity *= speed;
 }
 

@@ -47,10 +47,10 @@ void Stage::initialize()
 
 	effectController.initialize();
 
-	for (int i = 0; i <1; i++)
+	/*for (int i = 0; i <1; i++)
 	{
 		effectController.add("StarEffect", GSvector2(5 * 64 + (i * 64), 3 * 64));
-	}
+	}*/
 	
 }
 void Stage::updata()
