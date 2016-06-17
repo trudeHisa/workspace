@@ -19,9 +19,9 @@ Player::Player(const std::string& textrue, const GSvector2& position,
 	device(device), scroll(scroll),
 	respawnPos(position),
 	rideStarPointerNum(0), jumpPower(0),
-	speed(VERTICAL), 
+	speed(VERTICAL),
 	isJump(false), isRespawn(true),
-	isGround(false), isClear(false), 
+	isGround(false), isClear(false),
 	isMagpieRide(false),
 
 	animation(animeTimer),
@@ -43,7 +43,7 @@ void Player::initialize()
 
 	isGround = false;
 	isClear = false;
-	isMagpieRide=false;
+	isMagpieRide = false;
 
 	currentDirAnimeKey = "R";
 	animeTimer.initialize();
@@ -57,7 +57,7 @@ void Player::initialize()
 
 	isRespawn = true;
 
-	scroll->initialize(position+SCROLLOFFSET);
+	scroll->initialize(position + SCROLLOFFSET);
 }
 void Player::jumpEnd()
 {
@@ -101,7 +101,7 @@ void Player::rideUpDown()
 	}
 	if (device.getInput().getDownTrigger())
 	{
-		
+
 		velocity = GSvector2(0, 0);
 		/*
 		*64‚Í¯‚ÌƒTƒCƒY
@@ -131,7 +131,8 @@ void Player::jumpStart()
 	}
 	//effectMediator->add( "",position-scroll->getMovingAmount());
 	isJump = true;
-	jumpPower = JUMPMAXPOW;}
+	jumpPower = JUMPMAXPOW;
+}
 void Player::jump()
 {
 	if (!isJump)
@@ -156,7 +157,8 @@ void Player::endMove()
 {
 	if (!isClear) return;
 	velocity.x = 2.0f;
-	if (isGround == false) isDead = true;
+	if (isGround == false)
+		isDead = true;
 }
 
 bool Player::getIsClear()
@@ -209,10 +211,10 @@ void Player::collision(const GameObject* obj)
 			ride(obj);
 			isMagpieRide = true;
 			jumpEnd();
-		}	
+		}
 		else
 		{
- 			isMagpieRide = false;
+			isMagpieRide = false;
 		}
 	}
 	if (isMagpieRide)
@@ -236,8 +238,8 @@ void Player::collisionGround(const GameObject* obj)
 	GAMEOBJ_TYPE type = obj->getType();
 	if (type == RESPAWN ||
 		type == START ||
-		type == GOAL||
-		type==MAGPIE_ENDSPOT)
+		type == GOAL ||
+		type == MAGPIE_ENDSPOT)
 	{
 		isGround = true;
 		jumpEnd();
@@ -253,7 +255,7 @@ void Player::collisionGround(const GameObject* obj)
 void Player::ride(const GameObject* obj)
 {
 	position = obj->getPosition();
-	position.y -= (viewSize.y+1);
+	position.y -= (viewSize.y + 1);
 }
 
 void Player::collisionStar(const GameObject* obj)
@@ -267,7 +269,7 @@ void Player::collisionStar(const GameObject* obj)
 	unsigned int pointerNum = (unsigned int)obj;
 	if (rideStarPointerNum == 0)
 	{
- 		rideStarPointerNum = pointerNum;
+		rideStarPointerNum = pointerNum;
 		ride(obj);
 		jumpEnd();
 		return;
@@ -297,7 +299,7 @@ void Player::nonCollision()
 
 GameObject* Player::clone(const GSvector2& position)
 {
-	return new Player(textrue, position, viewSize, rect, scroll, device,effectMediator);
+	return new Player(textrue, position, viewSize, rect, scroll, device, effectMediator);
 }
 
 void Player::draw(const Renderer& renderer, const Scroll& scroll)

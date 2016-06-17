@@ -63,18 +63,18 @@ void Stage::updata()
 	}
 
 	if (control.StageClear())
-	{		
+	{	
 		timer.stop();
 		flag = CLEARFLAG::CLEAR;
 		if (!fade.getIsStart())
 		{
-			fade.start(GScolor(0, 0, 0, 0), GScolor(0, 0, 0, 1), 4);
+			fade.start(GScolor(0, 0, 0, 0), GScolor(0, 0, 0, 1), 2);
 		}
 		
 		if (fade.getIsEnd())
 		{
-			if (control.isDeadPlayer())isEnd = true;
-		}		
+			isEnd = true;
+		}
 	}
 	else
 	{

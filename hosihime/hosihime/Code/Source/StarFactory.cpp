@@ -36,7 +36,9 @@ void StarFactory::update()
 
 bool StarFactory::isStart()
 {
-	if (gsVector2Distance(&prot->getSPosi(), &mediator.get(PLAYER)->getPosition()) < prot->getHelth())
+	GameObj_Ptr player = mediator.get(PLAYER);
+	if (player == NULL) return false;
+	if (gsVector2Distance(&prot->getSPosi(), &player->getPosition()) < prot->getHelth())
 		return true;
 
 	return false;
