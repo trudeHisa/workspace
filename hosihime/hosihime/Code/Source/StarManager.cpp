@@ -105,7 +105,7 @@ void StarManger::createData()
 	*/
 	for each (std::vector<std::string> param in data)
 	{
-		factory.emplace_back(Fact_Ptr(new StarFactory(createStar(param), 3.0f, mediator)));
+		factory.emplace_back(Fact_Ptr(new StarFactory(createStar(param), 1.5f, mediator)));
 		//stars.emplace_back(Star_Ptr(createStar(param)));
 	}
 }

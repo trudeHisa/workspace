@@ -225,7 +225,7 @@ void Player::collision(const GameObject* obj)
 	collisionRespawn(obj);
 	collisionGround(obj);
 	if (obj->getType() == GOAL) isClear = true;
-	if (obj->getType() == BURNSTAR)
+	if (obj->getType() == BURNSTAR || obj->getType() == PLANET)
 	{
 		position = respawnPos;
 		velocity = GSvector2(0, 0);
