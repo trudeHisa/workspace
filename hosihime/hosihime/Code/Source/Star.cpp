@@ -71,7 +71,6 @@ void Star::draw(const Renderer& renderer, const Scroll& scroll)
 		red = 1.0f;
 		green = 1.0f;
 		blue = 1.0f;
-		//blurdraw(renderer, pos, center);
 	}
 	//“_–Å
 	if (blinkerTime > 0.7f)
@@ -87,6 +86,7 @@ void Star::draw(const Renderer& renderer, const Scroll& scroll)
 	{
 		alpha = 1.0f;
 	}
+	renderer.DrawBlurTextrue(textrue,pos,&center,velocity,angle,7);
 	renderer.InitBlendFunc();
 	renderer.DrawTextrue(textrue, &pos, NULL, &center, &GSvector2(1, 1), angle, &GScolor(red, green, blue, alpha));
 }
