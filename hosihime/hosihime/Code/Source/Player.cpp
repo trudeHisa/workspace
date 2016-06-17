@@ -324,7 +324,7 @@ void Player::draw(const Renderer& renderer, const Scroll& scroll)
 	{
 		return;
 	}
-	animation.draw(renderer, "orihime.bmp", &scroll.transformViewPosition(position));
+	animation.draw(renderer, textrue, &scroll.transformViewPosition(position));
 }
 
 const std::string Player::getDirKey(int dir)

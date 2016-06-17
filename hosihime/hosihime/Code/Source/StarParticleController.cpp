@@ -24,12 +24,12 @@ void StarParticleController::update()
 	}
 	remove();
 }
-void StarParticleController::draw(const Renderer& renderer)
+void StarParticleController::draw(const Renderer& renderer, const Scroll& scroll)
 {
 	renderer.AdditionBlend();
 	for each (Particle_Ptr p in Starparticles)
 	{
-		p->draw(renderer);
+		p->draw(renderer, scroll);
 	}
 	renderer.InitBlendFunc();
 }

@@ -64,7 +64,7 @@ void Load::loadTextrue()
 	renderer.LoadTextrue("title.bmp");
 	renderer.LoadTextrue("ending.bmp");
 	renderer.LoadTextrue("starparticle.bmp");
-	renderer.LoadTextrue("ligntParticle.bmp");
+	renderer.LoadTextrue("lightParticle.bmp");
 	renderer.LoadTextrue("starride.bmp", GS_TEXCOLOR_KEY_AUTO);
 
 	//Œ»İg‚Á‚Ä‚È‚¢‰æ‘œ

@@ -23,9 +23,9 @@ void  StarEffect::update()
 {
 	star.update();
 }
-void StarEffect::draw(const Renderer& renderer)
+void StarEffect::draw(const Renderer& renderer, const Scroll& scroll)
 {
-	star.draw(renderer);
+	star.draw(renderer,scroll);
 }
 void StarEffect::finish()
 {

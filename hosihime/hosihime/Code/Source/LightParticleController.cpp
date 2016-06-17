@@ -26,12 +26,12 @@ void LightParticleController::update()
 	remove();
 }
 
-void LightParticleController::draw(const Renderer& renderer)
+void LightParticleController::draw(const Renderer& renderer, const Scroll& scroll)
 {
 	renderer.AdditionBlend();
 	for each (Particle_Ptr p in lightparticles)
 	{
-		p->draw(renderer);
+		p->draw(renderer, scroll);
 	}
 	renderer.InitBlendFunc();
 }
@@ -44,7 +44,12 @@ void LightParticleController::createParticle()
 	}
 	for (int i = 0; i <60; i++)
 	{
-		lightparticles.emplace_back(Particle_Ptr(new LightParticle("ligntParticle.bmp", i*rand(), 1.5f,center)));
+		/*lightparticles.emplace_back(Particle_Ptr(new LightParticle("lightParticle.bmp", center, 1, i*rand(), 0.02f)));*/
+	}
+
+	for (int i = 0; i < 10; i++)
+	{
+		lightparticles.emplace_back(Particle_Ptr(new LightParticle("lightParticle.bmp", i * 60, 1.0f, center)));
 	}
 }
 

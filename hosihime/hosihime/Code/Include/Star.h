@@ -21,6 +21,8 @@ public:
 	const GSvector2& getSPosi() const;
 	const float getHelth()const;
 	const IStarMove* getMove();
+
+	void nonCollision();
 public:
 	virtual Star* clone();
 	GameObject* clone(const GSvector2& position);
@@ -32,6 +34,8 @@ protected:
 	StarMove_Ptr move;
 	float angle;//rad
 	GSvector2 startPosi;
+
+	bool isDraw;
 
 	IEffectMediator* effectMediator;
 };

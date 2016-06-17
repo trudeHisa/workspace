@@ -16,6 +16,7 @@ void Star::initialize()
 {
 	velocity = GSvector2(0, 0);
 	isDead = false;
+	isDraw = true;
 	angle = 0;
 }
 void Star::updata()
@@ -33,13 +34,18 @@ void Star::updata()
 	{
 		isDead = true;
 	}
+	isDraw = true;
 }
 void Star::draw(const Renderer& renderer, const Scroll& scroll)
 {
-	if (!isInScreen(scroll))
+	if (isDraw == false)
 	{
 		return;
 	}
+	if (!isInScreen(scroll))
+	{
+		return;
+	}	
 	GSvector2 pos = scroll.transformViewPosition(position);
 	GSvector2 center(viewSize);
 	center /= 2;
@@ -60,6 +66,14 @@ void Star::collision(const GameObject* obj)
 	{
 		isDead = true;
 		effectMediator->add("FireworkEffect",position+(viewSize*0.5f));
+	}
+	if (type == PLAYER)
+	{
+		isDraw = false;
+	}
+	else
+	{
+		isDraw = true;
 	}
 }
 Star* Star::clone()
@@ -89,4 +103,9 @@ void Star::rotate()
 	//velocity‚Ì’·‚³‚Å‰ñ“]‘¬“x‚ðŒˆ‚ß‚é
 	float add = gsFrameTimerGetTime()*velocity.length();
 	angle = calc.wrap(angle + add, 0, 360);
+}
+
+void Star::nonCollision()
+{
+	//isDraw = true;
 }

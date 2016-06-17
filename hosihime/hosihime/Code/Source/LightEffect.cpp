@@ -25,9 +25,9 @@ void LightEffect::update()
 	light.update();
 }
 
-void LightEffect::draw(const Renderer& renderer)
+void LightEffect::draw(const Renderer& renderer, const Scroll& scroll)
 {
-	light.draw(renderer);
+	light.draw(renderer,scroll);
 }
 
 void LightEffect::finish()

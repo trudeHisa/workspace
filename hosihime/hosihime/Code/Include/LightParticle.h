@@ -10,7 +10,7 @@ public:
 	~LightParticle();
 	void initialize();
 	void update();
-	void draw(const Renderer& renderer);
+	void draw(const Renderer& renderer, const Scroll& scroll);
 	const bool getIsDead() const;
 private:
 	std::string textrue;
