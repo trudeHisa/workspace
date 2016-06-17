@@ -12,7 +12,6 @@
 #include "Timer.h"
 #include "TimeScore.h"
 #include "GameObjectFactory.h"
-#include "NavigationUI.h"
 #include "Fade.h"
 
 #include "EffectController.h"
@@ -45,7 +44,6 @@ private:
 	Timer timer;
 	Device& device;
 	ObjFactory factory;
-	NavigationUI navigation;
 	GSvector2 mapSize;
 	Fade fade;
 

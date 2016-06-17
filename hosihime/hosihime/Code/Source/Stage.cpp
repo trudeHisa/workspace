@@ -4,8 +4,8 @@
 #include "CSVStream.h"
 #include "GAMEOBJ_TYPE.h"
 #include "Player.h"
-#include "NavigationUI.h"
 #include "EffectFactory.h"
+
 Stage::Stage(const int& stageNo, Device& device)
 :stageNo(stageNo),
 scroll(WINDOW_WIDTH, WINDOW_HEIGHT, mapSize,stageNo),
@@ -13,7 +13,7 @@ device(device), timer(60, 60), BLOCKSIZE(64.0f),
 control(),
 effectFactory(EffectsFactory(new EffectFactory())),
 effectController(effectFactory),
-navigation("nav1.bmp", control, scroll), mapSize(0, 0),
+ mapSize(0, 0),
 factory(ObjFactory(new GameObjectFactory(scroll, device, &control, &effectController))),
 starManager(stageNo,scroll, control, effectController)
 {
@@ -38,13 +38,14 @@ void Stage::initialize()
 	Stars_IsInScreen();
 	
 	isEnd = false;
-	navigation.initialize();
 	flag = CLEARFLAG::PLAYING;
 	mapSize = GSvector2(mapdata.getSize1(), mapdata.getSize0())*BLOCKSIZE;
 
 	fade.initialize();
 
 	effectController.initialize();	
+	
+
 }
 void Stage::updata()
 {
@@ -76,10 +77,6 @@ void Stage::updata()
 			isEnd = true;
 		}
 	}
-	else
-	{
-		navigation.updata();
-	}
 }
 void Stage::draw(const Renderer& renderer)
 {
@@ -90,7 +87,6 @@ void Stage::draw(const Renderer& renderer)
 	
 	effectController.draw(renderer, scroll);
 
-	navigation.draw(renderer, scroll);
 	fade.draw(renderer);
 }
 void Stage::finish()

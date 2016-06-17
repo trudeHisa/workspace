@@ -234,9 +234,6 @@
     <ClCompile Include="Code\Source\BurnStar.cpp">
       <Filter>ソース ファイル\gameobject\objects\star</Filter>
     </ClCompile>
-    <ClCompile Include="Code\Source\NavigationUI.cpp">
-      <Filter>ソース ファイル\gameobject</Filter>
-    </ClCompile>
     <ClCompile Include="Code\Source\Result.cpp">
       <Filter>ソース ファイル\scene</Filter>
     </ClCompile>
@@ -275,6 +272,9 @@
     </ClCompile>
     <ClCompile Include="Code\Source\StarFactory.cpp">
       <Filter>ソース ファイル\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\Signboard.cpp">
+      <Filter>ソース ファイル\gameobject\objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -437,9 +437,6 @@
     <ClInclude Include="Code\Include\BurnStar.h">
       <Filter>ヘッダー ファイル\gameobject\objects\star</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Include\NavigationUI.h">
-      <Filter>ヘッダー ファイル\gameobject</Filter>
-    </ClInclude>
     <ClInclude Include="Code\Include\Result.h">
       <Filter>ヘッダー ファイル\scene</Filter>
     </ClInclude>
@@ -493,6 +490,9 @@
     </ClInclude>
     <ClInclude Include="Code\Include\StarFactory.h">
       <Filter>ヘッダー ファイル\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\Signboard.h">
+      <Filter>ヘッダー ファイル\gameobject\objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

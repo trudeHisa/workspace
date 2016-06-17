@@ -42,7 +42,6 @@
     <ClCompile Include="Code\Source\main.cpp" />
     <ClCompile Include="Code\Source\Menu.cpp" />
     <ClCompile Include="Code\Source\MyRectangle.cpp" />
-    <ClCompile Include="Code\Source\NavigationUI.cpp" />
     <ClCompile Include="Code\Source\Player.cpp" />
     <ClCompile Include="Code\Source\PlayMode_Play.cpp" />
     <ClCompile Include="Code\Source\PlayMode_Select.cpp" />
@@ -53,6 +52,7 @@
     <ClCompile Include="Code\Source\SceneManager.cpp" />
     <ClCompile Include="Code\Source\Scroll.cpp" />
     <ClCompile Include="Code\Source\Segment.cpp" />
+    <ClCompile Include="Code\Source\Signboard.cpp" />
     <ClCompile Include="Code\Source\Sound.cpp" />
     <ClCompile Include="Code\Source\Stage.cpp" />
     <ClCompile Include="Code\Source\StageSelect.cpp" />
@@ -112,7 +112,6 @@
     <ClInclude Include="Code\Include\Magpie.h" />
     <ClInclude Include="Code\Include\Menu.h" />
     <ClInclude Include="Code\Include\MyRectangle.h" />
-    <ClInclude Include="Code\Include\NavigationUI.h" />
     <ClInclude Include="Code\Include\IParticle.h" />
     <ClInclude Include="Code\Include\IParticleController.h" />
     <ClInclude Include="Code\Include\Player.h" />
@@ -125,6 +124,7 @@
     <ClInclude Include="Code\Include\SceneManager.h" />
     <ClInclude Include="Code\Include\Scroll.h" />
     <ClInclude Include="Code\Include\Segment.h" />
+    <ClInclude Include="Code\Include\Signboard.h" />
     <ClInclude Include="Code\Include\Sound.h" />
     <ClInclude Include="Code\Include\Stage.h" />
     <ClInclude Include="Code\Include\StageSelect.h" />
