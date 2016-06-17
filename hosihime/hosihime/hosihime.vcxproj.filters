@@ -261,6 +261,15 @@
     <ClCompile Include="Code\Source\EffectFactory.cpp">
       <Filter>ソース ファイル\Factory</Filter>
     </ClCompile>
+    <ClCompile Include="Code\Source\LightParticle.cpp">
+      <Filter>ソース ファイル\effect\particle</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\LightParticleController.cpp">
+      <Filter>ソース ファイル\effect\particle</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\LightEffect.cpp">
+      <Filter>ソース ファイル\effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Include\GAMEOBJ_TYPE.h">
@@ -463,6 +472,15 @@
     </ClInclude>
     <ClInclude Include="Code\Include\EffectFactory.h">
       <Filter>ヘッダー ファイル\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\LightParticle.h">
+      <Filter>ヘッダー ファイル\effect\particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\LightParticleController.h">
+      <Filter>ヘッダー ファイル\effect\particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\LightEffect.h">
+      <Filter>ヘッダー ファイル\effect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
