@@ -52,7 +52,6 @@ void Star::draw(const Renderer& renderer, const Scroll& scroll)
 		return;
 	}
 	GSvector2 pos = scroll.transformViewPosition(position);
-	renderer.DrawString("AAA", &pos, 20);
 	GSvector2 center(viewSize);
 	center /= 2;
 	pos += center;
