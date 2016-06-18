@@ -2,9 +2,11 @@
 
 BreakStar::BreakStar(const std::string& textrue, const GSvector2& position,
 	const GSvector2& viewSize, const MyRectangle& rect,
-	float helth, StarMove_Ptr move, float max_Durability, IEffectMediator* effectMediator)
+	float helth, StarMove_Ptr move, float max_Durability, 
+	IEffectMediator* effectMediator, Device& device)
 	:GameObject(textrue, position, viewSize, rect, BREAKSTAR),
-	Star(textrue, position, viewSize, rect, helth, move,effectMediator),
+	Star(textrue, position, viewSize, rect, helth,
+	move,effectMediator,device),
 	durability(max_Durability), max_Durability(max_Durability),
 	isBreakStart(false)
 {
@@ -61,17 +63,19 @@ void BreakStar::collision(const GameObject* obj)
 void BreakStar::draw(const Renderer& renderer, const Scroll& scroll)
 {
 	//¯‚Ì•\Ž¦
-	if (blinker)
-	{
-		Star::draw(renderer, scroll);
-	}
-	//Star::draw(renderer, scroll);
+	//if (blinker)
+	//{
+	//	Star::draw(renderer, scroll);
+	//}
+	Star::draw(renderer, scroll);
 }
 Star* BreakStar::clone()
 {
-	return new BreakStar(textrue, startPosi, viewSize, rect, helth,StarMove_Ptr(move->clone()), max_Durability,effectMediator);
+	return new BreakStar(textrue, startPosi, viewSize, rect, helth,
+		StarMove_Ptr(move->clone()), max_Durability, effectMediator, device);
 }
 GameObject* BreakStar::clone(const GSvector2& position)
 {
-	return new BreakStar(textrue, position, viewSize, rect, helth, StarMove_Ptr(move->clone()), max_Durability, effectMediator);
+	return new BreakStar(textrue, position, viewSize, rect, helth,
+		StarMove_Ptr(move->clone()), max_Durability, effectMediator, device);
 }

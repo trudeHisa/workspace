@@ -8,7 +8,6 @@
 Player::Player(const std::string& textrue, const GSvector2& position,
 	const GSvector2& viewSize, const MyRectangle& rect,
 	Scroll* scroll, Device& device, IEffectMediator* effectMediator)
-
 	:GameObject(textrue, position, viewSize, rect, PLAYER),
 
 	GRAVITY(10), VERTICAL(5),

@@ -15,7 +15,7 @@ Stage::Stage(const int& stageNo, Device& device)
 	effectController(effectFactory),
 	mapSize(0, 0),
 	factory(ObjFactory(new GameObjectFactory(scroll, device, &control, &effectController))),
-	starManager(stageNo, scroll, control, effectController),
+	starManager(stageNo, scroll, control, effectController,device),
 	fadeIn(), fadeOut()
 {
 	CSVStream stream;

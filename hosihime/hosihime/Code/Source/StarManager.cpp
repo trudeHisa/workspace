@@ -18,8 +18,10 @@
 
 #include "STARTYPE.h"
 
-StarManger::StarManger(UINT no,Scroll& _scroll, IMediator& mediator, IEffectMediator& effectMediator)
+StarManger::StarManger(UINT no,Scroll& _scroll, IMediator& mediator,
+	IEffectMediator& effectMediator, Device& device)
 :scroll(_scroll), mediator(mediator), effectMediator(effectMediator)
+, device(device)
 {
 	stagedate = "stardata\\stage" + std::to_string(no) + ".stardata";
 	//stagedate = "stardata\\stage000.stardata";
@@ -83,11 +85,13 @@ Star* StarManger::createStar(const std::vector<std::string>& param)
 	switch (stoi(param[0]))
 	{
 	case DEF:
-		return new Star("star.bmp", pos, viewSize, rect, maxhelth, move,&effectMediator);
+		return new Star("star.bmp", pos, viewSize, rect, maxhelth, move,&effectMediator,device);
 	case BREAK:		
-		return new BreakStar("star_break0.bmp", pos, viewSize, rect, maxhelth, move, stof(param[lastParamIndex]), &effectMediator);
+		return new BreakStar("star_break0.bmp", pos, viewSize, rect, maxhelth, 
+			move, stof(param[lastParamIndex]), &effectMediator, device);
 	case BRUN:
-		return new BurnStar("star_fire.bmp", pos, viewSize, rect, maxhelth, move, &effectMediator);
+		return new BurnStar("star_fire.bmp", pos, viewSize, rect, maxhelth, move,
+			&effectMediator, device);
 	}
 	return NULL;
 }

@@ -18,7 +18,8 @@ class IEffectMediator;
 class StarManger
 {
 public:
-	StarManger(UINT stageNo,Scroll& _scroll,IMediator& mediator,IEffectMediator& effectMediator);
+	StarManger(UINT stageNo,Scroll& _scroll,IMediator& mediator,
+		IEffectMediator& effectMediator, Device& device);
 	~StarManger();
 	void initialize();
 	void createStarProt();
@@ -42,6 +43,7 @@ private:
 	IEffectMediator& effectMediator;
 	starsContainer stars;//¯‚ÌŒ´Œ^‚ğŠi”[‚·‚é”z—ñ instance
 	Stars_inScreen inScreens;//‰æ–Ê“à‚Ì™‚ğŠi”[‚·‚é”z—ñ point
+	Device& device;
 };
 
 #endif

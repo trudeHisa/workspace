@@ -10,7 +10,7 @@
 class Background_Star
 {
 public:
-	Background_Star();
+	Background_Star(Device& device);
 	~Background_Star();
 	void initialize();
 	void update();
@@ -23,5 +23,6 @@ private:
 	EffectsFactory effectFactory;
 	EffectController effectController;
 	Scroll scroll;/*É_É~Å[*/
+	Device& device;
 };
 #endif

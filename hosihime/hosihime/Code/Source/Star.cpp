@@ -3,10 +3,11 @@
 
 Star::Star(const std::string& textrue, const GSvector2& position,
 	const GSvector2& viewSize, const MyRectangle& rect, float helth,
-	StarMove_Ptr move, IEffectMediator* effectMediator)
+	StarMove_Ptr move, IEffectMediator* effectMediator,
+	Device& device)
 	:GameObject(textrue, position, viewSize, rect, STAR),
 	move(move), startPosi(position), angle(0), helth(helth),
-	effectMediator(effectMediator)
+	effectMediator(effectMediator), device(device)
 {
 }
 Star::~Star()
@@ -45,12 +46,13 @@ void Star::updata()
 	}
 }
 void Star::draw(const Renderer& renderer, const Scroll& scroll)
-{	
+{
 	if (!isInScreen(scroll))
 	{
 		return;
 	}
 	GSvector2 pos = scroll.transformViewPosition(position);
+	renderer.DrawString("AAA", &pos, 20);
 	GSvector2 center(viewSize);
 	center /= 2;
 	pos += center;
@@ -86,7 +88,7 @@ void Star::draw(const Renderer& renderer, const Scroll& scroll)
 	{
 		alpha = 1.0f;
 	}
-	renderer.DrawBlurTextrue(textrue,pos,&center,velocity,angle,7);
+	renderer.DrawBlurTextrue(textrue, pos, &center, velocity, angle, 7);
 	renderer.InitBlendFunc();
 	renderer.DrawTextrue(textrue, &pos, NULL, &center, &GSvector2(1, 1), angle, &GScolor(red, green, blue, alpha));
 }
@@ -101,15 +103,18 @@ void Star::collision(const GameObject* obj)
 	{
 		isDead = true;
 		effectMediator->add("FireworkEffect", position + (viewSize*0.5f));
+		device.getSound().PlaySE("star_break.wav");
 	}
 }
 Star* Star::clone()
 {
-	return new Star(textrue, startPosi, viewSize, rect, helth, StarMove_Ptr(move->clone()), effectMediator);
+	return new Star(textrue, startPosi, viewSize, rect, helth,
+		StarMove_Ptr(move->clone()), effectMediator, device);
 }
 GameObject* Star::clone(const GSvector2& position)
 {
-	return new Star(textrue, position, viewSize, rect, helth, StarMove_Ptr(move->clone()), effectMediator);
+	return new Star(textrue, position, viewSize, rect, helth, 
+		StarMove_Ptr(move->clone()), effectMediator, device);
 }
 const GSvector2& Star::getSPosi() const
 {

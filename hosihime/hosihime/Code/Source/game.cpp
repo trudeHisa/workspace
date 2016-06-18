@@ -21,7 +21,7 @@ Device device;
 Renderer renderer;
 TimeScore score;
 
-Background_Star bstar;
+Background_Star bstar(device);
 void gameInit(void)
 {	
 	sceneManager.Add(Scene::MODE_LOAD, Scene_Ptr( new Load(device, renderer)));

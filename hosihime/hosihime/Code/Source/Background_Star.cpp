@@ -1,7 +1,7 @@
 #include "Background_Star.h"
 #include "Star_slashdown.h"
-Background_Star::Background_Star()
-	:control(), spawnTimer(0,0),
+Background_Star::Background_Star(Device& device)
+	:device(device),control(), spawnTimer(0,0),
 	effectFactory(EffectsFactory(new EffectFactory())),
 	effectController(effectFactory),
 	scroll(1280, 720, GSvector2(1280, 720), 0)
@@ -31,7 +31,7 @@ void Background_Star::update()
 	{
 		control.add(GameObj_Ptr(new Star("star.bmp", GSvector2((rand() % 600), 0),
 			GSvector2(64, 64), MyRectangle(0, 0, 64, 64), 3000,
-			StarMove_Ptr(new Star_slashdown(GSvector2((rand() % 3) + 2, 5))), &effectController)));
+			StarMove_Ptr(new Star_slashdown(GSvector2((rand() % 3) + 2, 5))), &effectController, device)));
 		spawnTimer = Timer(0, rand() % 3);
 		spawnTimer.initialize();
 	}
