@@ -91,16 +91,16 @@ void Player::moving()
 	rideUpDown();
 	jump();
 	float movedir = moveHorizontal();
-	if (isGround)
-	{
-		const Sound& sound = device.getSound();
-		if (!sound.IsPlaySE("landing.wav") && movedir != 0)
-		{
-			sound.PlaySE("landing.wav");
-		}
-	}
-
 	changeAnimation(movedir);
+	if (!isGround)
+	{
+		return;
+	}
+	const Sound& sound = device.getSound();
+	if (!sound.IsPlaySE("landing.wav") && movedir != 0)
+	{
+		sound.PlaySE("landing.wav");
+	}
 }
 void Player::rideUpDown()
 {
