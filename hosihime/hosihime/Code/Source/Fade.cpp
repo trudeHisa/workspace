@@ -42,6 +42,7 @@ void Fade::start(const GScolor& startColor, const GScolor& endColor, float time/
 	isStart = true;
 	this->startColor = startColor;
 	this->endColor = endColor;
+	currentColor = startColor;
 	this->time = time*60.0f;
 	currentTime = 0;
 	isEnd =false;

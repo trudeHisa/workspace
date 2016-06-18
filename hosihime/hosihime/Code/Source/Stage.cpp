@@ -52,6 +52,7 @@ void Stage::initialize()
 }
 void Stage::updata()
 {
+	
 	// ğŒo‚µ‚Ä‚à‚Á‚Æ‚«‚ê‚¢‚É
 	fadeIn.updata();
 	fadeOut.updata();
@@ -59,11 +60,11 @@ void Stage::updata()
 	starManager.updata();
 	control.updata();
 	effectController.update();
-
 	if (!fadeIn.getIsEnd())
 	{
 		return;
-	}
+	}	
+	
 	timer.update();
 	/*if (timer.isEnd())
 	{
@@ -87,7 +88,8 @@ void Stage::draw(const Renderer& renderer)
 	scroll.draw(renderer);
 	control.draw(renderer, scroll);
 	int t = timer.getTime() / FRAMETIME;
-	renderer.DrawString(std::to_string(t), &GSvector2(50, 50), 50);
+	renderer.DrawString(std::to_string(t), 
+		&GSvector2(50, 50), 70,&GScolor(1,1,0,1),GS_FONT_ITALIC,"ƒƒCƒŠƒI");
 
 	effectController.draw(renderer, scroll);
 
