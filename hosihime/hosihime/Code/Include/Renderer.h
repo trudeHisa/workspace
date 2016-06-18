@@ -51,19 +51,26 @@ public:
 	void DrawString(const std::string& text, const GSvector2* _position, const GSuint size,
 		const GScolor* _color = &GScolor(1, 1, 1, 1), const GSbitfield& fontcode = GS_FONT_NORMAL,
 		const char* fonstname = "MS ÉSÉVÉbÉN")const;
-	
+
 	void InitBlendFunc()const;
 	void AdditionBlend()const;
 	void DrawTextrueScroll(const std::string& name, const GSrect& s, const GSrect& t)const;
 	void DrawBlurTextrue(
-		const std::string& name, 
-		const GSvector2& _position, 
+		const std::string& name,
+		const GSvector2& _position,
 		const GSvector2* _center,
 		const GSvector2& velocity,
 		float angle,
 		unsigned int maxSheet
 		)const;
-private:	
+	void DrawNumber(
+		const std::string& name,
+		const GSvector2& _position,
+		float width,
+		float height,
+		int point,
+		const GScolor* _color=&GScolor(1,1,1,1))const;
+private:
 	//2dï`âÊ
 	void disables()const;
 	void draw2DSetting()const;
@@ -75,7 +82,7 @@ private:
 		const GScolor*    pColor)const;
 	const GSrect getTexCoord(const GSrect* rect, GLsizei sTexWidth, GLsizei sTexHeight)const;
 	const GSvector2 getTexSize(const GSrect* rect, GLsizei sTexWidth, GLsizei sTexHeight)const;
-	void drawQuad(const GSrect& rTexCoord,const GSvector2& size)const;
+	void drawQuad(const GSrect& rTexCoord, const GSvector2& size)const;
 	void DrawFillRectangle(
 		const GSrect*    pSrcRect,
 		const GSvector2* pCenter,

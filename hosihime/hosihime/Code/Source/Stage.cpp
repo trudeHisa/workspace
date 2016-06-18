@@ -7,16 +7,16 @@
 #include "EffectFactory.h"
 
 Stage::Stage(const int& stageNo, Device& device)
-	:stageNo(stageNo),
-	scroll(WINDOW_WIDTH, WINDOW_HEIGHT, mapSize, stageNo),
-	device(device), timer(0, 0), BLOCKSIZE(64.0f),
-	control(),
-	effectFactory(EffectsFactory(new EffectFactory())),
-	effectController(effectFactory),
-	mapSize(0, 0),
-	factory(ObjFactory(new GameObjectFactory(scroll, device, &control, &effectController))),
-	starManager(stageNo, scroll, control, effectController,device),
-	fadeIn(), fadeOut()
+:stageNo(stageNo),
+scroll(WINDOW_WIDTH, WINDOW_HEIGHT, mapSize, stageNo),
+device(device), timer(60, 60), BLOCKSIZE(64.0f),
+control(),
+effectFactory(EffectsFactory(new EffectFactory())),
+effectController(effectFactory),
+mapSize(0, 0),
+factory(ObjFactory(new GameObjectFactory(scroll, device, &control, &effectController))),
+starManager(stageNo, scroll, control, effectController, device),
+fadeIn(), fadeOut()
 {
 	CSVStream stream;
 	std::string name = "mapdata\\\\testmap" + std::to_string(stageNo) + ".csv";
@@ -52,7 +52,7 @@ void Stage::initialize()
 }
 void Stage::updata()
 {
-	
+
 	// 条件出してもっときれいに
 	fadeIn.updata();
 	fadeOut.updata();
@@ -63,14 +63,14 @@ void Stage::updata()
 	if (!fadeIn.getIsEnd())
 	{
 		return;
-	}	
-	
+	}
+
 	timer.update();
-	/*if (timer.isEnd())
+	if (timer.isEnd())
 	{
-	flag = CLEARFLAG::GAMEOVER;
-	isEnd = true;
-	}*/
+		flag = CLEARFLAG::GAMEOVER;
+		isEnd = true;
+	}
 
 	if (control.StageClear())
 	{
@@ -89,7 +89,9 @@ void Stage::draw(const Renderer& renderer)
 	control.draw(renderer, scroll);
 	int t = timer.getTime() / FRAMETIME;
 	renderer.DrawString(std::to_string(t), 
-		&GSvector2(50, 50), 70,&GScolor(1,1,0,1),GS_FONT_ITALIC,"メイリオ");
+	&GSvector2(50, 50), 70,&GScolor(1,1,0,1),GS_FONT_ITALIC,"メイリオ");
+
+	//renderer.DrawNumber("number.bmp", GSvector2(50, 50), 32, 64, t);
 
 	effectController.draw(renderer, scroll);
 

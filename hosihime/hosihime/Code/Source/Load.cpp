@@ -37,6 +37,7 @@ bool Load::IsEnd()
 }
 void Load::loadTextrue()
 {
+	renderer.LoadTextrue("number.bmp", GS_TEXCOLOR_KEY_AUTO);
 	/*
 	*îwåi
 	*/

@@ -290,3 +290,20 @@ void Renderer::DrawBlurTextrue(
 		DrawSprite2D(container.at(name), NULL,_center, NULL, angle, &prevpos, &GScolor(1, 1, 1, alpha));
 	}
 }
+
+void Renderer::DrawNumber(
+	const std::string& name,
+	const GSvector2& _position,
+	float width,
+	float height,
+	int point,
+	const GScolor* _color)const
+{
+	GSvector2 pos = _position;
+	for each (auto n in std::to_string(point))
+	{
+		float x = (n - '0') * width;
+		DrawSprite2D(container.at(name), &GSrect(x,0,x+width,height), NULL, NULL,NULL,&pos,_color);
+		pos.x += width;
+	}
+}
