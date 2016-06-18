@@ -27,7 +27,7 @@ void Ending::Update()
 void Ending::Draw(const Renderer& renderer)
 {
 	renderer.DrawTextrue("space0.bmp", &GSvector2(0, 0));
-	renderer.DrawTextrue("player.bmp",&playerPosi);
+	renderer.DrawTextrue("orihime.bmp",&playerPosi);
 	renderer.DrawString("エンディング", &GSvector2(50, 50), 50);
 }
 

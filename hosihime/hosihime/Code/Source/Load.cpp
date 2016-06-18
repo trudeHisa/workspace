@@ -129,7 +129,6 @@ void Load::loadTextrue()
 	*/
 	renderer.LoadTextrue("star_break0.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("star_break1.bmp", GS_TEXCOLOR_KEY_AUTO, path);
-
 	renderer.LoadTextrue("star_fire.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("star_teil.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 
@@ -145,58 +144,10 @@ void Load::loadTextrue()
 	renderer.LoadTextrue("operation_text_gray.bmp", GS_TEXCOLOR_KEY_AUTO, path);	
 	renderer.LoadTextrue("space_text.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("title_text.bmp", GS_TEXCOLOR_KEY_AUTO, path);
-
 	renderer.LoadTextrue("title.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 
 
-
-	//renderer.LoadTextrue("fireworkParticle.bmp", GS_TEXCOLOR_KEY_AUTO);
-	//renderer.LoadTextrue("magpie.bmp", GS_TEXCOLOR_KEY_AUTO);
-	//renderer.LoadTextrue("magpieEnd.bmp", GS_TEXCOLOR_KEY_AUTO);
-
 	renderer.LoadTextrue("circleParticle.bmp", GS_TEXCOLOR_KEY_WHITE);
-	//renderer.LoadTextrue("nav1.bmp", GS_TEXCOLOR_KEY_WHITE);
-	//renderer.LoadTextrue("nav2.bmp", GS_TEXCOLOR_KEY_WHITE);
-	//renderer.LoadTextrue("starbrun.bmp", GS_TEXCOLOR_KEY_AUTO);
-
-	//renderer.LoadTextrue("anim.bmp");
-	//renderer.LoadTextrue("orihime.bmp", GS_TEXCOLOR_KEY_AUTO);
-	//renderer.LoadTextrue("star.bmp", GS_TEXCOLOR_KEY_AUTO);
-	//renderer.LoadTextrue("player.bmp", GS_TEXCOLOR_KEY_AUTO);
-	//renderer.LoadTextrue("start.bmp", GS_TEXCOLOR_KEY_AUTO);
-	//renderer.LoadTextrue("goal.bmp", GS_TEXCOLOR_KEY_AUTO);
-	//renderer.LoadTextrue("rock.bmp", GS_TEXCOLOR_KEY_AUTO);
-	//renderer.LoadTextrue("rock2_2.bmp", GS_TEXCOLOR_KEY_AUTO);
-	//renderer.LoadTextrue("planet.bmp", GS_TEXCOLOR_KEY_WHITE);
-
-	//renderer.LoadTextrue("space0.bmp");
-	//renderer.LoadTextrue("space1.bmp");
-	//renderer.LoadTextrue("space2.bmp");
-
-	//renderer.LoadTextrue("title.bmp");
-	//renderer.LoadTextrue("ending.bmp");
-
-	////åªç›égÇ¡ÇƒÇ»Ç¢âÊëú
-	//renderer.LoadTextrue("title_logo.bmp");
-	//renderer.LoadTextrue("starb.bmp", GS_TEXCOLOR_KEY_BLACK);
-	//
-	//renderer.LoadTextrue("sasa.bmp");
-	//renderer.LoadTextrue("shooting.bmp");
-	//renderer.LoadTextrue("shooting2.bmp");
-	//renderer.LoadTextrue("shooting3.bmp");
-	////Ç±Ç±Ç‹Ç≈
-
-	//renderer.LoadTextrue("activeselect.bmp", GS_TEXCOLOR_KEY_AUTO);
-	//renderer.LoadTextrue("mapselect.bmp");
-
-	//renderer.LoadTextrue("titletext.bmp", GS_TEXCOLOR_KEY_WHITE);
-	//renderer.LoadTextrue("spacetext.bmp", GS_TEXCOLOR_KEY_WHITE);
-	//renderer.LoadTextrue("gs.bmp", GS_TEXCOLOR_KEY_WHITE);
-	//renderer.LoadTextrue("gs_g.bmp", GS_TEXCOLOR_KEY_WHITE);
-	//renderer.LoadTextrue("operationText.bmp", GS_TEXCOLOR_KEY_WHITE);
-	//renderer.LoadTextrue("operationText_g.bmp", GS_TEXCOLOR_KEY_WHITE);
-	//renderer.LoadTextrue("credit.bmp", GS_TEXCOLOR_KEY_WHITE);
-	//renderer.LoadTextrue("credit_g.bmp", GS_TEXCOLOR_KEY_WHITE);
 }
 void Load::loadSound()
 {
