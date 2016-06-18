@@ -10,9 +10,8 @@ Ending::~Ending()
 }
 void Ending::Init()
 {
-	device.getSound().StopSE("GameMode_1.wav");
 	isEnd = false;
-	device.getSound().PlaySE("Ending.wav");
+	device.getSound().PlaySE("ending.wav");
 	playerPosi = GSvector2(1280, 300);
 	vel = GSvector2(0, 0);
 }
@@ -33,6 +32,7 @@ void Ending::Draw(const Renderer& renderer)
 
 void Ending::Finish()
 {
+	device.getSound().StopSE("ending.wav");
 }
 Scene Ending::Next()
 {

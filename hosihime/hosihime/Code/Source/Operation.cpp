@@ -31,6 +31,7 @@ void Operation::Update()
 		{
 			return;
 		}
+		device.getSound().PlaySE("decision.wav");
 		fadeOut.start(GScolor(0, 0, 0, 0), GScolor(0, 0, 0, 1), 1.f);
 	}
 	isEnd = fadeOut.getIsEnd();

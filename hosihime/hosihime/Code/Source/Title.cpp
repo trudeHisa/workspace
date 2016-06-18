@@ -15,8 +15,7 @@ void Title::Init()
 {
 	bStar.initialize();
 	rogoAlpha = 0;
-//	device.getSound().StopSE("Ending.wav");
-	//device.getSound().PlaySE("Opening.wav");
+	
 	timer.initialize();
 	alpha = 255;
 	isEnd = false;	
@@ -28,8 +27,16 @@ void Title::Update()
 	rogoAlpha += gsFrameTimerGetTime()*0.02f;
 	if (rogoAlpha >= 1)
 	{
+		if (!device.getSound().IsPlaySE("title.wav"))
+		{
+			device.getSound().PlaySE("title.wav");
+		}		
 		rogoAlpha = 1;
-		isEnd = device.getInput().getActionTrigger();
+		if (device.getInput().getActionTrigger())
+		{
+			device.getSound().PlaySE("decision.wav");
+			isEnd = true;
+		}
 	}
 
 	timer.update();

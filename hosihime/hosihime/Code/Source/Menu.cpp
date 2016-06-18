@@ -19,10 +19,12 @@ void Menu::Update()
 	const Input input = device.getInput();
 	if (input.getUpTrigger())
 	{
+		device.getSound().PlaySE("move.wav");
 		index -= 1;
 	}
 	if (input.getDownTrigger())
 	{
+		device.getSound().PlaySE("move.wav");
 		index += 1;
 	}
 	Calculate<int>calc;
@@ -35,6 +37,7 @@ void Menu::Update()
 	}
 	if (input.getActionTrigger())
 	{
+		device.getSound().PlaySE("decision.wav");
 		fade.start(GScolor(0, 0, 0, 0), GScolor(0, 0, 0, 1), 1.f);
 	}
 }
@@ -67,6 +70,7 @@ void Menu::Finish()
 {
 	if (index == 0)
 	{
+		device.getSound().StopSE("title.wav");
 		bStar.finish();
 	}
 }

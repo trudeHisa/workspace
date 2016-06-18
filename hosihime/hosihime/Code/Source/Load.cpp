@@ -49,7 +49,7 @@ void Load::loadTextrue()
 	*キャラクタ
 	*/
 	path = "Textrue\\\\character\\\\";
-	renderer.LoadTextrue("orihime.bmp", GS_TEXCOLOR_KEY_AUTO,path);
+	renderer.LoadTextrue("orihime.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("hikobosi.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("hold.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	/*
@@ -62,7 +62,7 @@ void Load::loadTextrue()
 	*ゲームオーバー
 	*/
 	path = "Textrue\\\\gameover\\\\";
-	renderer.LoadTextrue("gameover.bmp", GS_TEXCOLOR_KEY_DISABLE,path);
+	renderer.LoadTextrue("gameover.bmp", GS_TEXCOLOR_KEY_DISABLE, path);
 	renderer.LoadTextrue("gameover_orihime.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("gameover_text.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 
@@ -79,7 +79,7 @@ void Load::loadTextrue()
 	*カササギ
 	*/
 	path = "Textrue\\\\magpie\\\\";
-	renderer.LoadTextrue("magpie.bmp", GS_TEXCOLOR_KEY_AUTO,path);
+	renderer.LoadTextrue("magpie.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("magpieEnd.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 
 	/*
@@ -88,7 +88,7 @@ void Load::loadTextrue()
 	path = "Textrue\\\\mapselect\\\\";
 	renderer.LoadTextrue("mapselect.bmp", GS_TEXCOLOR_KEY_DISABLE, path);
 	renderer.LoadTextrue("orihime_map.bmp", GS_TEXCOLOR_KEY_AUTO, path);
-	
+
 	/*
 	*ナビゲーション
 	*/
@@ -99,7 +99,7 @@ void Load::loadTextrue()
 	*障害物
 	*/
 	path = "Textrue\\\\obstacle\\\\";
-	renderer.LoadTextrue("bigplanet.bmp", GS_TEXCOLOR_KEY_AUTO,path);
+	renderer.LoadTextrue("bigplanet.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("meteo.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 
 	/*
@@ -108,7 +108,7 @@ void Load::loadTextrue()
 	path = "Textrue\\\\opening\\\\";
 	renderer.LoadTextrue("opening.bmp", GS_TEXCOLOR_KEY_DISABLE, path);
 	renderer.LoadTextrue("opening_text.bmp", GS_TEXCOLOR_KEY_AUTO, path);
-	
+
 	/*
 	*操作方法
 	*/
@@ -141,7 +141,7 @@ void Load::loadTextrue()
 	renderer.LoadTextrue("gamestart_text.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("gamestart_text_gray.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("operation_text.bmp", GS_TEXCOLOR_KEY_AUTO, path);
-	renderer.LoadTextrue("operation_text_gray.bmp", GS_TEXCOLOR_KEY_AUTO, path);	
+	renderer.LoadTextrue("operation_text_gray.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("space_text.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("title_text.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("title.bmp", GS_TEXCOLOR_KEY_AUTO, path);
@@ -152,22 +152,36 @@ void Load::loadTextrue()
 void Load::loadSound()
 {
 	Sound& sound = device.getNonConstSound();
-	//SE
-	sound.LoadSE("Broken.wav", 5);
-	sound.LoadSE("Fire.wav", 3);
-	sound.LoadSE("Jump.wav", 5);
-	sound.LoadSE("Landing.wav", 5);	//着地
-	sound.LoadSE("cursormove.wav", 5);
-	sound.LoadSE("decision.wav", 5);	//決定
-	//BGM
-	std::string path = "Sound\\\\BGM\\\\";
-	sound.LoadSE("Clear_1.wav", 5, GWAVE_LOOP, path);
-	sound.LoadSE("Clear_2.wav", 5, GWAVE_LOOP, path);
-	sound.LoadSE("Ending.wav", 5, GWAVE_LOOP, path);
-	sound.LoadSE("Opening.wav", 5, GWAVE_LOOP, path);
-	sound.LoadSE("GameMode_1.wav", 5, GWAVE_LOOP, path);
-	sound.LoadSE("GameMode_2.wav", 5, GWAVE_LOOP, path);
-	sound.LoadSE("Gameover.wav", 5, GWAVE_LOOP, path);
-	sound.LoadSE("Map.wav", 5, GWAVE_LOOP, path);
-	sound.LoadSE("Title.wav", 5, GWAVE_LOOP, path);
+	/*
+	*SE
+	*/
+	std::string originalPath = "Sound\\\\SE\\\\";
+	/*
+	*プレイ
+	*/
+	std::string path = "gameplay\\\\";
+	sound.LoadSE("jump.wav", 1, GWAVE_DEFAULT, originalPath+path);
+	sound.LoadSE("star_break.wav", 5, GWAVE_DEFAULT, originalPath + path);
+	sound.LoadSE("landing.wav", 5, GWAVE_DEFAULT, originalPath + path);
+	sound.LoadSE("star_fire.wav", 5, GWAVE_DEFAULT, originalPath + path);
+	/*
+	*その他
+	*/
+	path = "etcetera\\\\";
+	sound.LoadSE("decision.wav", 1, GWAVE_DEFAULT, originalPath + path);
+	sound.LoadSE("move.wav", 1, GWAVE_DEFAULT, originalPath + path);
+
+	/*
+	*BGM
+	*/
+	originalPath = "Sound\\\\BGM\\\\";
+	sound.LoadSE("ending.wav", 1, GWAVE_LOOP, originalPath);
+	sound.LoadSE("gameclear0.wav", 1, GWAVE_LOOP, originalPath);
+	sound.LoadSE("gameclear1.wav", 1, GWAVE_LOOP, originalPath);
+	sound.LoadSE("gamemode0.wav", 1, GWAVE_LOOP, originalPath);
+	sound.LoadSE("gamemode1.wav", 1, GWAVE_LOOP, originalPath);
+	sound.LoadSE("gameover.wav", 1, GWAVE_LOOP, originalPath);
+	sound.LoadSE("map.wav", 1, GWAVE_LOOP, originalPath);
+	sound.LoadSE("opening.wav", 1, GWAVE_LOOP, originalPath);
+	sound.LoadSE("title.wav", 1, GWAVE_LOOP, originalPath);
 }

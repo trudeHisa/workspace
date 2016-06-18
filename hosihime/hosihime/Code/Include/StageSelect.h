@@ -2,6 +2,7 @@
 #define _STAGESELECT_H_
 #include "Renderer.h"
 #include "Fade.h"
+#include "Timer.h"
 class Device;
 class StageSelect
 {
@@ -15,6 +16,7 @@ public:
 	const bool isLastStage()const;
 private:
 	void select();
+	void flash();
 private:
 	int& stageNo;
 	bool isend;
@@ -23,5 +25,6 @@ private:
 	int activeStageLength;
 	Fade fadeIn;
 	Fade fadeOut;
+	float orihimeAlpha;
 };
 #endif

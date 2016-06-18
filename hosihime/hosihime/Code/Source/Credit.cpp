@@ -32,6 +32,7 @@ void Credit::Update()
 			return;
 		}
 		fadeOut.start(GScolor(0, 0, 0, 0), GScolor(0, 0, 0, 1), 1.f);
+		device.getSound().PlaySE("decision.wav");
 	}
 	isEnd = fadeOut.getIsEnd();
 }

@@ -9,9 +9,8 @@ Result::~Result()
 }
 void Result::Init()
 {
-	device.getSound().StopSE("GameMode_1.wav");
 	isEnd = false;
-	device.getSound().PlaySE("Ending.wav");
+	device.getSound().PlaySE("ending.wav");
 }
 void Result::Update()
 {
