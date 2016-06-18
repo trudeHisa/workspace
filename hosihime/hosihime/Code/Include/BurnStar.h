@@ -8,6 +8,8 @@
 #define _BURNSTAR_H_
 
 #include "Star.h"
+#include "Animation.h"
+#include "AnimationTimer.h"
 class BurnStar :public Star
 {
 public:
@@ -23,6 +25,7 @@ public:
 	Star* clone();
 	GameObject* clone(const GSvector2& position);
 private:
-
+	Animation anim;
+	AnimationTimer animTimer;
 };
 #endif

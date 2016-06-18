@@ -1,6 +1,8 @@
 #ifndef _OPERATION_H_
 #define _OPERATION_H_
 #include "IScene.h"
+#include "Background_Star.h"
+#include "Fade.h"
 class Device;
 class Operation :public IScene
 {
@@ -16,6 +18,8 @@ public:
 private:
 	bool isEnd;
 	Device& device;
+	Fade fadeIn;
+	Fade fadeOut;
 };
 #endif
 

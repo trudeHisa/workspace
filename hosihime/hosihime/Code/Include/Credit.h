@@ -1,6 +1,7 @@
 #ifndef _CREDIT_H_
 #define _CREDIT_H_
 #include "IScene.h"
+#include "Fade.h"
 class Device;
 class Credit :public IScene
 {
@@ -16,6 +17,8 @@ public:
 private:
 	bool isEnd;
 	Device& device;
+	Fade fadeIn;
+	Fade fadeOut;
 };
 
 

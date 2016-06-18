@@ -44,6 +44,11 @@ void BreakStar::updata()
 			blinker = !blinker;//bool’l‚ÌØ‚è‘Ö‚¦
 		}
 	}
+	/* */
+	if (durability < max_Durability / 5)
+	{
+		textrue = "star_break1.bmp";
+	}
 }
 void BreakStar::collision(const GameObject* obj)
 {

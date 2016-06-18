@@ -85,9 +85,9 @@ Star* StarManger::createStar(const std::vector<std::string>& param)
 	case DEF:
 		return new Star("star.bmp", pos, viewSize, rect, maxhelth, move,&effectMediator);
 	case BREAK:		
-		return new BreakStar("starb.bmp", pos, viewSize, rect, maxhelth, move, stof(param[lastParamIndex]), &effectMediator);
+		return new BreakStar("star_break0.bmp", pos, viewSize, rect, maxhelth, move, stof(param[lastParamIndex]), &effectMediator);
 	case BRUN:
-		return new BurnStar("starbrun.bmp", pos, viewSize, rect, maxhelth, move, &effectMediator);
+		return new BurnStar("star_fire.bmp", pos, viewSize, rect, maxhelth, move, &effectMediator);
 	}
 	return NULL;
 }

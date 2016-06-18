@@ -13,7 +13,7 @@ class Scroll
 {
 public:
 	Scroll(float widht, float height, const GSvector2& maxMapSize
-		,unsigned int stageNo);
+		,int stageNo);
 	/*
 	*movingAmount‚Ì’l‚ð“ü‚ê‚é
 	*/
@@ -47,6 +47,6 @@ private:
 	MyRectangle windowSize;
 	GSvector2 movingAmount;//‚Ç‚ê‚¾‚¯Scroll‚µ‚½‚©
 	const GSvector2& maxMapsize;
-    const unsigned int stageNo;
+    const int stageNo;
 };
 #endif

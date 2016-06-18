@@ -1,16 +1,14 @@
 #ifndef _TITLE_H_
 #define _TITLE_H_
 #include "IScene.h"
-#include "GameObjControl.h"
 #include "Timer.h"
+#include "Background_Star.h"
 
-#include "EffectController.h"
-#include "EffectFactory.h"
 class Device;
 class Title :public IScene
 {
 public:
-	Title(Device& device);
+	Title(Device& device, Background_Star& bStar);
 	~Title();
 	void Init();
 	void Update();
@@ -27,11 +25,7 @@ private:
 	bool isEnd;
 	int index;//選択肢管理
 	bool boolSpace;//
-	Timer spawnTimer;
-	GameObjControl control;
 
-	EffectsFactory effectFactory;
-	EffectController effectController;
-	Scroll scroll;/*ダミー*/
+	Background_Star& bStar;
 };
 #endif

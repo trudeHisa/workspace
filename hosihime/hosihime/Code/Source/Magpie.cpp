@@ -90,7 +90,7 @@ void Magpie::setPlayerPosi(GSvector2* playerPosi)
 
 void Magpie::draw(const Renderer& renderer, const Scroll& scroll)
 {
-	anim.draw(renderer, "magpie.bmp", &scroll.transformViewPosition(position));
+	anim.draw(renderer,textrue, &scroll.transformViewPosition(position));
 }
 
 GameObject* Magpie::clone(const GSvector2& position)

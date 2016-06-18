@@ -1,6 +1,7 @@
 #ifndef _STAGESELECT_H_
 #define _STAGESELECT_H_
 #include "Renderer.h"
+#include "Fade.h"
 class Device;
 class StageSelect
 {
@@ -20,5 +21,7 @@ private:
 	int activeNo;
 	Device& device;
 	int activeStageLength;
+	Fade fadeIn;
+	Fade fadeOut;
 };
 #endif

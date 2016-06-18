@@ -79,8 +79,8 @@ void Load::loadTextrue()
 	*カササギ
 	*/
 	path = "Textrue\\\\magpie\\\\";
-	renderer.LoadTextrue("magpie.bmp", GS_TEXCOLOR_KEY_AUTO);
-	renderer.LoadTextrue("magpieEnd.bmp", GS_TEXCOLOR_KEY_AUTO);
+	renderer.LoadTextrue("magpie.bmp", GS_TEXCOLOR_KEY_AUTO,path);
+	renderer.LoadTextrue("magpieEnd.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 
 	/*
 	*マップセレクト
@@ -123,7 +123,13 @@ void Load::loadTextrue()
 	renderer.LoadTextrue("effect_Star_fire.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("fire.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("star.bmp", GS_TEXCOLOR_KEY_AUTO, path);
-	renderer.LoadTextrue("star_break.bmp", GS_TEXCOLOR_KEY_AUTO, path);
+	//renderer.LoadTextrue("star_break.bmp", GS_TEXCOLOR_KEY_AUTO, path);
+	/*
+	アニメーションでやるつもりだったが面倒なので切り替えで
+	*/
+	renderer.LoadTextrue("star_break0.bmp", GS_TEXCOLOR_KEY_AUTO, path);
+	renderer.LoadTextrue("star_break1.bmp", GS_TEXCOLOR_KEY_AUTO, path);
+
 	renderer.LoadTextrue("star_fire.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("star_teil.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 

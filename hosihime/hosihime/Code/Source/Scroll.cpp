@@ -1,7 +1,7 @@
 #include "Scroll.h"
 #include "Calculate.h"
 
-Scroll::Scroll(float widht, float height, const GSvector2& maxMapSize, unsigned int stageNo)
+Scroll::Scroll(float widht, float height, const GSvector2& maxMapSize,int stageNo)
 :stageNo(stageNo),
 windowSize(0, 0, widht, height),
 maxMapsize(maxMapSize),

@@ -97,6 +97,12 @@
     <Filter Include="ソース ファイル\Factory">
       <UniqueIdentifier>{955aba82-d913-4752-81ff-57bba383752e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\gameobject\background_Star">
+      <UniqueIdentifier>{31fac878-6216-48bc-91cb-3c8ec9bcacc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\gameobject\background_Star">
+      <UniqueIdentifier>{655b1069-b9f4-46e9-b79c-93329bde92e1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\Source\Star_wave.cpp">
@@ -281,6 +287,9 @@
     </ClCompile>
     <ClCompile Include="Code\Source\Operation.cpp">
       <Filter>ソース ファイル\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\Background_Star.cpp">
+      <Filter>ソース ファイル\gameobject\background_Star</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -505,6 +514,9 @@
     </ClInclude>
     <ClInclude Include="Code\Include\Operation.h">
       <Filter>ヘッダー ファイル\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\Background_Star.h">
+      <Filter>ヘッダー ファイル\gameobject\background_Star</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

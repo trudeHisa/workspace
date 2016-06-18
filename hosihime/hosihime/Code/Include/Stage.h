@@ -45,7 +45,8 @@ private:
 	Device& device;
 	ObjFactory factory;
 	GSvector2 mapSize;
-	Fade fade;
+	Fade fadeOut;
+	Fade fadeIn;
 
 	EffectsFactory effectFactory;
 	EffectController effectController;

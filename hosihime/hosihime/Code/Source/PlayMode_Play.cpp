@@ -1,11 +1,13 @@
 #include "PlayMode_Play.h"
 #include "CSVStream.h"
-PlayMode_Play::PlayMode_Play(Device& device, int& no,TimeScore& score)
-:stage(no, device), score(score), stageNo(no)
+PlayMode_Play::PlayMode_Play(Device& device, int& no, TimeScore& score)
+	:stage(no, device), score(score),
+	stageNo(no)
 {
 }
 void PlayMode_Play::initialize()
 {
+	
 	stage.initialize();
 }
 void PlayMode_Play::updata()
@@ -27,7 +29,6 @@ void PlayMode_Play::finish()
 	stream.input(now, "savedate\\\\savedate.txt");
 	if (stageNo >= now)
 	{
-
 		stageNo += 1;
 		if (stageNo > 2)stageNo = 2;
 		stream.output(stageNo, "savedate\\\\savedate.txt");

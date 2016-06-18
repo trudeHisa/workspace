@@ -18,6 +18,7 @@ void Fade::initialize()
 	isEnd = false;
 	time = 0; //delta
 	currentTime = 0;
+	currentColor = GScolor(0, 0, 0, 0);
 	startColor = GScolor(0, 0, 0, 0);
 	endColor = GScolor(0, 0, 0, 0);
 }

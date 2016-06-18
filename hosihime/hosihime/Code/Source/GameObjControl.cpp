@@ -96,7 +96,7 @@ void GameObjControl::draw(const Renderer& renderer, const Scroll& scroll)
 }
 void GameObjControl::finish()
 {
-
+	objs.clear();
 }
 bool GameObjControl::isDeadPlayer()
 {

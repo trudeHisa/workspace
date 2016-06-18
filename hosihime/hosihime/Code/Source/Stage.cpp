@@ -7,19 +7,20 @@
 #include "EffectFactory.h"
 
 Stage::Stage(const int& stageNo, Device& device)
-:stageNo(stageNo),
-scroll(WINDOW_WIDTH, WINDOW_HEIGHT, mapSize,stageNo),
-device(device), timer(0,0), BLOCKSIZE(64.0f),
-control(),
-effectFactory(EffectsFactory(new EffectFactory())),
-effectController(effectFactory),
- mapSize(0, 0),
-factory(ObjFactory(new GameObjectFactory(scroll, device, &control, &effectController))),
-starManager(stageNo,scroll, control, effectController)
+	:stageNo(stageNo),
+	scroll(WINDOW_WIDTH, WINDOW_HEIGHT, mapSize, stageNo),
+	device(device), timer(0, 0), BLOCKSIZE(64.0f),
+	control(),
+	effectFactory(EffectsFactory(new EffectFactory())),
+	effectController(effectFactory),
+	mapSize(0, 0),
+	factory(ObjFactory(new GameObjectFactory(scroll, device, &control, &effectController))),
+	starManager(stageNo, scroll, control, effectController),
+	fadeIn(), fadeOut()
 {
 	CSVStream stream;
 	std::string name = "mapdata\\\\testmap" + std::to_string(stageNo) + ".csv";
-	stream.input(&mapdata,name.c_str());
+	stream.input(&mapdata, name.c_str());
 }
 Stage::~Stage()
 {
@@ -36,44 +37,47 @@ void Stage::initialize()
 	scroll.initialize(GSvector2(0, 0));
 	mapCreate();
 	Stars_IsInScreen();
-	
+
 	isEnd = false;
 	flag = CLEARFLAG::PLAYING;
 	mapSize = GSvector2(mapdata.getSize1(), mapdata.getSize0())*BLOCKSIZE;
 
-	fade.initialize();
+	fadeOut.initialize();
+	fadeIn.initialize();
+	fadeIn.start(GScolor(0, 0, 0, 1), GScolor(0, 0, 0, 0), 3.f);
 
-	effectController.initialize();	
+	effectController.initialize();
 }
 void Stage::updata()
 {
 	// ğŒo‚µ‚Ä‚à‚Á‚Æ‚«‚ê‚¢‚É
-	fade.updata();
+	fadeIn.updata();
+	fadeOut.updata();
+
 	starManager.updata();
 	control.updata();
-
 	effectController.update();
 
+	if (!fadeIn.getIsEnd())
+	{
+		return;
+	}
 	timer.update();
 	/*if (timer.isEnd())
 	{
-		flag = CLEARFLAG::GAMEOVER;
-		isEnd = true;
+	flag = CLEARFLAG::GAMEOVER;
+	isEnd = true;
 	}*/
 
 	if (control.StageClear())
-	{	
+	{
 		timer.stop();
 		flag = CLEARFLAG::CLEAR;
-		if (!fade.getIsStart())
+		if (!fadeOut.getIsStart())
 		{
-			fade.start(GScolor(0, 0, 0, 0), GScolor(0, 0, 0, 1), 2);
+			fadeOut.start(GScolor(0, 0, 0, 0), GScolor(0, 0, 0, 1), 2);
 		}
-		
-		if (fade.getIsEnd())
-		{
-			isEnd = true;
-		}
+		isEnd = fadeOut.getIsEnd();
 	}
 }
 void Stage::draw(const Renderer& renderer)
@@ -82,10 +86,11 @@ void Stage::draw(const Renderer& renderer)
 	control.draw(renderer, scroll);
 	int t = timer.getTime() / FRAMETIME;
 	renderer.DrawString(std::to_string(t), &GSvector2(50, 50), 50);
-	
+
 	effectController.draw(renderer, scroll);
 
-	fade.draw(renderer);
+	fadeOut.draw(renderer);
+	fadeIn.draw(renderer);
 }
 void Stage::finish()
 {
@@ -113,9 +118,9 @@ void Stage::objCreate(int x, int y)
 	if (0 == data)
 	{
 		return;
-	}	
+	}
 	GSvector2 pos = GSvector2(x * BLOCKSIZE, y* BLOCKSIZE);
-	control.add(factory->create(static_cast<GAMEOBJ_TYPE>(data), pos));	
+	control.add(factory->create(static_cast<GAMEOBJ_TYPE>(data), pos));
 }
 void Stage::mapCreate()
 {

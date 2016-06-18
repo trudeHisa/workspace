@@ -39,7 +39,7 @@ void EffectController::remove()
 
 void EffectController::finish()
 {
-
+	effects.clear();
 }
 void EffectController::add(const std::string& name, const GSvector2& position)
 {

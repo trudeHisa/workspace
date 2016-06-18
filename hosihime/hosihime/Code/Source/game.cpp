@@ -14,16 +14,21 @@
 #include "GameOver.h"
 #include "Operation.h"
 #include "Credit.h"
+#include "Background_Star.h"
+
 SceneManager sceneManager;
 Device device;
 Renderer renderer;
 TimeScore score;
+
+Background_Star bstar;
 void gameInit(void)
 {	
 	sceneManager.Add(Scene::MODE_LOAD, Scene_Ptr( new Load(device, renderer)));
 
-	sceneManager.Add(Scene::MODE_TITLE, Scene_Ptr(new Title(device)));
-	sceneManager.Add(Scene::MODE_MENU, Scene_Ptr(new Menu(device)));
+	sceneManager.Add(Scene::MODE_TITLE, Scene_Ptr(new Title(device,bstar)));
+	sceneManager.Add(Scene::MODE_MENU, Scene_Ptr(new Menu(device,bstar)));
+
 	sceneManager.Add(Scene::MODE_OPERATION, Scene_Ptr(new Operation(device)));
 	sceneManager.Add(Scene::MODE_CREDIT, Scene_Ptr(new Credit(device)));
 
