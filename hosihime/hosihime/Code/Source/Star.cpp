@@ -45,7 +45,7 @@ void Star::updata()
 	}
 }
 void Star::draw(const Renderer& renderer, const Scroll& scroll)
-{
+{	
 	if (!isInScreen(scroll))
 	{
 		return;

@@ -5,12 +5,12 @@
 #include "Star_slashdown.h"
 //タイトルクラスコンストラクタ
 Title::Title(Device& device)
-:device(device), rogoAlpha(0),
-control(), spawnTimer(3, 3),
-effectFactory(EffectsFactory(new EffectFactory())),
-effectController(effectFactory),timer(1,1)
-{
-}
+	:device(device), rogoAlpha(0),
+	control(), spawnTimer(3, 3),
+	effectFactory(EffectsFactory(new EffectFactory())),
+	effectController(effectFactory), timer(1, 1),
+	scroll(1280, 720, GSvector2(1280, 720), 0)
+{}
 Title::~Title()
 {
 }
@@ -19,6 +19,10 @@ void Title::Init()
 	effectFactory->addContainer();
 	control.inisialize();
 	effectController.initialize();
+
+	scroll.initialize(GSvector2(0, 0));
+	scroll.setMode(MODE_VERTICAL);
+	
 	spawnTimer.initialize();
 	rogoAlpha = 0;
 //	device.getSound().StopSE("Ending.wav");
@@ -64,13 +68,11 @@ void Title::Update()
 }
 void Title::Draw(const Renderer& renderer)
 {
-	renderer.DrawTextrue("title.bmp", &GSvector2(0, 0));
-	Scroll scroll = Scroll(1280, 764, GSvector2(1280, 764), 0);
+	renderer.DrawTextrue("title.bmp", &GSvector2(0, 0));	
 	control.draw(renderer, scroll);
 	effectController.draw(renderer, scroll);
-	renderer.DrawTextrue("titletext.bmp", &GSvector2(200, 120), &GScolor(1, 1, 1, rogoAlpha));
-	renderer.DrawTextrue("spacetext.bmp", &GSvector2(480, 540), &GScolor(255, 255, 255, alpha));
-
+	renderer.DrawTextrue("title_text.bmp", &GSvector2(200, 120), &GScolor(1, 1, 1, rogoAlpha));
+	renderer.DrawTextrue("space_text.bmp", &GSvector2(480, 540), &GScolor(255, 255, 255, alpha));
 }
 void Title::Finish()
 {

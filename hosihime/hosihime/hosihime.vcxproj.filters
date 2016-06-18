@@ -276,6 +276,12 @@
     <ClCompile Include="Code\Source\Signboard.cpp">
       <Filter>ソース ファイル\gameobject\objects</Filter>
     </ClCompile>
+    <ClCompile Include="Code\Source\Credit.cpp">
+      <Filter>ソース ファイル\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\Operation.cpp">
+      <Filter>ソース ファイル\scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Include\GAMEOBJ_TYPE.h">
@@ -493,6 +499,12 @@
     </ClInclude>
     <ClInclude Include="Code\Include\Signboard.h">
       <Filter>ヘッダー ファイル\gameobject\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\Credit.h">
+      <Filter>ヘッダー ファイル\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\Operation.h">
+      <Filter>ヘッダー ファイル\scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

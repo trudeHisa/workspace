@@ -32,5 +32,6 @@ private:
 
 	EffectsFactory effectFactory;
 	EffectController effectController;
+	Scroll scroll;/*É_É~Å[*/
 };
 #endif

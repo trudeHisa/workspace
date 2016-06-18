@@ -20,6 +20,7 @@
     <ClCompile Include="Code\Source\CircleParticle.cpp" />
     <ClCompile Include="Code\Source\CircleParticleController.cpp" />
     <ClCompile Include="Code\Source\Collision.cpp" />
+    <ClCompile Include="Code\Source\Credit.cpp" />
     <ClCompile Include="Code\Source\CSVStream.cpp" />
     <ClCompile Include="Code\Source\Device.cpp" />
     <ClCompile Include="Code\Source\EffectController.cpp" />
@@ -42,6 +43,7 @@
     <ClCompile Include="Code\Source\main.cpp" />
     <ClCompile Include="Code\Source\Menu.cpp" />
     <ClCompile Include="Code\Source\MyRectangle.cpp" />
+    <ClCompile Include="Code\Source\Operation.cpp" />
     <ClCompile Include="Code\Source\Player.cpp" />
     <ClCompile Include="Code\Source\PlayMode_Play.cpp" />
     <ClCompile Include="Code\Source\PlayMode_Select.cpp" />
@@ -83,6 +85,7 @@
     <ClInclude Include="Code\Include\CircleParticle.h" />
     <ClInclude Include="Code\Include\CircleParticleController.h" />
     <ClInclude Include="Code\Include\Collision.h" />
+    <ClInclude Include="Code\Include\Credit.h" />
     <ClInclude Include="Code\Include\CSVStream.h" />
     <ClInclude Include="Code\Include\Device.h" />
     <ClInclude Include="Code\Include\EffectController.h" />
@@ -114,6 +117,7 @@
     <ClInclude Include="Code\Include\MyRectangle.h" />
     <ClInclude Include="Code\Include\IParticle.h" />
     <ClInclude Include="Code\Include\IParticleController.h" />
+    <ClInclude Include="Code\Include\Operation.h" />
     <ClInclude Include="Code\Include\Player.h" />
     <ClInclude Include="Code\Include\PlayMode_Play.h" />
     <ClInclude Include="Code\Include\PlayMode_Select.h" />

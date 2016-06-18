@@ -31,7 +31,7 @@ void Menu::Update()
 void Menu::Draw(const Renderer& renderer)
 {
 	renderer.DrawTextrue("title.bmp", &GSvector2(0, 0));
-	renderer.DrawTextrue("titletext.bmp", &GSvector2(200, 120));
+	renderer.DrawTextrue("title_text.bmp", &GSvector2(200, 120));
 	const GSvector2 ps[3] =
 	{
 		GSvector2(450, 350),
@@ -40,13 +40,13 @@ void Menu::Draw(const Renderer& renderer)
 	};
 	const std::string tex[3] =
 	{
-		"gs",
-		"operationText",
-		"credit"
+		"gamestart_text",
+		"operation_text",
+		"credit_text"
 	};
 	for (int i = 0; i <3; i++)
 	{
-		renderer.DrawTextrue(tex[i] +"_g.bmp", &ps[i]);
+		renderer.DrawTextrue(tex[i] +"_gray.bmp", &ps[i]);
 	}
 	//現在選択しているものを表示
 	renderer.DrawTextrue(tex[index] + ".bmp", &ps[index]);
@@ -62,9 +62,9 @@ Scene Menu::Next()
 		//ゲームプレイへ
 		MODE_GAMEPLAY,
 		//そうさせつめいへ(今はタイトルへ飛ぶ)
-		MODE_TITLE,
+		MODE_OPERATION,
 		//せいさくしゃ一覧へ（今はタイトルへ飛ぶ）
-		MODE_TITLE,
+		MODE_CREDIT,
 	};
 	if (index==2)
 	{

@@ -12,7 +12,8 @@
 #include "Renderer.h"
 #include "TimeScore.h"
 #include "GameOver.h"
-
+#include "Operation.h"
+#include "Credit.h"
 SceneManager sceneManager;
 Device device;
 Renderer renderer;
@@ -20,8 +21,12 @@ TimeScore score;
 void gameInit(void)
 {	
 	sceneManager.Add(Scene::MODE_LOAD, Scene_Ptr( new Load(device, renderer)));
+
 	sceneManager.Add(Scene::MODE_TITLE, Scene_Ptr(new Title(device)));
 	sceneManager.Add(Scene::MODE_MENU, Scene_Ptr(new Menu(device)));
+	sceneManager.Add(Scene::MODE_OPERATION, Scene_Ptr(new Operation(device)));
+	sceneManager.Add(Scene::MODE_CREDIT, Scene_Ptr(new Credit(device)));
+
 	sceneManager.Add(Scene::MODE_GAMEPLAY, Scene_Ptr(new GamePlay(device, score)));
 
 	sceneManager.Add(Scene::MODE_ENDING, Scene_Ptr(new Ending(device, score)));

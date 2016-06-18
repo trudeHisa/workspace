@@ -44,7 +44,7 @@ void FireworkParticleController::createParticle()
 {
 	for (int i = 0; i <4; i++)
 	{
-		particles.emplace_back(Particle_Ptr(new FireworkParticle("fireworkParticle.bmp",i*90+45,2.0f, center)));
+		particles.emplace_back(Particle_Ptr(new FireworkParticle("effect_Star.bmp",i*90+45,2.0f, center)));
 	}
 }
 void FireworkParticleController::remove()

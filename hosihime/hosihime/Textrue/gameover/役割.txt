@@ -1,0 +1,10 @@
+GAME OVER
+ゲームオーバー画面背景
+
+GAME OVER_TEXT
+ゲームオーバー画面における文字
+ORIHIMEより上に配置
+
+ORIHIME_GAME OVER
+織姫が悲しんでいる画像
+GAME OVERの真ん中に配置
