@@ -27,6 +27,8 @@ Stage::~Stage()
 }
 void Stage::initialize()
 {
+	device.getSound().PlaySE("gamemode0.wav");
+
 	factory->addContainer();
 	effectFactory->addContainer();
 
@@ -95,6 +97,7 @@ void Stage::draw(const Renderer& renderer)
 void Stage::finish()
 {
 	control.finish();
+	device.getSound().StopSE("gamemode0.wav");
 }
 
 void Stage::saveScore(TimeScore& score)

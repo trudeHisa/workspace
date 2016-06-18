@@ -90,8 +90,17 @@ void Player::moving()
 	jumpStart();
 	rideUpDown();
 	jump();
+	float movedir = moveHorizontal();
+	if (isGround)
+	{
+		const Sound& sound = device.getSound();
+		if (!sound.IsPlaySE("landing.wav") && movedir != 0)
+		{
+			sound.PlaySE("landing.wav");
+		}
+	}
 
-	changeAnimation(moveHorizontal());
+	changeAnimation(movedir);
 }
 void Player::rideUpDown()
 {
@@ -129,6 +138,7 @@ void Player::jumpStart()
 	{
 		return;
 	}
+	device.getSound().PlaySE("jump.wav");
 	//effectMediator->add( "",position-scroll->getMovingAmount());
 	isJump = true;
 	jumpPower = JUMPMAXPOW;
@@ -243,12 +253,6 @@ void Player::collisionGround(const GameObject* obj)
 	{
 		isGround = true;
 		jumpEnd();
-
-		/*const Sound& sound = device.getSound();
-			if (!sound.IsPlaySE("Landing.wav")&&velocity.x!=0)
-			{
-			sound.PlaySE("Landing.wav");
-			}*/
 	}
 }
 
@@ -256,8 +260,8 @@ void Player::ride(const GameObject* obj)
 {
 	if (obj->getType() == MAGPIE)
 	{
-		position.x = obj->getPosition().x+32;
-		position.y = obj->getPosition().y -2;
+		position.x = obj->getPosition().x + 32;
+		position.y = obj->getPosition().y - 2;
 		return;
 	}
 
