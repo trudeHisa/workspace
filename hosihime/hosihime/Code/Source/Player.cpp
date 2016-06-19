@@ -263,9 +263,8 @@ void Player::ride(const GameObject* obj)
 		position.y = obj->getPosition().y - 2;
 		return;
 	}
-
 	position = obj->getPosition();
-	position.y -= (viewSize.y + 1);
+	position.y -=viewSize.y;
 }
 
 void Player::collisionStar(const GameObject* obj)
