@@ -137,7 +137,7 @@ const float Star::getHelth()const
 {
 	return helth;
 }
-IStarMove* Star::getMove()
+const IStarMove* Star::getMove()
 {
 	return move.get();
 }

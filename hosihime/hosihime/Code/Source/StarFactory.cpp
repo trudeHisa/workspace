@@ -15,7 +15,7 @@ StarFactory::~StarFactory()
 void StarFactory::update()
 {
 	//ìÆÇ©Ç»Ç¢êØ
-	if (dynamic_cast<Star_nomove*>(prot->getMove()) != NULL)
+	if (dynamic_cast<const Star_nomove*>(prot->getMove()) != NULL)
 	{
 		if (star->getIsDead()==false) return;
 		timer.update();
