@@ -152,6 +152,7 @@ void Load::loadTextrue()
 	renderer.LoadTextrue("lightParticle.bmp", GS_TEXCOLOR_KEY_WHITE);
 	renderer.LoadTextrue("starparticle.bmp");
 	renderer.LoadTextrue("gundam.bmp");
+	renderer.LoadTextrue("shooting2.bmp");
 }
 void Load::loadSound()
 {
