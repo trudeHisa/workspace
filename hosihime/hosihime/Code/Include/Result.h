@@ -2,6 +2,7 @@
 #define _RESULT_H_
 #include "IScene.h"
 #include "TimeScore.h"
+#include "Fade.h"
 class Device;
 class Result :public IScene 
 {
@@ -16,6 +17,8 @@ public:
 	bool IsEnd();
 private:
 	bool isEnd;
+	Fade fadeIn;
+	Fade fadeOut;
 	Device& device;
 	TimeScore& score;
 };

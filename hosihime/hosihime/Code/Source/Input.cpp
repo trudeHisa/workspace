@@ -39,3 +39,11 @@ const bool Input::getDownTrigger()const
 {
 	return !!gsGetKeyTrigger(GKEY_DOWN) || !!gsGetJoyTrigger(0, GJOY_DOWN);
 }
+const bool Input::getRightTrigger()const
+{
+	return !!gsGetKeyTrigger(GKEY_RIGHT);
+}
+const bool Input::getLeftTrigger()const
+{
+	return !!gsGetKeyTrigger(GKEY_LEFT);
+}

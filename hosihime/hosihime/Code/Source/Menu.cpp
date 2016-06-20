@@ -73,6 +73,12 @@ void Menu::Finish()
 		device.getSound().StopSE("title.wav");
 		bStar.finish();
 	}
+	if (index == 2)
+	{
+		CSVStream stream;
+		int re = 0;
+		stream.output(re, "savedate\\\\savedate.txt");
+	}
 }
 Scene Menu::Next()
 {
@@ -85,12 +91,6 @@ Scene Menu::Next()
 		//せいさくしゃ一覧へ（今はタイトルへ飛ぶ）
 		MODE_CREDIT,
 	};
-	if (index == 2)
-	{
-		CSVStream stream;
-		int re = 0;
-		stream.output(re, "savedate\\\\savedate.txt");
-	}
 	return scenes[index];
 }
 bool Menu::IsEnd()

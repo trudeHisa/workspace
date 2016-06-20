@@ -9,7 +9,7 @@
 Stage::Stage(const int& stageNo, Device& device)
 :stageNo(stageNo),
 scroll(WINDOW_WIDTH, WINDOW_HEIGHT, mapSize, stageNo),
-device(device), timer(60000, 600000), BLOCKSIZE(64.0f),
+device(device), timer(120, 120), BLOCKSIZE(64.0f),
 control(),
 effectFactory(EffectsFactory(new EffectFactory())),
 effectController(effectFactory),
@@ -21,6 +21,14 @@ fadeIn(), fadeOut()
 	CSVStream stream;
 	std::string name = "mapdata\\\\testmap" + std::to_string(stageNo) + ".csv";
 	stream.input(&mapdata, name.c_str());
+
+	float time[]=
+	{
+		180,
+		300,
+		300
+	};
+	timer.reset(time[stageNo]);
 }
 Stage::~Stage()
 {
@@ -39,7 +47,7 @@ void Stage::initialize()
 	scroll.initialize(GSvector2(0, 0));
 	mapCreate();
 	Stars_IsInScreen();
-	
+
 	isEnd = false;
 	flag = CLEARFLAG::PLAYING;
 	mapSize = GSvector2(mapdata.getSize1(), mapdata.getSize0())*BLOCKSIZE;
@@ -48,7 +56,7 @@ void Stage::initialize()
 	fadeIn.initialize();
 	fadeIn.start(GScolor(0, 0, 0, 1), GScolor(0, 0, 0, 0), 3.f);
 
-	effectController.initialize();	
+	effectController.initialize();
 }
 void Stage::updata()
 {
@@ -69,17 +77,21 @@ void Stage::updata()
 	if (timer.isEnd())
 	{
 		flag = CLEARFLAG::GAMEOVER;
-		isEnd = true;
+		if (!fadeOut.getIsStart())
+		{
+			fadeOut.start(GScolor(0, 0, 0, 0), GScolor(0, 0, 0, 1), 2);
+		}
+		isEnd = fadeOut.getIsEnd();
 	}
 
 	if (control.StageClear())
-	{	
+	{
 		timer.stop();
 		flag = CLEARFLAG::CLEAR;
 		if (!fadeOut.getIsStart())
 		{
 			fadeOut.start(GScolor(0, 0, 0, 0), GScolor(0, 0, 0, 1), 2);
-	}
+		}
 		isEnd = fadeOut.getIsEnd();
 	}
 }
@@ -88,8 +100,11 @@ void Stage::draw(const Renderer& renderer)
 	scroll.draw(renderer);
 	control.draw(renderer, scroll);
 	int t = timer.getTime() / FRAMETIME;
-	renderer.DrawNumber("number.bmp", GSvector2(50, 50),35,45, t);
-	
+	renderer.DrawString(std::to_string(t), 
+	&GSvector2(50, 50), 70,&GScolor(1,1,0,1),GS_FONT_ITALIC,"ƒƒCƒŠƒI");
+
+	//renderer.DrawNumber("number.bmp", GSvector2(50, 50), 32, 64, t);
+
 	effectController.draw(renderer, scroll);
 
 	fadeOut.draw(renderer);
@@ -122,9 +137,9 @@ void Stage::objCreate(int x, int y)
 	if (0 == data)
 	{
 		return;
-	}	
+	}
 	GSvector2 pos = GSvector2(x * BLOCKSIZE, y* BLOCKSIZE);
-	control.add(factory->create(static_cast<GAMEOBJ_TYPE>(data), pos));	
+	control.add(factory->create(static_cast<GAMEOBJ_TYPE>(data), pos));
 }
 void Stage::mapCreate()
 {

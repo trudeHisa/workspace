@@ -11,6 +11,8 @@ public:
 	const float getVertical()const;//êÇíº
 	const bool getUpTrigger()const;
 	const bool getDownTrigger()const;
+	const bool getRightTrigger()const;
+	const bool getLeftTrigger()const;
 public:
 	const bool getDebugResetTrigger()const;
 };

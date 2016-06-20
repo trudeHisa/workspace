@@ -2,7 +2,7 @@
 #include "Device.h"
 #include "Renderer.h"
 Load::Load(Device& device, Renderer& renderer)
-	:device(device), renderer(renderer)
+:device(device), renderer(renderer)
 {
 }
 Load::~Load()
@@ -66,7 +66,8 @@ void Load::loadTextrue()
 	renderer.LoadTextrue("gameover.bmp", GS_TEXCOLOR_KEY_DISABLE, path);
 	renderer.LoadTextrue("gameover_orihime.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("gameover_text.bmp", GS_TEXCOLOR_KEY_AUTO, path);
-
+	renderer.LoadTextrue("retry.bmp", GS_TEXCOLOR_KEY_AUTO, path);
+	renderer.LoadTextrue("titlebuck.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	/*
 	*地面
 	*/
@@ -109,7 +110,12 @@ void Load::loadTextrue()
 	path = "Textrue\\\\opening\\\\";
 	renderer.LoadTextrue("opening.bmp", GS_TEXCOLOR_KEY_DISABLE, path);
 	renderer.LoadTextrue("opening_text.bmp", GS_TEXCOLOR_KEY_AUTO, path);
-
+	/*
+	*エンディング
+	*/
+	path = "Textrue\\\\ending\\\\";
+	renderer.LoadTextrue("kasasagi_end.bmp", GS_TEXCOLOR_KEY_AUTO, path);
+	renderer.LoadTextrue("con_logo.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	/*
 	*操作方法
 	*/
@@ -147,7 +153,7 @@ void Load::loadTextrue()
 	renderer.LoadTextrue("title_text.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("title.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 
-
+	renderer.LoadTextrue("stageClear.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("circleParticle.bmp", GS_TEXCOLOR_KEY_WHITE);
 	renderer.LoadTextrue("lightParticle.bmp", GS_TEXCOLOR_KEY_WHITE);
 	renderer.LoadTextrue("starparticle.bmp");
@@ -165,7 +171,7 @@ void Load::loadSound()
 	*プレイ
 	*/
 	std::string path = "gameplay\\\\";
-	sound.LoadSE("jump.wav", 1, GWAVE_DEFAULT, originalPath+path);
+	sound.LoadSE("jump.wav", 1, GWAVE_DEFAULT, originalPath + path);
 	sound.LoadSE("star_break.wav", 5, GWAVE_DEFAULT, originalPath + path);
 	sound.LoadSE("landing.wav", 5, GWAVE_DEFAULT, originalPath + path);
 	sound.LoadSE("star_fire.wav", 5, GWAVE_DEFAULT, originalPath + path);
