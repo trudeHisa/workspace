@@ -1,6 +1,8 @@
 #pragma once
 #include "IParticle.h"
 #include "Calculate.h"
+#include <random>
+
 
 class StarParticle:public IParticle
 {
@@ -20,5 +22,8 @@ private:
 	GSvector2 velocity;
 	GSvector2 position;
 	const float GRAVITY;
+	std::mt19937 mt;
+	std::random_device rnd;
+	std::uniform_int_distribution<> rand;
 };
 

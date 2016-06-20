@@ -3,8 +3,9 @@
 
 StarParticle::StarParticle(const std::string& textrue,
 	float angle/*deg*/, float speed, const GSvector2& position)
-	: textrue(textrue), position(position+GSvector2(10,64)), GRAVITY(0.2f),
-	rotate(0), velocity(0, 0), isDead(false), alpha(1.0f)
+	: textrue(textrue), GRAVITY(0.2f),
+	rotate(0), velocity(0, 0), isDead(false), alpha(1.0f),
+	mt(rnd()), rand(0, 1), position(position)
 {
 	Calculate<float> calc;
 	angle = calc.degTorad(angle);
@@ -28,14 +29,15 @@ void StarParticle::update()
 {
 	rotate += gsFrameTimerGetTime()*velocity.x*4.0f;
 	position += velocity*gsFrameTimerGetTime();
-	velocity.y += GRAVITY;
+	//velocity.y += GRAVITY;
 	alpha -= gsFrameTimerGetTime()*0.02f;
 	isDead = alpha <= 0;
 }
 void StarParticle::draw(const Renderer& renderer, const Scroll& scroll)
 {
-	renderer.DrawTextrue(textrue, &scroll.transformViewPosition(position),
-		NULL, &GSvector2(4, 4), NULL, alpha * 180, &GScolor(1, 1, 1, alpha));
+
+	renderer.DrawTextrue(textrue, &scroll.transformViewPosition(position + GSvector2(32, 64+rand(mt)*15)),
+		NULL, &GSvector2(4, 4), NULL, alpha * 180, &GScolor(rand(mt), rand(mt), rand(mt), alpha));
 }
 const bool StarParticle::getIsDead()const
 {
