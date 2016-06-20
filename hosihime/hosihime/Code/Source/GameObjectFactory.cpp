@@ -6,7 +6,7 @@
 #include "ImMovable.h"
 #include "Magpie.h"
 #include "Signboard.h"
-
+#include "Hikoboshi.h"
 #include "Device.h"
 #include "Scroll.h"
 
@@ -24,7 +24,7 @@ GameObjectFactory::~GameObjectFactory()
 void GameObjectFactory::addContainer()
 {
 	GSvector2 zero(0, 0);
-	const int length = 16;
+	const int length = 17;
 	GSvector2 navSize(45,100);
 	GameObject* objs[length] =
 	{
@@ -48,8 +48,8 @@ void GameObjectFactory::addContainer()
 		new Signboard("nav.bmp", zero, navSize, SIGNBOARD_LD),
 		new Signboard("nav.bmp", zero, navSize, SIGNBOARD_LU),
 
-		new ImMovable("sasa.bmp", zero, GSvector2(96, 128), MyRectangle(zero,zero), SASA)
-
+		new ImMovable("sasa.bmp", zero, GSvector2(96, 128), MyRectangle(zero, zero), SASA),
+		new Hikoboshi("hikobosi.bmp",zero,GSvector2(64,64),MyRectangle(zero,GSvector2(64,64)))
 	};
 	GAMEOBJ_TYPE types[length] =
 	{
@@ -70,7 +70,8 @@ void GameObjectFactory::addContainer()
 		SIGNBOARD_RD,
 		SIGNBOARD_LD,
 		SIGNBOARD_LU,
-		SASA
+		SASA,
+		HIKOBOSHI
 	};
 	for (int i = 0; i < length; i++)
 	{

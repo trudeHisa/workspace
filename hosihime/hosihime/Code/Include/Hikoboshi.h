@@ -5,7 +5,7 @@
 
 class Hikoboshi : public GameObject
 {
-private:
+public:
 	Hikoboshi(const std::string& textrue, const GSvector2& position,
 		const GSvector2& viewSize, const MyRectangle& rect);
 	virtual ~Hikoboshi();
@@ -13,7 +13,7 @@ private:
 	void collision(const GameObject* obj);
 	GameObject* clone(const GSvector2& position);
 
-public:
+private:
 
 };
 #endif

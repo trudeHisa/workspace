@@ -55,13 +55,12 @@ void Player::initialize()
 	animation.addCell("JR", 4, 1, 64, 64);//ジャンプ右
 	animation.addCell("SR", 5, 1, 64, 64);//星乗り右
 	animation.addCell("SL", 6, 1, 64, 64);//星乗り左
-	
-	animation.addCell("H", 1, 1, 96, 64);//hikoboshi
+
+	//animation.addCell("SL", 6, 1, 74,112);//星乗り左
 
 	isRespawn = true;
-
-
 	scroll->initialize(position + SCROLLOFFSET);
+	ishold = false;
 }
 void Player::jumpEnd()
 {
@@ -170,7 +169,7 @@ const float Player::moveHorizontal()
 void Player::endMove()
 {
 	if (!isClear) return;
-	velocity.x = 2.0f;
+	//velocity.x = 2.0f;
 	if (isGround == false)
 		isDead = true;
 }
@@ -219,8 +218,7 @@ void Player::collision(const GameObject* obj)
 {
 	if (obj->getType() == HIKOBOSHI)
 	{
-		textrue = "hold.bmp";
-		animation.updata("H");
+		ishold = true;
 	}
 
 	if (obj->getType() == MAGPIE)
@@ -326,6 +324,11 @@ void Player::draw(const Renderer& renderer, const Scroll& scroll)
 {
 	if (!isInScreen(scroll))
 	{
+		return;
+	}
+	if (ishold)
+	{
+		renderer.DrawTextrue("hold.bmp", &scroll.transformViewPosition(position));
 		return;
 	}
 	animation.draw(renderer, textrue, &scroll.transformViewPosition(position));

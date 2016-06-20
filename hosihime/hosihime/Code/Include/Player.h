@@ -55,6 +55,9 @@ private:
 	bool isJump;
 	bool isGround;
 	bool isClear;
+
+
+	bool ishold;
 	/**
 	*リスポン中か？
 	*プレイヤーが画面外だとリスポンするため
