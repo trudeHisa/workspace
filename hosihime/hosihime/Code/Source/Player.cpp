@@ -143,7 +143,7 @@ void Player::jumpStart()
 		return;
 	}
 	device.getSound().PlaySE("jump.wav");
-	//effectMediator->add( "",position-scroll->getMovingAmount());
+	effectMediator->add("StarEffect", position);
 	isJump = true;
 	jumpPower = JUMPMAXPOW;
 }

@@ -50,8 +50,8 @@ void Title::Draw(const Renderer& renderer)
 {
 	renderer.DrawTextrue("title.bmp", &GSvector2(0, 0));	
 	bStar.draw(renderer);
-	renderer.DrawTextrue("title_text.bmp", &GSvector2(200, 120), &GScolor(1, 1, 1, rogoAlpha));
-	renderer.DrawTextrue("space_text.bmp", &GSvector2(480, 540), &GScolor(255, 255, 255, alpha));
+	renderer.DrawTextrue("title_text.bmp", &GSvector2(180, 120), &GScolor(1, 1, 1, rogoAlpha));
+	renderer.DrawTextrue("space_text.bmp", &GSvector2(320, 540), &GScolor(255, 255, 255, alpha));
 }
 void Title::Finish()
 {
