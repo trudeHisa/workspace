@@ -55,8 +55,8 @@ void Player::initialize()
 	animation.addCell("JR", 4, 1, 64, 64);//ジャンプ右
 	animation.addCell("SR", 5, 1, 64, 64);//星乗り右
 	animation.addCell("SL", 6, 1, 64, 64);//星乗り左
-	//animation.addCell("SR", 5, 1, 74, 112);//星乗り右
-	//animation.addCell("SL", 6, 1, 74,112);//星乗り左
+	
+	animation.addCell("H", 1, 1, 96, 64);//hikoboshi
 
 	isRespawn = true;
 
@@ -217,6 +217,12 @@ const bool Player::isRide()const
 //衝突
 void Player::collision(const GameObject* obj)
 {
+	if (obj->getType() == HIKOBOSHI)
+	{
+		textrue = "hold.bmp";
+		animation.updata("H");
+	}
+
 	if (obj->getType() == MAGPIE)
 	{
 		const Magpie* mag = dynamic_cast<const Magpie*>(obj);

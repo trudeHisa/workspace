@@ -48,6 +48,8 @@ void GameObjectFactory::addContainer()
 		new Signboard("nav.bmp", zero, navSize, SIGNBOARD_LD),
 		new Signboard("nav.bmp", zero, navSize, SIGNBOARD_LU),
 
+		new ImMovable("sasa.bmp", zero, GSvector2(96, 128), MyRectangle(zero,zero), SASA)
+
 	};
 	GAMEOBJ_TYPE types[length] =
 	{
@@ -67,8 +69,8 @@ void GameObjectFactory::addContainer()
 		SIGNBOARD_RU,
 		SIGNBOARD_RD,
 		SIGNBOARD_LD,
-		SIGNBOARD_LU
-
+		SIGNBOARD_LU,
+		SASA
 	};
 	for (int i = 0; i < length; i++)
 	{

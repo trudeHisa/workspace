@@ -309,6 +309,9 @@
     <ClCompile Include="Code\Source\StarEffect.cpp">
       <Filter>ソース ファイル\effect</Filter>
     </ClCompile>
+    <ClCompile Include="Code\Source\Hikoboshi.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Include\GAMEOBJ_TYPE.h">
@@ -553,6 +556,9 @@
     </ClInclude>
     <ClInclude Include="Code\Include\StarEffect.h">
       <Filter>ヘッダー ファイル\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\Hikoboshi.h">
+      <Filter>ヘッダー ファイル\gameobject\objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
