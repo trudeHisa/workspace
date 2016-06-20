@@ -56,13 +56,13 @@ void StarParticleController::createParticle()
 	{
 		return;
 	}*/
-	/*if (Starparticles.size() >= 20)
+	if (Starparticles.size() >= 40)
 	{
 		return;
-	}*/
-	for (int i = 0; i <10; i++)
+	}
+	for (int i = 0; i <2; i++)
 	{
-		Starparticles.emplace_back(Particle_Ptr(new StarParticle("fireworkParticle.bmp", i*60 , 1.0f, center)));
+		Starparticles.emplace_back(Particle_Ptr(new StarParticle("fireworkParticle.bmp", i*rand() , 0.5f, center)));
 	}
 }
 void StarParticleController::remove()
