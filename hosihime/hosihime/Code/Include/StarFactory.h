@@ -3,11 +3,12 @@
 
 #include "IMediator.h"
 #include "Timer.h"
+#include "IEffectMediator.h"
 
 class StarFactory 
 {
 public:
-	StarFactory(Star* prot,float time,IMediator& mediator);
+	StarFactory(Star* prot, float time, IMediator& mediator, IEffectMediator& effectMediator);
 	~StarFactory();
 	void update();
 	bool isStart();
@@ -22,5 +23,6 @@ private:
 	bool isbreakStart;
 	IMediator& mediator;
 	Timer timer;
+	IEffectMediator& effectMediator;
 };
 #endif
