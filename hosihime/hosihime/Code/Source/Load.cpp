@@ -151,6 +151,7 @@ void Load::loadTextrue()
 	renderer.LoadTextrue("circleParticle.bmp", GS_TEXCOLOR_KEY_WHITE);
 	renderer.LoadTextrue("lightParticle.bmp", GS_TEXCOLOR_KEY_WHITE);
 	renderer.LoadTextrue("starparticle.bmp");
+	renderer.LoadTextrue("gundam.bmp");
 }
 void Load::loadSound()
 {

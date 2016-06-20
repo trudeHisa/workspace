@@ -4,6 +4,7 @@
 #include "Calculate.h"
 #include "Respawn.h"
 #include "Magpie.h"
+#include "StarParticleController.h"
 
 
 Player::Player(const std::string& textrue, const GSvector2& position,
@@ -28,6 +29,7 @@ Player::Player(const std::string& textrue, const GSvector2& position,
 	animeTimer(60.f),
 	currentDirAnimeKey("R"),
 	effectMediator(effectMediator)
+
 {
 }
 Player::~Player()
@@ -40,7 +42,6 @@ void Player::initialize()
 	jumpEnd();
 	speed = VERTICAL;
 	jumpPower = 0;
-
 	isGround = false;
 	isClear = false;
 	isMagpieRide = false;
@@ -58,6 +59,7 @@ void Player::initialize()
 	//animation.addCell("SL", 6, 1, 74,112);//¯æ‚è¶
 
 	isRespawn = true;
+
 
 	scroll->initialize(position + SCROLLOFFSET);
 }

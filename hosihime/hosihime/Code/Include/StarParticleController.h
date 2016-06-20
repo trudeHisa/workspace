@@ -15,9 +15,9 @@ public:
 	void draw(const Renderer& renderer, const Scroll& scroll);
 	void finish();
 	const bool getIsEnd()const;
+	void remove();
 private:
 	void createParticle();
-	void remove();
 private:
 	std::vector<Particle_Ptr>Starparticles;
 	//GSvector2 center;
