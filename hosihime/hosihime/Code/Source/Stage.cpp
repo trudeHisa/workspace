@@ -9,7 +9,7 @@
 Stage::Stage(const int& stageNo, Device& device)
 :stageNo(stageNo),
 scroll(WINDOW_WIDTH, WINDOW_HEIGHT, mapSize, stageNo),
-device(device), timer(60, 60), BLOCKSIZE(64.0f),
+device(device), timer(60000, 600000), BLOCKSIZE(64.0f),
 control(),
 effectFactory(EffectsFactory(new EffectFactory())),
 effectController(effectFactory),
@@ -88,10 +88,7 @@ void Stage::draw(const Renderer& renderer)
 	scroll.draw(renderer);
 	control.draw(renderer, scroll);
 	int t = timer.getTime() / FRAMETIME;
-	renderer.DrawString(std::to_string(t), 
-	&GSvector2(50, 50), 70,&GScolor(1,1,0,1),GS_FONT_ITALIC,"ÉÅÉCÉäÉI");
-
-	//renderer.DrawNumber("number.bmp", GSvector2(50, 50), 32, 64, t);
+	renderer.DrawNumber("number.bmp", GSvector2(50, 50),35,45, t);
 
 	effectController.draw(renderer, scroll);
 

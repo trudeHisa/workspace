@@ -25,6 +25,7 @@ void GameObjectFactory::addContainer()
 {
 	GSvector2 zero(0, 0);
 	const int length = 16;
+	GSvector2 navSize(45,100);
 	GameObject* objs[length] =
 	{
 		/*           画像名,　　位置(原型),見た目のサイズ(基本画像サイズ),　位置からの当たり判定位置と横縦幅 */
@@ -36,16 +37,16 @@ void GameObjectFactory::addContainer()
 		new Magpie("magpie.bmp", zero, GSvector2(128, 128), MyRectangle(GSvector2(0, 0), GSvector2(128, 128)), objMediator),
 		new ImMovable("magpieEnd.bmp", zero, GSvector2(94, 88), MyRectangle(GSvector2(11, 11), GSvector2(85, 23)), MAGPIE_ENDSPOT),
 
-		new Signboard("nav.bmp", GSvector2(100, 100), GSvector2(64, 64), SIGNBOARD_R),
-		new Signboard("nav.bmp", GSvector2(200, 100), GSvector2(64, 64), SIGNBOARD_L),
-		new Signboard("nav.bmp", GSvector2(300, 100), GSvector2(64, 64), SIGNBOARD_U),
-		new Signboard("nav.bmp", GSvector2(100, 100), GSvector2(64, 64), SIGNBOARD_D),
+		new Signboard("nav.bmp", zero, navSize, SIGNBOARD_R),
+		new Signboard("nav.bmp", zero, navSize, SIGNBOARD_L),
+		new Signboard("nav.bmp", zero, navSize, SIGNBOARD_U),
+		new Signboard("nav.bmp", zero, navSize, SIGNBOARD_D),
 
-		new Signboard("nav.bmp", GSvector2(200, 100), GSvector2(64, 64), SIGNBOARD_RU),
-		new Signboard("nav.bmp", GSvector2(300, 100), GSvector2(64, 64), SIGNBOARD_RD),
+		new Signboard("nav.bmp", zero, navSize, SIGNBOARD_RU),
+		new Signboard("nav.bmp", zero, navSize, SIGNBOARD_RD),
 
-		new Signboard("nav.bmp", GSvector2(100, 100), GSvector2(64, 64), SIGNBOARD_LD),
-		new Signboard("nav.bmp", GSvector2(200, 100), GSvector2(64, 64), SIGNBOARD_LU),
+		new Signboard("nav.bmp", zero, navSize, SIGNBOARD_LD),
+		new Signboard("nav.bmp", zero, navSize, SIGNBOARD_LU),
 
 	};
 	GAMEOBJ_TYPE types[length] =
