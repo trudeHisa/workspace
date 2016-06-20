@@ -35,7 +35,7 @@ protected:
 	float angle;//rad
 	GSvector2 startPosi;
 
-	bool isDraw;
+	//bool isDraw;
 
 	IEffectMediator* effectMediator;
 };

@@ -16,7 +16,7 @@ void Star::initialize()
 {
 	velocity = GSvector2(0, 0);
 	isDead = false;
-	isDraw = true;
+	//isDraw = true;
 	angle = 0;
 }
 void Star::updata()
@@ -34,14 +34,14 @@ void Star::updata()
 	{
 		isDead = true;
 	}
-	isDraw = true;
+	//isDraw = true;
 }
 void Star::draw(const Renderer& renderer, const Scroll& scroll)
 {
-	if (isDraw == false)
+	/*if (isDraw == false)
 	{
 		return;
-	}
+	}*/
 	if (!isInScreen(scroll))
 	{
 		return;
@@ -67,14 +67,14 @@ void Star::collision(const GameObject* obj)
 		isDead = true;
 		effectMediator->add("FireworkEffect",position+(viewSize*0.5f));
 	}
-	if (type == PLAYER)
+	/*if (type == PLAYER)
 	{
 		isDraw = false;
 	}
 	else
 	{
 		isDraw = true;
-	}
+	}*/
 }
 Star* Star::clone()
 {

@@ -18,7 +18,6 @@ void LightParticleController::initialize()
 
 void LightParticleController::update()
 {
-	createParticle();
 	for each (Particle_Ptr p in lightparticles)
 	{
 		p->update();
@@ -42,11 +41,7 @@ void LightParticleController::createParticle()
 	{
 		return;
 	}
-	for (int i = 0; i <60; i++)
-	{
-		/*lightparticles.emplace_back(Particle_Ptr(new LightParticle("lightParticle.bmp", center, 1, i*rand(), 0.02f)));*/
-	}
-
+	
 	for (int i = 0; i < 10; i++)
 	{
 		lightparticles.emplace_back(Particle_Ptr(new LightParticle("lightParticle.bmp", i * 60, 1.0f, center)));
@@ -69,5 +64,5 @@ void LightParticleController::finish()
 
 const bool LightParticleController::getIsEnd()const
 {
-	return false;
+	return lightparticles.size() == 0;
 }

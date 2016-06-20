@@ -54,9 +54,10 @@ void Player::initialize()
 	animation.addCell("R", 2, 1, 64, 64);//移動右
 	animation.addCell("JL", 3, 1, 64, 64);//ジャンプ左
 	animation.addCell("JR", 4, 1, 64, 64);//ジャンプ右
-
-	animation.addCell("SR", 5, 1, 74, 112);//星乗り右
-	animation.addCell("SL", 6, 1, 74,112);//星乗り左
+	animation.addCell("SR", 5, 1, 64, 64);//星乗り右
+	animation.addCell("SL", 6, 1, 64, 64);//星乗り左
+	//animation.addCell("SR", 5, 1, 74, 112);//星乗り右
+	//animation.addCell("SL", 6, 1, 74,112);//星乗り左
 
 	isRespawn = true;
 
@@ -78,14 +79,14 @@ void Player::updata()
 	scroll->moving(position, SCROLLOFFSET);
 	endMove();
 	position += velocity*gsFrameTimerGetTime();
-	if (isRide())
+	/*if (isRide())
 	{
 		textrue = "starride.bmp";
 	}
 	else
 	{
 		textrue = "orihime.bmp";
-}
+}*/
 }
 void Player::gravity()
 {
@@ -327,7 +328,7 @@ void Player::draw(const Renderer& renderer, const Scroll& scroll)
 	{
 		return;
 	}
-	animation.draw(renderer, textrue, &scroll.transformViewPosition(position));
+	animation.draw(renderer, "orihime.bmp", &scroll.transformViewPosition(position));
 }
 
 const std::string Player::getDirKey(int dir)
