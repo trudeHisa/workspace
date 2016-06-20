@@ -149,7 +149,7 @@ void Load::loadTextrue()
 
 
 	renderer.LoadTextrue("circleParticle.bmp", GS_TEXCOLOR_KEY_WHITE);
-	renderer.LoadTextrue("lightParticle.bmp");
+	renderer.LoadTextrue("lightParticle.bmp", GS_TEXCOLOR_KEY_WHITE);
 	renderer.LoadTextrue("starparticle.bmp");
 }
 void Load::loadSound()
