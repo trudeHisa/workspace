@@ -18,9 +18,12 @@ public:
 private:
 	bool isEnd;
 	GSvector2 textPosi;
+	GSvector2 iconPosi[2];
 	float time;
 	float currentTime;
 	float alpha;
+	bool isSelectMode;
+	GSuint nowSelect;
 	Device& device;
 	Fade fadeIn;
 	Fade fadeOut;
