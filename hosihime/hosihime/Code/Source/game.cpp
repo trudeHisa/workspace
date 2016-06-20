@@ -3,6 +3,7 @@
 
 #include "SceneManager.h"
 #include "Load.h"
+#include "Opening.h"
 #include "Title.h"
 #include "Menu.h"
 #include "GamePlay.h"
@@ -20,6 +21,7 @@ void gameInit(void)
 {	
 	
 	sceneManager.Add(Scene::MODE_LOAD, new Load(device,renderer));
+	sceneManager.Add(Scene::MODE_OPENING, new Opening(device));
 	sceneManager.Add(Scene::MODE_TITLE, new Title(device));
 	sceneManager.Add(Scene::MODE_MENU,new Menu(device));
 	sceneManager.Add(Scene::MODE_GAMEPLAY, new GamePlay(device,score));

@@ -30,7 +30,7 @@ void Load::Finish()
 }
 Scene Load::Next()
 {
-	return MODE_TITLE;
+	return MODE_OPENING;
 }
 bool Load::IsEnd()
 {
