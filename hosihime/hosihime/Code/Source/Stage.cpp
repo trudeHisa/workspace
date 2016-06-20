@@ -9,7 +9,7 @@
 Stage::Stage(const int& stageNo, Device& device)
 :stageNo(stageNo),
 scroll(WINDOW_WIDTH, WINDOW_HEIGHT, mapSize, stageNo),
-device(device), timer(3, 3), BLOCKSIZE(64.0f),
+device(device), timer(120, 120), BLOCKSIZE(64.0f),
 control(),
 effectFactory(EffectsFactory(new EffectFactory())),
 effectController(effectFactory),

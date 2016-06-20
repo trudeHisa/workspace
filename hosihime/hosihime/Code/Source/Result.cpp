@@ -31,8 +31,11 @@ void Result::Update()
 }
 void Result::Draw(const Renderer& renderer)
 {
-	renderer.DrawString("リザルト", &GSvector2(50, 50), 50);
-	renderer.DrawString(std::to_string((int)(score.getScore() / FRAMETIME)), &GSvector2(50, 50), 50);
+	renderer.DrawTextrue("stageClear.bmp", &GSvector2(100, 100));
+	renderer.DrawString("クリアタイム：：", &GSvector2(100, 400), 50);
+	int num = static_cast<int>(score.getScore() / FRAMETIME);
+	renderer.DrawNumber("number.bmp", GSvector2(400, 390), 80, 70,num);
+	renderer.DrawString("秒", &GSvector2(470, 420), 30);
 	fadeIn.draw(renderer);
 	fadeOut.draw(renderer);
 }
