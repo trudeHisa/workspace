@@ -23,6 +23,11 @@ void Timer::initialize()
 	isStop = false;
 	time = defTime*FRAMETIME;
 }
+void Timer::reset(float time)
+{
+	this->time = time;
+	defTime = time;
+}
 void Timer::update()
 {
 	if (time <= 0)

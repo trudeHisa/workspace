@@ -13,6 +13,7 @@ public:
 	void stop();
 	void start();
 	float getDefTime();
+	void reset(float time);
 private:
 	float time;
 	float defTime;

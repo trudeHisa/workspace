@@ -21,6 +21,14 @@ fadeIn(), fadeOut()
 	CSVStream stream;
 	std::string name = "mapdata\\\\testmap" + std::to_string(stageNo) + ".csv";
 	stream.input(&mapdata, name.c_str());
+
+	float time[]=
+	{
+		180,
+		300,
+		300
+	};
+	timer.reset(time[stageNo]);
 }
 Stage::~Stage()
 {

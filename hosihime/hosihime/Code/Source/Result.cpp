@@ -31,6 +31,7 @@ void Result::Update()
 }
 void Result::Draw(const Renderer& renderer)
 {
+	renderer.DrawTextrue("gameover.bmp", &GSvector2(0, 0));
 	renderer.DrawTextrue("stageClear.bmp", &GSvector2(100, 100));
 	renderer.DrawString("クリアタイム：：", &GSvector2(100, 400), 50);
 	int num = static_cast<int>(score.getScore() / FRAMETIME);
