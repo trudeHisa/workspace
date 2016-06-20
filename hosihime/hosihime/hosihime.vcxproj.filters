@@ -291,6 +291,24 @@
     <ClCompile Include="Code\Source\Background_Star.cpp">
       <Filter>ソース ファイル\gameobject\background_Star</Filter>
     </ClCompile>
+    <ClCompile Include="Code\Source\StarParticle.cpp">
+      <Filter>ソース ファイル\effect\particle</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\StarParticleController.cpp">
+      <Filter>ソース ファイル\effect\particle</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\StarEffect.cpp">
+      <Filter>ソース ファイル\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\LightParticle.cpp">
+      <Filter>ソース ファイル\effect\particle</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\LightParticleController.cpp">
+      <Filter>ソース ファイル\effect\particle</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\LightEffect.cpp">
+      <Filter>ソース ファイル\effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Include\GAMEOBJ_TYPE.h">
@@ -506,17 +524,23 @@
     <ClInclude Include="Code\Include\StarFactory.h">
       <Filter>ヘッダー ファイル\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Include\Signboard.h">
-      <Filter>ヘッダー ファイル\gameobject\objects</Filter>
+    <ClInclude Include="Code\Include\StarParticle.h">
+      <Filter>ヘッダー ファイル\effect\particle</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Include\Credit.h">
-      <Filter>ヘッダー ファイル\scene</Filter>
+    <ClInclude Include="Code\Include\StarParticleController.h">
+      <Filter>ヘッダー ファイル\effect\particle</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Include\Operation.h">
-      <Filter>ヘッダー ファイル\scene</Filter>
+    <ClInclude Include="Code\Include\StarEffect.h">
+      <Filter>ヘッダー ファイル\effect</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Include\Background_Star.h">
-      <Filter>ヘッダー ファイル\gameobject\background_Star</Filter>
+    <ClInclude Include="Code\Include\LightParticle.h">
+      <Filter>ヘッダー ファイル\effect\particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\LightParticleController.h">
+      <Filter>ヘッダー ファイル\effect\particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\LightEffect.h">
+      <Filter>ヘッダー ファイル\effect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

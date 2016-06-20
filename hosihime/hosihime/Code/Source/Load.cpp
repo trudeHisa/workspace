@@ -132,7 +132,7 @@ void Load::loadTextrue()
 	renderer.LoadTextrue("star_break1.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("star_fire.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("star_teil.bmp", GS_TEXCOLOR_KEY_AUTO, path);
-
+	
 	/*
 	*ƒ^ƒCƒgƒ‹
 	*/
@@ -149,6 +149,8 @@ void Load::loadTextrue()
 
 
 	renderer.LoadTextrue("circleParticle.bmp", GS_TEXCOLOR_KEY_WHITE);
+	renderer.LoadTextrue("lightParticle.bmp");
+	renderer.LoadTextrue("starparticle.bmp");
 }
 void Load::loadSound()
 {

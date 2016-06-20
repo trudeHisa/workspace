@@ -22,7 +22,9 @@ public:
 
 	const GSvector2& getSPosi() const;
 	const float getHelth()const;
-	IStarMove* getMove();
+	const IStarMove* getMove();
+
+	void nonCollision();
 public:
 	virtual Star* clone();
 	GameObject* clone(const GSvector2& position);

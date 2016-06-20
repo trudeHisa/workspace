@@ -4,8 +4,8 @@
 #include "../Include/BreakStar.h"
 #include "../Include/Star_nomove.h"
 #include <typeinfo>
-StarFactory::StarFactory(Star* prot, float time, IMediator& mediator)
-:prot(prot), timer(time, time), mediator(mediator)
+StarFactory::StarFactory(Star* prot, float time, IMediator& mediator, IEffectMediator& effectMediator)
+	:prot(prot), timer(time, time), mediator(mediator), effectMediator(effectMediator)
 {
 	create();
 }
@@ -33,6 +33,10 @@ void StarFactory::update()
 	{
 		breakStart();
 		return;
+	}
+
+	if ((int)timer.getTime() % 50 == 9){
+		effectMediator.add("LightEffect", prot->getSPosi());
 	}
 
 	//’Êí‚Ì¯‚½‚¿
