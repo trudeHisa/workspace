@@ -2,6 +2,7 @@
 
 #include "IParticleController.h"
 #include "StarParticle.h"
+#include "Timer.h"
 #include <vector>
 
 class StarParticleController:public IParticleController
@@ -25,5 +26,7 @@ private:
 	*‚½‚¾ˆê•Ï”‚È‚Ç‚ğQÆ‚·‚é‚ÆŠëŒ¯
 	*/
 	const GSvector2& center;
+    bool isEnd;
+	Timer timer;
 };
 

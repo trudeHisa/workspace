@@ -17,11 +17,11 @@ void FireworkEffect::initialize()
 }
 void FireworkEffect::update()
 {
-	firework.update();
+	//firework.update();
 }
 void FireworkEffect::draw(const Renderer& renderer, const Scroll& scroll)
 {
-	firework.draw(renderer, scroll);
+	//firework.draw(renderer, scroll);
 }
 void FireworkEffect::finish()
 {
