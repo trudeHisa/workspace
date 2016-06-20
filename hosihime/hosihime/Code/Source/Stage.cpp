@@ -9,7 +9,7 @@
 Stage::Stage(const int& stageNo, Device& device)
 :stageNo(stageNo),
 scroll(WINDOW_WIDTH, WINDOW_HEIGHT, mapSize, stageNo),
-device(device), timer(60, 60), BLOCKSIZE(64.0f),
+device(device), timer(3, 3), BLOCKSIZE(64.0f),
 control(),
 effectFactory(EffectsFactory(new EffectFactory())),
 effectController(effectFactory),
@@ -69,7 +69,11 @@ void Stage::updata()
 	if (timer.isEnd())
 	{
 		flag = CLEARFLAG::GAMEOVER;
-		isEnd = true;
+		if (!fadeOut.getIsStart())
+		{
+			fadeOut.start(GScolor(0, 0, 0, 0), GScolor(0, 0, 0, 1), 2);
+		}
+		isEnd = fadeOut.getIsEnd();
 	}
 
 	if (control.StageClear())

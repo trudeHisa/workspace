@@ -22,6 +22,7 @@ private:
 	TimeScore& score;
 	GSvector2 playerPosi;
 	GSvector2 vel;
-	Fade fade;
+	Fade fadeIn;
+	Fade fadeOut;
 };
 #endif
