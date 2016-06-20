@@ -24,6 +24,7 @@ TimeScore score;
 Background_Star bstar(device);
 void gameInit(void)
 {	
+	Scene_Ptr gamePlay(new GamePlay(device, score));
 	sceneManager.Add(Scene::MODE_LOAD, Scene_Ptr( new Load(device, renderer)));
 
 	sceneManager.Add(Scene::MODE_TITLE, Scene_Ptr(new Title(device,bstar)));
@@ -32,11 +33,11 @@ void gameInit(void)
 	sceneManager.Add(Scene::MODE_OPERATION, Scene_Ptr(new Operation(device)));
 	sceneManager.Add(Scene::MODE_CREDIT, Scene_Ptr(new Credit(device)));
 
-	sceneManager.Add(Scene::MODE_GAMEPLAY, Scene_Ptr(new GamePlay(device, score)));
+	sceneManager.Add(Scene::MODE_GAMEPLAY, gamePlay);
 
 	sceneManager.Add(Scene::MODE_ENDING, Scene_Ptr(new Ending(device, score)));
 	sceneManager.Add(Scene::MODE_RESULT, Scene_Ptr(new Result(device, score)));
-	sceneManager.Add(Scene::MODE_GAMEOVER, Scene_Ptr(new GameOver(device)));
+	sceneManager.Add(Scene::MODE_GAMEOVER, Scene_Ptr(new GameOver(device,dynamic_cast<GamePlay*>(gamePlay.get()))));
 
 	sceneManager.Change(Scene::MODE_LOAD);
 }

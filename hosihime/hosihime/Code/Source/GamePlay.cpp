@@ -7,7 +7,7 @@
 GamePlay::GamePlay(Device& device, TimeScore& score)
 	: device(device), stageNo(0),
 	mode(0),
-	score(score)
+	score(score), isContinue(false)
 {
 }
 GamePlay::~GamePlay()
@@ -18,6 +18,10 @@ void GamePlay::Init()
 	isEnd = false;
 	mode = Mode(new PlayMode_Select(device, stageNo));
 	mode->initialize();
+	if (isContinue)
+	{
+		createStage();
+	}
 }
 void GamePlay::Update()
 {
@@ -57,6 +61,7 @@ void GamePlay::Draw(const Renderer& renderer)
 }
 void GamePlay::Finish()
 {
+	isContinue = false;
 }
 Scene GamePlay::Next()
 {
@@ -69,4 +74,9 @@ Scene GamePlay::Next()
 bool GamePlay::IsEnd()
 {
 	return isEnd;
+}
+
+void GamePlay::Continue()
+{
+	isContinue = true;
 }

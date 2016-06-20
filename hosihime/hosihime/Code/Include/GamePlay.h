@@ -17,6 +17,7 @@ public:
 	void Draw(const Renderer& renderer);
 	void Finish();
 	Scene Next();
+	void Continue();
 	bool IsEnd();
 private:
 	void modeEnd();
@@ -25,6 +26,7 @@ private:
 	int stageNo;
 	bool isEnd;
 	bool isLastStage;
+	bool isContinue;
 	Mode mode;
 	TimeScore& score;
 	Device& device;

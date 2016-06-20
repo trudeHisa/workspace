@@ -66,7 +66,8 @@ void Load::loadTextrue()
 	renderer.LoadTextrue("gameover.bmp", GS_TEXCOLOR_KEY_DISABLE, path);
 	renderer.LoadTextrue("gameover_orihime.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("gameover_text.bmp", GS_TEXCOLOR_KEY_AUTO, path);
-	renderer.LoadTextrue("Icon.bmp", GS_TEXCOLOR_KEY_AUTO, path);
+	renderer.LoadTextrue("retry.bmp", GS_TEXCOLOR_KEY_AUTO, path);
+	renderer.LoadTextrue("titlebuck.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	/*
 	*’n–Ê
 	*/

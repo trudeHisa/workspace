@@ -1,6 +1,8 @@
 #include "Star.h"
 #include "Calculate.h"
 
+#define COLOR_RED GScolor(1,0,0,1)
+#define COLOR_WHITE GScolor(1,1,1,1)
 Star::Star(const std::string& textrue, const GSvector2& position,
 	const GSvector2& viewSize, const MyRectangle& rect, float helth,
 	StarMove_Ptr move, IEffectMediator* effectMediator,
@@ -57,21 +59,17 @@ void Star::draw(const Renderer& renderer, const Scroll& scroll)
 	pos += center;
 
 	renderer.AdditionBlend();
-	float red, green, blue, alpha;//星の色、透過変数
+	GScolor color;
 	//点滅処理
 	//星が移動距離の半分進むと色変えと点滅処理をする
 	if (starHelth < helth / 4)
 	{
 		blinkerTime += gsFrameTimerGetTime();
-		red = 1.0f;
-		green = 0.0f;
-		blue = 0.0f;
+		color = COLOR_RED;
 	}
 	else
 	{
-		red = 1.0f;
-		green = 1.0f;
-		blue = 1.0f;
+		color = COLOR_WHITE;
 	}
 	//点滅
 	if (blinkerTime > 0.7f)
@@ -79,17 +77,12 @@ void Star::draw(const Renderer& renderer, const Scroll& scroll)
 		starAlpha = !starAlpha;
 		blinkerTime = 0.0f;
 	}
-	if (starAlpha)
-	{
-		alpha = 0.5f;
-	}
-	else
-	{
-		alpha = 1.0f;
-	}
+	color.w = starAlpha ? 0.5f : 1.0f;
+
+
 	renderer.DrawBlurTextrue(textrue, pos, &center, velocity, angle, 7);
 	renderer.InitBlendFunc();
-	renderer.DrawTextrue(textrue, &pos, NULL, &center, &GSvector2(1, 1), angle, &GScolor(red, green, blue, alpha));
+	renderer.DrawTextrue(textrue, &pos, NULL, &center, &GSvector2(1, 1), angle, &color);
 }
 void Star::collision(const GameObject* obj)
 {

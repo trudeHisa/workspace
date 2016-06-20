@@ -3,22 +3,26 @@
 #include "IScene.h"
 #include "Fade.h"
 class Device;
+class GamePlay;
 class GameOver :public IScene
 {
 public:
-	GameOver(Device& device);
+	GameOver(Device& device, GamePlay* _play);
 	~GameOver();
 	void Init();
 	void Update();
 	void FadeOut();
 	void Draw(const Renderer& renderer);
+	void selectDraw(const Renderer& renderer);
 	void Finish();
 	Scene Next();
 	bool IsEnd();
 private:
 	bool isEnd;
+	GamePlay* play;
 	GSvector2 textPosi;
-	GSvector2 iconPosi[2];
+	GSvector2 scales[2];
+	GSvector4 colors[2];
 	float time;
 	float currentTime;
 	float alpha;
