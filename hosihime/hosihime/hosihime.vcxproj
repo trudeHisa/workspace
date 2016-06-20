@@ -47,6 +47,7 @@
     <ClCompile Include="Code\Source\main.cpp" />
     <ClCompile Include="Code\Source\Menu.cpp" />
     <ClCompile Include="Code\Source\MyRectangle.cpp" />
+    <ClCompile Include="Code\Source\Opening.cpp" />
     <ClCompile Include="Code\Source\Operation.cpp" />
     <ClCompile Include="Code\Source\Player.cpp" />
     <ClCompile Include="Code\Source\PlayMode_Play.cpp" />
@@ -128,6 +129,7 @@
     <ClInclude Include="Code\Include\MyRectangle.h" />
     <ClInclude Include="Code\Include\IParticle.h" />
     <ClInclude Include="Code\Include\IParticleController.h" />
+    <ClInclude Include="Code\Include\Opening.h" />
     <ClInclude Include="Code\Include\Operation.h" />
     <ClInclude Include="Code\Include\Player.h" />
     <ClInclude Include="Code\Include\PlayMode_Play.h" />
