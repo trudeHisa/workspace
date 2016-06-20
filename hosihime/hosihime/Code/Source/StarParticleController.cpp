@@ -62,7 +62,7 @@ void StarParticleController::createParticle()
 	}
 	if ((int)timer.getTime() % 3== 2)
 	{
-		Starparticles.emplace_back(Particle_Ptr(new StarParticle("gundam.bmp", 0, 0.5f, center)));
+		Starparticles.emplace_back(Particle_Ptr(new StarParticle("shooting2.bmp", 0, 0.5f, center)));
 	}
 }
 void StarParticleController::remove()
