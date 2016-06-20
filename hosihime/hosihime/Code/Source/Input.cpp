@@ -5,7 +5,8 @@ Input::Input()
 }
 const bool Input::getActionTrigger()const
 {
-	return !!gsGetKeyTrigger(GKEY_SPACE);
+	return !!gsGetKeyTrigger(GKEY_SPACE)
+		|| !!gsGetJoyTrigger(0,GJOY_BUTTON_1);
 }
 const GSvector2& Input::getVelocity()const
 {
@@ -15,15 +16,15 @@ const GSvector2& Input::getVelocity()const
 //êÖïΩ	
 const float Input::getHorizontal()const
 {
-	float f = gsGetKeyState(GKEY_RIGHT);
-	f -= gsGetKeyState(GKEY_LEFT);
+	float f = gsGetKeyState(GKEY_RIGHT) || gsGetJoyState(0,GJOY_RIGHT);
+	f -= gsGetKeyState(GKEY_LEFT) || gsGetJoyState(0, GJOY_LEFT);
 	return f;
 }
 //êÇíº
 const float Input::getVertical()const
 {
-	float f = gsGetKeyState(GKEY_UP);
-	f -= gsGetKeyState(GKEY_DOWN);
+	float f = gsGetKeyState(GKEY_UP) || gsGetJoyState(0, GJOY_UP);
+	f -= gsGetKeyState(GKEY_DOWN) || gsGetJoyState(0, GJOY_DOWN);
 	return f;
 }
 const bool Input::getDebugResetTrigger()const
@@ -32,9 +33,9 @@ const bool Input::getDebugResetTrigger()const
 }
 const bool Input::getUpTrigger()const
 {
-	return !!gsGetKeyTrigger(GKEY_UP);
+	return !!gsGetKeyTrigger(GKEY_UP) || !!gsGetJoyTrigger(0, GJOY_UP);
 }
 const bool Input::getDownTrigger()const
 {
-	return !!gsGetKeyTrigger(GKEY_DOWN);
+	return !!gsGetKeyTrigger(GKEY_DOWN) || !!gsGetJoyTrigger(0, GJOY_DOWN);
 }
