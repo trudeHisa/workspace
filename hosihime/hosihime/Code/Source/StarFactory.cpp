@@ -65,6 +65,10 @@ void StarFactory::create()
 //‰ó‚ê‚é¯‚ÌÄ¶¬
 void StarFactory::breakCreate()
 {
+	if ((int)timer.getTime() % 50 == 9){
+		effectMediator.add("LightEffect", prot->getSPosi());
+	}
+
 	if (timer.isEnd()){
 		create();
 		isbreakStart = false;
