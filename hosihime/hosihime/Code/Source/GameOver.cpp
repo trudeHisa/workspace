@@ -59,7 +59,7 @@ void GameOver::Update()
 			device.getSound().PlaySE("move.wav");
 			nowSelect = nowSelect == 0 ? 1 : 0;
 		}
-		if ( gsGetJoyState(0, GJOY_LEFT) || gsGetJoyState(0, GJOY_RIGHT))
+		if ( gsGetJoyTrigger(0, GJOY_RIGHT) || gsGetJoyTrigger(0, GJOY_LEFT))
 		{
 			device.getSound().PlaySE("move.wav");
 			nowSelect = nowSelect == 0 ? 1 : 0;
