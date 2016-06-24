@@ -32,7 +32,7 @@ void Title::Update()
 			device.getSound().PlaySE("title.wav");
 		}		
 		rogoAlpha = 1;
-		if (device.getInput().getActionTrigger())
+		if (device.getInput().getActionTrigger() || gsGetJoyTrigger(0,GJOY_BUTTON_8))
 		{
 			device.getSound().PlaySE("decision.wav");
 			isEnd = true;

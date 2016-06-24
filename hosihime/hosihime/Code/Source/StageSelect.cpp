@@ -63,13 +63,13 @@ const bool StageSelect::isEnd()const
 }
 void StageSelect::select()
 {
-	if (device.getInput().getUpTrigger())
+	if (device.getInput().getLeftTrigger() || gsGetJoyTrigger(0, GJOY_LEFT))
 	{
 		activeNo++;
 		orihimeAlpha = 0;
 		device.getSound().PlaySE("move.wav");
 	}
-	if (device.getInput().getDownTrigger())
+	if (device.getInput().getRightTrigger() || gsGetJoyTrigger(0, GJOY_RIGHT))
 	{
 		activeNo--;
 		orihimeAlpha = 0;

@@ -54,7 +54,12 @@ void GameOver::Update()
 
 	if (isSelectMode)
 	{
-		if (device.getInput().getRightTrigger() || device.getInput().getLeftTrigger() || gsGetJoyState(0,GJOY_LEFT) || gsGetJoyState(0,GJOY_RIGHT));
+		if (device.getInput().getRightTrigger() || device.getInput().getLeftTrigger())
+		{
+			device.getSound().PlaySE("move.wav");
+			nowSelect = nowSelect == 0 ? 1 : 0;
+		}
+		if ( gsGetJoyState(0, GJOY_LEFT) || gsGetJoyState(0, GJOY_RIGHT))
 		{
 			device.getSound().PlaySE("move.wav");
 			nowSelect = nowSelect == 0 ? 1 : 0;
