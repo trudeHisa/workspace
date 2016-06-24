@@ -74,8 +74,12 @@ private:
 	Scroll* scroll;
 	Device& device;
 
+	GSvector2 positionsRight;
+	GSvector2 positionsLeft;
+
 	//
 	unsigned int rideStarPointerNum;
+
 
 	const float GRAVITY;
 	const float JUMPMAXPOW;
@@ -83,6 +87,8 @@ private:
 	const float VERTICAL;
 	const float JUMPVERTICAL;
 	const GSvector2 SCROLLOFFSET;
+	
+
 
 	//int direction;
 	std::string currentDirAnimeKey;
