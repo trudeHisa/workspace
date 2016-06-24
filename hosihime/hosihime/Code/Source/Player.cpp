@@ -29,11 +29,9 @@ Player::Player(const std::string& textrue, const GSvector2& position,
 	animeTimer(60.f),
 	currentDirAnimeKey("R"),
 	effectMediator(effectMediator),
-	positionsRight(position+GSvector2(10,64)),
-	positionsLeft(position+GSvector2(80,64))
-
-	effectMediator(effectMediator),
-	respawnCount(0,3)
+	positionsRight(position + GSvector2(10, 64)),
+	positionsLeft(position + GSvector2(80, 64)),
+	respawnCount(0, 4)
 {
 }
 Player::~Player()
