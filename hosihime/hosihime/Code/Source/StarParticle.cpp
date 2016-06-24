@@ -30,7 +30,7 @@ void StarParticle::update()
 	rotate += gsFrameTimerGetTime()*velocity.x*4.0f;
 	position += velocity*gsFrameTimerGetTime();
 	//velocity.y += GRAVITY;
-	alpha -= gsFrameTimerGetTime()*0.02f;
+	alpha -= gsFrameTimerGetTime()*0.01f;
 	isDead = alpha <= 0;
 }
 void StarParticle::draw(const Renderer& renderer, const Scroll& scroll)

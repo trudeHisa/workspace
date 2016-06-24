@@ -29,8 +29,8 @@ Player::Player(const std::string& textrue, const GSvector2& position,
 	animeTimer(60.f),
 	currentDirAnimeKey("R"),
 	effectMediator(effectMediator),
-	positionsRight(position+GSvector2(10,64)),
-	positionsLeft(position+GSvector2(80,64))
+	positionsRight(position+GSvector2(10,70)),
+	positionsLeft(position+GSvector2(80,70))
 
 {
 }
@@ -64,8 +64,8 @@ void Player::initialize()
 	scroll->initialize(position + SCROLLOFFSET);
 	ishold = false;
 
-	positionsRight = position + GSvector2(10, 64);
-	positionsLeft = position + GSvector2(80, 64);
+	positionsRight = position + GSvector2(10,70);
+	positionsLeft = position + GSvector2(80, 70);
 }
 void Player::jumpEnd()
 {
@@ -94,8 +94,8 @@ void Player::gravity()
 }
 void Player::moving()
 {
-	positionsRight = position + GSvector2(10, 64);
-	positionsLeft = position + GSvector2(80, 64);
+	positionsRight = position + GSvector2(10, 70);
+	positionsLeft = position + GSvector2(80, 70);
 
 	gravity();
 	jumpStart();
@@ -247,6 +247,15 @@ void Player::collision(const GameObject* obj)
 		const Magpie* mag = dynamic_cast<const Magpie*>(obj);
 		if (mag->isRide())
 		{
+			if (currentDirAnimeKey == "R")
+			{
+
+				effectMediator->add("StarEffect", positionsRight);
+			}
+			if (currentDirAnimeKey == "L")
+			{
+				effectMediator->add("StarEffect", positionsLeft);
+			}
 			ride(obj);
 			isMagpieRide = true;
 			jumpEnd();

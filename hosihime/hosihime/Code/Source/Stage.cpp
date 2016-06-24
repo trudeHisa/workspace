@@ -98,6 +98,7 @@ void Stage::updata()
 void Stage::draw(const Renderer& renderer)
 {
 	scroll.draw(renderer);
+	effectController.draw(renderer, scroll);
 	control.draw(renderer, scroll);
 	int t = timer.getTime() / FRAMETIME;
 	renderer.DrawString(std::to_string(t), 
@@ -105,7 +106,7 @@ void Stage::draw(const Renderer& renderer)
 
 	//renderer.DrawNumber("number.bmp", GSvector2(50, 50), 32, 64, t);
 
-	effectController.draw(renderer, scroll);
+	
 
 	fadeOut.draw(renderer);
 	fadeIn.draw(renderer);
