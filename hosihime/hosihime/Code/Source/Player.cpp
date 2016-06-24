@@ -98,7 +98,7 @@ void Player::moving()
 	if (!isGround)
 	{
 		return;
-}
+	}
 	const Sound& sound = device.getSound();
 	if (!sound.IsPlaySE("landing.wav") && movedir != 0)
 	{
@@ -188,7 +188,11 @@ const bool Player::respawn()
 		/*
 		Žæ‚è‚ ‚¦‚¸
 		*/
-		isRespawn = false;
+		if (isGround)
+		{
+			isRespawn = false;
+		}
+		
 		return false;
 	}
 
@@ -273,11 +277,15 @@ void Player::ride(const GameObject* obj)
 		return;
 	}
 	position = obj->getPosition();
-	position.y -=viewSize.y;
+	position.y -= viewSize.y;
 }
 
 void Player::collisionStar(const GameObject* obj)
 {
+	if (isRespawn)
+	{
+		return;
+	}
 	GAMEOBJ_TYPE type = obj->getType();
 	if (type != STAR&& type != BREAKSTAR)
 	{
