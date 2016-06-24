@@ -9,9 +9,9 @@ public:
 	~TimeScore();
 	void init();
 	void setScore(Timer& timer);
-	const int getScore()const;
+	const float getScore()const;
 private:
-	int score;
+	float score;
 };
 
 #endif

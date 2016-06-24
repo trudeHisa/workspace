@@ -153,6 +153,13 @@ void Load::loadTextrue()
 	renderer.LoadTextrue("title_text.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("title.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 
+
+	renderer.LoadTextrue("stage1.bmp", GS_TEXCOLOR_KEY_AUTO);
+	renderer.LoadTextrue("stage2.bmp", GS_TEXCOLOR_KEY_AUTO);
+	renderer.LoadTextrue("stage3.bmp", GS_TEXCOLOR_KEY_AUTO);
+	renderer.LoadTextrue("cleartime.bmp", GS_TEXCOLOR_KEY_AUTO);
+	renderer.LoadTextrue("secound.bmp", GS_TEXCOLOR_KEY_AUTO);
+	renderer.LoadTextrue("minits.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("stageClear.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("circleParticle.bmp", GS_TEXCOLOR_KEY_WHITE);
 }

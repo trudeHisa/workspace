@@ -80,3 +80,7 @@ void GamePlay::Continue()
 {
 	isContinue = true;
 }
+int GamePlay::getStageNo()
+{
+	return stageNo;
+}

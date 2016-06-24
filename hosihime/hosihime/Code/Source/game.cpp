@@ -36,7 +36,7 @@ void gameInit(void)
 	sceneManager.Add(Scene::MODE_GAMEPLAY, gamePlay);
 
 	sceneManager.Add(Scene::MODE_ENDING, Scene_Ptr(new Ending(device, score)));
-	sceneManager.Add(Scene::MODE_RESULT, Scene_Ptr(new Result(device, score)));
+	sceneManager.Add(Scene::MODE_RESULT, Scene_Ptr(new Result(device, score, dynamic_cast<GamePlay*>(gamePlay.get()))));
 	sceneManager.Add(Scene::MODE_GAMEOVER, Scene_Ptr(new GameOver(device,dynamic_cast<GamePlay*>(gamePlay.get()))));
 
 	sceneManager.Change(Scene::MODE_LOAD);
