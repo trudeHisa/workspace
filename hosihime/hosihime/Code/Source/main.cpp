@@ -196,7 +196,7 @@ static void myIdleFunc( void )
 		gameMain();
 
 		/* エスケープキーが押されたか？ */
-		if ( GetAsyncKeyState( VK_ESCAPE ) != 0 ) {
+		if (GetAsyncKeyState(VK_ESCAPE) != 0 || (gsGetJoyState(0, GJOY_BUTTON_8) != 0 && (gsGetJoyState(0, GJOY_BUTTON_7) != 0)) ){
 #if	FULL_SCREEN_MODE
 			/* ゲームモードを終了する */
 			glutLeaveGameMode();

@@ -40,9 +40,7 @@ void Star::updata()
 	position += velocity*gsFrameTimerGetTime();
 
 	//O•½•û‚Ì’è—
-	starHelth = helth - std::hypotf(
-		fabs(position.x - startPosi.x),
-		fabs(position.y - startPosi.y));
+	starHelth -= velocity.length()*gsFrameTimerGetTime();
 	if (starHelth < 0)
 	{
 		isDead = true;
@@ -94,10 +92,7 @@ void Star::collision(const GameObject* obj)
 {
 	GAMEOBJ_TYPE type = obj->getType();
 
-	if (type == STAR ||
-		type == BREAKSTAR ||
-		type == BURNSTAR ||
-		type == PLANET)
+	if (type == PLANET)
 	{
 		isDead = true;
 		effectMediator->add("FireworkEffect", position + (viewSize*0.5f));
