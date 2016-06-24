@@ -265,15 +265,15 @@ void Player::collision(const GameObject* obj)
 		const Magpie* mag = dynamic_cast<const Magpie*>(obj);
 		if (mag->isRide())
 		{
-			if (currentDirAnimeKey == "R")
+			/*if (currentDirAnimeKey == "R")
 			{
 
-				effectMediator->add("StarEffect", positionsRight);
+				effectMediator->add("LightEffect", positionsRight);
 			}
 			if (currentDirAnimeKey == "L")
 			{
-				effectMediator->add("StarEffect", positionsLeft);
-			}
+				effectMediator->add("LightEffect", positionsLeft);
+			}*/
 			ride(obj);
 			isMagpieRide = true;
 			jumpEnd();
