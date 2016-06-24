@@ -50,6 +50,7 @@ private:
 	
 	float jumpPower;
 	float speed;
+	Timer respawnCount;
 
 	bool isMagpieRide;
 	bool isJump;

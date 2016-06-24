@@ -13,7 +13,7 @@ Player::Player(const std::string& textrue, const GSvector2& position,
 	:GameObject(textrue, position, viewSize, rect, PLAYER),
 
 	GRAVITY(10), VERTICAL(5),
-	JUMPMAXPOW(-11), JUMPSPEED(0.03),
+	JUMPMAXPOW(-10), JUMPSPEED(0.03),
 	JUMPVERTICAL(6),
 	SCROLLOFFSET(GSvector2(-WINDOW_WIDTH / 2 + viewSize.x, -(WINDOW_HEIGHT / 2) - viewSize.y)),
 
@@ -28,8 +28,8 @@ Player::Player(const std::string& textrue, const GSvector2& position,
 	animation(animeTimer),
 	animeTimer(60.f),
 	currentDirAnimeKey("R"),
-	effectMediator(effectMediator)
-
+	effectMediator(effectMediator),
+	respawnCount(0,3)
 {
 }
 Player::~Player()
@@ -45,6 +45,7 @@ void Player::initialize()
 	isGround = false;
 	isClear = false;
 	isMagpieRide = false;
+	respawnCount.initialize();
 
 	currentDirAnimeKey = "R";
 	animeTimer.initialize();
@@ -74,6 +75,17 @@ void Player::updata()
 	{
 		return;
 	}
+
+	if (respawnCount.isEnd())
+	{
+		position = respawnPos;
+		velocity = GSvector2(0, 0);
+		jumpPower = 0;
+		isRespawn = true;
+		respawnCount.initialize();
+		return;
+	}
+
 	scroll->moving(position, SCROLLOFFSET);
 	endMove();
 	position += velocity*gsFrameTimerGetTime();
@@ -91,7 +103,7 @@ void Player::moving()
 {
 	gravity();
 	jumpStart();
-	rideUpDown();
+	
 	jump();
 	float movedir = moveHorizontal();
 	changeAnimation(movedir);
@@ -151,8 +163,13 @@ void Player::jump()
 	if (!isJump)
 	{
 		speed = VERTICAL;
+		respawnCount.initialize();
 		return;
 	}
+
+	
+	respawnCount.update();
+
 	speed = JUMPVERTICAL;
 	velocity.y = jumpPower;
 	jumpPower += GRAVITY*gsFrameTimerGetTime()*JUMPSPEED;
@@ -161,6 +178,10 @@ void Player::jump()
 }
 const float Player::moveHorizontal()
 {
+	if (isRespawn)
+	{
+		return 0.0f;
+	}
 	float direction = device.getInput().getVelocity().x;
 	velocity.x = direction* speed;
 	return direction;
@@ -183,7 +204,7 @@ bool Player::getIsClear()
 const bool Player::respawn()
 {
 	//‰æ–Ê“à‚©H
-	if (scroll->isInsideWindow(scroll->transformViewPosition(position), viewSize))
+	if (isInScreen(*scroll))
 	{
 		/*
 		Žæ‚è‚ ‚¦‚¸
@@ -192,7 +213,6 @@ const bool Player::respawn()
 		{
 			isRespawn = false;
 		}
-		
 		return false;
 	}
 
@@ -200,12 +220,11 @@ const bool Player::respawn()
 	{
 		return false;
 	}
-
-	position = respawnPos;
+	
+ 	position = respawnPos;
 	velocity = GSvector2(0, 0);
 	jumpPower = 0;
 	isRespawn = true;
-
 	return true;
 }
 
@@ -282,6 +301,10 @@ void Player::ride(const GameObject* obj)
 
 void Player::collisionStar(const GameObject* obj)
 {
+	if (!isInScreen(*scroll))
+	{
+		return;
+	}
 	if (isRespawn)
 	{
 		return;
@@ -298,6 +321,7 @@ void Player::collisionStar(const GameObject* obj)
 		rideStarPointerNum = pointerNum;
 		ride(obj);
 		jumpEnd();
+		rideUpDown();
 		return;
 	}
 	if (rideStarPointerNum != pointerNum)
@@ -306,6 +330,7 @@ void Player::collisionStar(const GameObject* obj)
 	}
 	ride(obj);
 	jumpEnd();
+	rideUpDown();
 }
 void Player::collisionRespawn(const GameObject* obj)
 {
@@ -313,8 +338,11 @@ void Player::collisionRespawn(const GameObject* obj)
 	{
 		return;
 	}
-	const Respawn* respawn = dynamic_cast<const Respawn*>(obj);
-	respawn->setRespawn(&respawnPos);
+	GSvector2 respawn = obj->getPosition();
+	respawn.y -=5 * 64;
+	respawnPos = respawn;
+	//const Respawn* respawn = dynamic_cast<const Respawn*>(obj);
+	//respawn->setRespawn(&respawnPos);
 }
 void Player::nonCollision()
 {
