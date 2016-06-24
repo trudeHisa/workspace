@@ -13,8 +13,8 @@ Player::Player(const std::string& textrue, const GSvector2& position,
 	:GameObject(textrue, position, viewSize, rect, PLAYER),
 
 	GRAVITY(10), VERTICAL(5),
-	JUMPMAXPOW(-18), JUMPSPEED(0.1),
-	JUMPVERTICAL(10),
+	JUMPMAXPOW(-11), JUMPSPEED(0.03),
+	JUMPVERTICAL(6),
 	SCROLLOFFSET(GSvector2(-WINDOW_WIDTH / 2 + viewSize.x, -(WINDOW_HEIGHT / 2) - viewSize.y)),
 
 	device(device), scroll(scroll),
