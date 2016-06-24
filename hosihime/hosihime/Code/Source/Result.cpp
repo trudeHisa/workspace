@@ -35,8 +35,9 @@ void Result::Draw(const Renderer& renderer)
 	renderer.DrawTextrue("stageClear.bmp", &GSvector2(100, 100));
 	renderer.DrawString("クリアタイム：：", &GSvector2(100, 400), 50);
 	int num = static_cast<int>(score.getScore() / FRAMETIME);
-	renderer.DrawNumber("number.bmp", GSvector2(400, 390), 80, 70,num);
-	renderer.DrawString("秒", &GSvector2(470, 420), 30);
+	GSvector2 posi = GSvector2(400, 390);
+	renderer.DrawNumber("number.bmp", posi, 80, 70,num);
+	renderer.DrawString("秒", &(posi+GSvector2(70, 0)), 30);
 	fadeIn.draw(renderer);
 	fadeOut.draw(renderer);
 }

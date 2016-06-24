@@ -56,7 +56,7 @@ void Ending::Draw(const Renderer& renderer)
 
 	if (playerPosi.x < 0)
 	{
-		renderer.DrawString("スペースてを押してね",&GSvector2(300,600),30);
+		renderer.DrawString("スペースを押してね",&GSvector2(300,600),30);
 	}
 	fadeIn.draw(renderer);
 	fadeOut.draw(renderer);
