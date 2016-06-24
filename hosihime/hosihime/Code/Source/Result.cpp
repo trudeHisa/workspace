@@ -86,7 +86,7 @@ void Result::NumDraw_Last(const Renderer& renderer)
 	renderer.DrawTextrue("stage3.bmp", &(LASTNUMPOSITION - GSvector2(400, -200)));
 	renderer.DrawNumber("number.bmp", LASTNUMPOSITION - GSvector2(0, -200), 80, 70, scores[2] / 60);//ï™íPà 
 	renderer.DrawTextrue("minits.bmp", &(LASTNUMPOSITION - GSvector2(-130, -210)));//Åuï™Åv
-	renderer.DrawNumber("number.bmp", LASTNUMPOSITION + GSvector2(150, 200), 80, 70, scores[2] / 10);//ÇPÇOÇÃà 
+	renderer.DrawNumber("number.bmp", LASTNUMPOSITION + GSvector2(150, 200), 80, 70, (scores[2] %60)/60);//ÇPÇOÇÃà 
 	renderer.DrawNumber("number.bmp", LASTNUMPOSITION + GSvector2(220, 200), 80, 70, (int)scores[2] % 10);//ÇPÇÃà 
 	renderer.DrawTextrue("secound.bmp", &(LASTNUMPOSITION + GSvector2(350, 210)));//ÅuïbÅv
 }
