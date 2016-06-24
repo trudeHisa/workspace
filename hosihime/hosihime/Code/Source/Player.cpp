@@ -29,6 +29,10 @@ Player::Player(const std::string& textrue, const GSvector2& position,
 	animeTimer(60.f),
 	currentDirAnimeKey("R"),
 	effectMediator(effectMediator),
+	positionsRight(position+GSvector2(10,64)),
+	positionsLeft(position+GSvector2(80,64))
+
+	effectMediator(effectMediator),
 	respawnCount(0,3)
 {
 }
@@ -62,6 +66,9 @@ void Player::initialize()
 	isRespawn = true;
 	scroll->initialize(position + SCROLLOFFSET);
 	ishold = false;
+
+	positionsRight = position + GSvector2(10, 64);
+	positionsLeft = position + GSvector2(80, 64);
 }
 void Player::jumpEnd()
 {
@@ -101,6 +108,9 @@ void Player::gravity()
 }
 void Player::moving()
 {
+	positionsRight = position + GSvector2(10, 64);
+	positionsLeft = position + GSvector2(80, 64);
+
 	gravity();
 	jumpStart();
 	
@@ -154,7 +164,16 @@ void Player::jumpStart()
 		return;
 	}
 	device.getSound().PlaySE("jump.wav");
-	effectMediator->add("StarEffect", position);
+
+	if (currentDirAnimeKey == "R")
+	{
+		
+		effectMediator->add("StarEffect", positionsRight);
+	}
+	if (currentDirAnimeKey == "L")
+	{
+		effectMediator->add("StarEffect", positionsLeft);
+	}
 	isJump = true;
 	jumpPower = JUMPMAXPOW;
 }
@@ -220,8 +239,8 @@ const bool Player::respawn()
 	{
 		return false;
 	}
-	
- 	position = respawnPos;
+
+	position = respawnPos;
 	velocity = GSvector2(0, 0);
 	jumpPower = 0;
 	isRespawn = true;
@@ -268,6 +287,7 @@ void Player::collision(const GameObject* obj)
 	if (obj->getType() == GOAL) isClear = true;
 	if (obj->getType() == BURNSTAR || obj->getType() == PLANET)
 	{
+		//effectMediator->add("FireworkEffect", position);
 		position = respawnPos;
 		velocity = GSvector2(0, 0);
 		jumpPower = 0;

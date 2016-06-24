@@ -36,7 +36,7 @@ void StarParticle::update()
 void StarParticle::draw(const Renderer& renderer, const Scroll& scroll)
 {
 
-	renderer.DrawTextrue(textrue, &scroll.transformViewPosition(position + GSvector2(32, 64+rand(mt)*15)),
+	renderer.DrawTextrue(textrue, &scroll.transformViewPosition(position/* + GSvector2(60, 70+rand(mt)*15)*/),
 		NULL, &GSvector2(4, 4), NULL, alpha * 180, &GScolor(rand(mt), rand(mt), rand(mt), alpha));
 }
 const bool StarParticle::getIsDead()const
