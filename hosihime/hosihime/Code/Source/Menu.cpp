@@ -45,7 +45,7 @@ void Menu::Draw(const Renderer& renderer)
 {
 	renderer.DrawTextrue("title.bmp", &GSvector2(0, 0));
 	bStar.draw(renderer);
-	renderer.DrawTextrue("title_text.bmp", &GSvector2(200, 120));
+	renderer.DrawTextrue("title_text.bmp", &GSvector2(180, 120));
 	const GSvector2 ps[3] =
 	{
 		GSvector2(450, 350),

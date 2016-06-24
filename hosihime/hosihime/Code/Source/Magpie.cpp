@@ -31,7 +31,7 @@ void Magpie::initialize()
 void Magpie::updata()
 {
 	Calculate<float> calc;	
-	 dir = velocity.x >= 0 ? "Right" : "left";
+	 dir = velocity.x >= 0 ? "Right" : "Left";
 	switch (state)
 	{
 	case Magpie::STANDBY:
@@ -90,6 +90,10 @@ void Magpie::setPlayerPosi(GSvector2* playerPosi)
 
 void Magpie::draw(const Renderer& renderer, const Scroll& scroll)
 {
+	if (!isInScreen(scroll))
+	{
+		return;
+	}
 	anim.draw(renderer,textrue, &scroll.transformViewPosition(position));
 }
 
