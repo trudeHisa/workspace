@@ -133,7 +133,6 @@ void Player::rideUpDown()
 	}
 	if (device.getInput().getDownTrigger())
 	{
-
 		velocity = GSvector2(0, 0);
 		/*
 		*64ÇÕêØÇÃÉTÉCÉY
