@@ -29,7 +29,7 @@ void GameObjectFactory::addContainer()
 	GameObject* objs[length] =
 	{
 		/*           画像名,　　位置(原型),見た目のサイズ(基本画像サイズ),　位置からの当たり判定位置と横縦幅 */
-		new Respawn("respawn.bmp", zero, GSvector2(94, 88), MyRectangle(GSvector2(11, 11), GSvector2(85, 23))),
+		new Respawn("respawn.bmp", zero, GSvector2(94, 88), MyRectangle(GSvector2(11, 11), GSvector2(85, 0))),
 		new Player("orihime.bmp", zero, GSvector2(64, 64), MyRectangle(GSvector2(20, 50), GSvector2(30, 14)), &scroll, device, effectMediator),
 		new ImMovable("meteo.bmp", zero, GSvector2(44, 44), MyRectangle(zero, GSvector2(44, 44)), PLANET),
 		new ImMovable("start.bmp", zero, GSvector2(200, 100), MyRectangle(GSvector2(30, 15), GSvector2(180, 30)), START),
