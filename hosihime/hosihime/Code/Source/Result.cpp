@@ -81,28 +81,26 @@ void Result::NumDraw_Def(const Renderer& renderer, float num)
 	renderer.DrawTextrue("cleartime.bmp", &GSvector2(100, 400));//「クリアタイム：：」
 	renderer.DrawNumber("number.bmp", NUMPOSITION - GSvector2(130, 0), 80, 70, num / 60);//分単位
 	renderer.DrawTextrue("minits.bmp", &(NUMPOSITION - GSvector2(30, -10)));//「分」
-	renderer.DrawNumber("number.bmp", NUMPOSITION, 80, 70, num / 10);//１０の位
-	renderer.DrawNumber("number.bmp", NUMPOSITION + GSvector2(70, 0), 80, 70, (int)num % 10);//１の位
+	renderer.DrawNumber("number.bmp", NUMPOSITION, 80, 70, (int)num % 60);//秒単位
 	renderer.DrawTextrue("secound.bmp", &(NUMPOSITION + GSvector2(140, 10)));//「秒」
 }
 
 void Result::NumDraw_Last(const Renderer& renderer)
 {
 	renderer.DrawTextrue("cleartime.bmp", &GSvector2(100, 200));//「クリアタイム：：」
-	
+
 	NumDraw_One(renderer, 0);
 	NumDraw_One(renderer, 1);
 	NumDraw_One(renderer, 2);
 }
 /*最終リザルトでの１ステージごとのクリアタイム描画
 */
-void Result::NumDraw_One(const Renderer& renderer,int stage)
+void Result::NumDraw_One(const Renderer& renderer, int stage)
 {
 	renderer.DrawTextrue("stage1.bmp", &numPositions[stage][0]);
 	renderer.DrawNumber("number.bmp", numPositions[stage][1], 80, 70, scores[stage] / 60);//分単位
 	renderer.DrawTextrue("minits.bmp", &numPositions[stage][2]);//「分」
-	renderer.DrawNumber("number.bmp", numPositions[stage][3], 80, 70, scores[stage] / 10);//１０の位
-	renderer.DrawNumber("number.bmp", numPositions[stage][4], 80, 70, (int)scores[stage] % 10);//１の位
+	renderer.DrawNumber("number.bmp", numPositions[stage][3], 80, 70, scores[stage] % 60);//秒単位
 	renderer.DrawTextrue("secound.bmp", &numPositions[stage][5]);//「秒」
 }
 
