@@ -48,6 +48,8 @@ void Stage::initialize()
 	mapCreate();
 	Stars_IsInScreen();
 
+	timerFontSize = 70;
+	tFS_Plus = true;
 	isEnd = false;
 	flag = CLEARFLAG::PLAYING;
 	mapSize = GSvector2(mapdata.getSize1(), mapdata.getSize0())*BLOCKSIZE;
@@ -60,7 +62,6 @@ void Stage::initialize()
 }
 void Stage::updata()
 {
-
 	// 条件出してもっときれいに
 	fadeIn.updata();
 	fadeOut.updata();
@@ -100,8 +101,34 @@ void Stage::draw(const Renderer& renderer)
 	scroll.draw(renderer);
 	control.draw(renderer, scroll);
 	int t = timer.getTime() / FRAMETIME;
+	GScolor timerColor;
+
+	if (timerFontSize > 100)
+	{
+		tFS_Plus = false;
+	}
+	else if (timerFontSize < 70)
+	{
+		tFS_Plus = true;
+	}
+	//残り時間が60秒を切ったら残り時間表示を伸び縮みさせる
+	if (t < 60)
+	{
+		timerColor = GScolor(1, 0, 0.1, 1);
+		if (tFS_Plus) {
+			timerFontSize += 3.0f;
+		}
+		else {
+			timerFontSize -= 3.0f;
+		}
+	}
+	else{
+		timerColor = GScolor(1, 1, 0, 1);
+	}
+
+	renderer.DrawTextrue("goal.bmp", &GSvector2(WINDOW_WIDTH - 190, 0));
 	renderer.DrawString(std::to_string(t), 
-	&GSvector2(50, 50), 70,&GScolor(1,1,0,1),GS_FONT_ITALIC,"メイリオ");
+	&GSvector2(WINDOW_WIDTH - 130, 15), timerFontSize,&timerColor,GS_FONT_ITALIC,"メイリオ");
 
 	//renderer.DrawNumber("number.bmp", GSvector2(50, 50), 32, 64, t);
 

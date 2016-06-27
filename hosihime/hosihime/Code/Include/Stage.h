@@ -35,6 +35,8 @@ private:
 	void objCreate(int x, int y);
 	void Stars_IsInScreen();
 private:
+	float timerFontSize;
+	bool tFS_Plus;
 	bool isEnd;
 	CLEARFLAG flag;
 	Array2D<int> mapdata;	
