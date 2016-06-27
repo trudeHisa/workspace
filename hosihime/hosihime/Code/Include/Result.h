@@ -16,6 +16,7 @@ public:
 	void NumDraw(const Renderer& renderer);
 	void NumDraw_Def(const Renderer& renderer, float num);
 	void NumDraw_Last(const Renderer& renderer);
+	void NumDraw_One(const Renderer& renderer,int stage);
 	void Finish();
 	Scene Next();
 	bool IsEnd();

@@ -4,7 +4,7 @@
 Magpie::Magpie(const std::string& textrue, const GSvector2& position,
 	const GSvector2& viewSize, const MyRectangle& rect, IMediator* objMediator)
 	:GameObject(textrue, position, viewSize, rect, MAGPIE),
-	objMediator(objMediator), state(STANDBY), timer(1, 1),
+	objMediator(objMediator), state(STANDBY),// timer(1, 1),
 	angle(0), speed(5), anim(animTimer), animTimer(30.0f)
 {
 }
@@ -16,7 +16,7 @@ Magpie::~Magpie()
 void Magpie::initialize()
 {
 	GameObject::initialize();
-	
+	t = 0;
 	animTimer.initialize();
 	animTimer.setStarTimer(60.0f);
 	anim.addCell("Right", 1, 3, 128, 128);
@@ -40,11 +40,12 @@ void Magpie::updata()
 		velocity.y = std::sin(angle)*0.1f*gsFrameTimerGetTime();
 		break;
 	case Magpie::TAKEIN:
-		timer.update();
+//		timer.update();
+		t +=t>60?1*gsFrameTimerGetTime():0;
 		anim.updata(dir);
 		animTimer.updata();
 		
-		if (!timer.isEnd())
+		if (t>60)
 		{
 			return;
 		}

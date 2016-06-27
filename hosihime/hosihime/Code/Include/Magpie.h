@@ -29,7 +29,8 @@ private:
 		STANDBY, TAKEIN,SENDON
 	};
 	State state;
-	Timer timer;
+//	Timer timer;
+	float t;
 	IMediator* objMediator;
 	float angle;
 	GSvector2 targetPoint;
