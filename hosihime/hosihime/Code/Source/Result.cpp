@@ -67,25 +67,30 @@ void Result::NumDraw_Def(const Renderer& renderer, float num)
 void Result::NumDraw_Last(const Renderer& renderer)
 {
 	renderer.DrawTextrue("cleartime.bmp", &GSvector2(100, 200));//「クリアタイム：：」
-
+	numPositions[0][0] = GSvector2(80, 300);
+	numPositions[0][1] = GSvector2(480, 300);
+	numPositions[0][2] = GSvector2(510, 310);
+	numPositions[0][3] = GSvector2(630, 300);
+	numPositions[0][4] = GSvector2(700, 300);
+	numPositions[0][5] = GSvector2(880, 310);
 	//すてーじ１
-	renderer.DrawTextrue("stage1.bmp", &(LASTNUMPOSITION - GSvector2(400, 0)));
-	renderer.DrawNumber("number.bmp", LASTNUMPOSITION , 80, 70, scores[0] / 60);//分単位
-	renderer.DrawTextrue("minits.bmp", &(LASTNUMPOSITION - GSvector2(-130, -10)));//「分」
-	renderer.DrawNumber("number.bmp", LASTNUMPOSITION+GSvector2(150,0), 80, 70, scores[0] / 10);//１０の位
-	renderer.DrawNumber("number.bmp", LASTNUMPOSITION + GSvector2(220 ,0), 80, 70, (int)scores[0] % 10);//１の位
+	renderer.DrawTextrue("stage1.bmp", &numPositions[0][0]);
+	renderer.DrawNumber("number.bmp", numPositions[0][1], 80, 70, scores[0] / 60);//分単位
+	renderer.DrawTextrue("minits.bmp", &numPositions[0][2]);//「分」
+	renderer.DrawNumber("number.bmp", numPositions[0][3], 80, 70, scores[0] / 10);//１０の位
+	renderer.DrawNumber("number.bmp", numPositions[0][4], 80, 70, (int)scores[0] % 10);//１の位
 	renderer.DrawTextrue("secound.bmp", &(LASTNUMPOSITION + GSvector2(350, 10)));//「秒」
 	//ステージ２
 	renderer.DrawTextrue("stage2.bmp", &(LASTNUMPOSITION - GSvector2(400, -100)));
-	renderer.DrawNumber("number.bmp", LASTNUMPOSITION - GSvector2(0, -100), 80, 70, scores[1] / 60);//分単位
-	renderer.DrawTextrue("minits.bmp", &(LASTNUMPOSITION - GSvector2(-130, -110)));//「分」
+	renderer.DrawNumber("number.bmp", LASTNUMPOSITION + GSvector2(0, 100), 80, 70, scores[1] / 60);//分単位
+	renderer.DrawTextrue("minits.bmp", &(LASTNUMPOSITION + GSvector2(130, 110)));//「分」
 	renderer.DrawNumber("number.bmp", LASTNUMPOSITION + GSvector2(150, 100), 80, 70, scores[1] / 10);//１０の位
 	renderer.DrawNumber("number.bmp", LASTNUMPOSITION + GSvector2(220, 100), 80, 70, (int)scores[1] % 10);//１の位
 	renderer.DrawTextrue("secound.bmp", &(LASTNUMPOSITION + GSvector2(350, 110)));//「秒」
 	//ステージ３
 	renderer.DrawTextrue("stage3.bmp", &(LASTNUMPOSITION - GSvector2(400, -200)));
-	renderer.DrawNumber("number.bmp", LASTNUMPOSITION - GSvector2(0, -200), 80, 70, scores[2] / 60);//分単位
-	renderer.DrawTextrue("minits.bmp", &(LASTNUMPOSITION - GSvector2(-130, -210)));//「分」
+	renderer.DrawNumber("number.bmp", LASTNUMPOSITION + GSvector2(0, 200), 80, 70, scores[2] / 60);//分単位
+	renderer.DrawTextrue("minits.bmp", &(LASTNUMPOSITION + GSvector2(130, 210)));//「分」
 	renderer.DrawNumber("number.bmp", LASTNUMPOSITION + GSvector2(150, 200), 80, 70, (scores[2] %60)/60);//１０の位
 	renderer.DrawNumber("number.bmp", LASTNUMPOSITION + GSvector2(220, 200), 80, 70, (int)scores[2] % 10);//１の位
 	renderer.DrawTextrue("secound.bmp", &(LASTNUMPOSITION + GSvector2(350, 210)));//「秒」

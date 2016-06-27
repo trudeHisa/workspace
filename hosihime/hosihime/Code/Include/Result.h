@@ -27,6 +27,7 @@ private:
 	Device& device;
 	TimeScore& score;
 	int scores[3];
+	GSvector2 numPositions[3][6];
 };
 
 #endif
