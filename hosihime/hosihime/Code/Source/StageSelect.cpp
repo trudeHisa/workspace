@@ -75,6 +75,7 @@ void StageSelect::select()
 		orihimeAlpha = 0;
 		device.getSound().PlaySE("move.wav");
 	}
+	
 	Calculate<int> calc;
 	activeNo = calc.wrap(activeNo, 0, activeStageLength + 1);
 }
@@ -87,7 +88,26 @@ void StageSelect::draw(const Renderer& renderer)
 		GSvector2(110, 400),
 		GSvector2(950, 440)
 	};
+	//マップ画像表示
 	renderer.DrawTextrue("mapselect.bmp", &GSvector2(0, 0));
+	renderer.DrawTextrue("map_title.bmp", &GSvector2(850, 30));
+	renderer.DrawTextrue("stage1_bega.bmp", &GSvector2(550, 30));
+	renderer.DrawTextrue("stage2_denebu.bmp", &GSvector2(40, 450));
+	renderer.DrawTextrue("stage3_artail.bmp", &GSvector2(1010, 440));
+	renderer.DrawTextrue("stageselect_logo.bmp", &GSvector2(100, 60));
+	renderer.DrawTextrue("muzukasisa.bmp", &GSvector2(300, 540));
+	if (activeNo == 1)
+	{
+		renderer.DrawTextrue("star_2.bmp", &GSvector2(632, 540));
+	}
+	if (activeNo == 2)
+	{
+		renderer.DrawTextrue("star_3.bmp", &GSvector2(600, 540));
+	}
+	if (activeNo == 0)
+	{
+		renderer.DrawTextrue("star_1.bmp", &GSvector2(664, 540));
+	}
 	renderer.DrawTextrue("orihime_map.bmp", &poss[activeNo], &GScolor(1, 1, 1, orihimeAlpha));
 	fadeIn.draw(renderer);
 	fadeOut.draw(renderer);

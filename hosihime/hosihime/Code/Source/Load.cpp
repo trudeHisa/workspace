@@ -90,6 +90,15 @@ void Load::loadTextrue()
 	path = "Textrue\\\\mapselect\\\\";
 	renderer.LoadTextrue("mapselect.bmp", GS_TEXCOLOR_KEY_DISABLE, path);
 	renderer.LoadTextrue("orihime_map.bmp", GS_TEXCOLOR_KEY_AUTO, path);
+	renderer.LoadTextrue("map_title.bmp", GS_TEXCOLOR_KEY_AUTO, path);
+	renderer.LoadTextrue("muzukasisa.bmp", GS_TEXCOLOR_KEY_AUTO, path);
+	renderer.LoadTextrue("stage3_artail.bmp", GS_TEXCOLOR_KEY_AUTO, path);
+	renderer.LoadTextrue("stage1_bega.bmp", GS_TEXCOLOR_KEY_AUTO, path);
+	renderer.LoadTextrue("stage2_denebu.bmp", GS_TEXCOLOR_KEY_AUTO, path);
+	renderer.LoadTextrue("stageselect_logo.bmp", GS_TEXCOLOR_KEY_AUTO, path);
+	renderer.LoadTextrue("star_1.bmp", GS_TEXCOLOR_KEY_AUTO, path);
+	renderer.LoadTextrue("star_2.bmp", GS_TEXCOLOR_KEY_AUTO, path);
+	renderer.LoadTextrue("star_3.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 
 	/*
 	*ナビゲーション
@@ -138,6 +147,7 @@ void Load::loadTextrue()
 	renderer.LoadTextrue("star_break1.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("star_fire.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("star_teil.bmp", GS_TEXCOLOR_KEY_AUTO, path);
+	renderer.LoadTextrue("starpa.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	
 	/*
 	*タイトル

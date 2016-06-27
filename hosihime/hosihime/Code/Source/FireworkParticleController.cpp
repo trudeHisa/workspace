@@ -12,7 +12,7 @@ FireworkParticleController::~FireworkParticleController()
 
 void FireworkParticleController::initialize()
 {
-	//createParticle();
+	createParticle();
 }
 void FireworkParticleController::update()
 {

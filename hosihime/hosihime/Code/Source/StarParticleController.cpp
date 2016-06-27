@@ -51,24 +51,15 @@ const bool StarParticleController::getIsEnd()const
 }
 void StarParticleController::createParticle()
 {
-	
-	/*if (Starparticles.size() != 0)
+	/*if ((int)timer.getTime() % 8==2)
 	{
-		return;
+		Starparticles.emplace_back(Particle_Ptr(new StarParticle("shooting2.bmp", rand() * 90, 0.5f, center)));
 	}*/
-	/*if (Starparticles.size() >= 40)
-	{
-		return;
-	}*/
-	if ((int)timer.getTime() % 8==2)
-	{
-		Starparticles.emplace_back(Particle_Ptr(new StarParticle("shooting2.bmp", rand(), 0.5f, center)));
-	}
 
-	/*for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 20; i++)
 	{
-		Starparticles.emplace_back(Particle_Ptr(new StarParticle("shooting2.bmp", i, 0.1f, center)));
-	}*/
+		Starparticles.emplace_back(Particle_Ptr(new StarParticle("starpa.bmp", i*90, 0.1f, center)));
+	}
 }
 void StarParticleController::remove()
 {
