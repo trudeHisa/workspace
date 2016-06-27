@@ -19,6 +19,7 @@ public:
 	Scene Next();
 	void Continue();
 	bool IsEnd();
+	int getStageNo();
 private:
 	void modeEnd();
 	void createStage();

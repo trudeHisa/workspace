@@ -268,11 +268,11 @@ void Player::collision(const GameObject* obj)
 			if (currentDirAnimeKey == "R")
 			{
 
-				effectMediator->add("FireworkEffect", positionsRight);
+				effectMediator->add("LightEffect", positionsRight);
 			}
 			if (currentDirAnimeKey == "L")
 			{
-				effectMediator->add("FireworkEffect", positionsLeft - GSvector2(68, 0));
+				effectMediator->add("LightEffect", positionsLeft);
 			}
 			ride(obj);
 			isMagpieRide = true;
