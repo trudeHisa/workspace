@@ -165,11 +165,11 @@ void Player::jumpStart()
 	if (currentDirAnimeKey == "R")
 	{
 		
-		effectMediator->add("StarEffect", positionsRight);
+		effectMediator->add("LightEffect", positionsRight);
 	}
 	if (currentDirAnimeKey == "L")
 	{
-		effectMediator->add("StarEffect", positionsLeft);
+		effectMediator->add("LightEffect", positionsLeft);
 	}
 	isJump = true;
 	jumpPower = JUMPMAXPOW;
