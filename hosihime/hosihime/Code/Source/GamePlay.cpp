@@ -7,7 +7,7 @@
 GamePlay::GamePlay(Device& device, TimeScore& score)
 	: device(device), stageNo(0),
 	mode(0),
-	score(score), isContinue(false)
+	score(score), isContinue(false), pause(device)
 {
 }
 GamePlay::~GamePlay()
@@ -22,9 +22,18 @@ void GamePlay::Init()
 	{
 		createStage();
 	}
+	pause.Initializse();
 }
 void GamePlay::Update()
 {
+	pause.Update();
+	if(pause.pausecount==true)
+	{
+		pause.PauseMenu();
+		isEnd = pause.IsEnd();
+
+		return;
+	}
 	mode->updata();
 	if (device.getInput().getDebugResetTrigger())
 	{
@@ -58,6 +67,7 @@ void GamePlay::modeEnd()
 void GamePlay::Draw(const Renderer& renderer)
 {
 	mode->draw(renderer);
+	if (pause.pausecount == true)pause.Draw(renderer);
 }
 void GamePlay::Finish()
 {
@@ -65,6 +75,7 @@ void GamePlay::Finish()
 }
 Scene GamePlay::Next()
 {
+	if (pause.IsEnd() == true) return pause.Next();
 	if (mode->getFlag() == CLEARFLAG::CLEAR)
 	{
 		return isLastStage ? MODE_ENDING : MODE_RESULT;
