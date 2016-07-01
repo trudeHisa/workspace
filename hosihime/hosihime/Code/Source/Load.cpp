@@ -163,6 +163,8 @@ void Load::loadTextrue()
 	renderer.LoadTextrue("space_text.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("title_text.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("title.bmp", GS_TEXCOLOR_KEY_AUTO, path);
+	renderer.LoadTextrue("reset.bmp", GS_TEXCOLOR_KEY_AUTO, path);
+	renderer.LoadTextrue("reset_gray.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 
 
 	renderer.LoadTextrue("stage0.bmp", GS_TEXCOLOR_KEY_AUTO);
