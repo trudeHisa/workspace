@@ -24,7 +24,7 @@ fadeIn(), fadeOut()
 
 	float time[]=
 	{
-		61,
+		180,
 		300,
 		300
 	};
