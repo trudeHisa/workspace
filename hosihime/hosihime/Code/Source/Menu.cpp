@@ -163,10 +163,10 @@ Scene Menu::Next()
 		//そうさせつめいへ(今はタイトルへ飛ぶ)
 		Scene::MODE_OPERATION,
 		//せいさくしゃ一覧へ（今はタイトルへ飛ぶ）
-		MODE_CREDIT,
-		MODE_TITLE,
+		Scene::MODE_CREDIT,
+		Scene::MODE_TITLE,
 	};
-	if (isInitDate&&!isInitSelect){ return MODE_MENU; }
+	if (isInitDate&&!isInitSelect){ return Scene::MODE_MENU; }
 	return scenes[index];
 }
 bool Menu::IsEnd()
