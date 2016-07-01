@@ -27,7 +27,6 @@
     <ClCompile Include="Code\Source\EffectController.cpp" />
     <ClCompile Include="Code\Source\EffectFactory.cpp" />
     <ClCompile Include="Code\Source\Ending.cpp" />
-    <ClCompile Include="Code\Source\EndStar.cpp" />
     <ClCompile Include="Code\Source\Fade.cpp" />
     <ClCompile Include="Code\Source\FireworkEffect.cpp" />
     <ClCompile Include="Code\Source\FireworkParticle.cpp" />
@@ -102,7 +101,6 @@
     <ClInclude Include="Code\Include\EffectController.h" />
     <ClInclude Include="Code\Include\EffectFactory.h" />
     <ClInclude Include="Code\Include\Ending.h" />
-    <ClInclude Include="Code\Include\EndStar.h" />
     <ClInclude Include="Code\Include\Factory.h" />
     <ClInclude Include="Code\Include\Fade.h" />
     <ClInclude Include="Code\Include\FireworkEffect.h" />

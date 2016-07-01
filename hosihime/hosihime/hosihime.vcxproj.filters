@@ -103,12 +103,6 @@
     <Filter Include="ヘッダー ファイル\gameobject\background_Star">
       <UniqueIdentifier>{655b1069-b9f4-46e9-b79c-93329bde92e1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\gameobject\end_Star">
-      <UniqueIdentifier>{8bec4d81-93c2-4ecd-8a5a-c1473830a260}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\gameobject\EndStar">
-      <UniqueIdentifier>{25dd5080-1463-4fd4-92b2-7285770ea83f}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\Source\Star_wave.cpp">
@@ -320,9 +314,6 @@
     </ClCompile>
     <ClCompile Include="Code\Source\Hikoboshi.cpp">
       <Filter>ソース ファイル\gameobject\objects</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\Source\EndStar.cpp">
-      <Filter>ソース ファイル\gameobject\EndStar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -574,9 +565,6 @@
     </ClInclude>
     <ClInclude Include="Code\Include\Opening.h">
       <Filter>ヘッダー ファイル\scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Include\EndStar.h">
-      <Filter>ヘッダー ファイル\gameobject\end_Star</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
