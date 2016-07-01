@@ -182,7 +182,11 @@ void Load::loadTextrue()
 	renderer.LoadTextrue("starparticle.bmp");
 	renderer.LoadTextrue("gundam.bmp");
 	renderer.LoadTextrue("shooting2.bmp");
-	renderer.LoadTextrue("starg.bmp");
+	renderer.LoadTextrue("gamebag.bmp", GS_TEXCOLOR_KEY_AUTO);
+	renderer.LoadTextrue("gamebag_g.bmp", GS_TEXCOLOR_KEY_AUTO);
+	renderer.LoadTextrue("titlebag.bmp", GS_TEXCOLOR_KEY_AUTO);
+	renderer.LoadTextrue("titlebag_g.bmp", GS_TEXCOLOR_KEY_AUTO);
+	renderer.LoadTextrue("pause.bmp");
 }
 void Load::loadSound()
 {

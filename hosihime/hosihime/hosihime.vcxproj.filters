@@ -315,6 +315,9 @@
     <ClCompile Include="Code\Source\Hikoboshi.cpp">
       <Filter>ソース ファイル\gameobject\objects</Filter>
     </ClCompile>
+    <ClCompile Include="Code\Source\Pause.cpp">
+      <Filter>ソース ファイル\scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\Include\GAMEOBJ_TYPE.h">
@@ -368,14 +371,8 @@
     <ClInclude Include="Code\Include\Menu.h">
       <Filter>ヘッダー ファイル\scene</Filter>
     </ClInclude>
-    <ClInclude Include="Code\Include\Title.h">
-      <Filter>ヘッダー ファイル\scene</Filter>
-    </ClInclude>
     <ClInclude Include="Code\Include\SceneManager.h">
       <Filter>ヘッダー ファイル\scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\Include\Scroll.h">
-      <Filter>ヘッダー ファイル\stage</Filter>
     </ClInclude>
     <ClInclude Include="Code\Include\Stage.h">
       <Filter>ヘッダー ファイル\stage</Filter>
@@ -565,6 +562,15 @@
     </ClInclude>
     <ClInclude Include="Code\Include\Opening.h">
       <Filter>ヘッダー ファイル\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\Pause.h">
+      <Filter>ヘッダー ファイル\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\Title.h">
+      <Filter>ヘッダー ファイル\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\Scroll.h">
+      <Filter>ヘッダー ファイル\stage</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

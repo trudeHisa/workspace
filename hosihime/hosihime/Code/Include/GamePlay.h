@@ -4,6 +4,7 @@
 #include "TimeScore.h"
 #include "IPlayMode.h"
 #include <memory>
+#include "Pause.h"
 class Device;
 typedef std::shared_ptr<IPlayMode> Mode;
 
@@ -31,5 +32,7 @@ private:
 	Mode mode;
 	TimeScore& score;
 	Device& device;
+	Pause pause;
+	
 };
 #endif
