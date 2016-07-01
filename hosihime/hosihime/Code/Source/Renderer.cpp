@@ -307,3 +307,41 @@ void Renderer::DrawNumber(
 		pos.x += width;
 	}
 }
+
+void Renderer::DrawTimer(
+	const std::string& name,
+	const GSvector2& _position,
+	float width,
+	float height,
+	int point,
+	const GScolor* _color)const
+{
+	GSvector2 pos = _position;
+	if (point >= 100)
+	{
+		for each (auto n in std::to_string(point))
+		{
+			float x = (n - '1') * width;
+			DrawSprite2D(container.at(name), &GSrect(x, 0, x + width, height), NULL, NULL, NULL, &pos, _color);
+			pos.x += width;
+		}
+	}
+	else if (point >= 10)
+	{
+		for each (auto n in std::to_string(point))
+		{
+			float x = (n - '1') * width;
+			DrawSprite2D(container.at(name), &GSrect(x, 0, x + width, height), NULL, NULL, NULL, &GSvector2(pos.x+ width / 2,pos.y), _color);
+			pos.x += width;
+		}
+	}
+	else
+	{
+		for each (auto n in std::to_string(point))
+		{
+			float x = (n - '1') * width;
+			DrawSprite2D(container.at(name), &GSrect(x, 0, x + width, height), NULL, NULL, NULL, &GSvector2(pos.x + width, pos.y), _color);
+			pos.x += width;
+		}
+	}
+}

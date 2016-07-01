@@ -70,6 +70,13 @@ public:
 		float height,
 		int point,
 		const GScolor* _color=&GScolor(1,1,1,1))const;
+	void DrawTimer(
+		const std::string& name,
+		const GSvector2& _position,
+		float width,
+		float height,
+		int point,
+		const GScolor* _color = &GScolor(1, 1, 1, 1))const;
 private:
 	//2d•`‰æ
 	void disables()const;

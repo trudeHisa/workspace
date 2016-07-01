@@ -47,6 +47,13 @@ void Load::loadTextrue()
 	renderer.LoadTextrue("space2.bmp", GS_TEXCOLOR_KEY_DISABLE, path);
 
 	/*
+	*タイマーＵＩ
+	*/
+	path = "Textrue\\\\obstacle\\\\";
+	renderer.LoadTextrue("timer.bmp", GS_TEXCOLOR_KEY_AUTO);
+	renderer.LoadTextrue("timerPlanet.bmp", GS_TEXCOLOR_KEY_AUTO, path);
+
+	/*
 	*キャラクタ
 	*/
 	path = "Textrue\\\\character\\\\";
