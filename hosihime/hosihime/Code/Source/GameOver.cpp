@@ -120,10 +120,10 @@ Scene GameOver::Next()
 	if (nowSelect == 0)
 	{
 		play->Continue();
-		return MODE_GAMEPLAY;
+		return Scene::MODE_GAMEPLAY;
 	}
 
-	return MODE_TITLE;
+	return Scene::MODE_TITLE;
 }
 bool GameOver::IsEnd()
 {

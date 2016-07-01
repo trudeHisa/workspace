@@ -48,7 +48,7 @@ void Operation::Finish()
 }
 Scene Operation::Next()
 {
-	return MODE_MENU;
+	return Scene::MODE_MENU;
 }
 bool Operation::IsEnd()
 {

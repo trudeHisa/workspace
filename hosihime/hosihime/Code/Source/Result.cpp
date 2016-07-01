@@ -109,7 +109,7 @@ void Result::Finish()
 }
 Scene Result::Next()
 {
-	return MODE_GAMEPLAY;
+	return Scene::MODE_GAMEPLAY;
 }
 bool Result::IsEnd()
 {

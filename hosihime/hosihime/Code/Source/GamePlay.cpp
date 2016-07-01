@@ -67,9 +67,9 @@ Scene GamePlay::Next()
 {
 	if (mode->getFlag() == CLEARFLAG::CLEAR)
 	{
-		return isLastStage ? MODE_ENDING : MODE_RESULT;
+		return isLastStage ? Scene::MODE_ENDING : Scene::MODE_RESULT;
 	}
-	return MODE_GAMEOVER;
+	return Scene::MODE_GAMEOVER;
 }
 bool GamePlay::IsEnd()
 {

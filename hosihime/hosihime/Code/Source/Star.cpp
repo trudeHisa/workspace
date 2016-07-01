@@ -7,7 +7,7 @@ Star::Star(const std::string& textrue, const GSvector2& position,
 	const GSvector2& viewSize, const MyRectangle& rect, float helth,
 	StarMove_Ptr move, IEffectMediator* effectMediator,
 	Device& device)
-	:GameObject(textrue, position, viewSize, rect, STAR),
+	:GameObject(textrue, position, viewSize, rect, GAMEOBJ_TYPE::STAR),
 	move(move), startPosi(position), angle(0), helth(helth),
 	effectMediator(effectMediator), device(device)
 {
@@ -92,7 +92,7 @@ void Star::collision(const GameObject* obj)
 {
 	GAMEOBJ_TYPE type = obj->getType();
 
-	if (type == PLANET)
+	if (type == GAMEOBJ_TYPE::PLANET)
 	{
 		isDead = true;
 		effectMediator->add("FireworkEffect", position + (viewSize*0.5f));

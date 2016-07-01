@@ -1,7 +1,7 @@
 #include "Respawn.h"
 Respawn::Respawn(const std::string& textrue, const GSvector2& position,
 	const GSvector2& viewSize,const MyRectangle& rect)
-	:GameObject(textrue,position,viewSize,rect, RESPAWN)
+	:GameObject(textrue, position, viewSize, rect, GAMEOBJ_TYPE::RESPAWN)
 {
 }
 Respawn::~Respawn()

@@ -45,7 +45,7 @@ void Opening::Finish()
 
 Scene Opening::Next()
 {
-	return MODE_TITLE;
+	return Scene::MODE_TITLE;
 }
 
 bool Opening::IsEnd()

@@ -10,7 +10,7 @@
 Player::Player(const std::string& textrue, const GSvector2& position,
 	const GSvector2& viewSize, const MyRectangle& rect,
 	Scroll* scroll, Device& device, IEffectMediator* effectMediator)
-	:GameObject(textrue, position, viewSize, rect, PLAYER),
+	:GameObject(textrue, position, viewSize, rect, GAMEOBJ_TYPE::PLAYER),
 
 	GRAVITY(10), VERTICAL(5),
 	JUMPMAXPOW(-10), JUMPSPEED(0.03),
@@ -255,12 +255,12 @@ const bool Player::isRide()const
 //Õ“Ë
 void Player::collision(const GameObject* obj)
 {
-	if (obj->getType() == HIKOBOSHI)
+	if (obj->getType() == GAMEOBJ_TYPE::HIKOBOSHI)
 	{
 		ishold = true;
 	}
 
-	if (obj->getType() == MAGPIE)
+	if (obj->getType() == GAMEOBJ_TYPE::MAGPIE)
 	{
 		const Magpie* mag = dynamic_cast<const Magpie*>(obj);
 		if (mag->isRide())
@@ -290,8 +290,8 @@ void Player::collision(const GameObject* obj)
 	collisionStar(obj);
 	collisionRespawn(obj);
 	collisionGround(obj);
-	if (obj->getType() == GOAL) isClear = true;
-	if (obj->getType() == BURNSTAR || obj->getType() == PLANET)
+	if (obj->getType() == GAMEOBJ_TYPE::GOAL) isClear = true;
+	if (obj->getType() == GAMEOBJ_TYPE::BURNSTAR || obj->getType() == GAMEOBJ_TYPE::PLANET)
 	{
 		//effectMediator->add("FireworkEffect", position);
 		position = respawnPos;
@@ -303,10 +303,10 @@ void Player::collision(const GameObject* obj)
 void Player::collisionGround(const GameObject* obj)
 {
 	GAMEOBJ_TYPE type = obj->getType();
-	if (type == RESPAWN ||
-		type == START ||
-		type == GOAL ||
-		type == MAGPIE_ENDSPOT)
+	if (type == GAMEOBJ_TYPE::RESPAWN ||
+		type == GAMEOBJ_TYPE::START ||
+		type == GAMEOBJ_TYPE::GOAL ||
+		type == GAMEOBJ_TYPE::MAGPIE_ENDSPOT)
 	{
 		isGround = true;
 		jumpEnd();
@@ -315,7 +315,7 @@ void Player::collisionGround(const GameObject* obj)
 
 void Player::ride(const GameObject* obj)
 {
-	if (obj->getType() == MAGPIE)
+	if (obj->getType() == GAMEOBJ_TYPE::MAGPIE)
 	{
 		position.x = obj->getPosition().x + 32;
 		position.y = obj->getPosition().y - 2;
@@ -336,7 +336,7 @@ void Player::collisionStar(const GameObject* obj)
 		return;
 	}
 	GAMEOBJ_TYPE type = obj->getType();
-	if (type != STAR&& type != BREAKSTAR)
+	if (type != GAMEOBJ_TYPE::STAR&& type != GAMEOBJ_TYPE::BREAKSTAR)
 	{
 		return;
 	}
@@ -360,7 +360,7 @@ void Player::collisionStar(const GameObject* obj)
 }
 void Player::collisionRespawn(const GameObject* obj)
 {
-	if (obj->getType() != RESPAWN)
+	if (obj->getType() != GAMEOBJ_TYPE::RESPAWN)
 	{
 		return;
 	}
