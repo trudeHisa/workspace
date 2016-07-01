@@ -1,6 +1,7 @@
 #include "Result.h"
 #include "Device.h"
 #include "GamePlay.h"
+#include "../Include/CSVStream.h"
 #define NUMPOSITION GSvector2(480,390)
 #define LASTNUMPOSITION GSvector2(480,300)
 Result::Result(Device& device, TimeScore& score, GamePlay* play)
@@ -17,29 +18,31 @@ void Result::Init()
 	isEnd = false;
 	device.getSound().PlaySE("ending.wav");
 	fadeIn.start(GScolor(0, 0, 0, 1), GScolor(0, 0, 0, 0), 1.0f);
-	scores[play->getStageNo()] = score.getScore() / FRAMETIME;
 
-	numPositions[0][0] = GSvector2(80, 300);
-	numPositions[0][1] = GSvector2(480, 300);
-	numPositions[0][2] = GSvector2(580, 310);
-	numPositions[0][3] = GSvector2(630, 300);
-	numPositions[0][4] = GSvector2(700, 300);
-	numPositions[0][5] = GSvector2(830, 310);
 
-	numPositions[1][0] = GSvector2(80, 400);
-	numPositions[1][1] = GSvector2(480, 400);
-	numPositions[1][2] = GSvector2(580, 410);
-	numPositions[1][3] = GSvector2(630, 400);
-	numPositions[1][4] = GSvector2(700, 400);
-	numPositions[1][5] = GSvector2(830, 410);
+	//スコアデータ読込
+	CSVStream csv;
+	int temp;
+	csv.loadScore(temp, play->getStageNo(), "savedate////scoredate.txt");
+	
+	if (temp==0||temp > score.getScore())
+	{
+		csv.save(score.getScore(), play->getStageNo(), "savedate////scoredate.txt");
+	}
 
-	numPositions[2][0] = GSvector2(80, 500);
-	numPositions[2][1] = GSvector2(480, 500);
-	numPositions[2][2] = GSvector2(580, 510);
-	numPositions[2][3] = GSvector2(630, 500);
-	numPositions[2][4] = GSvector2(700, 500);
-	numPositions[2][5] = GSvector2(830, 510);
+	csv.loadScore(scores[0], 0, "savedate////scoredate.txt");
+	csv.loadScore(scores[1], 1, "savedate////scoredate.txt");
+	csv.loadScore(scores[2], 2, "savedate////scoredate.txt");
 
+	for (int i = 0; i < 3; i++)
+	{
+		float y = 300 + (100 * i);
+		numPositions[i][0] = GSvector2(80, y);
+		for (int j = 0; j < 5; j++)
+		{
+			numPositions[i][j + 1] = GSvector2(520 + (80 * j), y);
+		}
+	}
 }
 void Result::Update()
 {
@@ -69,7 +72,7 @@ void Result::Draw(const Renderer& renderer)
 void Result::NumDraw(const Renderer& renderer)
 {
 	if (play->getStageNo() != 2){
-		NumDraw_Def(renderer, scores[play->getStageNo()]);
+		NumDraw_Def(renderer, score.getScore());
 		return;
 	}
 	NumDraw_Last(renderer);
@@ -91,17 +94,26 @@ void Result::NumDraw_Last(const Renderer& renderer)
 
 	NumDraw_One(renderer, 0);
 	NumDraw_One(renderer, 1);
-	NumDraw_One(renderer, 2);
+	
+	
+	renderer.DrawTextrue("stage" + std::to_string(2) + ".bmp", &numPositions[2][0]);
+	renderer.DrawNumber("number.bmp", numPositions[2][1], 80, 70, score.getScore() / 60);//分単位
+	renderer.DrawTextrue("minits.bmp", &(numPositions[2][2] + GSvector2(0, 10)));//「分」
+	renderer.DrawNumber("number.bmp", numPositions[2][3], 80, 70, score.getScore() % 60);//秒単位
+	renderer.DrawTextrue("secound.bmp", &(numPositions[2][5] + GSvector2(0, 10)));//「秒」
+
+	
+	//	NumDraw_One(renderer, 2);
 }
 /*最終リザルトでの１ステージごとのクリアタイム描画
 */
 void Result::NumDraw_One(const Renderer& renderer, int stage)
 {
-	renderer.DrawTextrue("stage1.bmp", &numPositions[stage][0]);
+	renderer.DrawTextrue("stage" + std::to_string(stage) + ".bmp", &numPositions[stage][0]);
 	renderer.DrawNumber("number.bmp", numPositions[stage][1], 80, 70, scores[stage] / 60);//分単位
-	renderer.DrawTextrue("minits.bmp", &numPositions[stage][2]);//「分」
+	renderer.DrawTextrue("minits.bmp", &(numPositions[stage][2] + GSvector2(0, 10)));//「分」
 	renderer.DrawNumber("number.bmp", numPositions[stage][3], 80, 70, scores[stage] % 60);//秒単位
-	renderer.DrawTextrue("secound.bmp", &numPositions[stage][5]);//「秒」
+	renderer.DrawTextrue("secound.bmp", &(numPositions[stage][5] + GSvector2(0, 10)));//「秒」
 }
 
 void Result::Finish()

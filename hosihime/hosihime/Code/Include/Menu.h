@@ -10,7 +10,10 @@ public:
 	Menu(Device& device, Background_Star& bStar);
 	void Init();
 	void Update();
+	void InitSelect(const Input& input);
+	void InitDate();
 	void Draw(const Renderer& renderer);
+	void InitDraw(const Renderer& renderer);
 	void Finish();
 	Scene Next();
 	bool IsEnd();
@@ -20,6 +23,8 @@ private:
 	bool isEnd;
 	Background_Star& bStar;
 	Fade fade;
+	bool isInitDate;
+	bool isInitSelect;
 };
 
 #endif
