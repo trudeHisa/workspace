@@ -5,8 +5,8 @@
 #include "Fade.h"
 typedef enum
 {
-	Pause_title,
 	Pause_back,
+	Pause_title,
 
 	Pause_Num
 }pMenu;
@@ -29,10 +29,10 @@ private:
 	void PauseSwitch();
 	Renderer renderer;
 	bool isEnd;
+	bool fadeEnd;
 	int index;
 	Device& device;
-	Fade fadeIn;
-	Fade fadeOut;
+	Fade fade;
 };
 
 #endif
