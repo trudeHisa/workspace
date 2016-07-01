@@ -27,7 +27,7 @@ void StarParticle::initialize()
 }
 void StarParticle::update()
 {
-	rotate += gsFrameTimerGetTime()*velocity.x*4.0f;
+	rotate += gsFrameTimerGetTime()*velocity.x*8.0f;
 	position += velocity*gsFrameTimerGetTime();
 	//velocity.y += GRAVITY;
 	alpha -= gsFrameTimerGetTime()*0.01f;

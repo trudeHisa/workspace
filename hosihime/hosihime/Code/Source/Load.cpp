@@ -139,7 +139,6 @@ void Load::loadTextrue()
 	renderer.LoadTextrue("effect_Star_fire.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("fire.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("star.bmp", GS_TEXCOLOR_KEY_AUTO, path);
-	renderer.LoadTextrue("starpa.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	//renderer.LoadTextrue("star_break.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	/*
 	アニメーションでやるつもりだったが面倒なので切り替えで
@@ -177,6 +176,7 @@ void Load::loadTextrue()
 	renderer.LoadTextrue("starparticle.bmp");
 	renderer.LoadTextrue("gundam.bmp");
 	renderer.LoadTextrue("shooting2.bmp");
+	renderer.LoadTextrue("starg.bmp");
 }
 void Load::loadSound()
 {
