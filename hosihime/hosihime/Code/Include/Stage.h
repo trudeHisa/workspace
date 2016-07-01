@@ -15,6 +15,7 @@
 #include "Fade.h"
 
 #include "EffectController.h"
+
 class Device;
 typedef std::shared_ptr<Factory<GameObj_Ptr,GAMEOBJ_TYPE>> ObjFactory;
 
@@ -47,6 +48,8 @@ private:
 	GSvector2 mapSize;
 	Fade fadeOut;
 	Fade fadeIn;
+
+	bool pcount;
 
 	EffectsFactory effectFactory;
 	EffectController effectController;
