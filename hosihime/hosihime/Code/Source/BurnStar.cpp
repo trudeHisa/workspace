@@ -4,7 +4,7 @@ BurnStar::BurnStar(const std::string& textrue, const GSvector2& position,
 	const GSvector2& viewSize, const MyRectangle& rect,
 	float helth, StarMove_Ptr move,IEffectMediator* effectMediator
 	, Device& device)
-	:GameObject(textrue, position, viewSize, rect, BURNSTAR),
+	:GameObject(textrue, position, viewSize, rect, GAMEOBJ_TYPE::BURNSTAR),
 	Star(textrue, position, viewSize, rect, helth, move,
 	effectMediator,device),
 	animTimer(20.0f), anim(animTimer)

@@ -31,47 +31,47 @@ void GameObjectFactory::addContainer()
 		/*           画像名,　　位置(原型),見た目のサイズ(基本画像サイズ),　位置からの当たり判定位置と横縦幅 */
 		new Respawn("respawn.bmp", zero, GSvector2(94, 88), MyRectangle(GSvector2(11, 11), GSvector2(85, 0))),
 		new Player("orihime.bmp", zero, GSvector2(64, 64), MyRectangle(GSvector2(20, 50), GSvector2(30, 14)), &scroll, device, effectMediator),
-		new ImMovable("meteo.bmp", zero, GSvector2(44, 44), MyRectangle(zero, GSvector2(44, 44)), PLANET),
-		new ImMovable("start.bmp", zero, GSvector2(200, 100), MyRectangle(GSvector2(30, 15), GSvector2(180, 30)), START),
-		new ImMovable("goal.bmp", zero, GSvector2(200, 100), MyRectangle(GSvector2(30, 15), GSvector2(180, 30)), GOAL),
+		new ImMovable("meteo.bmp", zero, GSvector2(44, 44), MyRectangle(zero, GSvector2(44, 44)), GAMEOBJ_TYPE::PLANET),
+		new ImMovable("start.bmp", zero, GSvector2(200, 100), MyRectangle(GSvector2(30, 15), GSvector2(180, 30)), GAMEOBJ_TYPE::START),
+		new ImMovable("goal.bmp", zero, GSvector2(200, 100), MyRectangle(GSvector2(30, 15), GSvector2(180, 30)), GAMEOBJ_TYPE::GOAL),
 		new Magpie("magpie.bmp", zero, GSvector2(128, 128), MyRectangle(GSvector2(0, 0), GSvector2(128, 128)), objMediator),
-		new ImMovable("magpieEnd.bmp", zero, GSvector2(94, 88), MyRectangle(GSvector2(11, 11), GSvector2(85, 23)), MAGPIE_ENDSPOT),
+		new ImMovable("magpieEnd.bmp", zero, GSvector2(94, 88), MyRectangle(GSvector2(11, 11), GSvector2(85, 23)), GAMEOBJ_TYPE::MAGPIE_ENDSPOT),
 
-		new Signboard("nav.bmp", zero, navSize, SIGNBOARD_R),
-		new Signboard("nav.bmp", zero, navSize, SIGNBOARD_L),
-		new Signboard("nav.bmp", zero, navSize, SIGNBOARD_U),
-		new Signboard("nav.bmp", zero, navSize, SIGNBOARD_D),
+		new Signboard("nav.bmp", zero, navSize, GAMEOBJ_TYPE::SIGNBOARD_R),
+		new Signboard("nav.bmp", zero, navSize, GAMEOBJ_TYPE::SIGNBOARD_L),
+		new Signboard("nav.bmp", zero, navSize, GAMEOBJ_TYPE::SIGNBOARD_U),
+		new Signboard("nav.bmp", zero, navSize, GAMEOBJ_TYPE::SIGNBOARD_D),
 
-		new Signboard("nav.bmp", zero, navSize, SIGNBOARD_RU),
-		new Signboard("nav.bmp", zero, navSize, SIGNBOARD_RD),
+		new Signboard("nav.bmp", zero, navSize, GAMEOBJ_TYPE::SIGNBOARD_RU),
+		new Signboard("nav.bmp", zero, navSize, GAMEOBJ_TYPE::SIGNBOARD_RD),
 
-		new Signboard("nav.bmp", zero, navSize, SIGNBOARD_LD),
-		new Signboard("nav.bmp", zero, navSize, SIGNBOARD_LU),
+		new Signboard("nav.bmp", zero, navSize, GAMEOBJ_TYPE::SIGNBOARD_LD),
+		new Signboard("nav.bmp", zero, navSize, GAMEOBJ_TYPE::SIGNBOARD_LU),
 
-		new ImMovable("sasa.bmp", zero, GSvector2(96, 128), MyRectangle(zero, zero), SASA),
+		new ImMovable("sasa.bmp", zero, GSvector2(96, 128), MyRectangle(zero, zero), GAMEOBJ_TYPE::SASA),
 		new Hikoboshi("hikobosi.bmp",zero,GSvector2(64,64),MyRectangle(zero,GSvector2(64,64)))
 	};
 	GAMEOBJ_TYPE types[length] =
 	{
-		RESPAWN,
-		PLAYER,
-		PLANET,
-		START,
-		GOAL,
-		MAGPIE,
-		MAGPIE_ENDSPOT,
+		GAMEOBJ_TYPE::RESPAWN,
+		GAMEOBJ_TYPE::PLAYER,
+		GAMEOBJ_TYPE::PLANET,
+		GAMEOBJ_TYPE::START,
+		GAMEOBJ_TYPE::GOAL,
+		GAMEOBJ_TYPE::MAGPIE,
+		GAMEOBJ_TYPE::MAGPIE_ENDSPOT,
 
-		SIGNBOARD_R,
-		SIGNBOARD_L,
-		SIGNBOARD_U,
-		SIGNBOARD_D,
+		GAMEOBJ_TYPE::SIGNBOARD_R,
+		GAMEOBJ_TYPE::SIGNBOARD_L,
+		GAMEOBJ_TYPE::SIGNBOARD_U,
+		GAMEOBJ_TYPE::SIGNBOARD_D,
 
-		SIGNBOARD_RU,
-		SIGNBOARD_RD,
-		SIGNBOARD_LD,
-		SIGNBOARD_LU,
-		SASA,
-		HIKOBOSHI
+		GAMEOBJ_TYPE::SIGNBOARD_RU,
+		GAMEOBJ_TYPE::SIGNBOARD_RD,
+		GAMEOBJ_TYPE::SIGNBOARD_LD,
+		GAMEOBJ_TYPE::SIGNBOARD_LU,
+		GAMEOBJ_TYPE::SASA,
+		GAMEOBJ_TYPE::HIKOBOSHI
 	};
 	for (int i = 0; i < length; i++)
 	{

@@ -29,7 +29,7 @@ void Load::Finish()
 }
 Scene Load::Next()
 {
-	return MODE_OPENING;
+	return Scene::MODE_OPENING;
 }
 bool Load::IsEnd()
 {

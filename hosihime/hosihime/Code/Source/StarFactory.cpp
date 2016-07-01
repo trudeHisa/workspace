@@ -29,7 +29,7 @@ void StarFactory::update()
 	if (isStart() == false)return;//’ÊíA‰ó‚ê‚é¯‹¤’Ê
 
 	//‰ó‚ê‚é¯
-	if (prot->getType() == BREAKSTAR)
+	if (prot->getType() == GAMEOBJ_TYPE::BREAKSTAR)
 	{
 		breakStart();
 		return;
@@ -50,7 +50,7 @@ void StarFactory::update()
 
 bool StarFactory::isStart()
 {
-	GameObj_Ptr player = mediator.get(PLAYER);
+	GameObj_Ptr player = mediator.get(GAMEOBJ_TYPE::PLAYER);
 	if (player == NULL) return false;
 	if (gsVector2Distance(&prot->getSPosi(), &player->getPosition()) < prot->getHelth())
 		return true;

@@ -85,11 +85,11 @@ Scene Menu::Next()
 	Scene scenes[3] =
 	{
 		//ゲームプレイへ
-		MODE_GAMEPLAY,
+		Scene::MODE_GAMEPLAY,
 		//そうさせつめいへ(今はタイトルへ飛ぶ)
-		MODE_OPERATION,
+		Scene::MODE_OPERATION,
 		//せいさくしゃ一覧へ（今はタイトルへ飛ぶ）
-		MODE_CREDIT,
+		Scene::MODE_CREDIT,
 	};
 	return scenes[index];
 }

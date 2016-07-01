@@ -6,28 +6,28 @@ Signboard::Signboard(const std::string& textrue, const GSvector2& position,
 {
 	switch (type)
 	{
-	case SIGNBOARD_R:
+	case GAMEOBJ_TYPE::SIGNBOARD_R:
 		angle = 0;
 		break;
-	case SIGNBOARD_L:
+	case GAMEOBJ_TYPE::SIGNBOARD_L:
 		angle = 180;
 		break;
-	case SIGNBOARD_U:
+	case GAMEOBJ_TYPE::SIGNBOARD_U:
 		angle = 270;
 		break;
-	case SIGNBOARD_D:
+	case GAMEOBJ_TYPE::SIGNBOARD_D:
 		angle = 90;
 		break;
-	case SIGNBOARD_RU:
+	case GAMEOBJ_TYPE::SIGNBOARD_RU:
 		angle = 315;
 		break;
-	case SIGNBOARD_RD:
+	case GAMEOBJ_TYPE::SIGNBOARD_RD:
 		angle = 45;
 		break;
-	case SIGNBOARD_LU:
+	case GAMEOBJ_TYPE::SIGNBOARD_LU:
 		angle =215;
 		break;
-	case SIGNBOARD_LD:
+	case GAMEOBJ_TYPE::SIGNBOARD_LD:
 		angle = 135;
 		break;
 	}

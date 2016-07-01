@@ -2,7 +2,7 @@
 
 Hikoboshi::Hikoboshi(const std::string& textrue, const GSvector2& position,
 	const GSvector2& viewSize, const MyRectangle& rect)
-	:GameObject(textrue, position, viewSize, rect, HIKOBOSHI)
+	:GameObject(textrue, position, viewSize, rect, GAMEOBJ_TYPE::HIKOBOSHI)
 {
 }
 
@@ -17,7 +17,7 @@ void Hikoboshi::updata()
 
 void Hikoboshi::collision(const GameObject* obj)
 {
-	if (obj->getType() == PLAYER)
+	if (obj->getType() == GAMEOBJ_TYPE::PLAYER)
 	{
 		isDead = true;
 	}

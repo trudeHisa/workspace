@@ -3,7 +3,7 @@ GAMEOBJ_TYPE.h
 */
 #ifndef _GAMEOBJ_TYPE_H_
 #define _GAMEOBJ_TYPE_H_
-enum GAMEOBJ_TYPE
+enum class GAMEOBJ_TYPE
 {
 	SPACE = 0,	
 	

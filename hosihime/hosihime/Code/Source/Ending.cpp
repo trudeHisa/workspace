@@ -69,7 +69,7 @@ void Ending::Finish()
 }
 Scene Ending::Next()
 {
-	return MODE_RESULT;
+	return Scene::MODE_RESULT;
 }
 bool Ending::IsEnd()
 {

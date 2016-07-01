@@ -58,7 +58,7 @@ void Title::Finish()
 }
 Scene Title::Next()
 {
-	return MODE_MENU;
+	return Scene::MODE_MENU;
 }
 bool Title::IsEnd()
 {

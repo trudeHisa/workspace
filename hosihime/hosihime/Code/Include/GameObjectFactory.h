@@ -6,7 +6,7 @@
 */
 #ifndef _GAMEOBJECTFACTORY_H_
 #define _GAMEOBJECTFACTORY_H_
-#include <map>
+#include <unordered_map>
 #include "GAMEOBJ_TYPE.h"
 #include "Factory.h"
 #include "GameObje_Include.h"
@@ -28,7 +28,7 @@ public:
 	*/
 	const GameObj_Ptr create(GAMEOBJ_TYPE type, const GSvector2& position)const;
 private:
-	std::map<GAMEOBJ_TYPE, GameObj_Ptr>container;
+	std::unordered_map<GAMEOBJ_TYPE, GameObj_Ptr>container;
 	Scroll& scroll;
 	Device& device;
 	IMediator* objMediator;

@@ -2,7 +2,7 @@
 #define _EFFECTFACTORY_H_
 
 #include <string>
-#include <map>
+#include <unordered_map>
 
 #include "Factory.h"
 #include "IEffect.h"
@@ -19,6 +19,6 @@ public:
 	const Effect_Ptr create(const std::string& key, const GSvector2& position)const;
 	void addContainer();
 private:
-	std::map<const std::string,Effect_Ptr>container;
+	std::unordered_map<std::string,Effect_Ptr>container;
 };
 #endif
