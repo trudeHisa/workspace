@@ -74,13 +74,13 @@ void Pause::PauseSwitch()
 void Pause::PauseMenu()
 {
 	if (gsGetJoyTrigger(0, GJOY_DOWN) || gsGetKeyTrigger(GKEY_DOWN)){
-		//1
+		// 1
 		NowSelect = NowSelect + 1 % Pause_Num;
 		index += 1;
 	}
 
 	if (gsGetJoyTrigger(0, GJOY_UP) || gsGetKeyTrigger(GKEY_UP)){
-		//2
+		// 2
 		NowSelect = (NowSelect + (Pause_Num-1)) % Pause_Num;
 		index -= 1;
 	}
@@ -114,7 +114,7 @@ void Pause::Finish()
 }
 Scene Pause::Next()
 {
-	return MODE_TITLE;
+	return Scene::MODE_TITLE;
 }
 bool Pause::IsEnd()
 {

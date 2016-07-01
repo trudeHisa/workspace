@@ -9,6 +9,7 @@ typedef enum
 	Pause_title,
 
 	Pause_Num
+
 }pMenu;
 class Device;
 class Pause
