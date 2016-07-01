@@ -111,7 +111,7 @@ void Stage::draw(const Renderer& renderer)
 	{
 		tFS_Plus = false;
 	}
-	//残り時間が60秒を切ったら残り時間を赤くさせる
+	//残り時間が60秒を切ったら残り時間を赤くさせ、プルプル震えるように
 	if (t < 60)
 	{
 		timerColor = GScolor(1, 0, 0, 1);
@@ -126,7 +126,7 @@ void Stage::draw(const Renderer& renderer)
 		timerColor = GScolor(1, 1, 1, 1);
 	}
 
-	renderer.DrawTextrue("timerPlanet.bmp", &GSvector2((WINDOW_WIDTH /2) - 100, -120));
+	renderer.DrawTextrue("timerPlanet.bmp", &GSvector2((WINDOW_WIDTH /2) - 100 + timerFontSize, -120));
 	/*
 	renderer.DrawString(std::to_string(t), 
 	&GSvector2(WINDOW_WIDTH - 130, 15), timerFontSize,&timerColor,GS_FONT_ITALIC,"メイリオ");
