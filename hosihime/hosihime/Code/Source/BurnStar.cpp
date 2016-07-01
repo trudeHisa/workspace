@@ -25,10 +25,9 @@ void BurnStar::initialize()
 void BurnStar::updata()
 {
 	Star::updata();
-	if (!device.getSound().IsPlaySE("star_fire.wav"))
-	{
-		device.getSound().PlaySE("star_fire.wav");
-	}
+	
+
+	
 	anim.updata("F");
 	animTimer.updata();
 }
@@ -38,6 +37,14 @@ void BurnStar::collision(const GameObject* obj)
 }
 void BurnStar::draw(const Renderer& renderer, const Scroll& scroll)
 {
+	if (isInScreen(scroll))
+	{
+		if (!device.getSound().IsPlaySE("star_fire.wav"))
+		{
+			device.getSound().PlaySE("star_fire.wav");
+		}
+	}
+
 	Star::draw(renderer,scroll);
 	anim.draw(renderer,"fire.bmp", &scroll.transformViewPosition(position));
 }
