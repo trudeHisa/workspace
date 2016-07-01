@@ -22,6 +22,7 @@ void Pause::Initializse()
 	isEnd = false;
 	fadeEnd = false;
 	index = 0;
+	starAlpaha = false;
 }
 
 void Pause::Update()
@@ -44,11 +45,11 @@ void Pause::Update()
 
 void Pause::Draw(const Renderer&renderer)
 {
-	renderer.DrawTextrue("mapselect.bmp",&GSvector2(0,0));
+	renderer.DrawTextrue("pause.bmp", &GSvector2(0, 0),&GScolor4(0,0,0,0.5));
 	const GSvector2 ps[2] =
 	{
-		GSvector2(500, 500),
-		GSvector2(500,600)
+		GSvector2(450, 300),
+		GSvector2(450,400)
 	};
 	const std::string tex[2] =
 	{
@@ -74,7 +75,7 @@ void Pause::PauseMenu()
 {
 	if (gsGetJoyTrigger(0, GJOY_DOWN) || gsGetKeyTrigger(GKEY_DOWN)){
 		//1
-		NowSelect = (NowSelect + 1) % Pause_Num;
+		NowSelect = NowSelect + 1 % Pause_Num;
 		index += 1;
 	}
 

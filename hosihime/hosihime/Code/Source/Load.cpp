@@ -170,6 +170,7 @@ void Load::loadTextrue()
 	renderer.LoadTextrue("gamebag_g.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("titlebag.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("titlebag_g.bmp", GS_TEXCOLOR_KEY_AUTO);
+	renderer.LoadTextrue("pause.bmp");
 }
 void Load::loadSound()
 {

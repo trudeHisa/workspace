@@ -30,6 +30,7 @@ private:
 	Renderer renderer;
 	bool isEnd;
 	bool fadeEnd;
+	bool starAlpaha;
 	int index;
 	Device& device;
 	Fade fade;
