@@ -130,6 +130,10 @@ void Load::loadTextrue()
 	*/
 	path = "Textrue\\\\operation\\\\";
 	renderer.LoadTextrue("operation.bmp", GS_TEXCOLOR_KEY_DISABLE, path);
+	renderer.LoadTextrue("Control.bmp", GS_TEXCOLOR_KEY_DISABLE, path);
+	renderer.LoadTextrue("object.bmp", GS_TEXCOLOR_KEY_DISABLE, path);
+	renderer.LoadTextrue("stage_commentary.bmp", GS_TEXCOLOR_KEY_DISABLE, path);
+
 
 	/*
 	*êØ

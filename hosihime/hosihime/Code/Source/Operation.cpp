@@ -38,6 +38,7 @@ void Operation::Update()
 }
 void Operation::Draw(const Renderer& renderer)
 {
+
 	renderer.DrawTextrue("operation.bmp", &GSvector2(0, 0));
 	fadeIn.draw(renderer);
 	fadeOut.draw(renderer);
