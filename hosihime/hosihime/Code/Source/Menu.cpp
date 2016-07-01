@@ -78,6 +78,9 @@ void Menu::Finish()
 		CSVStream stream;
 		int re = 0;
 		stream.output(re, "savedate\\\\savedate.txt");
+		stream.save(re, 0, "savedate\\\\scoredate.txt");
+		stream.save(re, 1, "savedate\\\\scoredate.txt");
+		stream.save(re, 2, "savedate\\\\scoredate.txt");
 	}
 }
 Scene Menu::Next()

@@ -8,10 +8,10 @@ public:
 	TimeScore();
 	~TimeScore();
 	void init();
-	void setScore(Timer& timer);
-	const float getScore()const;
+	void setScore(Timer& timer,int stageNo);
+	const int getScore()const;
 private:
-	float score;
+	int score;
 };
 
 #endif

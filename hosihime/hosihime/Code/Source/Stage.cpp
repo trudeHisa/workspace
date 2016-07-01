@@ -119,7 +119,7 @@ void Stage::finish()
 
 void Stage::saveScore(TimeScore& score)
 {
-	score.setScore(timer);
+	score.setScore(timer,stageNo);
 }
 
 const bool Stage::getIsEnd()const
