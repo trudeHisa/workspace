@@ -66,14 +66,10 @@ void Magpie::updata()
 	}
 	position += velocity*gsFrameTimerGetTime()*speed;
 	//device.getSound().StopSE("kasasagi_fly.wav");
-
-	if (isRide())
+	/*if (isRide())
 	{
-		if (!device.getSound().IsPlaySE("kasasagi_fly.wav"))
-		{
-			device.getSound().PlaySE("kasasagi_fly.wav");
-		}
-	}
+		
+	}*/
 }
 void Magpie::collision(const GameObject* obj)
 {
