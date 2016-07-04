@@ -210,7 +210,7 @@ void Load::loadSound()
 	sound.LoadSE("star_fire.wav", 5, GWAVE_DEFAULT, originalPath + path);
 	sound.LoadSE("リスポーン.wav", 5, GWAVE_DEFAULT, originalPath + path);
 	sound.LoadSE("着地.wav", 1, GWAVE_DEFAULT, originalPath + path);
-	sound.LoadSE("kasasagi_fly.wav", 5, GWAVE_DEFAULT, originalPath + path);
+	sound.LoadSE("kasasagi_fly.wav", 5, GWAVE_LOOP, originalPath + path);
 
 	/*
 	*その他

@@ -264,6 +264,7 @@ void Player::collision(const GameObject* obj)
 		const Magpie* mag = dynamic_cast<const Magpie*>(obj);
 		if (mag->isRide())
 		{
+			//device.getSound().PlaySE("kasasagi_fly.wav");
 			if (currentDirAnimeKey == "R")
 			{
 

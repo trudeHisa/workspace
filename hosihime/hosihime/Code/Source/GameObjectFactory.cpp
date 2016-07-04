@@ -34,7 +34,7 @@ void GameObjectFactory::addContainer()
 		new ImMovable("meteo.bmp", zero, GSvector2(44, 44), MyRectangle(zero, GSvector2(44, 44)), GAMEOBJ_TYPE::PLANET),
 		new ImMovable("start.bmp", zero, GSvector2(200, 100), MyRectangle(GSvector2(30, 15), GSvector2(180, 30)), GAMEOBJ_TYPE::START),
 		new ImMovable("goal.bmp", zero, GSvector2(200, 100), MyRectangle(GSvector2(30, 15), GSvector2(180, 30)), GAMEOBJ_TYPE::GOAL),
-		new Magpie("magpie.bmp", zero, GSvector2(128, 128), MyRectangle(GSvector2(0, 0), GSvector2(128, 128)), objMediator),
+		new Magpie("magpie.bmp", zero, GSvector2(128, 128), MyRectangle(GSvector2(0, 0), GSvector2(128, 128)), objMediator,device),
 		new ImMovable("magpieEnd.bmp", zero, GSvector2(94, 88), MyRectangle(GSvector2(11, 11), GSvector2(85, 23)), GAMEOBJ_TYPE::MAGPIE_ENDSPOT),
 
 		new Signboard("nav.bmp", zero, navSize, GAMEOBJ_TYPE::SIGNBOARD_R),

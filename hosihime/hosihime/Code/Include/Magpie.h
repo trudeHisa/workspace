@@ -10,7 +10,7 @@ class Magpie:public GameObject
 public:
 	Magpie(const std::string& textrue, const GSvector2& position,
 		const GSvector2& viewSize, const MyRectangle& rect,
-		IMediator* objMediator);
+		IMediator* objMediator,Device& device );
 	~Magpie();
 	void initialize();
 	void updata();
@@ -37,6 +37,8 @@ private:
 	Animation anim;
 	AnimationTimer animTimer;
 	std::string dir;
+
+	Device& device;
 };
 
 #endif

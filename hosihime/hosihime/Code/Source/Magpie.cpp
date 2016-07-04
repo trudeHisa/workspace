@@ -2,10 +2,10 @@
 
 #include "Calculate.h"
 Magpie::Magpie(const std::string& textrue, const GSvector2& position,
-	const GSvector2& viewSize, const MyRectangle& rect, IMediator* objMediator)
+	const GSvector2& viewSize, const MyRectangle& rect, IMediator* objMediator,Device& device)
 	:GameObject(textrue, position, viewSize, rect, GAMEOBJ_TYPE::MAGPIE),
 	objMediator(objMediator), state(STANDBY),// timer(1, 1),
-	angle(0), speed(5), anim(animTimer), animTimer(30.0f)
+	angle(0), speed(5), anim(animTimer), animTimer(30.0f), device(device)
 {
 }
 
@@ -40,7 +40,7 @@ void Magpie::updata()
 		velocity.y = std::sin(angle)*0.1f*gsFrameTimerGetTime();
 		break;
 	case Magpie::TAKEIN:
-//		timer.update();
+		//		timer.update();
 		t +=t>60?1*gsFrameTimerGetTime():0;
 		anim.updata(dir);
 		animTimer.updata();
@@ -65,6 +65,15 @@ void Magpie::updata()
 		break;
 	}
 	position += velocity*gsFrameTimerGetTime()*speed;
+	//device.getSound().StopSE("kasasagi_fly.wav");
+
+	if (isRide())
+	{
+		if (!device.getSound().IsPlaySE("kasasagi_fly.wav"))
+		{
+			device.getSound().PlaySE("kasasagi_fly.wav");
+		}
+	}
 }
 void Magpie::collision(const GameObject* obj)
 {
@@ -100,7 +109,7 @@ void Magpie::draw(const Renderer& renderer, const Scroll& scroll)
 
 GameObject* Magpie::clone(const GSvector2& position)
 {
-	return new Magpie(textrue, position, viewSize, rect,objMediator);
+	return new Magpie(textrue, position, viewSize, rect,objMediator,device);
 }
 const bool Magpie::isRide()const
 {
