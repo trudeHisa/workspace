@@ -127,22 +127,29 @@ void Menu::InitDraw(const Renderer& renderer)
 {
 	if (!isInitDate)
 		return;
-	renderer.DrawString("データを初期化しますか？", &GSvector2(300, 400), 40);
+	renderer.DrawTextrue("pause.bmp",&GSvector2(0,0),&GScolor(1,1,1,0.6));
+	renderer.DrawString("データを初期化しますか？", &GSvector2(400, 400), 50,&GScolor(1,1,0,1),GS_FONT_BOLD,"メイリオ");
 
 	GScolor yes(1, 1, 1, 1);
 	GScolor no(1, 1, 1, 1);
+	GSvector2 s_yes(1, 1);
+	GSvector2 s_no(1, 1);
 	if (isInitSelect){
 		yes = GScolor(1, 0, 0, 1);
 		no = GScolor(1, 1, 1, 1);
+		s_yes = GSvector2(1.2, 1.2);
+		s_no = GSvector2(1, 1);
 	}
 	else
 	{
 		yes = GScolor(1, 1, 1, 1);
 		no = GScolor(1, 0, 0, 1);
+		s_yes = GSvector2(1, 1);
+		s_no = GSvector2(1.2, 1.2);
 	}
 
-	renderer.DrawTextrue("minits.bmp", &GSvector2(300, 450), &yes);
-	renderer.DrawTextrue("secound.bmp", &GSvector2(500, 450), &no);
+	renderer.DrawTextrue("yes.bmp", &GSvector2(400, 450),&s_yes,&yes);
+	renderer.DrawTextrue("no.bmp", &GSvector2(600, 450), &s_no,&no);
 
 }
 
