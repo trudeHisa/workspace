@@ -70,6 +70,10 @@ void Player::initialize()
 }
 void Player::jumpEnd()
 {
+	if (isJump == true)
+	{
+		device.getSound().PlaySE("’…’n.wav");
+	}
 	isJump = false;
 	jumpPower = 0;
 }

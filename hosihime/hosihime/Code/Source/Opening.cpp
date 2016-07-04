@@ -22,6 +22,10 @@ void Opening::Init()
 
 void Opening::Update()
 {
+	if (!device.getSound().IsPlaySE("Opening.wav"))
+	{
+		device.getSound().PlaySE("Opening.wav");
+	}
 	isEnd = device.getInput().getActionTrigger();
 	vel = GSvector2(0.0f, -2.0f);
 
@@ -45,6 +49,7 @@ void Opening::Finish()
 
 Scene Opening::Next()
 {
+	device.getSound().StopSE("Opening.wav");
 	return Scene::MODE_TITLE;
 }
 

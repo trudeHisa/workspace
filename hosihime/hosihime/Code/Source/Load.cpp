@@ -230,6 +230,6 @@ void Load::loadSound()
 	sound.LoadSE("gamemode1.wav", 1, GWAVE_LOOP, originalPath);
 	sound.LoadSE("gameover.wav", 1, GWAVE_LOOP, originalPath);
 	sound.LoadSE("map.wav", 1, GWAVE_LOOP, originalPath);
-	sound.LoadSE("opening.wav", 1, GWAVE_LOOP, originalPath);
+	sound.LoadSE("Opening.wav", 1, GWAVE_LOOP, originalPath);
 	sound.LoadSE("title.wav", 1, GWAVE_LOOP, originalPath);
 }
