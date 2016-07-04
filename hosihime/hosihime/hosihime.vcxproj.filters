@@ -572,5 +572,14 @@
     <ClInclude Include="Code\Include\Scroll.h">
       <Filter>ヘッダー ファイル\stage</Filter>
     </ClInclude>
+    <ClInclude Include="Code\Include\PlayEndParticle.h">
+      <Filter>ヘッダー ファイル\effect\particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\PlayEndParticleController.h">
+      <Filter>ヘッダー ファイル\effect\particle</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\PlayEndEffect.h">
+      <Filter>ヘッダー ファイル\effect</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

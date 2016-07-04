@@ -135,6 +135,9 @@
     <ClInclude Include="Code\Include\Opening.h" />
     <ClInclude Include="Code\Include\Operation.h" />
     <ClInclude Include="Code\Include\Pause.h" />
+    <ClInclude Include="Code\Include\PlayEndEffect.h" />
+    <ClInclude Include="Code\Include\PlayEndParticle.h" />
+    <ClInclude Include="Code\Include\PlayEndParticleController.h" />
     <ClInclude Include="Code\Include\Player.h" />
     <ClInclude Include="Code\Include\PlayMode_Play.h" />
     <ClInclude Include="Code\Include\PlayMode_Select.h" />
