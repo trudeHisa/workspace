@@ -178,7 +178,7 @@ void Player::jump()
 {
 	if (!isJump)
 	{
-		device.getSound().PlaySE("’…’n.wav");
+		//device.getSound().PlaySE("’…’n.wav");
 		speed = VERTICAL;
 		respawnCount.initialize();
 		return;
