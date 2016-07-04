@@ -42,7 +42,7 @@ void LightParticleController::createParticle()
 		return;
 	}
 	
-	for (int i = 0; i < 30; i++)
+	for (int i = 0; i < 6; i++)
 	{
 		lightparticles.emplace_back(Particle_Ptr(new LightParticle("lightParticle.bmp", i * 90, 1.5f, center)));
 	}

@@ -23,7 +23,6 @@ void Title::Init()
 void Title::Update()
 {
 	bStar.update();
-
 	rogoAlpha += gsFrameTimerGetTime()*0.02f;
 	if (rogoAlpha >= 1)
 	{

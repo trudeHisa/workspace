@@ -164,12 +164,11 @@ void Player::jumpStart()
 
 	if (currentDirAnimeKey == "R")
 	{
-		
-		effectMediator->add("LightEffect", positionsRight);
+		effectMediator->add("StarEffect", positionsRight);
 	}
 	if (currentDirAnimeKey == "L")
 	{
-		effectMediator->add("LightEffect", positionsLeft);
+		effectMediator->add("StarEffect", positionsLeft);
 	}
 	isJump = true;
 	jumpPower = JUMPMAXPOW;
@@ -182,7 +181,6 @@ void Player::jump()
 		respawnCount.initialize();
 		return;
 	}
-
 	
 	respawnCount.update();
 
@@ -237,6 +235,7 @@ const bool Player::respawn()
 		return false;
 	}
 
+	device.getSound().PlaySE("ƒŠƒXƒ|[ƒ“.wav");
 	position = respawnPos;
 	velocity = GSvector2(0, 0);
 	jumpPower = 0;
@@ -272,7 +271,7 @@ void Player::collision(const GameObject* obj)
 			}
 			if (currentDirAnimeKey == "L")
 			{
-				effectMediator->add("LightEffect", positionsLeft);
+				effectMediator->add("LightEffect", positionsLeft - GSvector2(68, 0));
 			}
 			ride(obj);
 			isMagpieRide = true;
@@ -298,6 +297,7 @@ void Player::collision(const GameObject* obj)
 		velocity = GSvector2(0, 0);
 		jumpPower = 0;
 		isRespawn = true;
+
 	}
 }
 void Player::collisionGround(const GameObject* obj)

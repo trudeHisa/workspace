@@ -130,6 +130,10 @@ void Load::loadTextrue()
 	*/
 	path = "Textrue\\\\operation\\\\";
 	renderer.LoadTextrue("operation.bmp", GS_TEXCOLOR_KEY_DISABLE, path);
+	renderer.LoadTextrue("Control.bmp", GS_TEXCOLOR_KEY_DISABLE, path);
+	renderer.LoadTextrue("object.bmp", GS_TEXCOLOR_KEY_DISABLE, path);
+	renderer.LoadTextrue("stage_commentary.bmp", GS_TEXCOLOR_KEY_DISABLE, path);
+
 
 	/*
 	*星
@@ -139,7 +143,6 @@ void Load::loadTextrue()
 	renderer.LoadTextrue("effect_Star_fire.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("fire.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("star.bmp", GS_TEXCOLOR_KEY_AUTO, path);
-	renderer.LoadTextrue("starpa.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	//renderer.LoadTextrue("star_break.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	/*
 	アニメーションでやるつもりだったが面倒なので切り替えで
@@ -148,6 +151,7 @@ void Load::loadTextrue()
 	renderer.LoadTextrue("star_break1.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("star_fire.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("star_teil.bmp", GS_TEXCOLOR_KEY_AUTO, path);
+	renderer.LoadTextrue("starg.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	
 	
 	/*
@@ -163,11 +167,13 @@ void Load::loadTextrue()
 	renderer.LoadTextrue("space_text.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("title_text.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("title.bmp", GS_TEXCOLOR_KEY_AUTO, path);
+	renderer.LoadTextrue("reset.bmp", GS_TEXCOLOR_KEY_AUTO, path);
+	renderer.LoadTextrue("reset_gray.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 
 
+	renderer.LoadTextrue("stage0.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("stage1.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("stage2.bmp", GS_TEXCOLOR_KEY_AUTO);
-	renderer.LoadTextrue("stage3.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("cleartime.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("secound.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("minits.bmp", GS_TEXCOLOR_KEY_AUTO);
@@ -175,8 +181,17 @@ void Load::loadTextrue()
 	renderer.LoadTextrue("circleParticle.bmp", GS_TEXCOLOR_KEY_WHITE);
 	renderer.LoadTextrue("lightParticle.bmp", GS_TEXCOLOR_KEY_WHITE);
 	renderer.LoadTextrue("starparticle.bmp");
+	renderer.LoadTextrue("starg.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("gundam.bmp");
 	renderer.LoadTextrue("shooting2.bmp");
+	renderer.LoadTextrue("gamebag.bmp", GS_TEXCOLOR_KEY_AUTO);
+	renderer.LoadTextrue("gamebag_g.bmp", GS_TEXCOLOR_KEY_AUTO);
+	renderer.LoadTextrue("titlebag.bmp", GS_TEXCOLOR_KEY_AUTO);
+	renderer.LoadTextrue("titlebag_g.bmp", GS_TEXCOLOR_KEY_AUTO);
+	renderer.LoadTextrue("pause.bmp");
+	renderer.LoadTextrue("yes.bmp", GS_TEXCOLOR_KEY_AUTO);
+	renderer.LoadTextrue("no.bmp", GS_TEXCOLOR_KEY_AUTO);
+
 }
 void Load::loadSound()
 {
@@ -193,6 +208,10 @@ void Load::loadSound()
 	sound.LoadSE("star_break.wav", 5, GWAVE_DEFAULT, originalPath + path);
 	sound.LoadSE("landing.wav", 5, GWAVE_DEFAULT, originalPath + path);
 	sound.LoadSE("star_fire.wav", 5, GWAVE_DEFAULT, originalPath + path);
+	sound.LoadSE("リスポーン.wav", 5, GWAVE_DEFAULT, originalPath + path);
+	sound.LoadSE("着地.wav", 1, GWAVE_DEFAULT, originalPath + path);
+	sound.LoadSE("kasasagi_fly.wav", 5, GWAVE_DEFAULT, originalPath + path);
+
 	/*
 	*その他
 	*/

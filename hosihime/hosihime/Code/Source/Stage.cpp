@@ -7,24 +7,24 @@
 #include "EffectFactory.h"
 
 Stage::Stage(const int& stageNo, Device& device)
-:stageNo(stageNo),
-scroll(WINDOW_WIDTH, WINDOW_HEIGHT, mapSize, stageNo),
-device(device), timer(120, 120), BLOCKSIZE(64.0f),
-control(),
-effectFactory(EffectsFactory(new EffectFactory())),
-effectController(effectFactory),
-mapSize(0, 0),
-factory(ObjFactory(new GameObjectFactory(scroll, device, &control, &effectController))),
-starManager(stageNo, scroll, control, effectController, device),
-fadeIn(), fadeOut()
+	:stageNo(stageNo),
+	scroll(WINDOW_WIDTH, WINDOW_HEIGHT, mapSize, stageNo),
+	device(device), timer(120, 120), BLOCKSIZE(64.0f),
+	control(),
+	effectFactory(EffectsFactory(new EffectFactory())),
+	effectController(effectFactory),
+	mapSize(0, 0),
+	factory(ObjFactory(new GameObjectFactory(scroll, device, &control, &effectController))),
+	starManager(stageNo, scroll, control, effectController, device),
+	fadeIn(), fadeOut()
 {
 	CSVStream stream;
 	std::string name = "mapdata\\\\testmap" + std::to_string(stageNo) + ".csv";
 	stream.input(&mapdata, name.c_str());
 
-	float time[]=
+	float time[] =
 	{
-		180,
+		10,
 		300,
 		300
 	};
@@ -95,18 +95,19 @@ void Stage::updata()
 		isEnd = fadeOut.getIsEnd();
 	}
 }
+
 void Stage::draw(const Renderer& renderer)
 {
+
 	scroll.draw(renderer);
 	effectController.draw(renderer, scroll);
 	control.draw(renderer, scroll);
 	int t = timer.getTime() / FRAMETIME;
-	renderer.DrawString(std::to_string(t), 
-	&GSvector2(50, 50), 70,&GScolor(1,1,0,1),GS_FONT_ITALIC,"メイリオ");
+	renderer.DrawString(std::to_string(t),
+		&GSvector2(50, 50), 70, &GScolor(1, 1, 0, 1), GS_FONT_ITALIC, "メイリオ");
 
 	//renderer.DrawNumber("number.bmp", GSvector2(50, 50), 32, 64, t);
 
-	
 
 	fadeOut.draw(renderer);
 	fadeIn.draw(renderer);
@@ -119,7 +120,7 @@ void Stage::finish()
 
 void Stage::saveScore(TimeScore& score)
 {
-	score.setScore(timer);
+	score.setScore(timer,stageNo);
 }
 
 const bool Stage::getIsEnd()const
