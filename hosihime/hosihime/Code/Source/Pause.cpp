@@ -22,7 +22,6 @@ void Pause::Initializse()
 	isEnd = false;
 	fadeEnd = false;
 	index = 0;
-	starAlpaha = false;
 }
 
 void Pause::Update()
@@ -84,6 +83,7 @@ void Pause::PauseMenu()
 		NowSelect = (NowSelect + (Pause_Num-1)) % Pause_Num;
 		index -= 1;
 	}
+
 	//1と2の中身が一緒だからおかしくなってるから改善(３択なら大丈夫？)
 	Calculate<int>calc;
 	index = calc.wrap(index, 0, 2);
@@ -94,19 +94,18 @@ void Pause::PauseMenu()
 		{
 			//プレイ画面に戻る
 		case Pause_back:
-			index = 0;
+			NowSelect = 0;
 			pausecount = false;
 			break;
 
 			//タイトルに戻る
 		case  Pause_title:
-			index = 0;
+			NowSelect = 0;
 			isEnd = true;
 			break;
 		}
 	}
 }
-
 
 void Pause::Finish()
 {
