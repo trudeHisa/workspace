@@ -104,7 +104,7 @@ bool GameObjControl::isDeadPlayer()
 	std::vector<GameObj_Ptr>::iterator end = objs.end();
  	auto itr = std::find_if(s, end, [](GameObj_Ptr obj)->bool
 	{
-		return obj->getType() == PLAYER;
+		return obj->getType() == GAMEOBJ_TYPE::PLAYER;
 	});
 	if (itr == objs.end())
 	{
@@ -119,7 +119,7 @@ bool GameObjControl::StageClear()
 	std::vector<GameObj_Ptr>::iterator end = objs.end();
 	auto itr = std::find_if(s, end, [](GameObj_Ptr obj)->bool
 	{
-		return obj->getType()== PLAYER;
+		return obj->getType() == GAMEOBJ_TYPE::PLAYER;
 	});
 	if (itr == objs.end())
 	{

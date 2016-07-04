@@ -15,8 +15,6 @@ StarParticle::StarParticle(const std::string& textrue,
 	//velocity.y = speed;
 	velocity *= speed;
 }
-
-
 StarParticle::~StarParticle()
 {
 }
@@ -27,16 +25,15 @@ void StarParticle::initialize()
 }
 void StarParticle::update()
 {
-	rotate += gsFrameTimerGetTime()*velocity.x*4.0f;
+	rotate += gsFrameTimerGetTime()*velocity.x*8.0f;
 	position += velocity*gsFrameTimerGetTime();
 	//velocity.y += GRAVITY;
-	alpha -= gsFrameTimerGetTime()*0.02f;
+	alpha -= gsFrameTimerGetTime()*0.01f;
 	isDead = alpha <= 0;
 }
 void StarParticle::draw(const Renderer& renderer, const Scroll& scroll)
 {
-
-	renderer.DrawTextrue(textrue, &scroll.transformViewPosition(position + GSvector2(32, 64+rand(mt)*15)),
+	renderer.DrawTextrue(textrue, &scroll.transformViewPosition(position/* + GSvector2(60, 70+rand(mt)*15)*/),
 		NULL, &GSvector2(4, 4), NULL, alpha * 180, &GScolor(rand(mt), rand(mt), rand(mt), alpha));
 }
 const bool StarParticle::getIsDead()const

@@ -1,10 +1,10 @@
 #ifndef _SCENEMANAGER_H_
 #define _SCENEMANAGER_H_
 #include "IScene.h"
-#include <map>
+#include <unordered_map>
 #include <memory>
 typedef std::shared_ptr<IScene>Scene_Ptr;
-typedef std::map<Scene, Scene_Ptr> Scenes;
+typedef std::unordered_map<Scene, Scene_Ptr> Scenes;
 class SceneManager
 {
 public:

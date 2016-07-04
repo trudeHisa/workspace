@@ -23,7 +23,6 @@ void Title::Init()
 void Title::Update()
 {
 	bStar.update();
-
 	rogoAlpha += gsFrameTimerGetTime()*0.02f;
 	if (rogoAlpha >= 1)
 	{
@@ -32,7 +31,7 @@ void Title::Update()
 			device.getSound().PlaySE("title.wav");
 		}		
 		rogoAlpha = 1;
-		if (device.getInput().getActionTrigger())
+		if (device.getInput().getActionTrigger() || gsGetJoyTrigger(0,GJOY_BUTTON_8))
 		{
 			device.getSound().PlaySE("decision.wav");
 			isEnd = true;
@@ -58,7 +57,7 @@ void Title::Finish()
 }
 Scene Title::Next()
 {
-	return MODE_MENU;
+	return Scene::MODE_MENU;
 }
 bool Title::IsEnd()
 {

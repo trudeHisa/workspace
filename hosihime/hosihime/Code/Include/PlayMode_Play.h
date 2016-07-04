@@ -8,11 +8,12 @@
 #define _PLAYMODE_PLAY_H_
 #include "IPlayMode.h"
 #include "Stage.h"
+#include "StarFade.h"
 class TimeScore;
 class PlayMode_Play:public IPlayMode
 {
 public:
-	PlayMode_Play(Device& device, int& no,TimeScore& score);
+	PlayMode_Play(Device& device, int& no, TimeScore& score, StarFade& starFade);
 	void initialize();
 	void updata();
 	void draw(const Renderer& renderer);

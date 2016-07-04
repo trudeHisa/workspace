@@ -8,7 +8,7 @@ public:
 	TimeScore();
 	~TimeScore();
 	void init();
-	void setScore(Timer& timer);
+	void setScore(Timer& timer,int stageNo);
 	const int getScore()const;
 private:
 	int score;

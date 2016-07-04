@@ -15,13 +15,15 @@
 #include "Fade.h"
 
 #include "EffectController.h"
+
+#include "StarFade.h"
 class Device;
 typedef std::shared_ptr<Factory<GameObj_Ptr,GAMEOBJ_TYPE>> ObjFactory;
 
 class Stage
 {
 public:
-	Stage(const int& stageNo, Device& device);
+	Stage(const int& stageNo, Device& device,StarFade& starFade);
 	~Stage();
 	void updata();
 	void initialize();
@@ -50,8 +52,13 @@ private:
 	Fade fadeOut;
 	Fade fadeIn;
 
+	bool pcount;
+
 	EffectsFactory effectFactory;
 	EffectController effectController;
+
+	StarFade& starFade;
+	Timer fadeTimer;
 
 	const float BLOCKSIZE;
 	const unsigned int stageNo;

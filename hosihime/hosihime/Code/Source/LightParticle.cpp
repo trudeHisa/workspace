@@ -31,14 +31,14 @@ void LightParticle::update()
 	rotate += gsFrameTimerGetTime()*velocity.x*8.0f;
 	position += velocity*gsFrameTimerGetTime()*0.5f;
 	//velocity.y += GRAVITY;
-	alpha -= gsFrameTimerGetTime()*0.014f;
+	alpha -= gsFrameTimerGetTime()*0.02f;
 	isDead = alpha <= 0;
 }
 
 void LightParticle::draw(const Renderer& renderer, const Scroll& scroll)
 {
 	//ポジションを星の生成位置
-	renderer.DrawTextrue(textrue, &scroll.transformViewPosition(position), NULL, &GSvector2(4, 4), NULL, alpha * 180, &GScolor(1, 1, 1, alpha));
+	renderer.DrawTextrue(textrue, &scroll.transformViewPosition(position), NULL, &GSvector2(4, 4), NULL, alpha * 180, &GScolor(1, 1, 0, alpha));
 }
 
 const bool LightParticle::getIsDead()const

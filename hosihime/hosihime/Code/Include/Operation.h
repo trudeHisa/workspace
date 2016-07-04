@@ -13,9 +13,11 @@ public:
 	void Update();
 	void Draw(const Renderer& renderer);
 	void Finish();
+	void TexChange();
 	Scene Next();
 	bool IsEnd();
 private:
+	int index;
 	bool isEnd;
 	Device& device;
 	Fade fadeIn;

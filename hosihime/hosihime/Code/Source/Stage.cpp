@@ -6,7 +6,7 @@
 #include "Player.h"
 #include "EffectFactory.h"
 
-Stage::Stage(const int& stageNo, Device& device)
+Stage::Stage(const int& stageNo, Device& device, StarFade& starFade)
 :stageNo(stageNo),
 scroll(WINDOW_WIDTH, WINDOW_HEIGHT, mapSize, stageNo),
 device(device), timer(120, 120), BLOCKSIZE(64.0f),
@@ -16,13 +16,13 @@ effectController(effectFactory),
 mapSize(0, 0),
 factory(ObjFactory(new GameObjectFactory(scroll, device, &control, &effectController))),
 starManager(stageNo, scroll, control, effectController, device),
-fadeIn(), fadeOut()
+	fadeIn(), fadeOut(), starFade(starFade), fadeTimer(6,6)
 {
 	CSVStream stream;
 	std::string name = "mapdata\\\\testmap" + std::to_string(stageNo) + ".csv";
 	stream.input(&mapdata, name.c_str());
 
-	float time[]=
+	float time[] =
 	{
 		180,
 		300,
@@ -59,6 +59,8 @@ void Stage::initialize()
 	fadeIn.start(GScolor(0, 0, 0, 1), GScolor(0, 0, 0, 0), 3.f);
 
 	effectController.initialize();
+
+	fadeTimer.initialize();	
 }
 void Stage::updata()
 {
@@ -80,6 +82,7 @@ void Stage::updata()
 		flag = CLEARFLAG::GAMEOVER;
 		if (!fadeOut.getIsStart())
 		{
+			
 			fadeOut.start(GScolor(0, 0, 0, 0), GScolor(0, 0, 0, 1), 2);
 		}
 		isEnd = fadeOut.getIsEnd();
@@ -88,17 +91,23 @@ void Stage::updata()
 	if (control.StageClear())
 	{
 		timer.stop();
-		flag = CLEARFLAG::CLEAR;
-		if (!fadeOut.getIsStart())
+		if (flag != CLEARFLAG::CLEAR)
 		{
-			fadeOut.start(GScolor(0, 0, 0, 0), GScolor(0, 0, 0, 1), 2);
+			starFade.initialize();
 		}
-		isEnd = fadeOut.getIsEnd();
+		fadeTimer.update();
+		flag = CLEARFLAG::CLEAR;	
+		starFade.update();
+
+		isEnd = fadeTimer.isEnd();
 	}
 }
+
 void Stage::draw(const Renderer& renderer)
 {
+
 	scroll.draw(renderer);
+	effectController.draw(renderer, scroll);
 	control.draw(renderer, scroll);
 	int t = timer.getTime() / FRAMETIME;
 	GScolor timerColor;
@@ -134,10 +143,9 @@ void Stage::draw(const Renderer& renderer)
 	//renderer.DrawNumber("number.bmp", GSvector2(50, 50), 32, 64, t);
 	renderer.DrawTimer("timer.bmp", GSvector2((WINDOW_WIDTH/2)-75 + timerFontSize , -10), 50, 64, t,&timerColor);
 
-	effectController.draw(renderer, scroll);
-
-	fadeOut.draw(renderer);
+	//fadeOut.draw(renderer);
 	fadeIn.draw(renderer);
+	starFade.draw(renderer);
 }
 void Stage::finish()
 {
@@ -147,7 +155,7 @@ void Stage::finish()
 
 void Stage::saveScore(TimeScore& score)
 {
-	score.setScore(timer);
+	score.setScore(timer,stageNo);
 }
 
 const bool Stage::getIsEnd()const

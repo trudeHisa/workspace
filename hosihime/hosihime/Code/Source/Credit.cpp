@@ -48,7 +48,7 @@ void Credit::Finish()
 }
 Scene Credit::Next()
 {
-	return MODE_MENU;
+	return Scene::MODE_MENU;
 }
 bool Credit::IsEnd()
 {

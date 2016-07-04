@@ -103,6 +103,12 @@
     <Filter Include="ヘッダー ファイル\gameobject\background_Star">
       <UniqueIdentifier>{655b1069-b9f4-46e9-b79c-93329bde92e1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\starFade">
+      <UniqueIdentifier>{184ed08e-4697-4f32-a032-05c6eadde3e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\starFade">
+      <UniqueIdentifier>{11be5211-3e63-48f5-be4f-eaf6209f5f79}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\Source\Star_wave.cpp">
@@ -314,6 +320,15 @@
     </ClCompile>
     <ClCompile Include="Code\Source\Hikoboshi.cpp">
       <Filter>ソース ファイル\gameobject\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\Pause.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\StarFadeParticle.cpp">
+      <Filter>ソース ファイル\starFade</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\Source\StarFade.cpp">
+      <Filter>ソース ファイル\starFade</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -565,6 +580,15 @@
     </ClInclude>
     <ClInclude Include="Code\Include\Opening.h">
       <Filter>ヘッダー ファイル\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\Pause.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\StarFadeParticle.h">
+      <Filter>ヘッダー ファイル\starFade</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\Include\StarFade.h">
+      <Filter>ヘッダー ファイル\starFade</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

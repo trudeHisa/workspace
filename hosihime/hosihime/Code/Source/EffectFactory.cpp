@@ -4,6 +4,7 @@
 #include "LightEffect.h"
 #include "FireworkEffect.h"
 #include "StarEffect.h"
+
 EffectFactory::EffectFactory()
 	:container()
 {
@@ -22,5 +23,4 @@ void EffectFactory::addContainer()
 	container.insert(std::pair<const std::string, Effect_Ptr >("StarEffect", Effect_Ptr(new StarEffect())));
 	container.insert(std::pair<const std::string, Effect_Ptr >("LightEffect", Effect_Ptr(new LightEffect())));
 	container.insert(std::pair<const std::string, Effect_Ptr >("FireworkEffect", Effect_Ptr(new FireworkEffect())));
-	container.insert(std::pair<const std::string, Effect_Ptr >("StarEffect", Effect_Ptr(new StarEffect())));
 }

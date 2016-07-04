@@ -10,11 +10,11 @@
 Player::Player(const std::string& textrue, const GSvector2& position,
 	const GSvector2& viewSize, const MyRectangle& rect,
 	Scroll* scroll, Device& device, IEffectMediator* effectMediator)
-	:GameObject(textrue, position, viewSize, rect, PLAYER),
+	:GameObject(textrue, position, viewSize, rect, GAMEOBJ_TYPE::PLAYER),
 
 	GRAVITY(10), VERTICAL(5),
-	JUMPMAXPOW(-18), JUMPSPEED(0.1),
-	JUMPVERTICAL(10),
+	JUMPMAXPOW(-10), JUMPSPEED(0.03),
+	JUMPVERTICAL(6),
 	SCROLLOFFSET(GSvector2(-WINDOW_WIDTH / 2 + viewSize.x, -(WINDOW_HEIGHT / 2) - viewSize.y)),
 
 	device(device), scroll(scroll),
@@ -28,8 +28,10 @@ Player::Player(const std::string& textrue, const GSvector2& position,
 	animation(animeTimer),
 	animeTimer(60.f),
 	currentDirAnimeKey("R"),
-	effectMediator(effectMediator)
-
+	effectMediator(effectMediator),
+	positionsRight(position + GSvector2(10, 64)),
+	positionsLeft(position + GSvector2(80, 64)),
+	respawnCount(0, 4)
 {
 }
 Player::~Player()
@@ -45,6 +47,7 @@ void Player::initialize()
 	isGround = false;
 	isClear = false;
 	isMagpieRide = false;
+	respawnCount.initialize();
 
 	currentDirAnimeKey = "R";
 	animeTimer.initialize();
@@ -61,9 +64,16 @@ void Player::initialize()
 	isRespawn = true;
 	scroll->initialize(position + SCROLLOFFSET);
 	ishold = false;
+
+	positionsRight = position + GSvector2(10,70);
+	positionsLeft = position + GSvector2(80, 70);
 }
 void Player::jumpEnd()
 {
+	if (isJump == true)
+	{
+		device.getSound().PlaySE("着地.wav");
+	}
 	isJump = false;
 	jumpPower = 0;
 }
@@ -74,6 +84,17 @@ void Player::updata()
 	{
 		return;
 	}
+
+	if (respawnCount.isEnd())
+	{
+		position = respawnPos;
+		velocity = GSvector2(0, 0);
+		jumpPower = 0;
+		isRespawn = true;
+		respawnCount.initialize();
+		return;
+	}
+
 	scroll->moving(position, SCROLLOFFSET);
 	endMove();
 	position += velocity*gsFrameTimerGetTime();
@@ -89,16 +110,19 @@ void Player::gravity()
 }
 void Player::moving()
 {
+	positionsRight = position + GSvector2(10, 70);
+	positionsLeft = position + GSvector2(80, 70);
+
 	gravity();
 	jumpStart();
-	rideUpDown();
+	
 	jump();
 	float movedir = moveHorizontal();
 	changeAnimation(movedir);
 	if (!isGround)
 	{
 		return;
-}
+	}
 	const Sound& sound = device.getSound();
 	if (!sound.IsPlaySE("landing.wav") && movedir != 0)
 	{
@@ -113,7 +137,6 @@ void Player::rideUpDown()
 	}
 	if (device.getInput().getDownTrigger())
 	{
-
 		velocity = GSvector2(0, 0);
 		/*
 		*64は星のサイズ
@@ -142,7 +165,15 @@ void Player::jumpStart()
 		return;
 	}
 	device.getSound().PlaySE("jump.wav");
-	effectMediator->add("StarEffect", position);
+
+	if (currentDirAnimeKey == "R")
+	{
+		effectMediator->add("StarEffect", positionsRight);
+	}
+	if (currentDirAnimeKey == "L")
+	{
+		effectMediator->add("StarEffect", positionsLeft);
+	}
 	isJump = true;
 	jumpPower = JUMPMAXPOW;
 }
@@ -151,8 +182,12 @@ void Player::jump()
 	if (!isJump)
 	{
 		speed = VERTICAL;
+		respawnCount.initialize();
 		return;
 	}
+	
+	respawnCount.update();
+
 	speed = JUMPVERTICAL;
 	velocity.y = jumpPower;
 	jumpPower += GRAVITY*gsFrameTimerGetTime()*JUMPSPEED;
@@ -161,6 +196,10 @@ void Player::jump()
 }
 const float Player::moveHorizontal()
 {
+	if (isRespawn)
+	{
+		return 0.0f;
+	}
 	float direction = device.getInput().getVelocity().x;
 	velocity.x = direction* speed;
 	return direction;
@@ -183,12 +222,15 @@ bool Player::getIsClear()
 const bool Player::respawn()
 {
 	//画面内か？
-	if (scroll->isInsideWindow(scroll->transformViewPosition(position), viewSize))
+	if (isInScreen(*scroll))
 	{
 		/*
 		取りあえず
 		*/
-		isRespawn = false;
+		if (isGround)
+		{
+			isRespawn = false;
+		}
 		return false;
 	}
 
@@ -197,11 +239,11 @@ const bool Player::respawn()
 		return false;
 	}
 
+	device.getSound().PlaySE("リスポーン.wav");
 	position = respawnPos;
 	velocity = GSvector2(0, 0);
 	jumpPower = 0;
 	isRespawn = true;
-
 	return true;
 }
 
@@ -216,16 +258,30 @@ const bool Player::isRide()const
 //衝突
 void Player::collision(const GameObject* obj)
 {
-	if (obj->getType() == HIKOBOSHI)
+	if (obj->getType() == GAMEOBJ_TYPE::HIKOBOSHI)
 	{
 		ishold = true;
 	}
 
-	if (obj->getType() == MAGPIE)
+	if (obj->getType() == GAMEOBJ_TYPE::MAGPIE)
 	{
 		const Magpie* mag = dynamic_cast<const Magpie*>(obj);
 		if (mag->isRide())
 		{
+			if (!device.getSound().IsPlaySE("kasasagi_fly.wav"))
+			{
+				device.getSound().PlaySE("kasasagi_fly.wav");
+			}
+			//device.getSound().PlaySE("kasasagi_fly.wav");
+			if (currentDirAnimeKey == "R")
+			{
+
+				effectMediator->add("LightEffect", positionsRight);
+			}
+			if (currentDirAnimeKey == "L")
+			{
+				effectMediator->add("LightEffect", positionsLeft - GSvector2(68, 0));
+			}
 			ride(obj);
 			isMagpieRide = true;
 			jumpEnd();
@@ -233,6 +289,7 @@ void Player::collision(const GameObject* obj)
 		else
 		{
 			isMagpieRide = false;
+			device.getSound().StopSE("kasasagi_fly.wav");
 		}
 	}
 	if (isMagpieRide)
@@ -242,22 +299,24 @@ void Player::collision(const GameObject* obj)
 	collisionStar(obj);
 	collisionRespawn(obj);
 	collisionGround(obj);
-	if (obj->getType() == GOAL) isClear = true;
-	if (obj->getType() == BURNSTAR || obj->getType() == PLANET)
+	if (obj->getType() == GAMEOBJ_TYPE::GOAL) isClear = true;
+	if (obj->getType() == GAMEOBJ_TYPE::BURNSTAR || obj->getType() == GAMEOBJ_TYPE::PLANET)
 	{
+		//effectMediator->add("FireworkEffect", position);
 		position = respawnPos;
 		velocity = GSvector2(0, 0);
 		jumpPower = 0;
 		isRespawn = true;
+
 	}
 }
 void Player::collisionGround(const GameObject* obj)
 {
 	GAMEOBJ_TYPE type = obj->getType();
-	if (type == RESPAWN ||
-		type == START ||
-		type == GOAL ||
-		type == MAGPIE_ENDSPOT)
+	if (type == GAMEOBJ_TYPE::RESPAWN ||
+		type == GAMEOBJ_TYPE::START ||
+		type == GAMEOBJ_TYPE::GOAL ||
+		type == GAMEOBJ_TYPE::MAGPIE_ENDSPOT)
 	{
 		isGround = true;
 		jumpEnd();
@@ -266,20 +325,28 @@ void Player::collisionGround(const GameObject* obj)
 
 void Player::ride(const GameObject* obj)
 {
-	if (obj->getType() == MAGPIE)
+	if (obj->getType() == GAMEOBJ_TYPE::MAGPIE)
 	{
 		position.x = obj->getPosition().x + 32;
 		position.y = obj->getPosition().y - 2;
 		return;
 	}
 	position = obj->getPosition();
-	position.y -=viewSize.y;
+	position.y -= viewSize.y;
 }
 
 void Player::collisionStar(const GameObject* obj)
 {
+	if (!isInScreen(*scroll))
+	{
+		return;
+	}
+	if (isRespawn)
+	{
+		return;
+	}
 	GAMEOBJ_TYPE type = obj->getType();
-	if (type != STAR&& type != BREAKSTAR)
+	if (type != GAMEOBJ_TYPE::STAR&& type != GAMEOBJ_TYPE::BREAKSTAR)
 	{
 		return;
 	}
@@ -290,6 +357,7 @@ void Player::collisionStar(const GameObject* obj)
 		rideStarPointerNum = pointerNum;
 		ride(obj);
 		jumpEnd();
+		rideUpDown();
 		return;
 	}
 	if (rideStarPointerNum != pointerNum)
@@ -298,15 +366,19 @@ void Player::collisionStar(const GameObject* obj)
 	}
 	ride(obj);
 	jumpEnd();
+	rideUpDown();
 }
 void Player::collisionRespawn(const GameObject* obj)
 {
-	if (obj->getType() != RESPAWN)
+	if (obj->getType() != GAMEOBJ_TYPE::RESPAWN)
 	{
 		return;
 	}
-	const Respawn* respawn = dynamic_cast<const Respawn*>(obj);
-	respawn->setRespawn(&respawnPos);
+	GSvector2 respawn = obj->getPosition();
+	respawn.y -=5 * 64;
+	respawnPos = respawn;
+	//const Respawn* respawn = dynamic_cast<const Respawn*>(obj);
+	//respawn->setRespawn(&respawnPos);
 }
 void Player::nonCollision()
 {

@@ -80,10 +80,56 @@ void CSVStream::input(int& input, const char* name)const
 	{
 		std::string token;
 		std::istringstream stream(str);
-		while (std::getline(stream,token))
+		while (std::getline(stream, token))
 		{
 			int temp = std::stoi(token);//数値に変換
 			input = temp;
 		}
 	}
+	ifs.close();
+}
+//ｎ行目を読み込み OK
+void CSVStream::loadScore(int& input, const int stage, const char* name)const
+{
+	std::ifstream ifs(name);
+	if (!ifs)
+	{
+		return;
+	}
+	std::string str;
+	std::vector<int> vec;
+	while (std::getline(ifs, str))
+	{
+		std::string token;
+		std::istringstream stream(str);
+		while (std::getline(stream, token))
+		{
+			int temp = std::stoi(token);//数値に変換
+			vec.push_back(temp);
+		}
+	}
+	ifs.close();
+	input = vec[stage];
+}
+
+//ｎ行目を書き込み
+void CSVStream::save(const int& out, int stage, const char* name)const
+{
+	int temp[3];
+	for (int i = 0; i < 3; i++)//一時保存
+	{
+		loadScore(temp[i], i, name);
+	}
+	temp[stage] = out;//指定したステージの箇所を書き換え
+
+
+	std::ofstream ofs(name);
+	for (int i = 0; i < 3; i++)//書き換えた箇所を含む全てを出力
+	{
+		ofs << temp[i] << std::endl;
+	}
+//	ofs << (out);
+	//ofs << std::endl;
+
+	ofs.close();
 }

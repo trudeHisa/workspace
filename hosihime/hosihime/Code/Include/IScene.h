@@ -1,7 +1,7 @@
 #ifndef _ISCENE_H_
 #define _ISCENE_H_
 #include "Renderer.h"
-enum Scene
+enum class Scene
 {
 	MODE_LOAD,
 	MODE_OPENING,

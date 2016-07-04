@@ -4,7 +4,7 @@ BreakStar::BreakStar(const std::string& textrue, const GSvector2& position,
 	const GSvector2& viewSize, const MyRectangle& rect,
 	float helth, StarMove_Ptr move, float max_Durability, 
 	IEffectMediator* effectMediator, Device& device)
-	:GameObject(textrue, position, viewSize, rect, BREAKSTAR),
+	:GameObject(textrue, position, viewSize, rect, GAMEOBJ_TYPE::BREAKSTAR),
 	Star(textrue, position, viewSize, rect, helth,
 	move,effectMediator,device),
 	durability(max_Durability), max_Durability(max_Durability),
@@ -55,7 +55,7 @@ void BreakStar::updata()
 void BreakStar::collision(const GameObject* obj)
 {
 	Star::collision(obj);
-	if (obj->getType() == PLAYER)
+	if (obj->getType() == GAMEOBJ_TYPE::PLAYER)
 	{
 		isBreakStart = true;
 	}

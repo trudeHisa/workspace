@@ -17,15 +17,18 @@
 #include "Credit.h"
 #include "Background_Star.h"
 
+#include "StarFade.h"
+
 SceneManager sceneManager;
 Device device;
 Renderer renderer;
 TimeScore score;
 
+StarFade starFade;
 Background_Star bstar(device);
 void gameInit(void)
 {	
-	Scene_Ptr gamePlay(new GamePlay(device, score));
+	Scene_Ptr gamePlay(new GamePlay(device, score,starFade));
 	sceneManager.Add(Scene::MODE_LOAD, Scene_Ptr( new Load(device, renderer)));
 
 	sceneManager.Add(Scene::MODE_OPENING, Scene_Ptr(new Opening(device)));
@@ -38,8 +41,8 @@ void gameInit(void)
 
 	sceneManager.Add(Scene::MODE_GAMEPLAY, gamePlay);
 
-	sceneManager.Add(Scene::MODE_ENDING, Scene_Ptr(new Ending(device, score)));
-	sceneManager.Add(Scene::MODE_RESULT, Scene_Ptr(new Result(device, score)));
+	sceneManager.Add(Scene::MODE_ENDING, Scene_Ptr(new Ending(device, score,starFade)));
+	sceneManager.Add(Scene::MODE_RESULT, Scene_Ptr(new Result(device, score, dynamic_cast<GamePlay*>(gamePlay.get()),starFade)));
 	sceneManager.Add(Scene::MODE_GAMEOVER, Scene_Ptr(new GameOver(device,dynamic_cast<GamePlay*>(gamePlay.get()))));
 
 	sceneManager.Change(Scene::MODE_LOAD);
