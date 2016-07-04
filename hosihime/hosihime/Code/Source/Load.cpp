@@ -151,6 +151,7 @@ void Load::loadTextrue()
 	renderer.LoadTextrue("star_break1.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("star_fire.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("star_teil.bmp", GS_TEXCOLOR_KEY_AUTO, path);
+	renderer.LoadTextrue("starg.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	
 	
 	/*

@@ -53,7 +53,7 @@ void StarParticleController::createParticle()
 {
 	if ((int)timer.getTime() % 2==1)
 	{
-		Starparticles.emplace_back(Particle_Ptr(new StarParticle("starg.bmp", 45, 0.5f, center)));
+		Starparticles.emplace_back(Particle_Ptr(new StarParticle("shooting2.bmp", 45, 0.5f, center)));
 	}
 	/*for (int i = 0; i < 20; i++)
 	{

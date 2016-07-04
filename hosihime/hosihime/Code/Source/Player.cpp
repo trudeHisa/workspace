@@ -178,6 +178,7 @@ void Player::jump()
 {
 	if (!isJump)
 	{
+		//device.getSound().PlaySE("着地.wav");
 		speed = VERTICAL;
 		respawnCount.initialize();
 		return;
@@ -235,6 +236,7 @@ const bool Player::respawn()
 	if (isRespawn)
 	{
 		return false;
+		//device.getSound().PlaySE("リスポーン.wav");
 	}
 
 	position = respawnPos;
