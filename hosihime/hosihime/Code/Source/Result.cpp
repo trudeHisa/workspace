@@ -4,8 +4,8 @@
 #include "../Include/CSVStream.h"
 #define NUMPOSITION GSvector2(480,390)
 #define LASTNUMPOSITION GSvector2(480,300)
-Result::Result(Device& device, TimeScore& score, GamePlay* play)
-:device(device), score(score), fadeIn(), fadeOut(), play(play)
+Result::Result(Device& device, TimeScore& score, GamePlay* play,StarFade& starFade)
+:device(device), score(score), fadeIn(), fadeOut(), play(play), starFade(starFade)
 {
 }
 Result::~Result()
@@ -13,6 +13,7 @@ Result::~Result()
 }
 void Result::Init()
 {
+	
 	fadeIn.initialize();
 	fadeOut.initialize();
 	isEnd = false;
@@ -46,6 +47,7 @@ void Result::Init()
 }
 void Result::Update()
 {
+	starFade.update();
 	fadeIn.updata();
 	if (fadeIn.getIsEnd() == false)return;
 
@@ -67,6 +69,7 @@ void Result::Draw(const Renderer& renderer)
 
 	fadeIn.draw(renderer);
 	fadeOut.draw(renderer);
+	starFade.draw(renderer);
 }
 
 void Result::NumDraw(const Renderer& renderer)
@@ -118,6 +121,7 @@ void Result::NumDraw_One(const Renderer& renderer, int stage)
 
 void Result::Finish()
 {
+	starFade.finish();
 }
 Scene Result::Next()
 {

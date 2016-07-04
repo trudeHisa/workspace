@@ -5,10 +5,12 @@
 #include "Fade.h"
 class Device;
 #include "GamePlay.h"
+
+#include "StarFade.h"
 class Result :public IScene 
 {
 public:
-	Result(Device& device, TimeScore& score,GamePlay* play);
+	Result(Device& device, TimeScore& score, GamePlay* play, StarFade& starFade);
 	~Result();
 	void Init();
 	void Update();
@@ -29,6 +31,7 @@ private:
 	TimeScore& score;
 	int scores[3];
 	GSvector2 numPositions[3][6];
+	StarFade& starFade;
 };
 
 #endif

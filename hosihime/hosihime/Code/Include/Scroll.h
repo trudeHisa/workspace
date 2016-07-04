@@ -28,6 +28,10 @@ public:
 	view座標に変換
 	*/
 	const GSvector2 transformViewPosition(const GSvector2& position)const;
+	/*
+	viewからデータ上の座標に変換
+	*/
+	const GSvector2 transformRealPosition(const GSvector2& position)const;
 
 	void setMode(SCROLL_MODE _mode);
 	const SCROLL_MODE& getMode()const;

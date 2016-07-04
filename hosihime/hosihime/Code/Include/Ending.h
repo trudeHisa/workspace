@@ -6,11 +6,13 @@
 #include "Fade.h"
 #include "Animation.h"
 #include "AnimationTimer.h"
+#include "StarFade.h"
+
 class Device;
 class Ending :public IScene
 {
 public:
-	Ending(Device& device, TimeScore& score);
+	Ending(Device& device, TimeScore& score,StarFade& starFade);
 	~Ending();
  	 void Init();
 	 void Update();
@@ -29,5 +31,6 @@ private:
 	AnimationTimer animTimer;
 	Fade fadeIn;
 	Fade fadeOut;
+	StarFade& starFade;
 };
 #endif

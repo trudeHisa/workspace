@@ -79,6 +79,11 @@ const GSvector2 Scroll::transformViewPosition(const GSvector2& position)const
 	return position - movingAmount;
 }
 
+const GSvector2 Scroll::transformRealPosition(const GSvector2& position)const
+{
+	return position + movingAmount;
+}
+
 void Scroll::setMode(SCROLL_MODE _mode)
 {
 	mode = _mode;

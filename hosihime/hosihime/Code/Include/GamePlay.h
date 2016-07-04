@@ -5,13 +5,14 @@
 #include "IPlayMode.h"
 #include <memory>
 #include "Pause.h"
+#include "StarFade.h"
 class Device;
 typedef std::shared_ptr<IPlayMode> Mode;
 
 class GamePlay :public IScene
 {
 public:
-	GamePlay(Device& device, TimeScore& score);
+	GamePlay(Device& device, TimeScore& score, StarFade& starFade);
 	~GamePlay();
 	void Init();
 	void Update();
@@ -33,6 +34,6 @@ private:
 	TimeScore& score;
 	Device& device;
 	Pause pause;
-	
+	StarFade& starFade;
 };
 #endif

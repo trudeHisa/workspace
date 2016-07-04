@@ -4,10 +4,11 @@
 #include "PlayMode_Play.h"
 #include "PlayMode_Select.h"
 
-GamePlay::GamePlay(Device& device, TimeScore& score)
+GamePlay::GamePlay(Device& device, TimeScore& score, StarFade& starFade)
 	: device(device), stageNo(0),
 	mode(0),
-	score(score), isContinue(false), pause(device)
+	score(score), isContinue(false), pause(device),
+	starFade(starFade)
 {
 }
 GamePlay::~GamePlay()
@@ -43,7 +44,7 @@ void GamePlay::Update()
 }
 void GamePlay::createStage()
 {
-	mode = Mode(new PlayMode_Play(device, stageNo, score));
+	mode = Mode(new PlayMode_Play(device, stageNo, score,starFade));
 	mode->initialize();
 }
 void GamePlay::modeEnd()

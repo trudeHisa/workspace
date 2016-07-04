@@ -1,9 +1,9 @@
 #include "Ending.h"
 #include "Device.h"
 
-Ending::Ending(Device& device, TimeScore& score)
+Ending::Ending(Device& device, TimeScore& score, StarFade& starFade)
 : device(device), score(score), fadeIn(), fadeOut(),
-anim(animTimer), animTimer(20.f)
+anim(animTimer), animTimer(20.f), starFade(starFade)
 {
 }
 Ending::~Ending()
@@ -26,7 +26,7 @@ void Ending::Init()
 }
 void Ending::Update()
 {
-
+	starFade.update();
 	fadeIn.updata();
 	if (!fadeIn.getIsEnd())return;
 
@@ -60,12 +60,14 @@ void Ending::Draw(const Renderer& renderer)
 	}
 	fadeIn.draw(renderer);
 	fadeOut.draw(renderer);
+	starFade.draw(renderer);
 }
 
 
 void Ending::Finish()
 {
 	device.getSound().StopSE("ending.wav");
+	starFade.finish();
 }
 Scene Ending::Next()
 {

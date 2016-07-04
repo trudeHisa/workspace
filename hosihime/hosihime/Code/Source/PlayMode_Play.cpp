@@ -1,7 +1,8 @@
 #include "PlayMode_Play.h"
 #include "CSVStream.h"
-PlayMode_Play::PlayMode_Play(Device& device, int& no, TimeScore& score)
-	:stage(no, device), score(score),
+
+PlayMode_Play::PlayMode_Play(Device& device, int& no, TimeScore& score, StarFade& starFade)
+	:stage(no, device,starFade), score(score),
 	stageNo(no)
 {
 }

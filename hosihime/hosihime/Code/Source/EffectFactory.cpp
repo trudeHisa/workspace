@@ -4,6 +4,7 @@
 #include "LightEffect.h"
 #include "FireworkEffect.h"
 #include "StarEffect.h"
+
 EffectFactory::EffectFactory()
 	:container()
 {

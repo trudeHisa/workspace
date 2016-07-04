@@ -143,6 +143,7 @@ void Load::loadTextrue()
 	renderer.LoadTextrue("effect_Star_fire.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("fire.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	renderer.LoadTextrue("star.bmp", GS_TEXCOLOR_KEY_AUTO, path);
+	renderer.LoadTextrue("teil.bmp", GS_TEXCOLOR_KEY_AUTO, path); 
 	//renderer.LoadTextrue("star_break.bmp", GS_TEXCOLOR_KEY_AUTO, path);
 	/*
 	アニメーションでやるつもりだったが面倒なので切り替えで
