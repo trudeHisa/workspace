@@ -121,6 +121,7 @@ void Result::Finish()
 }
 Scene Result::Next()
 {
+	device.getSound().StopSE("ending.wav");
 	return Scene::MODE_GAMEPLAY;
 }
 bool Result::IsEnd()

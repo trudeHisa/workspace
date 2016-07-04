@@ -164,7 +164,6 @@ void Player::jumpStart()
 
 	if (currentDirAnimeKey == "R")
 	{
-		
 		effectMediator->add("StarEffect", positionsRight);
 	}
 	if (currentDirAnimeKey == "L")
@@ -178,12 +177,10 @@ void Player::jump()
 {
 	if (!isJump)
 	{
-		//device.getSound().PlaySE("着地.wav");
 		speed = VERTICAL;
 		respawnCount.initialize();
 		return;
 	}
-
 	
 	respawnCount.update();
 
@@ -236,9 +233,9 @@ const bool Player::respawn()
 	if (isRespawn)
 	{
 		return false;
-		//device.getSound().PlaySE("リスポーン.wav");
 	}
 
+	device.getSound().PlaySE("リスポーン.wav");
 	position = respawnPos;
 	velocity = GSvector2(0, 0);
 	jumpPower = 0;
@@ -300,6 +297,7 @@ void Player::collision(const GameObject* obj)
 		velocity = GSvector2(0, 0);
 		jumpPower = 0;
 		isRespawn = true;
+
 	}
 }
 void Player::collisionGround(const GameObject* obj)
