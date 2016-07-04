@@ -70,6 +70,10 @@ void Player::initialize()
 }
 void Player::jumpEnd()
 {
+	if (isJump == true)
+	{
+		device.getSound().PlaySE("’…’n.wav");
+	}
 	isJump = false;
 	jumpPower = 0;
 }
@@ -264,6 +268,11 @@ void Player::collision(const GameObject* obj)
 		const Magpie* mag = dynamic_cast<const Magpie*>(obj);
 		if (mag->isRide())
 		{
+			if (!device.getSound().IsPlaySE("kasasagi_fly.wav"))
+			{
+				device.getSound().PlaySE("kasasagi_fly.wav");
+			}
+			//device.getSound().PlaySE("kasasagi_fly.wav");
 			if (currentDirAnimeKey == "R")
 			{
 
@@ -280,6 +289,7 @@ void Player::collision(const GameObject* obj)
 		else
 		{
 			isMagpieRide = false;
+			device.getSound().StopSE("kasasagi_fly.wav");
 		}
 	}
 	if (isMagpieRide)

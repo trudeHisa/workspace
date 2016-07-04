@@ -211,7 +211,7 @@ void Load::loadSound()
 	sound.LoadSE("star_fire.wav", 5, GWAVE_DEFAULT, originalPath + path);
 	sound.LoadSE("リスポーン.wav", 5, GWAVE_DEFAULT, originalPath + path);
 	sound.LoadSE("着地.wav", 1, GWAVE_DEFAULT, originalPath + path);
-	sound.LoadSE("kasasagi_fly.wav", 5, GWAVE_DEFAULT, originalPath + path);
+	sound.LoadSE("kasasagi_fly.wav", 5, GWAVE_LOOP, originalPath + path);
 
 	/*
 	*その他
@@ -231,6 +231,6 @@ void Load::loadSound()
 	sound.LoadSE("gamemode1.wav", 1, GWAVE_LOOP, originalPath);
 	sound.LoadSE("gameover.wav", 1, GWAVE_LOOP, originalPath);
 	sound.LoadSE("map.wav", 1, GWAVE_LOOP, originalPath);
-	sound.LoadSE("opening.wav", 1, GWAVE_LOOP, originalPath);
+	sound.LoadSE("Opening.wav", 1, GWAVE_LOOP, originalPath);
 	sound.LoadSE("title.wav", 1, GWAVE_LOOP, originalPath);
 }
