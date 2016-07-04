@@ -30,7 +30,7 @@ void GameOver::Init()
 	time = MOVETIME;
 	isEnd = false;
 	alpha = 1.0f;
-	textPosi=GSvector2(300, -100);
+	textPosi = GSvector2(300, -100);
 	isSelectMode = false;
 }
 void GameOver::Update()
@@ -39,6 +39,30 @@ void GameOver::Update()
 		fadeIn.updata();
 		return;
 	}
+	LogoMove();
+	isSelectMode = alpha <= 0 ? true : false;
+	if (device.getInput().getActionTrigger())
+	{
+		alpha = 0;
+	}
+	MenuSelect();
+
+	FadeOut();
+}
+
+void GameOver::MenuSelect()
+{
+	if (!isSelectMode)
+		return;
+	if (fadeOut.getIsStart())return;
+	if (device.getInput().getRightTrigger() || device.getInput().getLeftTrigger())
+	{
+		device.getSound().PlaySE("move.wav");
+		nowSelect = nowSelect == 0 ? 1 : 0;
+	}
+}
+void GameOver::LogoMove()
+{
 	currentTime += gsFrameTimerGetTime();
 	if (textPosi.y < 100){
 		gsVector2Lerp(&textPosi, &GSvector2(300, -200), &GSvector2(300, 100), currentTime / time);
@@ -46,26 +70,6 @@ void GameOver::Update()
 	if (currentTime >= DRAW_LOGO_TIME){
 		alpha -= gsFrameTimerGetTime()*0.02f;
 	}
-	isSelectMode = alpha <= 0 ? true : false;
-	if (device.getInput().getActionTrigger())
-	{
-		alpha = 0;
-	}
-
-	if (isSelectMode)
-	{
-		if (device.getInput().getRightTrigger() || device.getInput().getLeftTrigger())
-		{
-			device.getSound().PlaySE("move.wav");
-			nowSelect = nowSelect == 0 ? 1 : 0;
-		}
-		if ( gsGetJoyTrigger(0, GJOY_RIGHT) || gsGetJoyTrigger(0, GJOY_LEFT))
-		{
-			device.getSound().PlaySE("move.wav");
-			nowSelect = nowSelect == 0 ? 1 : 0;
-		}
-	}
-	FadeOut();
 }
 
 void GameOver::FadeOut()
