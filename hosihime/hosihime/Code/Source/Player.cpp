@@ -24,6 +24,7 @@ Player::Player(const std::string& textrue, const GSvector2& position,
 	isJump(false), isRespawn(true),
 	isGround(false), isClear(false),
 	isMagpieRide(false),
+	JumpEndSE(false),
 
 	animation(animeTimer),
 	animeTimer(60.f),
@@ -31,7 +32,8 @@ Player::Player(const std::string& textrue, const GSvector2& position,
 	effectMediator(effectMediator),
 	positionsRight(position + GSvector2(10, 64)),
 	positionsLeft(position + GSvector2(80, 64)),
-	respawnCount(0, 4)
+	respawnCount(0, 4),
+	count(0)
 {
 }
 Player::~Player()
@@ -47,7 +49,9 @@ void Player::initialize()
 	isGround = false;
 	isClear = false;
 	isMagpieRide = false;
+	JumpEndSE = false;
 	respawnCount.initialize();
+	count = 0;
 
 	currentDirAnimeKey = "R";
 	animeTimer.initialize();
@@ -70,6 +74,10 @@ void Player::initialize()
 }
 void Player::jumpEnd()
 {
+	if (isJump == true)
+	{
+		device.getSound().PlaySE("’…’n.wav");
+	}
 	isJump = false;
 	jumpPower = 0;
 }
@@ -177,6 +185,7 @@ void Player::jump()
 {
 	if (!isJump)
 	{
+		JumpEndSE = true;
 		speed = VERTICAL;
 		respawnCount.initialize();
 		return;

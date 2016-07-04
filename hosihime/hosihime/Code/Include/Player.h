@@ -56,7 +56,8 @@ private:
 	bool isJump;
 	bool isGround;
 	bool isClear;
-
+	bool JumpEndSE;
+	int count;
 
 	bool ishold;
 	/**
