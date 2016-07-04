@@ -24,7 +24,7 @@ Stage::Stage(const int& stageNo, Device& device)
 
 	float time[] =
 	{
-		180,
+		10,
 		300,
 		300
 	};

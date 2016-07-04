@@ -12,6 +12,8 @@ public:
 	void Init();
 	void Update();
 	void FadeOut();
+	void MenuSelect();
+	void LogoMove();
 	void Draw(const Renderer& renderer);
 	void selectDraw(const Renderer& renderer);
 	void Finish();

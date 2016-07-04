@@ -181,6 +181,7 @@ void Load::loadTextrue()
 	renderer.LoadTextrue("circleParticle.bmp", GS_TEXCOLOR_KEY_WHITE);
 	renderer.LoadTextrue("lightParticle.bmp", GS_TEXCOLOR_KEY_WHITE);
 	renderer.LoadTextrue("starparticle.bmp");
+	renderer.LoadTextrue("starg.bmp", GS_TEXCOLOR_KEY_AUTO);
 	renderer.LoadTextrue("gundam.bmp");
 	renderer.LoadTextrue("shooting2.bmp");
 	renderer.LoadTextrue("gamebag.bmp", GS_TEXCOLOR_KEY_AUTO);
