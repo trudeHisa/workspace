@@ -7,10 +7,11 @@
 #include <vector>
 #include <memory>
 typedef std::shared_ptr<StarFadeParticle> Fade_Ptr;
+#include "Device.h"
 class StarFade
 {
 public:
-	StarFade();
+	StarFade(Device& device);
 	~StarFade();
 	void initialize();
 	void update();
@@ -21,6 +22,7 @@ private:
 	void remove();
 private:
 	std::vector< Fade_Ptr> particles;
+	Device& device;
 };
 
 #endif

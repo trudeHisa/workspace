@@ -16,7 +16,7 @@ effectController(effectFactory),
 mapSize(0, 0),
 factory(ObjFactory(new GameObjectFactory(scroll, device, &control, &effectController))),
 starManager(stageNo, scroll, control, effectController, device),
-	fadeIn(), fadeOut(), starFade(starFade), fadeTimer(6,6)
+	fadeIn(), fadeOut(), starFade(starFade), fadeTimer(4,4)
 {
 	CSVStream stream;
 	std::string name = "mapdata\\\\testmap" + std::to_string(stageNo) + ".csv";
@@ -82,7 +82,6 @@ void Stage::updata()
 		flag = CLEARFLAG::GAMEOVER;
 		if (!fadeOut.getIsStart())
 		{
-			
 			fadeOut.start(GScolor(0, 0, 0, 0), GScolor(0, 0, 0, 1), 2);
 		}
 		isEnd = fadeOut.getIsEnd();

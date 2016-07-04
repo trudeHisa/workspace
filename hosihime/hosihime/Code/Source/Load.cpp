@@ -226,7 +226,8 @@ void Load::loadSound()
 	path = "etcetera\\\\";
 	sound.LoadSE("decision.wav", 1, GWAVE_DEFAULT, originalPath + path);
 	sound.LoadSE("move.wav", 1, GWAVE_DEFAULT, originalPath + path);
-
+	sound.LoadSE("shine1.wav", 1, GWAVE_DEFAULT, originalPath + path);
+	
 	/*
 	*BGM
 	*/

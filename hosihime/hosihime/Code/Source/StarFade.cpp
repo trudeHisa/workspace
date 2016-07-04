@@ -1,6 +1,7 @@
 #include "StarFade.h"
 #include <algorithm>
-StarFade::StarFade()
+StarFade::StarFade(Device& device)
+:device(device)
 {
 
 }
@@ -12,6 +13,7 @@ void StarFade::initialize()
 {
 	particles.clear();
 	createParticle();
+	device.getSound().PlaySE("shine1.wav");
 }
 void StarFade::update()
 {
@@ -33,12 +35,12 @@ void StarFade::createParticle()
 {
 	GSvector2 offset(0, 0);
 
-	for (int n = 0; n < 7; n++)
+	for (int n = 0; n < 6; n++)
 	{
 		for (int i = 0; i < 23; i++)
 		{
-			offset.x = (rand() % 50) - 25 + (i * 100) + 1300;
-			offset.y = (rand() % 50) - 25 + (n * 150) - (1500);
+			offset.x = (rand() % 50) - 25 + (i * 100) + 900;
+			offset.y = (rand() % 50) - 25 + (n * 150) - 1100;
 			particles.emplace_back(Fade_Ptr(new StarFadeParticle(offset)));
 		}
 	}

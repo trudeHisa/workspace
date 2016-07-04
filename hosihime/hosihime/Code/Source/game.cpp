@@ -24,7 +24,7 @@ Device device;
 Renderer renderer;
 TimeScore score;
 
-StarFade starFade;
+StarFade starFade(device);
 Background_Star bstar(device);
 void gameInit(void)
 {	
