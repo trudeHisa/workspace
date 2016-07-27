@@ -8,16 +8,17 @@ class Load :public IScene
 public:
 	Load(Device& device, Renderer& renderer);
 	~Load();
-	void Init();
-	void Update();
-	void Draw(const Renderer& renderer);
-	void Finish();
-	Scene Next();
-	bool IsEnd();
+	void init();
+	void update();
+	void draw(const Renderer& renderer);
+	void finish();
+	Scene next();
+	bool isEnd();
+private:
 	void loadTextrue();
 	void loadSound();
 private:
-	bool isEnd;
+	bool isend;
 	Renderer& renderer;
 	Device& device;
 };

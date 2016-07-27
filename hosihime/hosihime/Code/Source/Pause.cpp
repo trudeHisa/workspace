@@ -4,8 +4,8 @@
 static int NowSelect = Pause_back;
 Pause::Pause(Device& device)
 	:device(device),index(0), 
-	isEnd(false), fadeEnd(false),
-	fade()
+	isend(false), fadeEnd(false),
+	fade(), isPause(false)
 {
 }
 
@@ -13,38 +13,38 @@ Pause::~Pause()
 {
 }
 
-void Pause::Initializse()
+void Pause::initializse()
 {
 	fade.initialize();
 	fade.start(GScolor(0, 0, 0, 1), GScolor(0, 0, 0, 0), 1.f);
 
-	pausecount = false;
-	isEnd = false;
+	isPause = false;
+	isend = false;
 	fadeEnd = false;
 	index = 0;
 }
 
-void Pause::Update()
+void Pause::update()
 {
-	PauseSwitch();
+	pauseSwitch();
 
 	fade.updata();
-	fadeEnd = fade.getIsEnd();
+	fadeEnd = fade.getisEnd();
 	if (fade.getIsStart())
 	{
 		return;
 	}
 	if (!device.getInput().getActionTrigger())
 	{
-		//device.getSound().PlaySE("decision.wav");
+		//device.getSound().playSE("decision.wav");
 		fade.start(GScolor(0, 0, 0, 0), GScolor(0, 0, 0, 1), 1.f);
 	}
 
 }
 
-void Pause::Draw(const Renderer&renderer)
+void Pause::draw(const Renderer&renderer)
 {
-	renderer.DrawTextrue("pause.bmp", &GSvector2(0, 0),&GScolor4(0,0,0,0.5));
+	renderer.drawTextrue("pause.bmp", &GSvector2(0, 0),&GScolor4(0,0,0,0.5));
 	const GSvector2 ps[2] =
 	{
 		GSvector2(450, 300),
@@ -57,20 +57,20 @@ void Pause::Draw(const Renderer&renderer)
 	};
 	for (int i = 0; i < 2; i++)
 	{
-		renderer.DrawTextrue(tex[i] + "_g.bmp", &ps[i]);
+		renderer.drawTextrue(tex[i] + "_g.bmp", &ps[i]);
 	}
-	renderer.DrawTextrue(tex[index] + ".bmp", &ps[index]);
+	renderer.drawTextrue(tex[index] + ".bmp", &ps[index]);
 
 	fade.draw(renderer);
 }
 
-void Pause::PauseSwitch()
+void Pause::pauseSwitch()
 {
 	if (gsGetKeyTrigger(GKEY_B) || gsGetJoyTrigger(0,GJOY_BUTTON_8))
-	pausecount = true;
+		isPause = true;
 }
 
-void Pause::PauseMenu()
+void Pause::pauseMenu()
 {
 	if (gsGetJoyTrigger(0, GJOY_DOWN) || gsGetKeyTrigger(GKEY_DOWN)){
 		// 1
@@ -95,27 +95,31 @@ void Pause::PauseMenu()
 			//プレイ画面に戻る
 		case Pause_back:
 			NowSelect = 0;
-			pausecount = false;
+			isPause = false;
 			break;
 
 			//タイトルに戻る
 		case  Pause_title:
 			NowSelect = 0;
-			isEnd = true;
+			isend = true;
 			break;
 		}
 	}
 }
 
-void Pause::Finish()
+const bool Pause::isPausing()const
+{
+	return isPause;
+}
+void Pause::finish()
 {
 
 }
-Scene Pause::Next()
+Scene Pause::next()
 {
 	return Scene::MODE_TITLE;
 }
-bool Pause::IsEnd()
+bool Pause::isEnd()
 {
-	return isEnd;
+	return isend;
 }

@@ -9,16 +9,16 @@ class Operation :public IScene
 public:
 	Operation(Device& device);
 	~Operation();
-	void Init();
-	void Update();
-	void Draw(const Renderer& renderer);
-	void Finish();
-	void TexChange();
-	Scene Next();
-	bool IsEnd();
+	void init();
+	void update();
+	void draw(const Renderer& renderer);
+	void finish();
+	void Texchange();
+	Scene next();
+	bool isEnd();
 private:
 	int index;
-	bool isEnd;
+	bool isend;
 	Device& device;
 	Fade fadeIn;
 	Fade fadeOut;

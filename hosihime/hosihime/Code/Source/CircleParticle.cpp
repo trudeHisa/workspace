@@ -32,7 +32,7 @@ void CircleParticle::update()
 void CircleParticle::draw(const Renderer& renderer, const Scroll& scroll)
 {
 
-	renderer.DrawTextrue(textrue, &scroll.transformViewPosition(position), NULL, &GSvector2(4, 4), NULL, alpha * 180, &GScolor(1, 1, 1, alpha));
+	renderer.drawTextrue(textrue, &scroll.transformViewPosition(position), NULL, &GSvector2(4, 4), NULL, alpha * 180, &GScolor(1, 1, 1, alpha));
 }
 
 const bool CircleParticle::getIsDead()const

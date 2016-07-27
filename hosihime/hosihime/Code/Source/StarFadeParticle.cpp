@@ -19,7 +19,7 @@ void StarFadeParticle::update()
 void StarFadeParticle::draw(const Renderer& renderer)
 {
 	isDead = position.y > 720;
-	renderer.DrawTextrue("teil.bmp", &position);
+	renderer.drawTextrue("teil.bmp", &position);
 }
 const bool StarFadeParticle::getIsDead()const
 {

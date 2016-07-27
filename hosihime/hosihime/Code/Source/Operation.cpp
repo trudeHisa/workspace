@@ -2,7 +2,7 @@
 
 #include "Device.h"
 Operation::Operation(Device& device)
-	:device(device), isEnd(false),
+	:device(device), isend(false),
 	fadeIn(), fadeOut(), index(0)
 {
 }
@@ -10,15 +10,15 @@ Operation::Operation(Device& device)
 Operation::~Operation()
 {
 }
-void Operation::Init()
+void Operation::init()
 {
 	fadeIn.initialize();
 	fadeIn.start(GScolor(0, 0, 0, 1), GScolor(0, 0, 0, 0), 1.f);
 	fadeOut.initialize();
-	isEnd = false;
+	isend = false;
 	index = 0;
 }
-void Operation::Update()
+void Operation::update()
 {
 	if (gsGetKeyTrigger(GKEY_SPACE)||gsGetJoyTrigger(0,GJOY_BUTTON_1))
 	{
@@ -26,7 +26,7 @@ void Operation::Update()
 	}
 	fadeIn.updata();
 	fadeOut.updata();
-	/*if (!fadeIn.getIsEnd())
+	/*if (!fadeIn.getisEnd())
 	{
 		return;
 	}
@@ -36,12 +36,12 @@ void Operation::Update()
 		{
 			return;
 		}
-		device.getSound().PlaySE("decision.wav");
+		device.getSound().playSE("decision.wav");
 		fadeOut.start(GScolor(0, 0, 0, 0), GScolor(0, 0, 0, 1), 1.f);
 	}*/
-	isEnd = fadeOut.getIsEnd();
+	isend = fadeOut.getisEnd();
 }
-void Operation::Draw(const Renderer& renderer)
+void Operation::draw(const Renderer& renderer)
 {	
 	const std::string Tex[3] =
 	{
@@ -52,28 +52,28 @@ void Operation::Draw(const Renderer& renderer)
 	if (index == 3)
 	{
 		index -= 1;
-		isEnd = true;
+		isend = true;
 		fadeOut.start(GScolor(0, 0, 0, 0), GScolor(0, 0, 0, 1), 1.f);
 	}
-	renderer.DrawTextrue(Tex[index] + ".bmp", &GSvector2(0, 0));
+	renderer.drawTextrue(Tex[index] + ".bmp", &GSvector2(0, 0));
 	
 	fadeIn.draw(renderer);
 	fadeOut.draw(renderer);
 }
-void Operation::Finish()
+void Operation::finish()
 {
 
 }
-Scene Operation::Next()
+Scene Operation::next()
 {
 	return Scene::MODE_MENU;
 	
 }
-bool Operation::IsEnd()
+bool Operation::isEnd()
 {
-	return isEnd;
+	return isend;
 }
-void  Operation::TexChange()
+void  Operation::Texchange()
 {
 	
 }

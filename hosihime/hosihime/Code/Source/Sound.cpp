@@ -19,47 +19,47 @@ void Sound::LoadBGM(const std::string& name,const std::string& ps)
 	bgms.insert(std::pair<const std::string, GSuint>(name, bgms.size()));
 }
 
-void Sound::LoadSE(const std::string& name, int max, GWAVEFLAG flag,
+void Sound::loadSE(const std::string& name, int max, GWAVEFLAG flag,
 	const std::string& ps)
 {
 	std::string name_ps = ps + name;
    	gsLoadSE(ses.size(), name_ps.c_str(), max, flag);
 	ses.insert(std::pair<const std::string, GSuint>(name, ses.size()));
 }
-void Sound::PlayBGM(const std::string& name)const
+void Sound::playBGM(const std::string& name)const
 {
 	gsPlayBGM(bgms.at(name));
 }
-bool Sound::IsPlayBGM()const
+bool Sound::isPlayBGM()const
 {
 	return !!gsIsPlayBGM();
 }
-void Sound::PauseBGM()const
+void Sound::pauseBGM()const
 {
 	gsPauseBGM();
 }
-void Sound::RestartBGM()const
+void Sound::restartBGM()const
 {
 	gsRestartBGM();
 }
-void Sound::StopBGM()const
+void Sound::stopBGM()const
 {
 	gsStopBGM();
 }
 
-void Sound::PlaySE(const std::string& name)const
+void Sound::playSE(const std::string& name)const
 {
 	gsPlaySE(ses.at(name));
 }
-bool Sound::IsPlaySE(const std::string& name)const
+bool Sound::isPlaySE(const std::string& name)const
 {
 	return !!gsIsPlaySE(ses.at(name));
 }
-void Sound::StopSE(const std::string& name)const
+void Sound::stopSE(const std::string& name)const
 {
 	gsStopSE(ses.at(name));
 }
-void Sound::Release()
+void Sound::release()
 {
 	for (auto itr = bgms.begin(); itr != bgms.end(); ++itr)
 	{

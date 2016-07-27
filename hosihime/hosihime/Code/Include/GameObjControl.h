@@ -18,7 +18,7 @@ public:
 	void draw(const Renderer& renderer, const Scroll& scroll);
 	void finish();
 	bool isDeadPlayer();
-	bool StageClear();
+	bool stageClear();
 public:
 	void add(GameObj_Ptr obj);
 	GameObj_Ptr get(GAMEOBJ_TYPE type);

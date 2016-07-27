@@ -9,11 +9,11 @@ class SceneManager
 {
 public:
 	SceneManager();
-	void Add(Scene name, Scene_Ptr scene);
-	void Change(Scene name);
-	void Update();
-	void Draw(const Renderer& renderer);
-	void Finish();
+	void add(Scene name, Scene_Ptr scene);
+	void change(Scene name);
+	void update();
+	void draw(const Renderer& renderer);
+	void finish();
 private:
 	Scenes scenes;
 	Scene_Ptr currentScene;

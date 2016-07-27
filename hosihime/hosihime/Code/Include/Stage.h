@@ -29,7 +29,7 @@ public:
 	void initialize();
 	void draw(const Renderer& renderer);
 	void finish();
-	const bool getIsEnd()const;
+	const bool getisEnd()const;
 	const CLEARFLAG getFlag() const;
 	void saveScore(TimeScore& score);
 private:

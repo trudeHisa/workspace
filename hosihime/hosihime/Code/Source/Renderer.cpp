@@ -7,7 +7,7 @@ void Renderer::LoadTextrue(const std::string& name, const GSenum colorKeyMode, c
 	gsLoadTexture(container.size(), name_ps.c_str());
 	container.insert(std::pair<const std::string, GSuint>(name, container.size()));
 }
-void Renderer::Release()
+void Renderer::release()
 {
 	for (auto itr = container.begin(); itr != container.end(); ++itr)
 	{
@@ -15,7 +15,7 @@ void Renderer::Release()
 	}
 	container.clear();
 }
-void Renderer::DrawFillRectangle(
+void Renderer::drawFillRectangle(
 	const GSrect*    pSrcRect,
 	const GSvector2* pCenter,
 	const GSvector2* pScaling,
@@ -44,7 +44,7 @@ void Renderer::DrawFillRectangle(
 	glPopAttrib();
 }
 
-void Renderer::DrawSprite2D(
+void Renderer::drawSprite2D(
 	GSuint           uTextureID,
 	const GSrect*    pSrcRect,
 	const GSvector2* pCenter,
@@ -164,27 +164,27 @@ void Renderer::drawQuad(const GSrect& rTexCoord, const GSvector2& size)const
 	glVertex2f(size.x, 0);
 	glEnd();
 }
-void Renderer::DrawTextrue(const std::string& name, const GSvector2* _position)const
+void Renderer::drawTextrue(const std::string& name, const GSvector2* _position)const
 {
-	DrawSprite2D(container.at(name), NULL, NULL, NULL, NULL, _position, &GScolor(1, 1, 1, 1));
+	drawSprite2D(container.at(name), NULL, NULL, NULL, NULL, _position, &GScolor(1, 1, 1, 1));
 }
-void Renderer::DrawTextrue(const std::string& name, const GSvector2* _position, const GSrect* _rect)const
+void Renderer::drawTextrue(const std::string& name, const GSvector2* _position, const GSrect* _rect)const
 {
-	DrawSprite2D(container.at(name), _rect, NULL, NULL, NULL, _position, &GScolor(1, 1, 1, 1));
+	drawSprite2D(container.at(name), _rect, NULL, NULL, NULL, _position, &GScolor(1, 1, 1, 1));
 }
-void Renderer::DrawTextrue(const std::string& name, const GSvector2* _position, const GScolor* _color)const
+void Renderer::drawTextrue(const std::string& name, const GSvector2* _position, const GScolor* _color)const
 {
-	DrawSprite2D(container.at(name), NULL, NULL, NULL, NULL, _position, _color);
+	drawSprite2D(container.at(name), NULL, NULL, NULL, NULL, _position, _color);
 }
-void Renderer::DrawTextrue(const std::string& name, const GSvector2* _position, const GSvector2* _scaling, const GScolor* _color)const
+void Renderer::drawTextrue(const std::string& name, const GSvector2* _position, const GSvector2* _scaling, const GScolor* _color)const
 {
-	DrawSprite2D(container.at(name), NULL, NULL, _scaling, NULL, _position, _color);
+	drawSprite2D(container.at(name), NULL, NULL, _scaling, NULL, _position, _color);
 }
-void Renderer::DrawTextrue(const std::string& name, const GSvector2* _position, const GSrect* _rect, const GScolor* _color)const
+void Renderer::drawTextrue(const std::string& name, const GSvector2* _position, const GSrect* _rect, const GScolor* _color)const
 {
-	DrawSprite2D(container.at(name), _rect, NULL, NULL, NULL, _position, _color);
+	drawSprite2D(container.at(name), _rect, NULL, NULL, NULL, _position, _color);
 }
-void Renderer::DrawTextrue(
+void Renderer::drawTextrue(
 	const std::string& name,
 	const GSvector2* _position,
 	const GSrect*    _rect,
@@ -194,9 +194,9 @@ void Renderer::DrawTextrue(
 	const GScolor* _color
 	)const
 {
-	DrawSprite2D(container.at(name), _rect, _center, _scaling, _rotation, _position, _color);
+	drawSprite2D(container.at(name), _rect, _center, _scaling, _rotation, _position, _color);
 }
-void Renderer::DrawString(const std::string& text, const GSvector2* _position, const GSuint size,
+void Renderer::drawString(const std::string& text, const GSvector2* _position, const GSuint size,
 	const GScolor* _color, const GSbitfield& fontcode, const char* fontname)const
 {
 	gsFontParameter(fontcode, size, fontname);
@@ -206,19 +206,19 @@ void Renderer::DrawString(const std::string& text, const GSvector2* _position, c
 	glColor4f(1,1,1,1);
 }
 
-void Renderer::InitBlendFunc()const
+void Renderer::initBlendFunc()const
 {
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
-void Renderer::AdditionBlend()const
+void Renderer::additionBlend()const
 {
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 };
-void Renderer::DrawTextrueScroll(const std::string& name, const GSrect& s, const GSrect& t)const
+void Renderer::drawTextrueScroll(const std::string& name, const GSrect& s, const GSrect& t)const
 {
-	DrawSprite2DScroll(container.at(name), s, t);
+	drawSprite2DScroll(container.at(name), s, t);
 }
-void Renderer::DrawSprite2DScroll(GSuint uTextureID, const GSrect& s, const GSrect& t) const
+void Renderer::drawSprite2DScroll(GSuint uTextureID, const GSrect& s, const GSrect& t) const
 {
 	disables();
 	GScolor CurrentColor;
@@ -253,15 +253,15 @@ void Renderer::drawQuadScroll(const GSrect& s, const GSrect& t, const GSvector2&
 	glVertex2f(size.x, 0);
 	glEnd();
 }
-void Renderer::DrawFillRect(const GSvector2* _position, const GSrect* _rect, const GScolor* _color)const
+void Renderer::drawFillRect(const GSvector2* _position, const GSrect* _rect, const GScolor* _color)const
 {
-	DrawFillRectangle(_rect, NULL, NULL, NULL, _position, _color);
+	drawFillRectangle(_rect, NULL, NULL, NULL, _position, _color);
 }
-void Renderer::DrawFillRect(const GSvector2* _position, const GSrect* _rect, const GSvector2* _scaling, const GScolor* _color)const
+void Renderer::drawFillRect(const GSvector2* _position, const GSrect* _rect, const GSvector2* _scaling, const GScolor* _color)const
 {
-	DrawFillRectangle(_rect, NULL, _scaling, NULL, _position, _color);
+	drawFillRectangle(_rect, NULL, _scaling, NULL, _position, _color);
 }
-void Renderer::DrawFillRect(
+void Renderer::drawFillRect(
 	const GSvector2* _position,
 	const GSrect*    _rect,
 	const GSvector2* _center,
@@ -270,10 +270,10 @@ void Renderer::DrawFillRect(
 	const GScolor*    _color
 	)const
 {
-	DrawFillRectangle(_rect, _center, _scaling, _rotation, _position, _color);
+	drawFillRectangle(_rect, _center, _scaling, _rotation, _position, _color);
 }
 
-void Renderer::DrawBlurTextrue(
+void Renderer::drawBlurTextrue(
 	const std::string& name,
 	const GSvector2& _position,
 	const GSvector2* _center,
@@ -287,11 +287,11 @@ void Renderer::DrawBlurTextrue(
 	{
 		GSvector2 prevpos = _position - velocity*i;
 		alpha = (maxSheet - i)*0.05f;
-		DrawSprite2D(container.at(name), NULL,_center, NULL, angle, &prevpos, &GScolor(1, 1, 1, alpha));
+		drawSprite2D(container.at(name), NULL,_center, NULL, angle, &prevpos, &GScolor(1, 1, 1, alpha));
 	}
 }
 
-void Renderer::DrawNumber(
+void Renderer::drawNumber(
 	const std::string& name,
 	const GSvector2& _position,
 	float width,
@@ -303,12 +303,12 @@ void Renderer::DrawNumber(
 	for each (auto n in std::to_string(point))
 	{
 		float x = (n - '0') * width;
-		DrawSprite2D(container.at(name), &GSrect(x,0,x+width,height), NULL, NULL,NULL,&pos,_color);
+		drawSprite2D(container.at(name), &GSrect(x,0,x+width,height), NULL, NULL,NULL,&pos,_color);
 		pos.x += width;
 	}
 }
 
-void Renderer::DrawTimer(
+void Renderer::drawTimer(
 	const std::string& name,
 	const GSvector2& _position,
 	float width,
@@ -322,7 +322,7 @@ void Renderer::DrawTimer(
 		for each (auto n in std::to_string(point))
 		{
 			float x = (n - '1') * width;
-			DrawSprite2D(container.at(name), &GSrect(x, 0, x + width, height), NULL, NULL, NULL, &pos, _color);
+			drawSprite2D(container.at(name), &GSrect(x, 0, x + width, height), NULL, NULL, NULL, &pos, _color);
 			pos.x += width;
 		}
 	}
@@ -331,7 +331,7 @@ void Renderer::DrawTimer(
 		for each (auto n in std::to_string(point))
 		{
 			float x = (n - '1') * width;
-			DrawSprite2D(container.at(name), &GSrect(x, 0, x + width, height), NULL, NULL, NULL, &GSvector2(pos.x+ width / 2,pos.y), _color);
+			drawSprite2D(container.at(name), &GSrect(x, 0, x + width, height), NULL, NULL, NULL, &GSvector2(pos.x+ width / 2,pos.y), _color);
 			pos.x += width;
 		}
 	}
@@ -340,7 +340,7 @@ void Renderer::DrawTimer(
 		for each (auto n in std::to_string(point))
 		{
 			float x = (n - '1') * width;
-			DrawSprite2D(container.at(name), &GSrect(x, 0, x + width, height), NULL, NULL, NULL, &GSvector2(pos.x + width, pos.y), _color);
+			drawSprite2D(container.at(name), &GSrect(x, 0, x + width, height), NULL, NULL, NULL, &GSvector2(pos.x + width, pos.y), _color);
 			pos.x += width;
 		}
 	}

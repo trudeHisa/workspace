@@ -14,14 +14,14 @@ class Ending :public IScene
 public:
 	Ending(Device& device, TimeScore& score,StarFade& starFade);
 	~Ending();
- 	 void Init();
-	 void Update();
-	 void Draw(const Renderer& renderer);
-	 void Finish();
-	 Scene Next();
-	 bool IsEnd();
+ 	 void init();
+	 void update();
+	 void draw(const Renderer& renderer);
+	 void finish();
+	 Scene next();
+	 bool isEnd();
 private:
-	bool isEnd;
+	bool isend;
 	Device& device;
 	TimeScore& score;
 	GSvector2 playerPosi;

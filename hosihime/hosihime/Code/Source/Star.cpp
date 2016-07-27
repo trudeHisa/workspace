@@ -19,7 +19,7 @@ void Star::initialize()
 {
 	velocity = GSvector2(0, 0);
 	isDead = false;
-	//isDraw = true;
+	//isdraw = true;
 	angle = 0;
 	starHelth = helth;//helthを代入
 	blinkerTime = 0;//星の点滅用変数
@@ -45,11 +45,11 @@ void Star::updata()
 	{
 		isDead = true;
 	}
-	//isDraw = true;
+	//isdraw = true;
 }
 void Star::draw(const Renderer& renderer, const Scroll& scroll)
 {
-	/*if (isDraw == false)
+	/*if (isdraw == false)
 	{
 		return;
 	}*/
@@ -62,7 +62,7 @@ void Star::draw(const Renderer& renderer, const Scroll& scroll)
 	center /= 2;
 	pos += center;
 
-	renderer.AdditionBlend();
+	renderer.additionBlend();
 	GScolor color;
 	//点滅処理
 	//星が移動距離の半分進むと色変えと点滅処理をする
@@ -84,9 +84,9 @@ void Star::draw(const Renderer& renderer, const Scroll& scroll)
 	color.w = starAlpha ? 0.5f : 1.0f;
 
 
-	renderer.DrawBlurTextrue(textrue, pos, &center, velocity, angle, 7);
-	renderer.InitBlendFunc();
-	renderer.DrawTextrue(textrue, &pos, NULL, &center, &GSvector2(1, 1), angle, &color);
+	renderer.drawBlurTextrue(textrue, pos, &center, velocity, angle, 7);
+	renderer.initBlendFunc();
+	renderer.drawTextrue(textrue, &pos, NULL, &center, &GSvector2(1, 1), angle, &color);
 }
 void Star::collision(const GameObject* obj)
 {
@@ -96,15 +96,15 @@ void Star::collision(const GameObject* obj)
 	{
 		isDead = true;
 		effectMediator->add("FireworkEffect", position + (viewSize*0.5f));
-		device.getSound().PlaySE("star_break.wav");
+		device.getSound().playSE("star_break.wav");
 	}
 	/*if (type == PLAYER)
 	{
-		isDraw = false;
+		isdraw = false;
 	}
 	else
 	{
-		isDraw = true;
+		isdraw = true;
 	}*/
 }
 Star* Star::clone()
@@ -139,5 +139,5 @@ void Star::rotate()
 
 void Star::nonCollision()
 {
-	//isDraw = true;
+	//isdraw = true;
 }

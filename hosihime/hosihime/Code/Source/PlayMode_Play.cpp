@@ -37,7 +37,7 @@ void PlayMode_Play::finish()
 }
 const bool PlayMode_Play::isEnd()const
 {
-	return stage.getIsEnd();
+	return stage.getisEnd();
 }
 const CLEARFLAG  PlayMode_Play::getFlag()const
 {

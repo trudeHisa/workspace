@@ -25,12 +25,12 @@ void CircleParticleController::update()
 }
 void CircleParticleController::draw(const Renderer& renderer, const Scroll& scroll)
 {
-	renderer.AdditionBlend();
+	renderer.additionBlend();
 	for each (Particle_Ptr p in Circleparticles)
 	{
 		p->draw(renderer,scroll);
 	}
-	renderer.InitBlendFunc();
+	renderer.initBlendFunc();
 }
 
 void CircleParticleController::createParticle()
@@ -57,7 +57,7 @@ void CircleParticleController::finish()
 {
 }
 
-const bool CircleParticleController::getIsEnd()const
+const bool CircleParticleController::getisEnd()const
 {
 	return false;
 }

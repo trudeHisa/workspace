@@ -24,18 +24,18 @@ void FireworkParticleController::update()
 }
 void FireworkParticleController::draw(const Renderer& renderer, const Scroll& scroll)
 {
-	renderer.AdditionBlend();
+	renderer.additionBlend();
 	for each (Particle_Ptr p in particles)
 	{
 		p->draw(renderer, scroll);
 	}
-	renderer.InitBlendFunc();
+	renderer.initBlendFunc();
 }
 void FireworkParticleController::finish()
 {
 
 }
-const bool FireworkParticleController::getIsEnd()const
+const bool FireworkParticleController::getisEnd()const
 {
 	return particles.size() == 0;
 }

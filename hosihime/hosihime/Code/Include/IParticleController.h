@@ -31,6 +31,6 @@ public:
 	virtual void draw(const Renderer& renderer, const Scroll& scroll) = 0;
 	virtual void finish() = 0;
 	//virtual void setMode() = 0;
-	const virtual bool getIsEnd()const = 0;
+	const virtual bool getisEnd()const = 0;
 };
 #endif

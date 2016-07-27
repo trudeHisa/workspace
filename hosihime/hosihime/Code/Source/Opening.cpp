@@ -2,7 +2,7 @@
 #include "Device.h"
 
 Opening::Opening(Device& device)
-	:device(device)
+	:device(device), isend(false)
 {
 	
 }
@@ -12,48 +12,48 @@ Opening::~Opening()
 
 }
 
-void Opening::Init()
+void Opening::init()
 {
 	textPos_D = GSvector2(0, 720);//テキストの初期位置
 	textPos = textPos_D;
 	vel = GSvector2(0, 0);
-	isEnd = false;
+	isend = false;
 }
 
-void Opening::Update()
+void Opening::update()
 {
-	if (!device.getSound().IsPlaySE("Opening.wav"))
+	if (!device.getSound().isPlaySE("Opening.wav"))
 	{
-		device.getSound().PlaySE("Opening.wav");
+		device.getSound().playSE("Opening.wav");
 	}
-	isEnd = device.getInput().getActionTrigger();
+	isend = device.getInput().getActionTrigger();
 	vel = GSvector2(0.0f, -2.0f);
 
 	textPos += vel;
 	if (textPos.y <= -textPos_D.y)
 	{
-		isEnd = true;
+		isend = true;
 	}
 }
 
-void Opening::Draw(const Renderer& renderer)
+void Opening::draw(const Renderer& renderer)
 {
-	renderer.DrawTextrue("opening.bmp", &GSvector2(0, 0));
-	renderer.DrawTextrue("opening_text.bmp", &textPos);
+	renderer.drawTextrue("opening.bmp", &GSvector2(0, 0));
+	renderer.drawTextrue("opening_text.bmp", &textPos);
 }
 
-void Opening::Finish()
+void Opening::finish()
 {
 
 }
 
-Scene Opening::Next()
+Scene Opening::next()
 {
-	device.getSound().StopSE("Opening.wav");
+	device.getSound().stopSE("Opening.wav");
 	return Scene::MODE_TITLE;
 }
 
-bool Opening::IsEnd()
+bool Opening::isEnd()
 {
-	return isEnd;
+	return isend;
 }

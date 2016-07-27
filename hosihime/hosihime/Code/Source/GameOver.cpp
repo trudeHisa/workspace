@@ -10,7 +10,7 @@
 #define NON_ACTIVE_COLOR GSvector4(1, 1, 1, 1)
 
 GameOver::GameOver(Device& device, GamePlay* _play)
-:device(device), isEnd(false), play(_play), textPosi(300, -100),
+:device(device), isend(false), play(_play), textPosi(300, -100),
 time(MOVETIME), currentTime(0), alpha(1.0f), isSelectMode(false),
 nowSelect(0), fadeIn(), fadeOut()
 {
@@ -19,49 +19,50 @@ GameOver::~GameOver()
 {
 
 }
-void GameOver::Init()
+void GameOver::init()
 {
-	device.getSound().PlaySE("gameover.wav");
+	device.getSound().playSE("gameover.wav");
 	nowSelect = 0;
 	fadeIn.initialize();
 	fadeOut.initialize();
 	fadeIn.start(GScolor(0, 0, 0, 1), GScolor(0, 0, 0, 0), 2.0f);
 	currentTime = 0;
 	time = MOVETIME;
-	isEnd = false;
+	isend = false;
 	alpha = 1.0f;
 	textPosi = GSvector2(300, -100);
 	isSelectMode = false;
 }
-void GameOver::Update()
+void GameOver::update()
 {
-	if (fadeIn.getIsEnd() == false) 	{
+	if (fadeIn.getisEnd() == false) 	
+	{
 		fadeIn.updata();
 		return;
 	}
-	LogoMove();
+	logoMove();
 	isSelectMode = alpha <= 0 ? true : false;
 	if (device.getInput().getActionTrigger())
 	{
 		alpha = 0;
 	}
-	MenuSelect();
+	menuSelect();
 
-	FadeOut();
+	blackOut();
 }
 
-void GameOver::MenuSelect()
+void GameOver::menuSelect()
 {
 	if (!isSelectMode)
 		return;
 	if (fadeOut.getIsStart())return;
 	if (device.getInput().getRightTrigger() || device.getInput().getLeftTrigger())
 	{
-		device.getSound().PlaySE("move.wav");
+		device.getSound().playSE("move.wav");
 		nowSelect = nowSelect == 0 ? 1 : 0;
 	}
 }
-void GameOver::LogoMove()
+void GameOver::logoMove()
 {
 	currentTime += gsFrameTimerGetTime();
 	if (textPosi.y < 100){
@@ -72,30 +73,30 @@ void GameOver::LogoMove()
 	}
 }
 
-void GameOver::FadeOut()
+void GameOver::blackOut()
 {
 	if (isSelectMode == false)return;
 	fadeOut.updata();
-	isEnd = fadeOut.getIsEnd();
+	isend = fadeOut.getisEnd();
 	if (fadeOut.getIsStart())return;
 	if (device.getInput().getActionTrigger())
 	{
-		device.getSound().PlaySE("decision.wav");
+		device.getSound().playSE("decision.wav");
 		fadeOut.start(GScolor(0, 0, 0, 0), GScolor(0, 0, 0, 1), 1.0f);
 	}
 }
-void GameOver::Draw(const Renderer& renderer)
+void GameOver::draw(const Renderer& renderer)
 {
-	renderer.DrawTextrue("gameover.bmp", &GSvector2(0, 0));
-	renderer.DrawTextrue("gameover_text.bmp", &textPosi, &GScolor(1, 1, 1, alpha));
-	renderer.DrawTextrue("gameover_orihime.bmp", &GSvector2(350, 300));
-	selectDraw(renderer);
+	renderer.drawTextrue("gameover.bmp", &GSvector2(0, 0));
+	renderer.drawTextrue("gameover_text.bmp", &textPosi, &GScolor(1, 1, 1, alpha));
+	renderer.drawTextrue("gameover_orihime.bmp", &GSvector2(350, 300));
+	selectdraw(renderer);
 
 	fadeIn.draw(renderer);
 	fadeOut.draw(renderer);
 }
 
-void GameOver::selectDraw(const Renderer& renderer)
+void GameOver::selectdraw(const Renderer& renderer)
 {
 	if (isSelectMode == false)return;
 
@@ -112,14 +113,14 @@ void GameOver::selectDraw(const Renderer& renderer)
 		scales[1] = LARGE;
 		colors[1] = ACTIVE_COLOR;
 	}
-	renderer.DrawTextrue("retry.bmp", &GSvector2(50, 150), &scales[0], &colors[0]);
-	renderer.DrawTextrue("titlebuck.bmp", &GSvector2(700, 150), &scales[1], &colors[1]);
+	renderer.drawTextrue("retry.bmp", &GSvector2(50, 150), &scales[0], &colors[0]);
+	renderer.drawTextrue("titlebuck.bmp", &GSvector2(700, 150), &scales[1], &colors[1]);
 }
-void GameOver::Finish()
+void GameOver::finish()
 {
-	device.getSound().StopSE("gameover.wav");
+	device.getSound().stopSE("gameover.wav");
 }
-Scene GameOver::Next()
+Scene GameOver::next()
 {
 	if (nowSelect == 0)
 	{
@@ -129,7 +130,7 @@ Scene GameOver::Next()
 
 	return Scene::MODE_TITLE;
 }
-bool GameOver::IsEnd()
+bool GameOver::isEnd()
 {
-	return isEnd;
+	return isend;
 }

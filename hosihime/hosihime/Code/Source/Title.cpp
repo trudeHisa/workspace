@@ -6,35 +6,35 @@
 //タイトルクラスコンストラクタ
 Title::Title(Device& device, Background_Star& bStar)
 	:device(device), rogoAlpha(0),
-	timer(1, 1), bStar(bStar)
+	timer(1, 1), bStar(bStar), isend(false)
 {}
 Title::~Title()
 {
 }
-void Title::Init()
+void Title::init()
 {
 	bStar.initialize();
 	rogoAlpha = 0;
 	
 	timer.initialize();
 	alpha = 255;
-	isEnd = false;	
+	isend = false;	
 }
-void Title::Update()
+void Title::update()
 {
 	bStar.update();
 	rogoAlpha += gsFrameTimerGetTime()*0.02f;
 	if (rogoAlpha >= 1)
 	{
-		if (!device.getSound().IsPlaySE("title.wav"))
+		if (!device.getSound().isPlaySE("title.wav"))
 		{
-			device.getSound().PlaySE("title.wav");
+			device.getSound().playSE("title.wav");
 		}		
 		rogoAlpha = 1;
 		if (device.getInput().getActionTrigger() || gsGetJoyTrigger(0,GJOY_BUTTON_8))
 		{
-			device.getSound().PlaySE("decision.wav");
-			isEnd = true;
+			device.getSound().playSE("decision.wav");
+			isend = true;
 		}
 	}
 
@@ -45,21 +45,21 @@ void Title::Update()
 		alpha = alpha == 255 ? 0 : 255;
 	}
 }
-void Title::Draw(const Renderer& renderer)
+void Title::draw(const Renderer& renderer)
 {
-	renderer.DrawTextrue("title.bmp", &GSvector2(0, 0));	
+	renderer.drawTextrue("title.bmp", &GSvector2(0, 0));	
 	bStar.draw(renderer);
-	renderer.DrawTextrue("title_text.bmp", &GSvector2(180, 120), &GScolor(1, 1, 1, rogoAlpha));
-	renderer.DrawTextrue("space_text.bmp", &GSvector2(320, 540), &GScolor(255, 255, 255, alpha));
+	renderer.drawTextrue("title_text.bmp", &GSvector2(180, 120), &GScolor(1, 1, 1, rogoAlpha));
+	renderer.drawTextrue("space_text.bmp", &GSvector2(320, 540), &GScolor(255, 255, 255, alpha));
 }
-void Title::Finish()
+void Title::finish()
 {
 }
-Scene Title::Next()
+Scene Title::next()
 {
 	return Scene::MODE_MENU;
 }
-bool Title::IsEnd()
+bool Title::isEnd()
 {
-	return isEnd;
+	return isend;
 }

@@ -65,7 +65,7 @@ void Magpie::updata()
 		break;
 	}
 	position += velocity*gsFrameTimerGetTime()*speed;
-	//device.getSound().StopSE("kasasagi_fly.wav");
+	//device.getSound().stopSE("kasasagi_fly.wav");
 	/*if (isRide())
 	{
 		

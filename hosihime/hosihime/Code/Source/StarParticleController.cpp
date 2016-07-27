@@ -34,18 +34,18 @@ void StarParticleController::update()
 }
 void StarParticleController::draw(const Renderer& renderer, const Scroll& scroll)
 {
-	renderer.AdditionBlend();
+	renderer.additionBlend();
 	for each (Particle_Ptr p in Starparticles)
 	{
 		p->draw(renderer,scroll);
 	}
-	renderer.InitBlendFunc();
+	renderer.initBlendFunc();
 }
 void StarParticleController::finish()
 {
 
 }
-const bool StarParticleController::getIsEnd()const
+const bool StarParticleController::getisEnd()const
 {
 	return isEnd;
 }

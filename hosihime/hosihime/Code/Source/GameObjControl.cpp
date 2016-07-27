@@ -58,9 +58,7 @@ const bool GameObjControl::isCollision(GameObj_Ptr obj1, GameObj_Ptr obj2)
 }
 void GameObjControl::collision(GameObj_Ptr obj1)
 {
-	std::vector<GameObj_Ptr>::iterator s = objs.begin();
-	std::vector<GameObj_Ptr>::iterator end = objs.end();
-	bool all_Noncollision = std::all_of(s, end,
+	bool all_Noncollision = std::all_of(objs.begin(), objs.end(),
 		[&](GameObj_Ptr obj2)
 	{
 		return isCollision(obj1, obj2);
@@ -73,9 +71,7 @@ void GameObjControl::collision(GameObj_Ptr obj1)
 }
 void GameObjControl::remove()
 {
-	std::vector<GameObj_Ptr>::iterator s = objs.begin();
-	std::vector<GameObj_Ptr>::iterator end = objs.end();
-	auto itrNewEnd = std::remove_if(s, end, [](GameObj_Ptr obj)->bool
+	auto itrNewEnd = std::remove_if(objs.begin(),objs.end(), [](GameObj_Ptr obj)->bool
 	{
 		if (!obj->getIsDead())
 		{
@@ -100,9 +96,7 @@ void GameObjControl::finish()
 }
 bool GameObjControl::isDeadPlayer()
 {
-	std::vector<GameObj_Ptr>::iterator s = objs.begin();
-	std::vector<GameObj_Ptr>::iterator end = objs.end();
- 	auto itr = std::find_if(s, end, [](GameObj_Ptr obj)->bool
+	auto itr = std::find_if(objs.begin(), objs.end(), [](GameObj_Ptr obj)->bool
 	{
 		return obj->getType() == GAMEOBJ_TYPE::PLAYER;
 	});
@@ -113,11 +107,9 @@ bool GameObjControl::isDeadPlayer()
 	return false;
 }
 
-bool GameObjControl::StageClear()
+bool GameObjControl::stageClear()
 {
-	std::vector<GameObj_Ptr>::iterator s = objs.begin();
-	std::vector<GameObj_Ptr>::iterator end = objs.end();
-	auto itr = std::find_if(s, end, [](GameObj_Ptr obj)->bool
+	auto itr = std::find_if(objs.begin(), objs.end(), [](GameObj_Ptr obj)->bool
 	{
 		return obj->getType() == GAMEOBJ_TYPE::PLAYER;
 	});

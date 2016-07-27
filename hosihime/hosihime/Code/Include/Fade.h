@@ -15,7 +15,7 @@ public:
 	void stop();
 	/*start‚µ‚Ä‚é‚©H*/
 	const bool getIsStart()const;
-	const bool getIsEnd()const;
+	const bool getisEnd()const;
 	//void setMode(FadeMode mode)
 	void draw(const Renderer& renderer);
 private:

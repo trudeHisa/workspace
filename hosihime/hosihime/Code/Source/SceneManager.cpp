@@ -1,28 +1,28 @@
 #include"SceneManager.h"
 SceneManager::SceneManager(){}
-void SceneManager::Add(Scene name,Scene_Ptr scene)
+void SceneManager::add(Scene name,Scene_Ptr scene)
 {
 	scenes[name] = scene;
 }
-void SceneManager::Change(Scene name)
+void SceneManager::change(Scene name)
 {
 	currentScene = scenes[name];
-	currentScene->Init();
+	currentScene->init();
 }
-void SceneManager::Update()
+void SceneManager::update()
 {
-	currentScene->Update();
-	if (currentScene->IsEnd())
+	currentScene->update();
+	if (currentScene->isEnd())
 	{
-		currentScene->Finish();
-		Change(currentScene->Next());
+		currentScene->finish();
+		change(currentScene->next());
 	}
 }
-void SceneManager::Draw(const Renderer& renderer)
+void SceneManager::draw(const Renderer& renderer)
 {
-	currentScene->Draw(renderer);
+	currentScene->draw(renderer);
 }
-void SceneManager::Finish()
+void SceneManager::finish()
 {
 
 }

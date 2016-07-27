@@ -58,7 +58,7 @@ const bool Fade::getIsStart()const
 	return isStart;
 }
 
-const bool Fade::getIsEnd()const
+const bool Fade::getisEnd()const
 {
 	return isEnd;
 }
@@ -68,5 +68,5 @@ const bool Fade::getIsEnd()const
 }*/
 void Fade::draw(const Renderer& renderer)
 {
-	renderer.DrawFillRect(&GSvector2(0, 0), &GSrect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT), &currentColor);
+	renderer.drawFillRect(&GSvector2(0, 0), &GSrect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT), &currentColor);
 }

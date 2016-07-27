@@ -3,18 +3,19 @@
 
 Ending::Ending(Device& device, TimeScore& score, StarFade& starFade)
 : device(device), score(score), fadeIn(), fadeOut(),
-anim(animTimer), animTimer(20.f), starFade(starFade)
+anim(animTimer), animTimer(20.f), starFade(starFade),
+isend(false)
 {
 }
 Ending::~Ending()
 {
 }
-void Ending::Init()
+void Ending::init()
 {
 	fadeIn.initialize();
 	fadeOut.initialize();
-	isEnd = false;
-	device.getSound().PlaySE("ending.wav");
+	isend = false;
+	device.getSound().playSE("ending.wav");
 	playerPosi = GSvector2(1280, 200);
 	logoPosi = playerPosi + GSvector2(190, 50);
 	vel = GSvector2(0, 0);
@@ -24,11 +25,11 @@ void Ending::Init()
 
 	fadeIn.start(GScolor(0, 0, 0, 1), GScolor(0, 0, 0, 0), 1.0f);
 }
-void Ending::Update()
+void Ending::update()
 {
 	starFade.update();
 	fadeIn.updata();
-	if (!fadeIn.getIsEnd())return;
+	if (!fadeIn.getisEnd())return;
 
 	vel = GSvector2(-2.0f, 0);
 	playerPosi += vel;
@@ -39,7 +40,7 @@ void Ending::Update()
 	anim.updata("A");
 	animTimer.updata();
 	fadeOut.updata();
-	isEnd = fadeOut.getIsEnd();
+	isend = fadeOut.getisEnd();
 
 
 	if (fadeOut.getIsStart())return;
@@ -48,15 +49,15 @@ void Ending::Update()
 		fadeOut.start(GScolor(0, 0, 0, 0), GScolor(0, 0, 0, 1), 1.0f);
 	}
 }
-void Ending::Draw(const Renderer& renderer)
+void Ending::draw(const Renderer& renderer)
 {
-	renderer.DrawTextrue("space0.bmp", &GSvector2(0, 0));
-	renderer.DrawTextrue("con_logo.bmp", &logoPosi,&GSvector2(2,2),&GScolor(1,1,1,1));
+	renderer.drawTextrue("space0.bmp", &GSvector2(0, 0));
+	renderer.drawTextrue("con_logo.bmp", &logoPosi,&GSvector2(2,2),&GScolor(1,1,1,1));
 	anim.draw(renderer, "kasasagi_end.bmp", &playerPosi);
 
 	if (playerPosi.x < 0)
 	{
-		renderer.DrawString("スペースを押してね",&GSvector2(300,600),30);
+		renderer.drawString("スペースを押してね",&GSvector2(300,600),30);
 	}
 	fadeIn.draw(renderer);
 	fadeOut.draw(renderer);
@@ -64,16 +65,16 @@ void Ending::Draw(const Renderer& renderer)
 }
 
 
-void Ending::Finish()
+void Ending::finish()
 {
-	device.getSound().StopSE("ending.wav");
+	device.getSound().stopSE("ending.wav");
 	starFade.finish();
 }
-Scene Ending::Next()
+Scene Ending::next()
 {
 	return Scene::MODE_RESULT;
 }
-bool Ending::IsEnd()
+bool Ending::isEnd()
 {
-	return isEnd;
+	return isend;
 }

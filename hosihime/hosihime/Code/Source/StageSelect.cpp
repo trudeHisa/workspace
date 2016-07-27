@@ -18,11 +18,11 @@ void StageSelect::initialize()
 	fadeIn.initialize();
 	fadeIn.start(GScolor(0, 0, 0, 1), GScolor(0, 0, 0, 0), 1.f);
 	fadeOut.initialize();
-	device.getSound().PlaySE("map.wav");
+	device.getSound().playSE("map.wav");
 
 	orihimeAlpha = 1.0f;
 
-	//device.getSound().PlaySE("Map.wav");
+	//device.getSound().playSE("Map.wav");
 	//ＣＳＶからステージの攻略状況を読み込み
 	//stageLength=読み込み
 	CSVStream stream;
@@ -35,7 +35,7 @@ void StageSelect::updata()
 
 	flash();
 
-	if (!fadeIn.getIsEnd())
+	if (!fadeIn.getisEnd())
 	{
 		return;
 	}
@@ -48,10 +48,10 @@ void StageSelect::updata()
 			return;
 		}
 		fadeOut.start(GScolor(0, 0, 0, 0), GScolor(0, 0, 0, 1), 1.f);
-		device.getSound().PlaySE("decision.wav");
+		device.getSound().playSE("decision.wav");
 	}
 
-	if (fadeOut.getIsEnd())
+	if (fadeOut.getisEnd())
 	{
 		stageNo = activeNo;
 		isend = true;
@@ -67,13 +67,13 @@ void StageSelect::select()
 	{
 		activeNo++;
 		orihimeAlpha = 0;
-		device.getSound().PlaySE("move.wav");
+		device.getSound().playSE("move.wav");
 	}
 	if (device.getInput().getRightTrigger() || gsGetJoyTrigger(0, GJOY_RIGHT))
 	{
 		activeNo--;
 		orihimeAlpha = 0;
-		device.getSound().PlaySE("move.wav");
+		device.getSound().playSE("move.wav");
 	}
 	
 	Calculate<int> calc;
@@ -89,32 +89,32 @@ void StageSelect::draw(const Renderer& renderer)
 		GSvector2(950, 440)
 	};
 	//マップ画像表示
-	renderer.DrawTextrue("mapselect.bmp", &GSvector2(0, 0));
-	renderer.DrawTextrue("map_title.bmp", &GSvector2(850, 30));
-	renderer.DrawTextrue("stage1_bega.bmp", &GSvector2(550, 30));
-	renderer.DrawTextrue("stage2_denebu.bmp", &GSvector2(40, 450));
-	renderer.DrawTextrue("stage3_artail.bmp", &GSvector2(1010, 440));
-	renderer.DrawTextrue("stageselect_logo.bmp", &GSvector2(100, 60));
-	renderer.DrawTextrue("muzukasisa.bmp", &GSvector2(300, 540));
+	renderer.drawTextrue("mapselect.bmp", &GSvector2(0, 0));
+	renderer.drawTextrue("map_title.bmp", &GSvector2(850, 30));
+	renderer.drawTextrue("stage1_bega.bmp", &GSvector2(550, 30));
+	renderer.drawTextrue("stage2_denebu.bmp", &GSvector2(40, 450));
+	renderer.drawTextrue("stage3_artail.bmp", &GSvector2(1010, 440));
+	renderer.drawTextrue("stageselect_logo.bmp", &GSvector2(100, 60));
+	renderer.drawTextrue("muzukasisa.bmp", &GSvector2(300, 540));
 	if (activeNo == 1)
 	{
-		renderer.DrawTextrue("star_2.bmp", &GSvector2(632, 540));
+		renderer.drawTextrue("star_2.bmp", &GSvector2(632, 540));
 	}
 	if (activeNo == 2)
 	{
-		renderer.DrawTextrue("star_3.bmp", &GSvector2(600, 540));
+		renderer.drawTextrue("star_3.bmp", &GSvector2(600, 540));
 	}
 	if (activeNo == 0)
 	{
-		renderer.DrawTextrue("star_1.bmp", &GSvector2(664, 540));
+		renderer.drawTextrue("star_1.bmp", &GSvector2(664, 540));
 	}
-	renderer.DrawTextrue("orihime_map.bmp", &poss[activeNo], &GScolor(1, 1, 1, orihimeAlpha));
+	renderer.drawTextrue("orihime_map.bmp", &poss[activeNo], &GScolor(1, 1, 1, orihimeAlpha));
 	fadeIn.draw(renderer);
 	fadeOut.draw(renderer);
 }
 void StageSelect::finish()
 {
-	device.getSound().StopSE("map.wav");
+	device.getSound().stopSE("map.wav");
 }
 const bool StageSelect::isLastStage()const
 {

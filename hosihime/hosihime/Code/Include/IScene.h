@@ -16,11 +16,11 @@ enum class Scene
 };
 __interface IScene
 {
-	 void Init() ;
-	 void Update() = 0;
-	 void Draw(const Renderer& renderer);
-	 void Finish();
-	Scene Next();
-	bool IsEnd();
+	 void init() ;
+	 void update() = 0;
+	 void draw(const Renderer& renderer);
+	 void finish();
+	Scene next();
+	bool isEnd();
 }; 
 #endif

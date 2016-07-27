@@ -26,6 +26,6 @@ const Input& Device::getInput()const
 }
 void Device::release()
 {
-	//renderer.Release();
-	sound.Release();
+	//renderer.release();
+	sound.release();
 }

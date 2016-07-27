@@ -53,7 +53,7 @@ void Signboard::draw(const Renderer& renderer, const Scroll& scroll)
 	}
 	GSvector2 center(viewSize);
 	center /= 2;
-	renderer.DrawTextrue(textrue, &scroll.transformViewPosition(position), 
+	renderer.drawTextrue(textrue, &scroll.transformViewPosition(position), 
 		NULL, &center,NULL, angle, NULL);
 }
 

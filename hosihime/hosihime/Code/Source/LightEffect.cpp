@@ -35,9 +35,9 @@ void LightEffect::finish()
 
 }
 
-const bool LightEffect::getIsEnd()const
+const bool LightEffect::getisEnd()const
 {
-	return light.getIsEnd();
+	return light.getisEnd();
 }
 
 IEffect* LightEffect::clone(const GSvector2& position)

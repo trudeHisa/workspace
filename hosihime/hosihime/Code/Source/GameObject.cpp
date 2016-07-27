@@ -21,7 +21,7 @@ void GameObject::draw(const Renderer& renderer, const Scroll& scroll)
 	{
 		return;
 	}
-	renderer.DrawTextrue(textrue, &scroll.transformViewPosition(position));
+	renderer.drawTextrue(textrue, &scroll.transformViewPosition(position));
 }
 void GameObject::initialize()
 {

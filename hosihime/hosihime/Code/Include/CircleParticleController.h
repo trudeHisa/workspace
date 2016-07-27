@@ -24,7 +24,7 @@ public:
 	void draw(const Renderer& renderer, const Scroll& scroll);
 	void finish();
 	//void setMode();
-	const bool getIsEnd()const;
+	const bool getisEnd()const;
 private:
 	void createParticle();
 	void remove();

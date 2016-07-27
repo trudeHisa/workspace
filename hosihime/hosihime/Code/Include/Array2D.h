@@ -8,7 +8,7 @@ Array2D.h
 //色々な型で利用できるようtemplateを使っている
 template< class T > class Array2D{
 public:
-	Array2D() : mArray(0){}
+	Array2D() : mArray(0), mSize0(0), mSize1(0){}
 	~Array2D()
 	{
 		delete[] mArray;
@@ -38,11 +38,11 @@ public:
 		{
 			return false;
 		}
-		if (mSize1 <index1)
+		if (mSize1 < index1)
 		{
 			return false;
 		}
-		if (mSize0 <index0)
+		if (mSize0 < index0)
 		{
 			return false;
 		}

@@ -31,7 +31,7 @@ void FireworkParticle::update()
 }
 void FireworkParticle::draw(const Renderer& renderer, const Scroll& scroll)
 {
-	renderer.DrawTextrue(textrue, &scroll.transformViewPosition(position),
+	renderer.drawTextrue(textrue, &scroll.transformViewPosition(position),
 		NULL, &GSvector2(8, 8), NULL, rotate, &GScolor(1, 1, 1, alpha));
 }
 const bool FireworkParticle::getIsDead()const

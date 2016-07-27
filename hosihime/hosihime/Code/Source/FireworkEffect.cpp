@@ -27,9 +27,9 @@ void FireworkEffect::finish()
 {
 	firework.finish();
 }
-const bool FireworkEffect::getIsEnd()const
+const bool FireworkEffect::getisEnd()const
 {
-	return firework.getIsEnd();
+	return firework.getisEnd();
 }
 IEffect* FireworkEffect::clone(const GSvector2& position)
 {

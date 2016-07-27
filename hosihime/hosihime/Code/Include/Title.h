@@ -10,19 +10,19 @@ class Title :public IScene
 public:
 	Title(Device& device, Background_Star& bStar);
 	~Title();
-	void Init();
-	void Update();
-	void Draw(const Renderer& renderer);
-	void Finish();
-	Scene Next();
-	bool IsEnd();
+	void init();
+	void update();
+	void draw(const Renderer& renderer);
+	void finish();
+	Scene next();
+	bool isEnd();
 private:
 	Timer timer;
 	float alpha;
 	float rogoAlpha;
 	
 	Device& device;
-	bool isEnd;
+	bool isend;
 	int index;//‘I‘ğˆŠÇ—
 	bool boolSpace;//
 

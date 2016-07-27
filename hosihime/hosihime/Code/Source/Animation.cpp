@@ -42,7 +42,7 @@ void Animation::updata(const std::string& initial)
 }
 void Animation::draw(const  Renderer& renderer, const std::string& name, const GSvector2* position)
 {
-	renderer.DrawTextrue(name, position, &cells[currentCell]);
+	renderer.drawTextrue(name, position, &cells[currentCell]);
 }
 const std::string Animation::createCellKey(const std::string& initial, int no)const
 {

@@ -32,7 +32,7 @@ void EffectController::remove()
 {
 	auto itrNewEnd = std::remove_if(effects.begin(), effects.end(), [](Effect_Ptr p)->bool
 	{
-		return p->getIsEnd();
+		return p->getisEnd();
 	});
 	effects.erase(itrNewEnd, effects.end());
 }

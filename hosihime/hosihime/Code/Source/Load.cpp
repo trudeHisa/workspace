@@ -2,38 +2,38 @@
 #include "Device.h"
 #include "Renderer.h"
 Load::Load(Device& device, Renderer& renderer)
-:device(device), renderer(renderer)
+	:device(device), renderer(renderer), isend(false)
 {
 }
 Load::~Load()
 {
 
 }
-void Load::Init()
+void Load::init()
 {
-	isEnd = false;
+	isend = false;
 
 }
-void Load::Update()
+void Load::update()
 {
 	loadTextrue();
 	loadSound();
 
-	isEnd = true;
+	isend = true;
 }
-void Load::Draw(const Renderer& renderer)
+void Load::draw(const Renderer& renderer)
 {
 }
-void Load::Finish()
+void Load::finish()
 {
 }
-Scene Load::Next()
+Scene Load::next()
 {
 	return Scene::MODE_OPENING;
 }
-bool Load::IsEnd()
+bool Load::isEnd()
 {
-	return isEnd;
+	return isend;
 }
 void Load::loadTextrue()
 {
@@ -212,33 +212,33 @@ void Load::loadSound()
 	*プレイ
 	*/
 	std::string path = "gameplay\\\\";
-	sound.LoadSE("jump.wav", 1, GWAVE_DEFAULT, originalPath + path);
-	sound.LoadSE("star_break.wav", 5, GWAVE_DEFAULT, originalPath + path);
-	sound.LoadSE("landing.wav", 5, GWAVE_DEFAULT, originalPath + path);
-	sound.LoadSE("star_fire.wav", 5, GWAVE_DEFAULT, originalPath + path);
-	sound.LoadSE("リスポーン.wav", 5, GWAVE_DEFAULT, originalPath + path);
-	sound.LoadSE("着地.wav", 1, GWAVE_DEFAULT, originalPath + path);
-	sound.LoadSE("kasasagi_fly.wav", 5, GWAVE_LOOP, originalPath + path);
+	sound.loadSE("jump.wav", 1, GWAVE_DEFAULT, originalPath + path);
+	sound.loadSE("star_break.wav", 5, GWAVE_DEFAULT, originalPath + path);
+	sound.loadSE("landing.wav", 5, GWAVE_DEFAULT, originalPath + path);
+	sound.loadSE("star_fire.wav", 5, GWAVE_DEFAULT, originalPath + path);
+	sound.loadSE("リスポーン.wav", 5, GWAVE_DEFAULT, originalPath + path);
+	sound.loadSE("着地.wav", 1, GWAVE_DEFAULT, originalPath + path);
+	sound.loadSE("kasasagi_fly.wav", 5, GWAVE_LOOP, originalPath + path);
 
 	/*
 	*その他
 	*/
 	path = "etcetera\\\\";
-	sound.LoadSE("decision.wav", 1, GWAVE_DEFAULT, originalPath + path);
-	sound.LoadSE("move.wav", 1, GWAVE_DEFAULT, originalPath + path);
-	sound.LoadSE("shine1.wav", 1, GWAVE_DEFAULT, originalPath + path);
+	sound.loadSE("decision.wav", 1, GWAVE_DEFAULT, originalPath + path);
+	sound.loadSE("move.wav", 1, GWAVE_DEFAULT, originalPath + path);
+	sound.loadSE("shine1.wav", 1, GWAVE_DEFAULT, originalPath + path);
 	
 	/*
 	*BGM
 	*/
 	originalPath = "Sound\\\\BGM\\\\";
-	sound.LoadSE("ending.wav", 1, GWAVE_LOOP, originalPath);
-	sound.LoadSE("gameclear0.wav", 1, GWAVE_LOOP, originalPath);
-	sound.LoadSE("gameclear1.wav", 1, GWAVE_LOOP, originalPath);
-	sound.LoadSE("gamemode0.wav", 1, GWAVE_LOOP, originalPath);
-	sound.LoadSE("gamemode1.wav", 1, GWAVE_LOOP, originalPath);
-	sound.LoadSE("gameover.wav", 1, GWAVE_LOOP, originalPath);
-	sound.LoadSE("map.wav", 1, GWAVE_LOOP, originalPath);
-	sound.LoadSE("Opening.wav", 1, GWAVE_LOOP, originalPath);
-	sound.LoadSE("title.wav", 1, GWAVE_LOOP, originalPath);
+	sound.loadSE("ending.wav", 1, GWAVE_LOOP, originalPath);
+	sound.loadSE("gameclear0.wav", 1, GWAVE_LOOP, originalPath);
+	sound.loadSE("gameclear1.wav", 1, GWAVE_LOOP, originalPath);
+	sound.loadSE("gamemode0.wav", 1, GWAVE_LOOP, originalPath);
+	sound.loadSE("gamemode1.wav", 1, GWAVE_LOOP, originalPath);
+	sound.loadSE("gameover.wav", 1, GWAVE_LOOP, originalPath);
+	sound.loadSE("map.wav", 1, GWAVE_LOOP, originalPath);
+	sound.loadSE("Opening.wav", 1, GWAVE_LOOP, originalPath);
+	sound.loadSE("title.wav", 1, GWAVE_LOOP, originalPath);
 }

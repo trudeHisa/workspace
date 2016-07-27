@@ -16,7 +16,7 @@ void Scroll::initialize(const GSvector2& moving)
 }
 void Scroll::draw(const Renderer& renderer)
 {
-	renderer.DrawTextrueScroll("space"+std::to_string(stageNo)+".bmp", s, t);
+	renderer.drawTextrueScroll("space"+std::to_string(stageNo)+".bmp", s, t);
 }
 //ウィンドウの中にあるか
 const bool Scroll::isInsideWindow(const GSvector2& pos, const GSvector2& size)const

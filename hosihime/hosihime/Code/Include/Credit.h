@@ -8,14 +8,14 @@ class Credit :public IScene
 public:
 	Credit(Device& device);
 	~Credit();
-	void Init();
-	void Update();
-	void Draw(const Renderer& renderer);
-	void Finish();
-	Scene Next();
-	bool IsEnd();
+	void init();
+	void update();
+	void draw(const Renderer& renderer);
+	void finish();
+	Scene next();
+	bool isEnd();
 private:
-	bool isEnd;
+	bool isend;
 	Device& device;
 	Fade fadeIn;
 	Fade fadeOut;

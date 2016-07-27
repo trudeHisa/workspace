@@ -13,7 +13,7 @@ void StarFade::initialize()
 {
 	particles.clear();
 	createParticle();
-	device.getSound().PlaySE("shine1.wav");
+	device.getSound().playSE("shine1.wav");
 }
 void StarFade::update()
 {

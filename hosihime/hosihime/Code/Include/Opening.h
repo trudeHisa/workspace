@@ -8,14 +8,14 @@ class Opening : public IScene
 public:
 	Opening(Device& device);
 	~Opening();
-	void Init();
-	void Update();
-	void Draw(const Renderer& renderer);
-	void Finish();
-	Scene Next();
-	bool IsEnd();
+	void init();
+	void update();
+	void draw(const Renderer& renderer);
+	void finish();
+	Scene next();
+	bool isEnd();
 private:
-	bool isEnd;
+	bool isend;
 	Device& device;
 	GSvector2 textPos;
 	GSvector2 textPos_D;//テキストの初期位置

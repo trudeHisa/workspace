@@ -14,7 +14,7 @@ public:
 	void update();
 	void draw(const Renderer& renderer, const Scroll& scroll);
 	void finish();
-	const bool getIsEnd()const;
+	const bool getisEnd()const;
 	void remove();
 private:
 	void createParticle();

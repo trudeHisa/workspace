@@ -2,7 +2,7 @@
 
 #include "Device.h"
 Credit::Credit(Device& device)
-	:device(device), isEnd(false),
+	:device(device), isend(false),
 	fadeIn(), fadeOut()
 {
 }
@@ -10,18 +10,18 @@ Credit::Credit(Device& device)
 Credit::~Credit()
 {
 }
-void Credit::Init()
+void Credit::init()
 {
 	fadeIn.initialize();
 	fadeIn.start(GScolor(0, 0, 0, 1), GScolor(0, 0, 0, 0), 1.f);
 	fadeOut.initialize();
-	isEnd = false;
+	isend = false;
 }
-void Credit::Update()
+void Credit::update()
 {
 	fadeIn.updata();
 	fadeOut.updata();
-	if (!fadeIn.getIsEnd())
+	if (!fadeIn.getisEnd())
 	{
 		return;
 	}
@@ -32,25 +32,25 @@ void Credit::Update()
 			return;
 		}
 		fadeOut.start(GScolor(0, 0, 0, 0), GScolor(0, 0, 0, 1), 1.f);
-		device.getSound().PlaySE("decision.wav");
+		device.getSound().playSE("decision.wav");
 	}
-	isEnd = fadeOut.getIsEnd();
+	isend = fadeOut.getisEnd();
 }
-void Credit::Draw(const Renderer& renderer)
+void Credit::draw(const Renderer& renderer)
 {
-	renderer.DrawTextrue("staffroll.bmp", &GSvector2(0, 0));
+	renderer.drawTextrue("staffroll.bmp", &GSvector2(0, 0));
 	fadeIn.draw(renderer);
 	fadeOut.draw(renderer);
 }
-void Credit::Finish()
+void Credit::finish()
 {
 
 }
-Scene Credit::Next()
+Scene Credit::next()
 {
 	return Scene::MODE_MENU;
 }
-bool Credit::IsEnd()
+bool Credit::isEnd()
 {
-	return isEnd;
+	return isend;
 }

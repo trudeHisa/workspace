@@ -12,7 +12,7 @@ public:
 	void update();
 	void draw(const Renderer& renderer, const Scroll& scroll);
 	void finish();
-	const bool getIsEnd()const;
+	const bool getisEnd()const;
 private:
 	void createParticle();
 	void remove();

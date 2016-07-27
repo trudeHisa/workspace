@@ -17,20 +17,23 @@ class Pause
 public:
 	Pause(Device& device);
 	~Pause();
-	void Initializse();
-	void Update();
-	void Draw(const Renderer&renderer);
-	void PauseMenu();
-
-	void Finish();
-	Scene Next();
-	bool IsEnd();
-	bool pausecount;
+	void initializse();
+	void update();
+	void draw(const Renderer&renderer);
+	void pauseMenu();
+	const bool isPausing()const;
+	void finish();
+	Scene next();
+	bool isEnd();
+	
 private:
-	void PauseSwitch();
+	void pauseSwitch();
+private:
+	
 	Renderer renderer;
-	bool isEnd;
+	bool isend;
 	bool fadeEnd;
+	bool isPause;
 	int index;
 	Device& device;
 	Fade fade;

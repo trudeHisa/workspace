@@ -31,9 +31,9 @@ void StarEffect::finish()
 {
 
 }
-const bool StarEffect::getIsEnd()const
+const bool StarEffect::getisEnd()const
 {
-	return star.getIsEnd();
+	return star.getisEnd();
 }
 IEffect* StarEffect::clone(const GSvector2& position)
 {

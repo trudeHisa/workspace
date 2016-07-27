@@ -14,20 +14,20 @@ class GamePlay :public IScene
 public:
 	GamePlay(Device& device, TimeScore& score, StarFade& starFade);
 	~GamePlay();
-	void Init();
-	void Update();
-	void Draw(const Renderer& renderer);
-	void Finish();
-	Scene Next();
+	void init();
+	void update();
+	void draw(const Renderer& renderer);
+	void finish();
+	Scene next();
 	void Continue();
-	bool IsEnd();
+	bool isEnd();
 	int getStageNo();
 private:
 	void modeEnd();
 	void createStage();
 private:
 	int stageNo;
-	bool isEnd;
+	bool isend;
 	bool isLastStage;
 	bool isContinue;
 	Mode mode;

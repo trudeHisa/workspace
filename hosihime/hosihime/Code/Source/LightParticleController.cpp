@@ -27,12 +27,12 @@ void LightParticleController::update()
 
 void LightParticleController::draw(const Renderer& renderer, const Scroll& scroll)
 {
-	renderer.AdditionBlend();
+	renderer.additionBlend();
 	for each (Particle_Ptr p in lightparticles)
 	{
 		p->draw(renderer, scroll);
 	}
-	renderer.InitBlendFunc();
+	renderer.initBlendFunc();
 }
 
 void LightParticleController::createParticle()
@@ -62,7 +62,7 @@ void LightParticleController::finish()
 
 }
 
-const bool LightParticleController::getIsEnd()const
+const bool LightParticleController::getisEnd()const
 {
 	return lightparticles.size() == 0;
 }

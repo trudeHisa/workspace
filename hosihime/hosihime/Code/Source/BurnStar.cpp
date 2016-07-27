@@ -39,9 +39,9 @@ void BurnStar::draw(const Renderer& renderer, const Scroll& scroll)
 {
 	if (isInScreen(scroll))
 	{
-		if (!device.getSound().IsPlaySE("star_fire.wav"))
+		if (!device.getSound().isPlaySE("star_fire.wav"))
 		{
-			device.getSound().PlaySE("star_fire.wav");
+			device.getSound().playSE("star_fire.wav");
 		}
 	}
 

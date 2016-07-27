@@ -9,18 +9,19 @@ class GameOver :public IScene
 public:
 	GameOver(Device& device, GamePlay* _play);
 	~GameOver();
-	void Init();
-	void Update();
-	void FadeOut();
-	void MenuSelect();
-	void LogoMove();
-	void Draw(const Renderer& renderer);
-	void selectDraw(const Renderer& renderer);
-	void Finish();
-	Scene Next();
-	bool IsEnd();
+	void init();
+	void update();
+	void draw(const Renderer& renderer);
+	void selectdraw(const Renderer& renderer);
+	void finish();
+	Scene next();
+	bool isEnd();
 private:
-	bool isEnd;
+	void blackOut();
+	void menuSelect();
+	void logoMove();
+private:
+	bool isend;
 	GamePlay* play;
 	GSvector2 textPosi;
 	GSvector2 scales[2];

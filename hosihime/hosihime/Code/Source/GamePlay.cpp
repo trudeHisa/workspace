@@ -8,30 +8,30 @@ GamePlay::GamePlay(Device& device, TimeScore& score, StarFade& starFade)
 	: device(device), stageNo(0),
 	mode(0),
 	score(score), isContinue(false), pause(device),
-	starFade(starFade)
+	starFade(starFade), isend(false)
 {
 }
 GamePlay::~GamePlay()
 {
 }
-void GamePlay::Init()
+void GamePlay::init()
 {
-	isEnd = false;
+	isend = false;
 	mode = Mode(new PlayMode_Select(device, stageNo));
 	mode->initialize();
 	if (isContinue)
 	{
 		createStage();
 	}
-	pause.Initializse();
+	pause.initializse();
 }
-void GamePlay::Update()
+void GamePlay::update()
 {
-	pause.Update();
-	if(pause.pausecount==true)
+	pause.update();
+	if(pause.isPausing())
 	{
-		pause.PauseMenu();
-		isEnd = pause.IsEnd();
+		pause.pauseMenu();
+		isend = pause.isEnd();
 
 		return;
 	}
@@ -63,29 +63,29 @@ void GamePlay::modeEnd()
 		return;
 	}
 
-	isEnd = true;
+	isend = true;
 }
-void GamePlay::Draw(const Renderer& renderer)
+void GamePlay::draw(const Renderer& renderer)
 {
 	mode->draw(renderer);
-	if (pause.pausecount == true)pause.Draw(renderer);
+	if (pause.isPausing())pause.draw(renderer);
 }
-void GamePlay::Finish()
+void GamePlay::finish()
 {
 	isContinue = false;
 }
-Scene GamePlay::Next()
+Scene GamePlay::next()
 {
-	if (pause.IsEnd() == true) return pause.Next();
+	if (pause.isEnd()) return pause.next();
 	if (mode->getFlag() == CLEARFLAG::CLEAR)
 	{
 		return isLastStage ? Scene::MODE_ENDING : Scene::MODE_RESULT;
 	}
 	return Scene::MODE_GAMEOVER;
 }
-bool GamePlay::IsEnd()
+bool GamePlay::isEnd()
 {
-	return isEnd;
+	return isend;
 }
 
 void GamePlay::Continue()

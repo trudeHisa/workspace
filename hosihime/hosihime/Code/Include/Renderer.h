@@ -11,13 +11,13 @@ public:
 	void LoadTextrue(const std::string& name,
 		const GSenum colorKeyMode = GS_TEXCOLOR_KEY_DISABLE,
 		const std::string& ps = "Textrue\\\\");
-	void Release();
+	void release();
 	/*
 	*テクスチャなし
 	*/
-	void DrawFillRect(const GSvector2* _position, const GSrect* _rect, const GScolor* _color)const;
-	void DrawFillRect(const GSvector2* _position, const GSrect* _rect, const GSvector2* _scaling, const GScolor* _color)const;
-	void DrawFillRect(
+	void drawFillRect(const GSvector2* _position, const GSrect* _rect, const GScolor* _color)const;
+	void drawFillRect(const GSvector2* _position, const GSrect* _rect, const GSvector2* _scaling, const GScolor* _color)const;
+	void drawFillRect(
 		const GSvector2* _position,
 		const GSrect*    _rect,
 		const GSvector2* _center,
@@ -26,12 +26,12 @@ public:
 		const GScolor*    _color
 		)const;
 
-	void DrawTextrue(const std::string& name, const GSvector2* _position)const;
-	void DrawTextrue(const std::string& name, const GSvector2* _position, const GSrect* _rect)const;
-	void DrawTextrue(const std::string& name, const GSvector2* _position, const GScolor* _color)const;
-	void DrawTextrue(const std::string& name, const GSvector2* _position, const GSvector2* _scaling, const GScolor* _color)const;
-	void DrawTextrue(const std::string& name, const GSvector2* _position, const GSrect* _rect, const GScolor* _color)const;
-	void DrawTextrue(
+	void drawTextrue(const std::string& name, const GSvector2* _position)const;
+	void drawTextrue(const std::string& name, const GSvector2* _position, const GSrect* _rect)const;
+	void drawTextrue(const std::string& name, const GSvector2* _position, const GScolor* _color)const;
+	void drawTextrue(const std::string& name, const GSvector2* _position, const GSvector2* _scaling, const GScolor* _color)const;
+	void drawTextrue(const std::string& name, const GSvector2* _position, const GSrect* _rect, const GScolor* _color)const;
+	void drawTextrue(
 		const std::string& name,
 		const GSvector2* _position,
 		const GSrect*    _rect,
@@ -48,14 +48,14 @@ public:
 	GS_FONT_STRIKEOUT 打消し線
 	|(ビットOR演算子)で複数重ねられる　
 	*/
-	void DrawString(const std::string& text, const GSvector2* _position, const GSuint size,
+	void drawString(const std::string& text, const GSvector2* _position, const GSuint size,
 		const GScolor* _color = &GScolor(1, 1, 1, 1), const GSbitfield& fontcode = GS_FONT_NORMAL,
 		const char* fonstname = "MS ゴシック")const;
 
-	void InitBlendFunc()const;
-	void AdditionBlend()const;
-	void DrawTextrueScroll(const std::string& name, const GSrect& s, const GSrect& t)const;
-	void DrawBlurTextrue(
+	void initBlendFunc()const;
+	void additionBlend()const;
+	void drawTextrueScroll(const std::string& name, const GSrect& s, const GSrect& t)const;
+	void drawBlurTextrue(
 		const std::string& name,
 		const GSvector2& _position,
 		const GSvector2* _center,
@@ -63,14 +63,14 @@ public:
 		float angle,
 		unsigned int maxSheet
 		)const;
-	void DrawNumber(
+	void drawNumber(
 		const std::string& name,
 		const GSvector2& _position,
 		float width,
 		float height,
 		int point,
 		const GScolor* _color=&GScolor(1,1,1,1))const;
-	void DrawTimer(
+	void drawTimer(
 		const std::string& name,
 		const GSvector2& _position,
 		float width,
@@ -90,7 +90,7 @@ private:
 	const GSrect getTexCoord(const GSrect* rect, GLsizei sTexWidth, GLsizei sTexHeight)const;
 	const GSvector2 getTexSize(const GSrect* rect, GLsizei sTexWidth, GLsizei sTexHeight)const;
 	void drawQuad(const GSrect& rTexCoord, const GSvector2& size)const;
-	void DrawFillRectangle(
+	void drawFillRectangle(
 		const GSrect*    pSrcRect,
 		const GSvector2* pCenter,
 		const GSvector2* pScaling,
@@ -98,7 +98,7 @@ private:
 		const GSvector2* pTranslation,
 		const GScolor*    pColor
 		) const;
-	void DrawSprite2D(
+	void drawSprite2D(
 		GSuint           uTextureID,
 		const GSrect*    pSrcRect,
 		const GSvector2* pCenter,
@@ -108,7 +108,7 @@ private:
 		const GScolor*    pColor
 		) const;
 	//Scroll
-	void DrawSprite2DScroll(GSuint uTextureID, const GSrect& s, const GSrect& t) const;
+	void drawSprite2DScroll(GSuint uTextureID, const GSrect& s, const GSrect& t) const;
 	void drawQuadScroll(const GSrect& s, const GSrect& t, const GSvector2& size)const;
 private:
 	std::map<const std::string, GSuint> container;

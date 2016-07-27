@@ -29,9 +29,9 @@ void CircleEffect::draw(const Renderer& renderer, const Scroll& scroll)
 void CircleEffect::finish()
 {
 }
-const bool CircleEffect::getIsEnd()const
+const bool CircleEffect::getisEnd()const
 {
-	return circle.getIsEnd();
+	return circle.getisEnd();
 }
 IEffect* CircleEffect::clone(const GSvector2& position)
 {

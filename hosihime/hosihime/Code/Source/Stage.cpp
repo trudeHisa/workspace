@@ -35,12 +35,12 @@ Stage::~Stage()
 }
 void Stage::initialize()
 {
-	device.getSound().PlaySE("gamemode0.wav");
+	device.getSound().playSE("gamemode0.wav");
 
 	factory->addContainer();
 	effectFactory->addContainer();
 
-	//device.getSound().PlaySE("GameMode_1.wav");
+	//device.getSound().playSE("GameMode_1.wav");
 	timer.initialize();
 	control.inisialize();
 	starManager.initialize();
@@ -71,7 +71,7 @@ void Stage::updata()
 	starManager.updata();
 	control.updata();
 	effectController.update();
-	if (!fadeIn.getIsEnd())
+	if (!fadeIn.getisEnd())
 	{
 		return;
 	}
@@ -84,10 +84,10 @@ void Stage::updata()
 		{
 			fadeOut.start(GScolor(0, 0, 0, 0), GScolor(0, 0, 0, 1), 2);
 		}
-		isEnd = fadeOut.getIsEnd();
+		isEnd = fadeOut.getisEnd();
 	}
 
-	if (control.StageClear())
+	if (control.stageClear())
 	{
 		timer.stop();
 		if (flag != CLEARFLAG::CLEAR)
@@ -134,13 +134,13 @@ void Stage::draw(const Renderer& renderer)
 		timerColor = GScolor(1, 1, 1, 1);
 	}
 
-	renderer.DrawTextrue("timerPlanet.bmp", &GSvector2((WINDOW_WIDTH /2) - 100 + timerFontSize, -120));
+	renderer.drawTextrue("timerPlanet.bmp", &GSvector2((WINDOW_WIDTH /2) - 100 + timerFontSize, -120));
 	/*
-	renderer.DrawString(std::to_string(t), 
+	renderer.drawString(std::to_string(t), 
 	&GSvector2(WINDOW_WIDTH - 130, 15), timerFontSize,&timerColor,GS_FONT_ITALIC,"ÉÅÉCÉäÉI");
 	*/
-	//renderer.DrawNumber("number.bmp", GSvector2(50, 50), 32, 64, t);
-	renderer.DrawTimer("timer.bmp", GSvector2((WINDOW_WIDTH/2)-75 + timerFontSize , -10), 50, 64, t,&timerColor);
+	//renderer.drawNumber("number.bmp", GSvector2(50, 50), 32, 64, t);
+	renderer.drawTimer("timer.bmp", GSvector2((WINDOW_WIDTH/2)-75 + timerFontSize , -10), 50, 64, t,&timerColor);
 
 	//fadeOut.draw(renderer);
 	fadeIn.draw(renderer);
@@ -149,7 +149,7 @@ void Stage::draw(const Renderer& renderer)
 void Stage::finish()
 {
 	control.finish();
-	device.getSound().StopSE("gamemode0.wav");
+	device.getSound().stopSE("gamemode0.wav");
 }
 
 void Stage::saveScore(TimeScore& score)
@@ -157,7 +157,7 @@ void Stage::saveScore(TimeScore& score)
 	score.setScore(timer,stageNo);
 }
 
-const bool Stage::getIsEnd()const
+const bool Stage::getisEnd()const
 {
 	return isEnd;
 }
