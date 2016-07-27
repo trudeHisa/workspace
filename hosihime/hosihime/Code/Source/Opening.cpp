@@ -29,7 +29,7 @@ void Opening::update()
 	isend = device.getInput().getActionTrigger();
 	vel = GSvector2(0.0f, -2.0f);
 
-	textPos += vel;
+	textPos += vel*gsFrameTimerGetTime();
 	if (textPos.y <= -textPos_D.y)
 	{
 		isend = true;

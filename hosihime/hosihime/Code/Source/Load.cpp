@@ -216,8 +216,8 @@ void Load::loadSound()
 	sound.loadSE("star_break.wav", 5, GWAVE_DEFAULT, originalPath + path);
 	sound.loadSE("landing.wav", 5, GWAVE_DEFAULT, originalPath + path);
 	sound.loadSE("star_fire.wav", 5, GWAVE_DEFAULT, originalPath + path);
-	sound.loadSE("リスポーン.wav", 5, GWAVE_DEFAULT, originalPath + path);
-	sound.loadSE("着地.wav", 1, GWAVE_DEFAULT, originalPath + path);
+	sound.loadSE("respawn.wav", 5, GWAVE_DEFAULT, originalPath + path);
+	sound.loadSE("run.wav", 1, GWAVE_DEFAULT, originalPath + path);
 	sound.loadSE("kasasagi_fly.wav", 5, GWAVE_LOOP, originalPath + path);
 
 	/*

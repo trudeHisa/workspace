@@ -72,7 +72,7 @@ void Player::jumpEnd()
 {
 	if (isJump == true)
 	{
-		device.getSound().playSE("着地.wav");
+		device.getSound().playSE("run.wav");
 	}
 	isJump = false;
 	jumpPower = 0;
@@ -239,7 +239,7 @@ const bool Player::respawn()
 		return false;
 	}
 
-	device.getSound().playSE("リスポーン.wav");
+	device.getSound().playSE("respawn.wav");
 	position = respawnPos;
 	velocity = GSvector2(0, 0);
 	jumpPower = 0;
