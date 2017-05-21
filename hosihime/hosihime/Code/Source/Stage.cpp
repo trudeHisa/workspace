@@ -7,16 +7,16 @@
 #include "EffectFactory.h"
 
 Stage::Stage(const int& stageNo, Device& device, StarFade& starFade)
-:stageNo(stageNo),
-scroll(WINDOW_WIDTH, WINDOW_HEIGHT, mapSize, stageNo),
-device(device), timer(120, 120), BLOCKSIZE(64.0f),
-control(),
-effectFactory(EffectsFactory(new EffectFactory())),
-effectController(effectFactory),
-mapSize(0, 0),
-factory(ObjFactory(new GameObjectFactory(scroll, device, &control, &effectController))),
-starManager(stageNo, scroll, control, effectController, device),
-	fadeIn(), fadeOut(), starFade(starFade), fadeTimer(4,4)
+	:stageNo(stageNo),
+	scroll(WINDOW_WIDTH, WINDOW_HEIGHT, mapSize, stageNo),
+	device(device), timer(120, 120), BLOCKSIZE(64.0f),
+	control(),
+	effectFactory(EffectsFactory(new EffectFactory())),
+	effectController(effectFactory),
+	mapSize(0, 0),
+	factory(ObjFactory(new GameObjectFactory(scroll, device, &control, &effectController))),
+	starManager(stageNo, scroll, control, effectController, device),
+	fadeIn(), fadeOut(), starFade(starFade), fadeTimer(4, 4)
 {
 	CSVStream stream;
 	std::string name = "mapdata\\\\testmap" + std::to_string(stageNo) + ".csv";
@@ -60,7 +60,7 @@ void Stage::initialize()
 
 	effectController.initialize();
 
-	fadeTimer.initialize();	
+	fadeTimer.initialize();
 }
 void Stage::updata()
 {
@@ -95,7 +95,7 @@ void Stage::updata()
 			starFade.initialize();
 		}
 		fadeTimer.update();
-		flag = CLEARFLAG::CLEAR;	
+		flag = CLEARFLAG::CLEAR;
 		starFade.update();
 
 		isEnd = fadeTimer.isEnd();
@@ -130,17 +130,17 @@ void Stage::draw(const Renderer& renderer)
 			timerFontSize -= 1.5f;
 		}
 	}
-	else{
+	else {
 		timerColor = GScolor(1, 1, 1, 1);
 	}
 
-	renderer.DrawTextrue("timerPlanet.bmp", &GSvector2((WINDOW_WIDTH /2) - 100 + timerFontSize, -120));
+	renderer.DrawTextrue("timerPlanet.bmp", &GSvector2((WINDOW_WIDTH / 2) - 100 + timerFontSize, -120));
 	/*
-	renderer.DrawString(std::to_string(t), 
+	renderer.DrawString(std::to_string(t),
 	&GSvector2(WINDOW_WIDTH - 130, 15), timerFontSize,&timerColor,GS_FONT_ITALIC,"ÉÅÉCÉäÉI");
 	*/
 	//renderer.DrawNumber("number.bmp", GSvector2(50, 50), 32, 64, t);
-	renderer.DrawTimer("timer.bmp", GSvector2((WINDOW_WIDTH/2)-75 + timerFontSize , -10), 50, 64, t,&timerColor);
+	renderer.DrawTimer("timer.bmp", GSvector2((WINDOW_WIDTH / 2) - 75 + timerFontSize, -10), 50, 64, t, &timerColor);
 
 	//fadeOut.draw(renderer);
 	fadeIn.draw(renderer);
@@ -154,7 +154,7 @@ void Stage::finish()
 
 void Stage::saveScore(TimeScore& score)
 {
-	score.setScore(timer,stageNo);
+	score.setScore(timer, stageNo);
 }
 
 const bool Stage::getIsEnd()const
